@@ -1,0 +1,124 @@
+{
+	"name": "ContentTransfer",
+	"author": "Dejan Savuljesku <savuljesku@hallowelt.com>",
+	"license-name": "GPL-3.0-only",
+	"version": "1.0.0",
+	"MessagesDirs": {
+		"ContentTransfer": "i18n"
+	},
+	"attributes":{
+		"BlueSpiceFoundation": {
+			"PermissionRegistry": {
+				"content-transfer": {
+					"type": "global",
+					"roles": [ "admin" ]
+				}
+			}
+		}
+	},
+	"ServiceWiringFiles": [
+		"src/ServiceWiring.php"
+	],
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "ContentTransfer/resources"
+	},
+	"SpecialPages": {
+		"ContentTransfer": "\\ContentTransfer\\Special\\Push"
+	},
+	"AutoloadNamespaces": {
+		"ContentTransfer\\": "src/"
+	},
+	"APIModules": {
+		"content-transfer-get-pages": "\\ContentTransfer\\Api\\GetPages",
+		"content-transfer-push-info": "\\ContentTransfer\\Api\\PushInfo",
+		"content-transfer-do-push-single": "\\ContentTransfer\\Api\\PushSingle",
+		"content-transfer-purge-pages": "\\ContentTransfer\\Api\\PurgePages"
+	},
+	"callback": "\\ContentTransfer\\Extension::onCallback",
+	"AvailableRights": [
+		"content-transfer"
+	],
+	"ResourceModules": {
+		"ext.contenttransfer": {
+			"scripts": [
+				"PageSelectorWidget.js",
+				"ext.contenttransfer.js",
+				"dialog/Push.js",
+				"layout/PushLayout.js"
+			],
+			"styles": [
+				"ext.contenttransfer.less"
+			],
+			"dependencies": [
+				"ext.bluespice",
+				"mediawiki.api",
+				"oojs",
+				"oojs-ui"
+			],
+			"messages": [
+				"content-transfer-pages-header",
+				"content-transfer-provider-picker-label",
+				"content-transfer-push-pages-button-label",
+				"content-transfer-load-pages-button-label",
+				"content-transfer-pages-header-count",
+				"content-transfer-dialog-push-title",
+				"content-transfer-dialog-push-action-do-push-label",
+				"content-transfer-dialog-push-action-cancel-label",
+				"content-transfer-dialog-push-preview-layout-label",
+				"content-transfer-dialog-push-progress-layout-label",
+				"content-transfer-dialog-push-report-layout-label",
+				"content-transfer-dialog-push-preview-page-group-label-wikipage",
+				"content-transfer-dialog-push-preview-page-group-label-file",
+				"content-transfer-dialog-push-preview-page-group-label-category",
+				"content-transfer-dialog-push-preview-page-group-label-template",
+				"content-transfer-progress-current-operation",
+				"content-transfer-dialog-push-action-done-label",
+				"content-transfer-report-success-count",
+				"content-transfer-report-failure",
+				"content-transfer-target-picker-label",
+				"content-transfer-progress-push-target-label",
+				"content-transfer-report-interrupted",
+				"content-transfer-progress-purge-pages",
+				"content-transfer-only-modified-label",
+				"content-transfer-only-modified-help",
+				"content-transfer-no-pages-label",
+				"content-transfer-dialog-preview-target-info",
+				"content-transfer-dialog-preview-target-draft",
+				"content-transfer-too-many-pages-warning",
+				"contenttransfer-text-filter-input-label",
+				"contenttransfer-namespace-filter-input-label",
+				"contenttransfer-category-filter-input-label",
+				"content-transfer-generic-error",
+				"content-transfer-include-related",
+				"content-transfer-modified-since-label",
+				"content-transfer-modified-since-ph"
+			]
+		}
+	},
+	"Hooks": {
+		"LoadExtensionSchemaUpdates": "\\ContentTransfer\\Extension::onLoadExtensionSchemaUpdates"
+	},
+	"config": {
+		"ContentTransferTargets": {
+			"value": []
+		},
+		"ContentTransferIgnoreInsecureSSL": {
+			"value": false
+		},
+		"ContentTransferPageLimit": {
+			"value": 200
+		},
+		"ContentTransferOnlyContentNamespaces": {
+			"value": true
+		},
+		"ContentTransferAllowTalkNamespaces": {
+			"value": false
+		},
+		"ContentTransferEnableBetaFeatures": {
+			"description": "Enable experimental features. These features might be buggy",
+			"value": false
+		}
+	},
+	"manifest_version": 2
+}

@@ -1,0 +1,5 @@
+{
+	"name": "mediawiki/content-transfer",
+	"type": "mediawiki-extension",
+	"description": "Enables pushing content from one wiki to another"
+}
