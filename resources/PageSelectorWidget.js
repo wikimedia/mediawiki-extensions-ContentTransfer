@@ -45,7 +45,7 @@
 		} );
 
 		this.pushPagesButton = new OO.ui.ButtonWidget( {
-			label: mw.message( 'content-transfer-push-pages-button-label' ).plain(),
+			label: mw.message( 'contenttransfer-push-pages-button-label' ).plain(),
 			disabled: true,
 			flags: [
 				'primary',
@@ -60,12 +60,12 @@
 			items: [
 				new OO.ui.FieldLayout( this.pushTargetPicker,{
 					align: 'left',
-					label: mw.message( 'content-transfer-target-picker-label' ).plain(),
+					label: mw.message( 'contenttransfer-target-picker-label' ).plain(),
 					classes: [ 'picker' ]
 				} ),
 				new OO.ui.FieldLayout( this.includeRelated,{
 					align: 'right',
-					label: mw.message( 'content-transfer-include-related' ).plain(),
+					label: mw.message( 'contenttransfer-include-related' ).plain(),
 					classes: [ 'related' ]
 				} ),
 				this.pushPagesButton
@@ -105,7 +105,7 @@
 		} );
 
 		this.modifiedSince = new OO.ui.TextInputWidget( {
-			placeholder: mw.message( 'content-transfer-modified-since-ph' ).text(),
+			placeholder: mw.message( 'contenttransfer-modified-since-ph' ).text(),
 			validate: /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/gm
 		} );
 
@@ -123,13 +123,13 @@
 		} );
 		var onlyModifiedLayout = new OO.ui.FieldLayout( this.onlyModified, {
 			align: 'top',
-			label: mw.message( 'content-transfer-only-modified-label' ).text(),
-			help: mw.message( 'content-transfer-only-modified-help' ).text(),
+			label: mw.message( 'contenttransfer-only-modified-label' ).text(),
+			help: mw.message( 'contenttransfer-only-modified-help' ).text(),
 			classes: [ 'only-modified-layout' ]
 		} );
 		var modifiedSinceLayout = new OO.ui.FieldLayout( this.modifiedSince, {
 			align: 'top',
-			label: mw.message( 'content-transfer-modified-since-label' ).text()
+			label: mw.message( 'contenttransfer-modified-since-label' ).text()
 		} );
 
 		this.textFilter.connect( this, { change: 'loadPages' } );
@@ -181,7 +181,7 @@
 		this.selectNoneButton.connect( this, { click: 'selectNone' } );
 
 		headerLayout.$element.append(
-			$( '<h2>' ).html( mw.message( 'content-transfer-pages-header' ).plain() ),
+			$( '<h2>' ).html( mw.message( 'contenttransfer-pages-header' ).plain() ),
 			this.selectAllButton.$element,
 			this.selectNoneButton.$element
 		);
@@ -330,7 +330,7 @@
 			icon: 'alert'
 		} );
 		var label = new OO.ui.LabelWidget( {
-			label: mw.message( 'content-transfer-too-many-pages-warning', total, retrieved ).text()
+			label: mw.message( 'contenttransfer-too-many-pages-warning', total, retrieved ).text()
 		} );
 		var layout = new OO.ui.HorizontalLayout( {
 			items: [
@@ -367,18 +367,18 @@
 		this.$pagesHeader.append(
 			$( '<span>' )
 				.addClass( 'selected-count' )
-				.html( mw.message( 'content-transfer-pages-header-count', total, selected ).plain() )
+				.html( mw.message( 'contenttransfer-pages-header-count', total, selected ).plain() )
 		);
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.setNoPages = function() {
 		this.$pageContainer.html(
-			new OO.ui.LabelWidget( { label: mw.message( 'content-transfer-no-pages-label' ).text() } ).$element
+			new OO.ui.LabelWidget( { label: mw.message( 'contenttransfer-no-pages-label' ).text() } ).$element
 		);
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.displayError = function( error ) {
-		error = error || mw.message( 'content-transfer-generic-error' ).text();
+		error = error || mw.message( 'contenttransfer-generic-error' ).text();
 		this.$pageContainer.html(
 			new OO.ui.HorizontalLayout( {
 				items: [
@@ -400,7 +400,7 @@
 					items: [
 						new OO.ui.IconWidget( { icon: 'alert' } ),
 						new OO.ui.LabelWidget( {
-							label: mw.message( 'content-transfer-no-pages-label' ).text()
+							label: mw.message( 'contenttransfer-no-pages-label' ).text()
 						} )
 					]
 				} ).$element

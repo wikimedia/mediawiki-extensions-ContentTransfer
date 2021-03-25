@@ -80,14 +80,14 @@ class AuthenticatedRequestHandler {
 			$status = $request->execute();
 
 			if( !$status->isOK() ) {
-				$this->status = Status::newFatal( 'content-transfer-no-pageprops' );
+				$this->status = Status::newFatal( 'contenttransfer-no-pageprops' );
 				return null;
 			}
 
 			$response = FormatJson::decode( $request->getContent(), true );
 
 			if( count( $response[ 'query' ][ 'pages' ] ) === 0 ) {
-				$this->status = Status::newFatal( 'content-transfer-cannot-create' );
+				$this->status = Status::newFatal( 'contenttransfer-cannot-create' );
 				return null;
 			}
 
@@ -126,7 +126,7 @@ class AuthenticatedRequestHandler {
 			$status = $request->execute();
 
 			if( !$status->isOK() ) {
-				$this->status = Status::newFatal( 'content-transfer-no-csrf-token' );
+				$this->status = Status::newFatal( 'contenttransfer-no-csrf-token' );
 				return null;
 			}
 
@@ -134,7 +134,7 @@ class AuthenticatedRequestHandler {
 
 			if( !property_exists( $response->query, 'tokens' ) ||
 				!property_exists( $response->query->tokens, 'csrftoken' ) ) {
-				$this->status = Status::newFatal( 'content-transfer-no-csrf-token' );
+				$this->status = Status::newFatal( 'contenttransfer-no-csrf-token' );
 				return null;
 			}
 
@@ -163,10 +163,10 @@ class AuthenticatedRequestHandler {
 
 	public function runAuthenticatedRequest( $requestData ) {
 		if ( !$this->authenticate() ) {
-			return StatusValue::newFatal( 'content-transfer-authentication-failed' );
+			return StatusValue::newFatal( 'contenttransfer-authentication-failed' );
 		}
 		if ( !$this->getCSRFToken() ) {
-			return StatusValue::newFatal( 'content-transfer-no-csrf-token' );
+			return StatusValue::newFatal( 'contenttransfer-no-csrf-token' );
 		}
 
 		$request = $this->getRequest( $requestData );
@@ -203,13 +203,13 @@ class AuthenticatedRequestHandler {
 		}
 
 		if ( !function_exists( 'curl_init' ) ) {
-			$this->status = Status::newFatal( 'content-transfer-no-curl' );
+			$this->status = Status::newFatal( 'contenttransfer-no-curl' );
 			return false;
 		} elseif (
 			!defined( 'CurlHttpRequest::SUPPORTS_FILE_POSTS' )
 			|| !\CurlHttpRequest::SUPPORTS_FILE_POSTS
 		) {
-			$this->status = Status::newFatal( 'content-transfer-curl-file-posts-not-supported' );
+			$this->status = Status::newFatal( 'contenttransfer-curl-file-posts-not-supported' );
 			return false;
 		}
 
@@ -225,7 +225,7 @@ class AuthenticatedRequestHandler {
 
 		$status = $request->execute();
 		if( !$status->isOK() ) {
-			$this->status = Status::newFatal( 'content-transfer-upload-fail' );
+			$this->status = Status::newFatal( 'contenttransfer-upload-fail' );
 			return false;
 		}
 
@@ -236,7 +236,7 @@ class AuthenticatedRequestHandler {
 				// Do not consider pushing duplicate files as an error
 				return true;
 			}
-			$this->status = Status::newFatal( 'content-transfer-upload-fail-message', $response->error->info );
+			$this->status = Status::newFatal( 'contenttransfer-upload-fail-message', $response->error->info );
 			return false;
 		}
 
@@ -281,7 +281,7 @@ class AuthenticatedRequestHandler {
 		$status = $request->execute();
 
 		if( !$status->isOK() ) {
-			$this->status = Status::newFatal( 'content-transfer-authentication-failed' );
+			$this->status = Status::newFatal( 'contenttransfer-authentication-failed' );
 			return false;
 		}
 
@@ -290,7 +290,7 @@ class AuthenticatedRequestHandler {
 		if( $response->login->result === 'Success' ) {
 			$this->cookieJar = $request->getCookieJar();
 		} else {
-			$this->status = Status::newFatal( 'content-transfer-authentication-failed' );
+			$this->status = Status::newFatal( 'contenttransfer-authentication-failed' );
 			return false;
 		}
 
@@ -327,7 +327,7 @@ class AuthenticatedRequestHandler {
 		$status = $request->execute();
 
 		if( !$status->isOK() ) {
-			$this->status = Status::newFatal( 'content-transfer-no-login-token' );
+			$this->status = Status::newFatal( 'contenttransfer-no-login-token' );
 			return false;
 		}
 
@@ -335,7 +335,7 @@ class AuthenticatedRequestHandler {
 
 		if( !property_exists( $response->query, 'tokens' ) ||
 			!property_exists( $response->query->tokens, 'logintoken' ) ) {
-			$this->status = Status::newFatal( 'content-transfer-no-login-token' );
+			$this->status = Status::newFatal( 'contenttransfer-no-login-token' );
 			return false;
 		}
 

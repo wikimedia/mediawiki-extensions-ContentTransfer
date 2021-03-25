@@ -118,14 +118,14 @@ class PagePusher {
 			//cannot be retrieved from page title
 			$namespaceText = $this->title->getNsText();
 			$this->status = Status::newFatal(
-				wfMessage( 'content-transfer-namespace-not-found', $namespaceText )
+				wfMessage( 'contenttransfer-namespace-not-found', $namespaceText )
 			);
 			$this->userAction = static::USER_ACTION_ACKNOWLEDGE;
 			return false;
 		}
 		if( $this->isPageProtected() && $this->force == false ) {
 			$this->status = Status::newFatal(
-				wfMessage( 'content-transfer-page-protected' )
+				wfMessage( 'contenttransfer-page-protected' )
 			);
 			$this->userAction = static::USER_ACTION_FORCE;
 			return false;
@@ -157,13 +157,13 @@ class PagePusher {
 		$status = $this->requestHandler->runPushRequest( $requestData );
 
 		if( !$status->isOK() ) {
-			$this->status = Status::newFatal( 'content-transfer-edit-fail' );
+			$this->status = Status::newFatal( 'contenttransfer-edit-fail' );
 			return false;
 		}
 
 		$response = (object) $status->getValue();
 		if( property_exists( $response, 'error' ) ) {
-			$this->status = Status::newFatal( 'content-transfer-edit-fail-message', $response->error->info );
+			$this->status = Status::newFatal( 'contenttransfer-edit-fail-message', $response->error->info );
 			return false;
 		}
 
