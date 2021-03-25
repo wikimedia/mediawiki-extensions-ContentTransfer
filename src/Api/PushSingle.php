@@ -100,7 +100,7 @@ class PushSingle extends ApiBase {
 		}
 
 		$this->dieWithError(
-			Message::newFromKey( 'push-invalid-target' )->plain(),
+			Message::newFromKey( 'contenttransfer-invalid-target' )->plain(),
 			'push-invalid-target'
 		);
 	}
