@@ -25,24 +25,24 @@
 
 	contentTransfer.dialog.Push.static.name = 'ctPushDialog';
 
-	contentTransfer.dialog.Push.static.title = mw.message( 'content-transfer-dialog-push-title' ).plain();
+	contentTransfer.dialog.Push.static.title = mw.message( 'contenttransfer-dialog-push-title' ).plain();
 
 	contentTransfer.dialog.Push.static.actions = [
 		{
 			action: 'doPush',
-			label: mw.message( 'content-transfer-dialog-push-action-do-push-label' ).plain(),
+			label: mw.message( 'contenttransfer-dialog-push-action-do-push-label' ).plain(),
 			flags: [ 'primary' ],
 			disabled: false
 		},
 		{
 			action: 'done',
-			label: mw.message( 'content-transfer-dialog-push-action-done-label' ).plain(),
+			label: mw.message( 'contenttransfer-dialog-push-action-done-label' ).plain(),
 			flags: [ 'primary' ],
 			disabled: true
 		},
 		{
 			action: 'cancel',
-			label: mw.message( 'content-transfer-dialog-push-action-cancel-label' ).plain(),
+			label: mw.message( 'contenttransfer-dialog-push-action-cancel-label' ).plain(),
 			flags: 'safe'
 		}
 	];
@@ -53,19 +53,19 @@
 		this.layout = new contentTransfer.layout.Push();
 		this.layout.addStage( {
 			name: 'preview',
-			label: mw.message( 'content-transfer-dialog-push-preview-layout-label' ).plain(),
+			label: mw.message( 'contenttransfer-dialog-push-preview-layout-label' ).plain(),
 			content: this.makePreviewPanel()
 		} );
 
 		this.layout.addStage( {
 			name: 'progress',
-			label: mw.message( 'content-transfer-dialog-push-progress-layout-label' ).plain(),
+			label: mw.message( 'contenttransfer-dialog-push-progress-layout-label' ).plain(),
 			content: this.makeProgressPanel()
 		} );
 
 		this.layout.addStage( {
 			name: 'report',
-			label: mw.message( 'content-transfer-dialog-push-report-layout-label' ).plain(),
+			label: mw.message( 'contenttransfer-dialog-push-report-layout-label' ).plain(),
 			content: this.makeReportPanel()
 		} );
 
@@ -82,7 +82,7 @@
 	contentTransfer.dialog.Push.prototype.makePreviewPanel = function() {
 		this.$previewPanel = $( '<div>' ).addClass( 'content-transfer-dialog-push-preview-panel' );
 		var targetInfo = new OO.ui.LabelWidget( {
-			label: mw.message( 'content-transfer-dialog-preview-target-info', this.pushTarget.url ).text()
+			label: mw.message( 'contenttransfer-dialog-preview-target-info', this.pushTarget.url ).text()
 		} );
 		targetInfo.$element.addClass( 'content-transfer-preview-target-info' );
 		if( this.pushTarget.pushToDraft ) {
@@ -90,7 +90,7 @@
 				new OO.ui.HtmlSnippet(
 					'<span>' + targetInfo.getLabel() + '</span>' +
 					'<span class="push-to-draft">' +
-						mw.message( 'content-transfer-dialog-preview-target-draft' ).text() +
+						mw.message( 'contenttransfer-dialog-preview-target-draft' ).text() +
 					'</span>'
 				)
 			);
@@ -102,8 +102,12 @@
 		for( var group in this.groupedInfo ) {
 			var pages = this.groupedInfo[group];
 			this.groupsToTransfer[group] = true;
+			// contenttransfer-dialog-push-preview-page-group-label-wikipage
+			// contenttransfer-dialog-push-preview-page-group-label-file
+			// contenttransfer-dialog-push-preview-page-group-label-category
+			// contenttransfer-dialog-push-preview-page-group-label-template
 			var groupTitle = mw.message(
-				'content-transfer-dialog-push-preview-page-group-label-' + group,
+				'contenttransfer-dialog-push-preview-page-group-label-' + group,
 				pages.length
 			).plain();
 
@@ -163,7 +167,7 @@
 		this.$progressPanel = $( '<div>' ).addClass( 'content-transfer-progress-panel' );
 		this.$pushTarget = $( '<div>' )
 			.addClass( 'content-transfer-progress-panel-push-target' )
-			.html( mw.message( 'content-transfer-progress-push-target-label', this.pushTarget.url ).plain() );
+			.html( mw.message( 'contenttransfer-progress-push-target-label', this.pushTarget.url ).plain() );
 		this.$currentOperation = $( '<span>' ).addClass( 'content-transfer-progress-panel-current-op' );
 		this.progressBar = new OO.ui.ProgressBarWidget( {
 			progress: 0
@@ -264,7 +268,7 @@
 			return dfd.resolve();
 		}
 
-		this.$currentOperation.html( mw.message( 'content-transfer-progress-current-operation', page.title ).plain() );
+		this.$currentOperation.html( mw.message( 'contenttransfer-progress-current-operation', page.title ).plain() );
 
 		var data = {
 			articleId: page.id,
@@ -409,7 +413,7 @@
 			var pushedPage = this.pushedPages[ idx ];
 			if( pushedPage.success === false ) {
 				this.$reportFailures.append(
-					$( '<span>' ).html( mw.message( 'content-transfer-report-failure', pushedPage.title ).plain() ),
+					$( '<span>' ).html( mw.message( 'contenttransfer-report-failure', pushedPage.title ).plain() ),
 					$( '<span>' ).addClass( 'content-transfer-report-failure-reason' ).html( pushedPage.message )
 				);
 			} else {
@@ -419,9 +423,9 @@
 		}
 		if( interrupted ) {
 			this.reportIcon.setIcon( 'close' );
-			this.$reportCount.html( mw.message( 'content-transfer-report-interrupted', successCount ).plain() );
+			this.$reportCount.html( mw.message( 'contenttransfer-report-interrupted', successCount ).plain() );
 		} else {
-			this.$reportCount.html( mw.message( 'content-transfer-report-success-count', successCount, total ).plain() );
+			this.$reportCount.html( mw.message( 'contenttransfer-report-success-count', successCount, total ).plain() );
 		}
 		if( successCount < total ) {
 			this.reportIcon.setIcon( 'close' );
@@ -438,7 +442,7 @@
 
 	contentTransfer.dialog.Push.prototype.purgePages = function( pageTitles ) {
 		var dfd = $.Deferred();
-		this.$currentOperation.html( mw.message( 'content-transfer-progress-purge-pages' ).plain() );
+		this.$currentOperation.html( mw.message( 'contenttransfer-progress-purge-pages' ).plain() );
 
 		this.api.postWithEditToken(
 			{
