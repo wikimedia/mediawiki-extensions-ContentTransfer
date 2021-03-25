@@ -2,7 +2,6 @@
 
 namespace ContentTransfer\Api;
 
-use ApiBase;
 use ContentTransfer\PagePurger;
 use Title;
 
@@ -19,12 +18,14 @@ class PurgePages extends PushSingle {
 	protected function getAllowedParams() {
 		return [
 			'titles' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				static::PARAM_TYPE => 'string',
+				static::PARAM_REQUIRED => true,
+				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-titles',
 			],
 			'pushTarget' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				static::PARAM_TYPE => 'string',
+				static::PARAM_REQUIRED => true,
+				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-pushtarget',
 			]
 		];
 	}

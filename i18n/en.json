@@ -1,4 +1,11 @@
 {
+	"@metadata": {
+		"authors": [
+			"Dejan Savuljesku",
+			"Patric Wirth"
+		]
+	},
+	"contenttransfer-extension-description": "Enables pushing content from one wiki to another",
 	"contenttransfer": "Content transfer",
 	"contenttransfer-text-filter-input-label": "Page name",
 	"contenttransfer-namespace-filter-input-label": "Namespace",
@@ -50,5 +57,19 @@
 	"content-transfer-generic-error": "An error has occurred!",
 	"content-transfer-include-related": "Include related",
 	"content-transfer-modified-since-label": "Modified since",
-	"content-transfer-modified-since-ph": "DD.MM.YYYY"
+	"content-transfer-modified-since-ph": "DD.MM.YYYY",
+	"apihelp-content-transfer-get-pages-summary": "Lists all pages that are pushable based on given filters",
+	"apihelp-content-transfer-push-info-summary": "Retrieves all resources such as included files, linked pages etc. of the page, that is about to be transferd to a target wiki",
+	"apihelp-content-transfer-do-push-single-summary": "Transfers a singe page to a target wiki",
+	"apihelp-content-transfer-purge-pages-summary": "Purges all pages that were transfered to the target wiki",
+	"contenttransfer-apihelp-param-filterdata": "JSON string of data to filter for",
+	"contenttransfer-apihelp-param-titles": "Pipe seperated list of page names",
+	"contenttransfer-apihelp-param-pushtarget": "Target wiki name",
+	"contenttransfer-apihelp-param-onlymodified": "Bool. Set if only pages should get transfered that have been modified since the last content transfer",
+	"contenttransfer-apihelp-param-modifiedsince": "Date string. Transfer only pages, that have been modified since",
+	"contenttransfer-apihelp-param-target": "Target wiki name",
+	"contenttransfer-apihelp-param-includerelated": "Bool. Set if also resources such as linked pages, files and categories of the page should get transfered",
+	"contenttransfer-apihelp-param-articleid": "Interger. Id of the page, that should get transfered",
+	"contenttransfer-apihelp-param-force": "Bool. Ignore warings and transfer anyways",
+	"contenttransfer-apihelp-param-token": "The users edit token"
 }
