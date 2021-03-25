@@ -3,8 +3,12 @@
 	"author": "Dejan Savuljesku <savuljesku@hallowelt.com>",
 	"license-name": "GPL-3.0-only",
 	"version": "1.0.0",
+	"descriptionmsg": "contenttransfer-extension-description",
 	"MessagesDirs": {
 		"ContentTransfer": "i18n"
+	},
+	"ExtensionMessagesFiles": {
+		"MergeArticlesAlias": "languages/ContentTransfer.alias.php"
 	},
 	"attributes":{
 		"BlueSpiceFoundation": {
@@ -17,7 +21,7 @@
 		}
 	},
 	"ServiceWiringFiles": [
-		"src/ServiceWiring.php"
+		"includes/ServiceWiring.php"
 	],
 	"ResourceFileModulePaths": {
 		"localBasePath": "resources",
@@ -35,10 +39,20 @@
 		"content-transfer-do-push-single": "\\ContentTransfer\\Api\\PushSingle",
 		"content-transfer-purge-pages": "\\ContentTransfer\\Api\\PurgePages"
 	},
-	"callback": "\\ContentTransfer\\Extension::onCallback",
 	"AvailableRights": [
 		"content-transfer"
 	],
+	"GroupPermissions": {
+		"*": {
+			"content-transfer": false
+		},
+		"user": {
+			"content-transfer": false
+		},
+		"sysop": {
+			"content-transfer": true
+		}
+	},
 	"ResourceModules": {
 		"ext.contenttransfer": {
 			"scripts": [
@@ -51,7 +65,6 @@
 				"ext.contenttransfer.less"
 			],
 			"dependencies": [
-				"ext.bluespice",
 				"mediawiki.api",
 				"oojs",
 				"oojs-ui"
@@ -120,5 +133,6 @@
 			"value": false
 		}
 	},
+	"load_composer_autoloader": true,
 	"manifest_version": 2
 }

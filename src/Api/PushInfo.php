@@ -30,27 +30,32 @@ class PushInfo extends ApiBase {
 	protected function getAllowedParams() {
 		return [
 			'titles' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				static::PARAM_TYPE => 'string',
+				static::PARAM_REQUIRED => true,
+				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-titles',
 			],
 			'onlyModified' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_REQUIRED => false,
-				ApiBase::PARAM_DFLT => false
+				static::PARAM_TYPE => 'boolean',
+				static::PARAM_REQUIRED => false,
+				static::PARAM_DFLT => false,
+				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-onlymodified',
 			],
 			'modifiedSince' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => false,
-				ApiBase::PARAM_DFLT => ''
+				static::PARAM_TYPE => 'string',
+				static::PARAM_REQUIRED => false,
+				static::PARAM_DFLT => '',
+				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-modifiedsince',
 			],
 			'target' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				static::PARAM_TYPE => 'string',
+				static::PARAM_REQUIRED => true,
+				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-target',
 			],
 			'includeRelated' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_REQUIRED => false,
-				ApiBase::PARAM_DFLT => 0
+				static::PARAM_TYPE => 'boolean',
+				static::PARAM_REQUIRED => false,
+				static::PARAM_DFLT => false,
+				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-includerelated',
 			]
 		];
 	}

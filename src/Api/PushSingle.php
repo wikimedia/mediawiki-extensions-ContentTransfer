@@ -37,26 +37,31 @@ class PushSingle extends ApiBase {
 		}
 		if ( !$this->getUser()->matchEditToken( $this->getParameter( 'token' ) ) ) {
 			$this->dieWithError( 'Edit token invalid', 'invalidtoken' );
-		};
+		}
 	}
 
 	protected function getAllowedParams() {
 		return [
 			'articleId' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_REQUIRED => true
+				static::PARAM_TYPE => 'integer',
+				static::PARAM_REQUIRED => true,
+				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-articleid',
 			],
 			'pushTarget' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				static::PARAM_TYPE => 'string',
+				static::PARAM_REQUIRED => true,
+				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-pushtarget',
 			],
 			'force' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_REQUIRED => false
+				static::PARAM_TYPE => 'boolean',
+				static::PARAM_REQUIRED => false,
+				static::PARAM_DFLT => false,
+				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-force',
 			],
 			'token' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				static::PARAM_TYPE => 'string',
+				static::PARAM_REQUIRED => true,
+				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-token',
 			]
 		];
 	}
