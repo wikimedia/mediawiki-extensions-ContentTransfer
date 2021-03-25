@@ -24,8 +24,10 @@ class GetPages extends ApiBase {
 	protected function getAllowedParams() {
 		return [
 			'filterData' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				static::PARAM_TYPE => 'string',
+				static::PARAM_REQUIRED => true,
+				static::PARAM_DFLT => '[]',
+				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-filterdata',
 			],
 		];
 	}

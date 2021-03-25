@@ -7,20 +7,16 @@ use DatabaseUpdater;
 use MediaWiki\MediaWikiServices;
 
 class Extension {
-	public static function onCallback() {
-		// Service wiring wont get loaded automatically for some reason - TEMP
-		$mwServices = MediaWikiServices::getInstance();
-		$mwServices->loadWiringFiles( [ __DIR__ . '/ServiceWiring.php' ] );
-	}
 
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
-		if( !$updater->getDB()->fieldExists( 'push_history', 'ph_target', __METHOD__ ) ) {
-			$updater->dropTable( 'push_history' );
+		if( $updater->getDB()->tableExists( 'push_history' )
+			&& !$updater->getDB()->fieldExists( 'push_history', 'ph_target', __METHOD__ ) ) {
+			$updater->dropExtensionTable( 'push_history' );
 		}
 
 		$updater->addExtensionTable(
 			'push_history',
-			__DIR__ . "/../db/push_history.sql"
+			__DIR__ . "/../maintenance/db/push_history.sql"
 		);
 	}
 
