@@ -4,6 +4,9 @@
 	"license-name": "GPL-3.0-only",
 	"version": "1.0.0",
 	"descriptionmsg": "contenttransfer-extension-description",
+	"requires": {
+		"MediaWiki": ">= 1.31.0"
+	},
 	"MessagesDirs": {
 		"ContentTransfer": "i18n"
 	},
