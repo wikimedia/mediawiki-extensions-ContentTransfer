@@ -13,7 +13,7 @@
 	"ExtensionMessagesFiles": {
 		"ContentTransferAlias": "languages/ContentTransfer.alias.php"
 	},
-	"attributes":{
+	"attributes": {
 		"BlueSpiceFoundation": {
 			"PermissionRegistry": {
 				"content-transfer": {
