@@ -50,14 +50,14 @@
 	"contenttransfer-no-pages-label": "There are no pages available!",
 	"contenttransfer-dialog-preview-target-info": "Transfer to: $1",
 	"contenttransfer-dialog-preview-target-draft": "Transfering to draft namespace!",
-	"contenttransfer-too-many-pages-warning": "Page list is truncated due to configured limit of  {{PLURAL:$2|one page|$2 pages}} pages per push. Total of {{PLURAL:$1|1 page|$1 pages}} pages fit the criteria",
+	"contenttransfer-too-many-pages-warning": "Page list is truncated due to configured limit of {{PLURAL:$2|one page|$2 pages}} per push. Total of {{PLURAL:$1|1 page|$1 pages}} fit the criteria",
 	"contenttransfer-ns-main": "(main)",
 	"contenttransfer-generic-error": "An error has occurred!",
 	"contenttransfer-include-related": "Include related",
 	"contenttransfer-modified-since-label": "Modified since",
 	"contenttransfer-modified-since-ph": "DD.MM.YYYY",
 	"apihelp-content-transfer-get-pages-summary": "Lists all pages that are pushable based on given filters",
-	"apihelp-content-transfer-push-info-summary": "Retrieves all resources such as included files, linked pages etc. of the page, that is about to be transferd to a target wiki",
+	"apihelp-content-transfer-push-info-summary": "Retrieves all resources such as included files, linked pages etc. of the page, that is about to be transferred to a target wiki",
 	"apihelp-content-transfer-do-push-single-summary": "Transfers a singe page to a receiving wiki",
 	"apihelp-content-transfer-purge-pages-summary": "Purges all pages that were transferred to the receiving wiki",
 	"contenttransfer-apihelp-param-filterdata": "JSON string of data to filter for",
@@ -67,7 +67,7 @@
 	"contenttransfer-apihelp-param-modifiedsince": "Date string. Transfer only pages, that have been modified since",
 	"contenttransfer-apihelp-param-target": "Receiving wiki name",
 	"contenttransfer-apihelp-param-includerelated": "Bool. Set if also resources such as linked pages, files and categories of the page should get transferred",
-	"contenttransfer-apihelp-param-articleid": "Interger. Id of the page, that should get transferred",
-	"contenttransfer-apihelp-param-force": "Bool. Ignore warings and transfer anyways",
-	"contenttransfer-apihelp-param-token": "The users edit token"
+	"contenttransfer-apihelp-param-articleid": "Integer. ID of the page, that should get transferred",
+	"contenttransfer-apihelp-param-force": "Bool. Ignore warnings and transfer anyways",
+	"contenttransfer-apihelp-param-token": "The user's edit token"
 }
