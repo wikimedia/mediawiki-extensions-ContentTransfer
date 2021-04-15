@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Georg101"
+		]
+	},
+	"contenttransfer-pages-header-count": "Vybráno: $2 Celkem: $1",
+	"contenttransfer-dialog-push-title": "Převést obsah",
+	"contenttransfer-dialog-push-action-do-push-label": "Převod",
+	"contenttransfer-dialog-push-action-done-label": "Hotovo",
+	"contenttransfer-dialog-push-preview-layout-label": "Přehled stránky",
+	"contenttransfer-dialog-push-progress-layout-label": "Postup",
+	"contenttransfer-dialog-push-preview-page-group-label-file": "Soubor($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-template": "Šablona($1)",
+	"contenttransfer-progress-current-operation": "Přesouvání $1",
+	"contenttransfer-cannot-create": "Stránka nemůže být vytvořena",
+	"contenttransfer-edit-fail-message": "Chyba editace: $1",
+	"contenttransfer-apihelp-param-target": "Získávání názvu wiki"
+}

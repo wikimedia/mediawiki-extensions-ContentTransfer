@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kareyac"
+		]
+	},
+	"contenttransfer-namespace-filter-input-label": "Пространство имён",
+	"contenttransfer-category-filter-input-label": "Категория",
+	"contenttransfer-dialog-push-action-done-label": "Готово"
+}
