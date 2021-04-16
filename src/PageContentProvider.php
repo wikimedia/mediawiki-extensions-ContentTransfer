@@ -17,13 +17,17 @@ class PageContentProvider {
 
 	protected $relatedTitles = [];
 
+	/**
+	 *
+	 * @param Title $title
+	 */
 	public function __construct( Title $title ) {
 		$this->title = $title;
 		$this->wikipage = WikiPage::factory( $this->title );
 		$this->parserOutput = $this->wikipage->getContent()->getParserOutput( $this->title );
 	}
 
- 	/**
+	/**
 	 * Gets all titles related to this page,
 	 * all titles necessary for this page to fully function
 	 *
@@ -38,7 +42,7 @@ class PageContentProvider {
 		$this->extractLinks();
 
 		if ( !empty( $modificationData ) && $target !== '' ) {
-			foreach( $this->relatedTitles as $dbKey => $title ) {
+			foreach ( $this->relatedTitles as $dbKey => $title ) {
 				if ( !$this->shouldPush( $modificationData, $title, $target ) ) {
 					unset( $this->relatedTitles[ $dbKey ] );
 				}
@@ -50,6 +54,7 @@ class PageContentProvider {
 
 	/**
 	 * Gets raw content of a page
+	 * @return string
 	 */
 	public function getContent() {
 		return $this->wikipage->getContent()->getNativeData();
@@ -58,10 +63,10 @@ class PageContentProvider {
 	/**
 	 * Get if give title is a file
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isFile() {
-		if( $this->title->getNamespace() === NS_FILE ) {
+		if ( $this->title->getNamespace() === NS_FILE ) {
 			return true;
 		}
 		return false;
@@ -73,7 +78,7 @@ class PageContentProvider {
 	 * @return File
 	 */
 	public function getFile() {
-		if( !$this->isFile() ) {
+		if ( !$this->isFile() ) {
 			return null;
 		}
 
@@ -88,9 +93,9 @@ class PageContentProvider {
 
 	protected function extractFiles() {
 		$rawFiles = $this->parserOutput->getImages();
-		foreach( $rawFiles as $dbKey => $value ) {
+		foreach ( $rawFiles as $dbKey => $value ) {
 			$fileTitle = Title::makeTitle( NS_FILE, $dbKey );
-			if( $fileTitle instanceof Title && $fileTitle->exists() ) {
+			if ( $fileTitle instanceof Title && $fileTitle->exists() ) {
 				$this->relatedTitles[ $fileTitle->getPrefixedDBkey() ] = $fileTitle;
 			}
 		}
@@ -98,9 +103,9 @@ class PageContentProvider {
 
 	protected function extractCategories() {
 		$rawCategories = $this->parserOutput->getCategories();
-		foreach( $rawCategories as $catName => $displayText ) {
+		foreach ( $rawCategories as $catName => $displayText ) {
 			$category = \Category::newFromName( $catName );
-			if( $category->getTitle()->exists() ) {
+			if ( $category->getTitle()->exists() ) {
 				$categoryTitle = $category->getTitle();
 				$this->relatedTitles[ $categoryTitle->getPrefixedDBkey() ] = $categoryTitle;
 			}
@@ -112,11 +117,15 @@ class PageContentProvider {
 		$this->relatedTitlesFromNestedArray( $rawLinks );
 	}
 
+	/**
+	 *
+	 * @param array $nested
+	 */
 	protected function relatedTitlesFromNestedArray( $nested ) {
-		foreach( $nested as $ns => $pages ) {
-			foreach( $pages as $dbKey => $pageId ) {
+		foreach ( $nested as $ns => $pages ) {
+			foreach ( $pages as $dbKey => $pageId ) {
 				$title = Title::newFromId( $pageId );
-				if( $title instanceof Title && $title->exists() ) {
+				if ( $title instanceof Title && $title->exists() ) {
 					$this->relatedTitles[ $title->getPrefixedDBkey() ] = $title;
 				}
 			}

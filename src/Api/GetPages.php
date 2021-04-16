@@ -21,6 +21,10 @@ class GetPages extends ApiBase {
 		$this->returnPages();
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	protected function getAllowedParams() {
 		return [
 			'filterData' => [
@@ -31,6 +35,15 @@ class GetPages extends ApiBase {
 		];
 	}
 
+	/**
+	 * Using the settings determine the value for the given parameter
+	 *
+	 * @param string $paramName Parameter name
+	 * @param array|mixed $paramSettings Default value or an array of settings
+	 *  using PARAM_* constants.
+	 * @param bool $parseLimit Whether to parse and validate 'limit' parameters
+	 * @return mixed Parameter value
+	 */
 	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
 		$value = parent::getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
 		if ( $paramName === 'filterData' ) {
@@ -43,6 +56,7 @@ class GetPages extends ApiBase {
 		$this->filterData = $this->getParameter( 'filterData' );
 	}
 
+	// phpcs:ignore Generic.NamingConventions.ConstructorName.OldStyle, MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected
 	protected function getPages() {
 		$provider = PageProvider::factory(
 			$this->getConfig(),
@@ -52,14 +66,14 @@ class GetPages extends ApiBase {
 		$provider->execute();
 		$this->pageCount = $provider->getPageCount();
 		$pageTitles = $provider->getPages();
-		foreach( $pageTitles as $title ) {
+		foreach ( $pageTitles as $title ) {
 			$this->pages[] = [
 				'id' => $title->getArticleId(),
 				'prefixed_text' => $title->getPrefixedText()
 			];
 		}
 
-		usort( $this->pages, function( $a, $b ) {
+		usort( $this->pages, function ( $a, $b ) {
 			return $a['prefixed_text'] < $b['prefixed_text'] ? -1 : 1;
 		} );
 	}
@@ -67,9 +81,9 @@ class GetPages extends ApiBase {
 	protected function returnPages() {
 		$result = $this->getResult();
 
-		$result->addValue( null , 'pages', $this->pages );
-		$result->addValue( null , 'page_count', count( $this->pages ) );
-		$result->addValue( null , 'total', $this->pageCount );
+		$result->addValue( null, 'pages', $this->pages );
+		$result->addValue( null, 'page_count', count( $this->pages ) );
+		$result->addValue( null, 'total', $this->pageCount );
 	}
 
 }

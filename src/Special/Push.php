@@ -14,6 +14,10 @@ class Push extends SpecialPage {
 		parent::__construct( "ContentTransfer", "content-transfer" );
 	}
 
+	/**
+	 *
+	 * @param string $subPage
+	 */
 	public function execute( $subPage ) {
 		parent::execute( $subPage );
 
@@ -49,7 +53,7 @@ class Push extends SpecialPage {
 		);
 
 		$categories = [];
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			$categories[] = [
 				'id' => $row->cat_id,
 				'text' => $row->cat_title
@@ -79,9 +83,8 @@ class Push extends SpecialPage {
 			$namespaceIds = $notTalk;
 		}
 
-
 		$namespaces = [];
-		foreach( $namespaceIds as $namespaceId ) {
+		foreach ( $namespaceIds as $namespaceId ) {
 			$namespaceText = $lang->getNsText( $namespaceId );
 			if ( $namespaceId === NS_MAIN ) {
 				$namespaceText = Message::newFromKey( 'contenttransfer-ns-main' )->text();
