@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eduardoaddad"
+		]
+	},
+	"contenttransfer": "Transferência de conteúdo",
+	"contenttransfer-text-filter-input-label": "Nome da página",
+	"contenttransfer-namespace-filter-input-label": "Espaço nominal",
+	"contenttransfer-category-filter-input-label": "Categoria",
+	"contenttransfer-pages-header": "Páginas a serem transferidas",
+	"contenttransfer-pages-header-count": "Selecionado: $2 Total: $1",
+	"contenttransfer-dialog-push-title": "Transferir conteúdo",
+	"contenttransfer-dialog-push-action-cancel-label": "Cancelar",
+	"contenttransfer-dialog-push-action-done-label": "Feito",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "Página ($1)",
+	"contenttransfer-report-failure": "Falhou: $1",
+	"contenttransfer-authentication-failed": "A autenticação falhou",
+	"contenttransfer-edit-fail": "A página não pode ser editada ao receber wiki",
+	"right-content-transfer": "Permite que os usuários transfiram conteúdo para outros wikis",
+	"contenttransfer-no-pages-label": "Não existem páginas disponíveis!",
+	"contenttransfer-ns-main": "(principal)",
+	"contenttransfer-modified-since-label": "Modificado desde",
+	"apihelp-content-transfer-push-info-summary": "Recupera todos os recursos, como arquivos incluídos, páginas vinculadas, etc. da página, que está prestes a ser transferida para uma wiki de destino",
+	"contenttransfer-apihelp-param-titles": "Lista separada por tubos de nomes de páginas",
+	"contenttransfer-apihelp-param-force": "Bool. Ignore os avisos e transfira de qualquer maneira",
+	"contenttransfer-apihelp-param-token": "Os usuários editam o token"
+}

@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hedda",
+			"Joseph"
+		]
+	},
+	"contenttransfer-extension-description": "İçeriğin bir wiki'den diğerine aktarılmasını sağlar",
+	"contenttransfer": "İçerik aktarımı",
+	"contenttransfer-text-filter-input-label": "Sayfa adı",
+	"contenttransfer-namespace-filter-input-label": "Ad alanı",
+	"contenttransfer-category-filter-input-label": "Kategori",
+	"contenttransfer-pages-header": "Aktarılacak sayfalar",
+	"contenttransfer-pages-header-count": "Seçilen: $2 Toplam: $1",
+	"contenttransfer-push-pages-button-label": "Aktar",
+	"contenttransfer-dialog-push-title": "İçeriği aktar",
+	"contenttransfer-dialog-push-action-do-push-label": "Aktar",
+	"contenttransfer-dialog-push-action-cancel-label": "İptal",
+	"contenttransfer-dialog-push-action-done-label": "Yapıldı",
+	"contenttransfer-dialog-push-preview-layout-label": "Sayfaya genel bakış",
+	"contenttransfer-dialog-push-progress-layout-label": "İlerleme",
+	"contenttransfer-dialog-push-report-layout-label": "Bildir",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "Sayfa ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-file": "Dosya ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-category": "Kategori sayfası ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-template": "Şablon ($1)",
+	"contenttransfer-progress-current-operation": "$1 transfer ediliyor",
+	"contenttransfer-report-success-count": "{{PLURAL:$2|Bir sayfadan|$2 sayfadan}} $1 sayfa aktarıldı",
+	"contenttransfer-report-failure": "Başarısız: $1",
+	"contenttransfer-target-picker-label": "Viki alınıyor",
+	"contenttransfer-progress-push-target-label": "Viki alınıyor: $1",
+	"contenttransfer-no-pageprops": "Sayfa özellikleri getirilemiyor",
+	"contenttransfer-authentication-failed": "Kimlik doğrulama başarısız",
+	"contenttransfer-cannot-create": "Sayfa oluşturulamıyor"
+}

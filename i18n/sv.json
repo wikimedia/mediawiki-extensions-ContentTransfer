@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Anhn",
 			"Sabelöga"
 		]
 	},
@@ -42,16 +43,16 @@
 	"contenttransfer-upload-fail-message": "Uppladdningsfel: $1",
 	"contenttransfer-progress-purge-pages": "Rensar sidor på den mottagande wikin...",
 	"right-content-transfer": "Låter användare överföra innehåll till andra wikier",
-	"action-content-transfer": "Du har inte behörighet att överföra innehåll",
-	"contenttransfer-page-protected": "Sidan är skyddad, du kan försöka att tvinga överföringen på nytt",
+	"action-content-transfer": "Du har inte behörighet att överföra detta innehåll",
+	"contenttransfer-page-protected": "Sidan i mål-wikin är skrivskyddad, du kan försöka att överrida med en ny överföring",
 	"contenttransfer-only-modified-label": "Ändrad sedan senaste överföringen",
 	"contenttransfer-only-modified-help": "Visar endast sidor som har ändrats sen den senaste överföringen. Detta påverkar också relaterade sidor.",
 	"contenttransfer-no-pages-label": "Det finns inga tillgängliga sidor!",
-	"contenttransfer-dialog-preview-target-info": "Överför till: $1",
-	"contenttransfer-dialog-preview-target-draft": "Överför till utkastsnamnrymden!",
+	"contenttransfer-dialog-preview-target-info": "Sidan överförs till: $1",
+	"contenttransfer-dialog-preview-target-draft": "Texten är överförd till målobjektet som utkast!",
 	"contenttransfer-too-many-pages-warning": "Sidlistan är trunkerad på grund av konfigurationsbegränsning av {{PLURAL:$2|en sida|$2 sidor}} per push. Sammanlagt {{PLURAL:$1|1 sida|$1 sidor}} stämmer in på kriteriet.",
 	"contenttransfer-ns-main": "(Huvudnamnrymden)",
-	"contenttransfer-generic-error": "Ett fel har uppståt!",
+	"contenttransfer-generic-error": "Det har uppstått ett fel!",
 	"contenttransfer-include-related": "Inkludera relaterade",
 	"contenttransfer-modified-since-label": "Ändrad sedan"
 }
