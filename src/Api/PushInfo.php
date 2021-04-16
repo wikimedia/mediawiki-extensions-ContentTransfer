@@ -8,10 +8,10 @@ use ContentTransfer\PageProvider;
 use Title;
 
 class PushInfo extends ApiBase {
-	const TYPE_WIKIPAGE = 'wikipage';
-	const TYPE_TEMPLATE = 'template';
-	const TYPE_CATEGORY = 'category';
-	const TYPE_FILE = 'file';
+	protected const TYPE_WIKIPAGE = 'wikipage';
+	protected const TYPE_TEMPLATE = 'template';
+	protected const TYPE_CATEGORY = 'category';
+	protected const TYPE_FILE = 'file';
 
 	protected $titles = [];
 	protected $onlyModified;
@@ -27,6 +27,10 @@ class PushInfo extends ApiBase {
 		$this->returnData();
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	protected function getAllowedParams() {
 		return [
 			'titles' => [
@@ -60,14 +64,23 @@ class PushInfo extends ApiBase {
 		];
 	}
 
+	/**
+	 * Using the settings determine the value for the given parameter
+	 *
+	 * @param string $paramName Parameter name
+	 * @param array|mixed $paramSettings Default value or an array of settings
+	 *  using PARAM_* constants.
+	 * @param bool $parseLimit Whether to parse and validate 'limit' parameters
+	 * @return mixed Parameter value
+	 */
 	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
 		$value = parent::getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
 		if ( $paramName === 'titles' ) {
 			$titleIds = \FormatJson::decode( $value, true );
 			$res = [];
-			foreach( $titleIds as $titleId ) {
+			foreach ( $titleIds as $titleId ) {
 				$title = Title::newFromId( $titleId );
-				if( $title instanceof Title && $title->exists() ) {
+				if ( $title instanceof Title && $title->exists() ) {
 					$res[ $title->getPrefixedDBkey() ] = $title;
 				}
 			}
@@ -84,8 +97,11 @@ class PushInfo extends ApiBase {
 		$this->includeRelated = (bool)$this->getParameter( 'includeRelated' );
 	}
 
+	/**
+	 *
+	 */
 	protected function getInfo() {
-		foreach( $this->titles as $dbKey => $title ) {
+		foreach ( $this->titles as $dbKey => $title ) {
 			$contentProvider = new PageContentProvider( $title );
 
 			if ( $this->includeRelated ) {
@@ -100,9 +116,9 @@ class PushInfo extends ApiBase {
 	}
 
 	protected function generatePushInfo() {
-		foreach( $this->titles as $title ) {
+		foreach ( $this->titles as $title ) {
 			$type = static::TYPE_WIKIPAGE;
-			switch( $title->getNamespace() ) {
+			switch ( $title->getNamespace() ) {
 				case NS_TEMPLATE:
 					$type = static::TYPE_TEMPLATE;
 					break;
@@ -128,8 +144,8 @@ class PushInfo extends ApiBase {
 		}
 
 		ksort( $this->groupedInfo );
-		foreach( $this->groupedInfo as $type => &$values ) {
-			usort( $values, function( $a, $b ) {
+		foreach ( $this->groupedInfo as $type => &$values ) {
+			usort( $values, function ( $a, $b ) {
 				return $a['title'] < $b['title'] ? -1 : 1;
 			} );
 		}
@@ -140,10 +156,14 @@ class PushInfo extends ApiBase {
 	protected function returnData() {
 		$result = $this->getResult();
 
-		$result->addValue( null , 'joined', $this->joinedInfo );
-		$result->addValue( null , 'grouped', $this->groupedInfo );
+		$result->addValue( null, 'joined', $this->joinedInfo );
+		$result->addValue( null, 'grouped', $this->groupedInfo );
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	private function getModificationData() {
 		$data = [];
 		if ( $this->modifiedSince !== '' ) {

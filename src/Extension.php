@@ -4,12 +4,15 @@ namespace ContentTransfer;
 
 use Config;
 use DatabaseUpdater;
-use MediaWiki\MediaWikiServices;
 
 class Extension {
 
+	/**
+	 *
+	 * @param DatabaseUpdater $updater
+	 */
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
-		if( $updater->getDB()->tableExists( 'push_history' )
+		if ( $updater->getDB()->tableExists( 'push_history' )
 			&& !$updater->getDB()->fieldExists( 'push_history', 'ph_target', __METHOD__ ) ) {
 			$updater->dropExtensionTable( 'push_history' );
 		}
@@ -20,21 +23,26 @@ class Extension {
 		);
 	}
 
+	/**
+	 *
+	 * @param Config $config
+	 * @return array
+	 */
 	public static function getTargetsForClient( Config $config ) {
 		$pushTargets = $config->get( 'ContentTransferTargets' );
 
 		$pushTargetsForClient = [];
-		foreach( $pushTargets as $key => $target ) {
+		foreach ( $pushTargets as $key => $target ) {
 			$config = [
 				'url' => $target[ 'url' ],
 				'pushToDraft' => false
 			];
 
-			if( isset( $target[ 'pushToDraft' ] ) && $target[ 'pushToDraft' ] === true ) {
+			if ( isset( $target[ 'pushToDraft' ] ) && $target[ 'pushToDraft' ] === true ) {
 				$config['pushToDraft'] = true;
 			}
 
-			if( isset( $target['displayText'] ) ) {
+			if ( isset( $target['displayText'] ) ) {
 				$config['displayText'] = $target['displayText'];
 			}
 			if ( isset( $target['draftNamespace'] ) ) {

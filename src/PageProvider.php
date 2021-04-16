@@ -12,13 +12,13 @@ class PageProvider {
 	protected $config;
 	/** @var LoadBalancer */
 	protected $lb;
-	/** @var array  */
+	/** @var array */
 	protected $filterData = [];
-	/** @var int  */
+	/** @var int */
 	protected $pageCount = 0;
-	/** @var array  */
+	/** @var array */
 	protected $pages = [];
-	/** @var bool  */
+	/** @var bool */
 	protected $executed = false;
 
 	/**
@@ -39,6 +39,10 @@ class PageProvider {
 		$this->lb = $lb;
 	}
 
+	/**
+	 *
+	 * @param array $filterData
+	 */
 	public function setFilterData( array $filterData ) {
 		$this->filterData = $filterData;
 	}
@@ -99,6 +103,7 @@ class PageProvider {
 	}
 
 	/**
+	 * @param Database $db
 	 * @return array
 	 */
 	protected function makeJoins( Database $db ) {
@@ -118,6 +123,7 @@ class PageProvider {
 	}
 
 	/**
+	 * @param Database $db
 	 * @return array
 	 */
 	protected function makeConds( Database $db ) {
@@ -142,7 +148,7 @@ class PageProvider {
 		}
 
 		if ( isset( $this->filterData['modifiedSince'] ) ) {
-			$sinceDate = static::getModifiedSinceDate( $this->filterData['modifiedSince' ]  );
+			$sinceDate = static::getModifiedSinceDate( $this->filterData['modifiedSince' ] );
 			if ( $sinceDate !== null ) {
 				$conds[] = 'revision.rev_timestamp >= ' . $db->timestamp( $sinceDate );
 			}
@@ -160,6 +166,10 @@ class PageProvider {
 		return $conds;
 	}
 
+	/**
+	 *
+	 * @return int
+	 */
 	protected function getLimit() {
 		if ( !$this->config->has( 'ContentTransferPageLimit' ) ) {
 			return 999999;
@@ -168,13 +178,22 @@ class PageProvider {
 		return (int)$this->config->get( 'ContentTransferPageLimit' );
 	}
 
+	/**
+	 *
+	 * @param string $modifiedSince
+	 * @return string|null
+	 */
 	public static function getModifiedSinceDate( $modifiedSince ) {
 		if ( empty( $modifiedSince ) ) {
 			return null;
 		}
 		$matches = [];
-		preg_match( '/^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/', $modifiedSince, $matches );
-		if( empty( $matches ) ) {
+		preg_match(
+			'/^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/',
+			$modifiedSince,
+			$matches
+		);
+		if ( empty( $matches ) ) {
 			return null;
 		}
 		$date = strtotime( "{$matches[2]}/{$matches[1]}/{$matches[3]}" );
