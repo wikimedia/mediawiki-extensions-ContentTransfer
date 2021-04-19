@@ -6,5 +6,8 @@
 	},
 	"contenttransfer-namespace-filter-input-label": "Пространство имён",
 	"contenttransfer-category-filter-input-label": "Категория",
-	"contenttransfer-dialog-push-action-done-label": "Готово"
+	"contenttransfer-dialog-push-action-cancel-label": "Отмена",
+	"contenttransfer-dialog-push-action-done-label": "Готово",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "Страница ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-file": "Файл ($1)"
 }

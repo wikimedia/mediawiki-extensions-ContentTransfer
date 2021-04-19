@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"AYZ04"
+		]
+	},
+	"contenttransfer-apihelp-param-articleid": "整数。应该被转移的页面ID。",
+	"contenttransfer-apihelp-param-token": "用户的编辑标记"
+}

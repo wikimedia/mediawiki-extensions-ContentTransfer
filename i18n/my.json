@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dr Lotus Black"
+		]
+	},
+	"contenttransfer-text-filter-input-label": "စာမျက်နှာ အမည်",
+	"contenttransfer-category-filter-input-label": "ကဏ္ဍ",
+	"contenttransfer-dialog-push-action-cancel-label": "မလုပ်တော့ပါ",
+	"contenttransfer-dialog-push-action-done-label": "ပြီးပြီ"
+}

@@ -44,7 +44,7 @@
 	"contenttransfer-progress-purge-pages": "Rensar sidor på den mottagande wikin...",
 	"right-content-transfer": "Låter användare överföra innehåll till andra wikier",
 	"action-content-transfer": "Du har inte behörighet att överföra detta innehåll",
-	"contenttransfer-page-protected": "Sidan i mål-wikin är skrivskyddad, du kan försöka att överrida med en ny överföring",
+	"contenttransfer-page-protected": "Sidan på mål-wikin är skrivskyddad, du kan försöka att överrida med en ny överföring",
 	"contenttransfer-only-modified-label": "Ändrad sedan senaste överföringen",
 	"contenttransfer-only-modified-help": "Visar endast sidor som har ändrats sen den senaste överföringen. Detta påverkar också relaterade sidor.",
 	"contenttransfer-no-pages-label": "Det finns inga tillgängliga sidor!",
