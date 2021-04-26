@@ -12,7 +12,7 @@ class PagePurger {
 	protected $titles;
 	/** @var array */
 	protected $target;
-	/** @var AuthenticatedRequestHandler  */
+	/** @var AuthenticatedRequestHandler */
 	protected $requestHandler;
 
 	/**

@@ -14,6 +14,10 @@ class Push extends SpecialPage {
 		parent::__construct( "ContentTransfer", "content-transfer" );
 	}
 
+	/**
+	 *
+	 * @param string $subPage
+	 */
 	public function execute( $subPage ) {
 		parent::execute( $subPage );
 
@@ -34,6 +38,10 @@ class Push extends SpecialPage {
 		$out->addHTML( Html::element( 'div', [ 'id' => 'content-transfer-main' ] ) );
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	private function getFilterData() {
 		return [
 			'categories' => $this->getAvailableCategories(),
@@ -41,6 +49,10 @@ class Push extends SpecialPage {
 		];
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	private function getAvailableCategories() {
 		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 		$res = $db->select(
@@ -49,7 +61,7 @@ class Push extends SpecialPage {
 		);
 
 		$categories = [];
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			$categories[] = [
 				'id' => $row->cat_id,
 				'text' => $row->cat_title
@@ -58,6 +70,10 @@ class Push extends SpecialPage {
 		return $categories;
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	private function getAvailableNamespaces() {
 		// Get only content namespaces. Other NSs can be transfered,
 		// but cannot be base for transfering
@@ -79,9 +95,8 @@ class Push extends SpecialPage {
 			$namespaceIds = $notTalk;
 		}
 
-
 		$namespaces = [];
-		foreach( $namespaceIds as $namespaceId ) {
+		foreach ( $namespaceIds as $namespaceId ) {
 			$namespaceText = $lang->getNsText( $namespaceId );
 			if ( $namespaceId === NS_MAIN ) {
 				$namespaceText = Message::newFromKey( 'contenttransfer-ns-main' )->text();

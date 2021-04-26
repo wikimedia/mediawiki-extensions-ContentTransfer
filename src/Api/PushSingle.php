@@ -21,7 +21,7 @@ class PushSingle extends ApiBase {
 	protected $content;
 	/** @var PagePusher */
 	protected $pusher;
-	/** @var bool  */
+	/** @var bool */
 	protected $force = false;
 
 	public function execute() {
@@ -32,7 +32,7 @@ class PushSingle extends ApiBase {
 	}
 
 	protected function isAuthorized() {
-		if( !$this->getUser()->isAllowed( 'content-transfer' ) ) {
+		if ( !$this->getUser()->isAllowed( 'content-transfer' ) ) {
 			$this->dieWithError( 'You don\'t have permission to push pages', 'permissiondenied' );
 		}
 		if ( !$this->getUser()->matchEditToken( $this->getParameter( 'token' ) ) ) {
@@ -40,6 +40,10 @@ class PushSingle extends ApiBase {
 		}
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	protected function getAllowedParams() {
 		return [
 			'articleId' => [
@@ -66,6 +70,15 @@ class PushSingle extends ApiBase {
 		];
 	}
 
+	/**
+	 * Using the settings determine the value for the given parameter
+	 *
+	 * @param string $paramName Parameter name
+	 * @param array|mixed $paramSettings Default value or an array of settings
+	 *  using PARAM_* constants.
+	 * @param bool $parseLimit Whether to parse and validate 'limit' parameters
+	 * @return mixed Parameter value
+	 */
 	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
 		$value = parent::getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
 		if ( $paramName === 'pushTarget' ) {
@@ -88,11 +101,16 @@ class PushSingle extends ApiBase {
 		$this->content = $contentProvider->getContent();
 	}
 
+	/**
+	 *
+	 * @param string $pushTarget
+	 * @return void
+	 */
 	protected function setPushTarget( $pushTarget ) {
 		$pushTargets = $this->getConfig()->get( 'ContentTransferTargets' );
 
-		foreach( $pushTargets as $id => $target ) {
-			if( $target['url'] === $pushTarget['url'] ) {
+		foreach ( $pushTargets as $id => $target ) {
+			if ( $target['url'] === $pushTarget['url'] ) {
 				$this->target = $target;
 				$this->target['id'] = $id;
 				return;
@@ -117,12 +135,12 @@ class PushSingle extends ApiBase {
 
 		$status = $this->pusher->getStatus();
 
-		if( $status->isGood() ) {
-			$result->addValue( null , 'success', 1 );
+		if ( $status->isGood() ) {
+			$result->addValue( null, 'success', 1 );
 		} else {
 			$result->addValue( null, 'message', $status->getMessage() );
-			$result->addValue( null , 'success', 0 );
-			if( $this->pusher->getUserAction() !== false ) {
+			$result->addValue( null, 'success', 0 );
+			if ( $this->pusher->getUserAction() !== false ) {
 				$result->addValue( null, 'userAction', $this->pusher->getUserAction() );
 			}
 			return;

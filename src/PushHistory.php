@@ -26,6 +26,12 @@ class PushHistory {
 	/** @var string */
 	protected $target;
 
+	/**
+	 *
+	 * @param Title $title
+	 * @param User $user
+	 * @param string $target
+	 */
 	public function __construct( Title $title, User $user, $target ) {
 		$this->title = $title;
 		$this->user = $user;
@@ -38,7 +44,7 @@ class PushHistory {
 	 * Insert tracking
 	 */
 	public function insert() {
-		if( $this->getLastPush() ) {
+		if ( $this->getLastPush() ) {
 			$this->doUpdate();
 		} else {
 			$this->doInsert();
@@ -48,23 +54,27 @@ class PushHistory {
 	/**
 	 * Is page changed since the last time it was pushed
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isChangedSinceLastPush() {
 		$lastPush = $this->getLastPush();
-		if( !$lastPush ) {
+		if ( !$lastPush ) {
 			// Never been pushed before
 			return true;
 		}
 
 		$touched = $this->title->getTouched();
 
-		if( $touched > $lastPush->ph_timestamp ) {
+		if ( $touched > $lastPush->ph_timestamp ) {
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 *
+	 * @return \stdClass|false
+	 */
 	protected function getLastPush() {
 		return $this->db->selectRow(
 			'push_history',
@@ -89,7 +99,7 @@ class PushHistory {
 			]
 		);
 
-		if( $res ) {
+		if ( $res ) {
 			return true;
 		}
 		return false;
@@ -106,7 +116,7 @@ class PushHistory {
 			]
 		);
 
-		if( $res ) {
+		if ( $res ) {
 			return true;
 		}
 		return false;

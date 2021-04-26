@@ -7,8 +7,8 @@ use Status;
 use Title;
 
 class PagePusher {
-	const USER_ACTION_ACKNOWLEDGE = 'ack';
-	const USER_ACTION_FORCE = 'force';
+	protected const USER_ACTION_ACKNOWLEDGE = 'ack';
+	protected const USER_ACTION_FORCE = 'force';
 
 	/**
 	 * Title object being pushed
@@ -57,14 +57,23 @@ class PagePusher {
 	 */
 	protected $targetPushNamespaceName = '';
 
-	public function __construct( Title $title, $target, $pushHistory, $force = false, $ignoreInsecureSSL = false ) {
+	/**
+	 *
+	 * @param Title $title
+	 * @param array $target
+	 * @param PushHistory $pushHistory
+	 * @param bool|false $force
+	 * @param bool|false $ignoreInsecureSSL
+	 */
+	public function __construct( Title $title, $target, $pushHistory, $force = false,
+		$ignoreInsecureSSL = false ) {
 		$this->title = $title;
 		$this->requestHandler = new AuthenticatedRequestHandler( $target, $ignoreInsecureSSL );
 		$this->contentProvider = new PageContentProvider( $title );
 		$this->force = $force;
 
-		if( isset( $target[ 'pushToDraft' ] ) && $target[ 'pushToDraft' ] === true ) {
-			if( isset( $target[ 'draftNamespace' ] ) ) {
+		if ( isset( $target[ 'pushToDraft' ] ) && $target[ 'pushToDraft' ] === true ) {
+			if ( isset( $target[ 'draftNamespace' ] ) ) {
 				$this->pushToDraft = true;
 				$this->targetPushNamespaceName = $target[ 'draftNamespace' ];
 			}
@@ -81,13 +90,13 @@ class PagePusher {
 		if ( $this->requestHandler->getPageProps( $this->getTargetTitleText() ) === null ) {
 			return;
 		}
-		if( $this->ensurePushPossible() === false ) {
+		if ( $this->ensurePushPossible() === false ) {
 			return;
 		}
-		if( $this->requestHandler->getCSRFToken() === null ) {
+		if ( $this->requestHandler->getCSRFToken() === null ) {
 			return;
 		}
-		if( $this->doPush() === false ) {
+		if ( $this->doPush() === false ) {
 			return;
 		}
 		$this->runAdditionalRequests();
@@ -112,9 +121,9 @@ class PagePusher {
 	}
 
 	protected function ensurePushPossible() {
-		if( $this->title->getNamespace() != NS_MAIN &&
+		if ( $this->title->getNamespace() != NS_MAIN &&
 				$this->requestHandler->getPageProps( $this->getTargetTitleText() )[ 'ns' ] == NS_MAIN ) {
-			//Namespace does not exist on received and
+			// Namespace does not exist on received and
 			//cannot be retrieved from page title
 			$namespaceText = $this->title->getNsText();
 			$this->status = Status::newFatal(
@@ -123,7 +132,7 @@ class PagePusher {
 			$this->userAction = static::USER_ACTION_ACKNOWLEDGE;
 			return false;
 		}
-		if( $this->isPageProtected() && $this->force == false ) {
+		if ( $this->isPageProtected() && $this->force == false ) {
 			$this->status = Status::newFatal(
 				wfMessage( 'contenttransfer-page-protected' )
 			);
@@ -135,15 +144,16 @@ class PagePusher {
 
 	protected function doPush() {
 		$content = $this->contentProvider->getContent();
-		if( $this->contentProvider->isFile() ) {
+		if ( $this->contentProvider->isFile() ) {
 			$file = $this->contentProvider->getFile();
 			$filename = $file->getName();
-			if( $this->pushToDraft ) {
-				$filename = $this->requestHandler->getTarget()[ 'draftNamespace' ] . '_' . $filename;
+			if ( $this->pushToDraft ) {
+				$filename = $this->requestHandler->getTarget()[ 'draftNamespace' ]
+					. '_' . $filename;
 			}
-			if( $this->requestHandler->uploadFile( $file, $content, $filename ) === false ) {
+			if ( $this->requestHandler->uploadFile( $file, $content, $filename ) === false ) {
 				return false;
-			};
+			}
 		}
 
 		$requestData = [
@@ -156,14 +166,17 @@ class PagePusher {
 		];
 		$status = $this->requestHandler->runPushRequest( $requestData );
 
-		if( !$status->isOK() ) {
+		if ( !$status->isOK() ) {
 			$this->status = Status::newFatal( 'contenttransfer-edit-fail' );
 			return false;
 		}
 
-		$response = (object) $status->getValue();
-		if( property_exists( $response, 'error' ) ) {
-			$this->status = Status::newFatal( 'contenttransfer-edit-fail-message', $response->error->info );
+		$response = (object)$status->getValue();
+		if ( property_exists( $response, 'error' ) ) {
+			$this->status = Status::newFatal(
+				'contenttransfer-edit-fail-message',
+				$response->error->info
+			);
 			return false;
 		}
 
@@ -178,11 +191,15 @@ class PagePusher {
 
 	protected function runAdditionalRequests() {
 		$requests = [];
-		Hooks::run( 'ContentTransferAdditionalRequests', [ $this->title, $this->requestHandler->getTarget(), &$requests ] );
-		if( !is_array( $requests ) || empty( $requests ) ) {
+		Hooks::run( 'ContentTransferAdditionalRequests', [
+			$this->title,
+			$this->requestHandler->getTarget(),
+			&$requests
+		] );
+		if ( !is_array( $requests ) || empty( $requests ) ) {
 			return;
 		}
-		foreach( $requests as $requestData ) {
+		foreach ( $requests as $requestData ) {
 			$requestData['token'] = $this->requestHandler->getCSRFToken();
 			$requestData['format'] = 'json';
 
@@ -194,7 +211,7 @@ class PagePusher {
 	 * Gets if this page protected on receiving wiki
 	 * If data cannot be retrieved it will return true
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function isPageProtected() {
 		$requestData = [
@@ -211,18 +228,19 @@ class PagePusher {
 		}
 		$response = $status->getValue();
 
-		if( count( $response[ 'query' ][ 'pages' ] ) === 0 ) {
+		if ( count( $response[ 'query' ][ 'pages' ] ) === 0 ) {
 			return true;
 		}
 
 		$key = array_keys( $response[ 'query' ][ 'pages' ] )[0];
 		$protectionData = $response[ 'query' ][ 'pages' ][ $key ];
-		$this->requestHandler->setPageProps(
-			array_merge( $protectionData, $this->requestHandler->getPageProps( $this->getTargetTitleText() ) )
-		);
+		$this->requestHandler->setPageProps( array_merge(
+			$protectionData,
+			$this->requestHandler->getPageProps( $this->getTargetTitleText() )
+		) );
 
-		foreach( $protectionData[ 'protection' ] as $protectionInfo ) {
-			if( $protectionInfo[ 'type' ] === 'edit' ) {
+		foreach ( $protectionData[ 'protection' ] as $protectionInfo ) {
+			if ( $protectionInfo[ 'type' ] === 'edit' ) {
 				return true;
 			}
 		}
@@ -230,11 +248,14 @@ class PagePusher {
 		return false;
 	}
 
+	/**
+	 *
+	 * @return string
+	 */
 	protected function getTargetTitleText() {
-		if( $this->pushToDraft ) {
-			if( $this->contentProvider->isFile() ) {
-				return
-					$this->title->getNsText() . ':' .
+		if ( $this->pushToDraft ) {
+			if ( $this->contentProvider->isFile() ) {
+				return $this->title->getNsText() . ':' .
 					$this->requestHandler->getTarget()[ 'draftNamespace' ] . '_' . $this->title->getDBkey();
 			} else {
 				return $this->requestHandler->getTarget()[ 'draftNamespace' ] . ':' . $this->title->getPrefixedDBkey();

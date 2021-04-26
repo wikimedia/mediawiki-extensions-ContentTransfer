@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use ContentTransfer\PageProvider;
+use MediaWiki\MediaWikiServices;
 
 return [
 	'ContentTransferPageProviderRegistry' => function ( MediaWikiServices $services ) {

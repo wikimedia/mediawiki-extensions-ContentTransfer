@@ -27,7 +27,7 @@ class AuthenticatedRequestHandler {
 	 */
 	protected $tokens;
 
-	/** @var bool  */
+	/** @var bool */
 	protected $ignoreInsecureSSL = false;
 
 	/**
@@ -41,6 +41,11 @@ class AuthenticatedRequestHandler {
 	/** @var bool */
 	protected $authenticated = false;
 
+	/**
+	 *
+	 * @param array $target
+	 * @param bool $ignoreInsecureSSL
+	 */
 	public function __construct( $target, $ignoreInsecureSSL ) {
 		$this->target = $target;
 		$this->ignoreInsecureSSL = $ignoreInsecureSSL;
@@ -55,7 +60,6 @@ class AuthenticatedRequestHandler {
 		}
 
 		return $this->authenticated;
-
 	}
 
 	/**
@@ -79,14 +83,14 @@ class AuthenticatedRequestHandler {
 
 			$status = $request->execute();
 
-			if( !$status->isOK() ) {
+			if ( !$status->isOK() ) {
 				$this->status = Status::newFatal( 'contenttransfer-no-pageprops' );
 				return null;
 			}
 
 			$response = FormatJson::decode( $request->getContent(), true );
 
-			if( count( $response[ 'query' ][ 'pages' ] ) === 0 ) {
+			if ( count( $response[ 'query' ][ 'pages' ] ) === 0 ) {
 				$this->status = Status::newFatal( 'contenttransfer-cannot-create' );
 				return null;
 			}
@@ -125,14 +129,14 @@ class AuthenticatedRequestHandler {
 
 			$status = $request->execute();
 
-			if( !$status->isOK() ) {
+			if ( !$status->isOK() ) {
 				$this->status = Status::newFatal( 'contenttransfer-no-csrf-token' );
 				return null;
 			}
 
 			$response = FormatJson::decode( $request->getContent() );
 
-			if( !property_exists( $response->query, 'tokens' ) ||
+			if ( !property_exists( $response->query, 'tokens' ) ||
 				!property_exists( $response->query->tokens, 'csrftoken' ) ) {
 				$this->status = Status::newFatal( 'contenttransfer-no-csrf-token' );
 				return null;
@@ -154,13 +158,17 @@ class AuthenticatedRequestHandler {
 		if ( !$this->authenticated || !isset( $this->tokens['csrf'] ) ) {
 			return StatusValue::newFatal( 'Preflight conditions not met' );
 		}
- 		$request = $this->getRequest( $requestData );
+		$request = $this->getRequest( $requestData );
 		$request->setCookieJar( $this->cookieJar );
 
 		return $this->statusFromRequest( $request, $request->execute() );
-
 	}
 
+	/**
+	 *
+	 * @param array $requestData
+	 * @return Status
+	 */
 	public function runAuthenticatedRequest( $requestData ) {
 		if ( !$this->authenticate() ) {
 			return StatusValue::newFatal( 'contenttransfer-authentication-failed' );
@@ -175,6 +183,13 @@ class AuthenticatedRequestHandler {
 		return $this->statusFromRequest( $request, $request->execute() );
 	}
 
+	/**
+	 *
+	 * @param File $file
+	 * @param string $content
+	 * @param string $filename
+	 * @return bool
+	 */
 	public function uploadFile( File $file, $content, $filename ) {
 		$curlFile = new CURLFile(
 			$file->getLocalRefPath(),
@@ -198,7 +213,7 @@ class AuthenticatedRequestHandler {
 			'method' => 'POST',
 			'timeout' => 'default'
 		];
-		if( $this->ignoreInsecureSSL ) {
+		if ( $this->ignoreInsecureSSL ) {
 			$this->deSecuritize( $requestData );
 		}
 
@@ -218,20 +233,21 @@ class AuthenticatedRequestHandler {
 		$request = \MWHttpRequest::factory( $this->target['url'], $requestData, __METHOD__ );
 		\Http::$httpEngine = $httpEngine;
 
-		$request->setHeader( 'Content-Disposition', "form-data; name=\"file\"; filename=\"{$file->getName()}\"" );
+		$request->setHeader(
+			'Content-Disposition', "form-data; name=\"file\"; filename=\"{$file->getName()}\""
+		);
 		$request->setHeader( 'Content-Type', 'multipart/form-data' );
 		$request->setCookieJar( $this->cookieJar );
 
-
 		$status = $request->execute();
-		if( !$status->isOK() ) {
+		if ( !$status->isOK() ) {
 			$this->status = Status::newFatal( 'contenttransfer-upload-fail' );
 			return false;
 		}
 
 		$response = FormatJson::decode( $request->getContent() );
 
-		if( property_exists( $response, 'error' ) ) {
+		if ( property_exists( $response, 'error' ) ) {
 			if ( $response->error->code === 'fileexists-no-change' ) {
 				// Do not consider pushing duplicate files as an error
 				return true;
@@ -259,6 +275,12 @@ class AuthenticatedRequestHandler {
 		return $this->status;
 	}
 
+	/**
+	 *
+	 * @param MWHttpRequest $request
+	 * @param Status $status
+	 * @return StatusValue
+	 */
 	protected function statusFromRequest( $request, $status ) {
 		if ( !$status->isOK() ) {
 			return $status;
@@ -266,6 +288,10 @@ class AuthenticatedRequestHandler {
 		return StatusValue::newGood( FormatJson::decode( $request->getContent(), 1 ) );
 	}
 
+	/**
+	 *
+	 * @return bool
+	 */
 	protected function doLogin() {
 		$requestData = [
 			'action' => 'login',
@@ -280,14 +306,14 @@ class AuthenticatedRequestHandler {
 
 		$status = $request->execute();
 
-		if( !$status->isOK() ) {
+		if ( !$status->isOK() ) {
 			$this->status = Status::newFatal( 'contenttransfer-authentication-failed' );
 			return false;
 		}
 
 		$response = FormatJson::decode( $request->getContent() );
 
-		if( $response->login->result === 'Success' ) {
+		if ( $response->login->result === 'Success' ) {
 			$this->cookieJar = $request->getCookieJar();
 		} else {
 			$this->status = Status::newFatal( 'contenttransfer-authentication-failed' );
@@ -297,13 +323,20 @@ class AuthenticatedRequestHandler {
 		return true;
 	}
 
+	/**
+	 *
+	 * @param array $requestData
+	 * @param string $method
+	 * @param string|int $timeout
+	 * @return \MWHttpRequest
+	 */
 	protected function getRequest( $requestData, $method = 'POST', $timeout = 'default' ) {
 		$params = [
 			'postData' => $requestData,
 			'method' => $method,
 			'timeout' => $timeout
 		];
-		if( $this->ignoreInsecureSSL ) {
+		if ( $this->ignoreInsecureSSL ) {
 			$this->deSecuritize( $params );
 		}
 		return \MWHttpRequest::factory(
@@ -313,6 +346,10 @@ class AuthenticatedRequestHandler {
 		);
 	}
 
+	/**
+	 *
+	 * @return bool
+	 */
 	protected function getLoginToken() {
 		$requestData = [
 			'action' => 'query',
@@ -326,14 +363,14 @@ class AuthenticatedRequestHandler {
 
 		$status = $request->execute();
 
-		if( !$status->isOK() ) {
+		if ( !$status->isOK() ) {
 			$this->status = Status::newFatal( 'contenttransfer-no-login-token' );
 			return false;
 		}
 
 		$response = FormatJson::decode( $request->getContent() );
 
-		if( !property_exists( $response->query, 'tokens' ) ||
+		if ( !property_exists( $response->query, 'tokens' ) ||
 			!property_exists( $response->query->tokens, 'logintoken' ) ) {
 			$this->status = Status::newFatal( 'contenttransfer-no-login-token' );
 			return false;
@@ -346,6 +383,10 @@ class AuthenticatedRequestHandler {
 		return true;
 	}
 
+	/**
+	 *
+	 * @param array &$params
+	 */
 	private function deSecuritize( array &$params ) {
 		$params[ 'sslVerifyCert'] = false;
 		$params[ 'sslVerifyHost'] = false;
