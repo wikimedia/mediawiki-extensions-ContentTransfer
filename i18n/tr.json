@@ -41,6 +41,7 @@
 	"contenttransfer-upload-fail-message": "Yükleme hatası: $1",
 	"right-content-transfer": "Kullanıcıların, başka vikilere içerik aktarmasına olanak sağlar",
 	"action-content-transfer": "İçerik aktarmaya izniniz yok",
+	"contenttransfer-page-protected": "Sayfa korumalı, aktarımı tekrar denemeyi zorlamayı deneyebilirsiniz",
 	"contenttransfer-only-modified-label": "Son aktarımdan beri değiştirilmiş",
 	"contenttransfer-only-modified-help": "Sadece son aktarımdan beri değişmiş sayfaları göster. Bu, alakalı sayfaları da etkiler.",
 	"contenttransfer-no-pages-label": "Hiç sayfa yok!",
