@@ -28,7 +28,7 @@ class PagePusher {
 	/**
 	 * Ignore warnings
 	 *
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $force;
 
@@ -48,7 +48,7 @@ class PagePusher {
 	protected $status;
 
 	/**
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $pushToDraft = false;
 
