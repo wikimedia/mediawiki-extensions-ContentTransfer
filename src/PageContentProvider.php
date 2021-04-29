@@ -154,7 +154,7 @@ class PageContentProvider {
 			if (
 				$revision &&
 				$revision->getTimestamp() &&
-				$modificationData['date'] > $revision->getTimestamp()
+				$revision->getTimestamp() >= $modificationData['date']
 			) {
 				return false;
 			}

@@ -81,7 +81,7 @@ class GetPages extends ApiBase {
 	 */
 	protected function makeProvider() {
 		return MediaWikiServices::getInstance()->getService(
-			'ContentTransferPageProviderRegistry'
+			'ContentTransferPageProvider'
 		);
 	}
 

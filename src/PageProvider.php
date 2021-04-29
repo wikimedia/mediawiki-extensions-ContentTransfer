@@ -157,10 +157,10 @@ class PageProvider {
 			isset( $this->filterData['onlyModified'] ) &&
 			$this->filterData['onlyModified'] === true
 		) {
-			$modifiedConds = [];
-			$modifiedConds[] = 'push_history.ph_target = ' . $db->addQuotes( $this->filterData['target'] );
-			$modifiedConds[] = 'push_history.ph_timestamp <= revision.rev_timestamp';
-			$conds[] = 'push_history.ph_page IS NULL OR (' . implode( ' AND ', $modifiedConds ) . ')';
+			$exitsConds = [];
+			$exitsConds[] = 'push_history.ph_target = ' . $db->addQuotes( $this->filterData['target'] );
+			$exitsConds[] = 'push_history.ph_timestamp <= revision.rev_timestamp';
+			$conds[] = 'push_history.ph_page IS NULL OR (' . implode( ' AND ', $exitsConds ) . ')';
 		}
 
 		return $conds;
