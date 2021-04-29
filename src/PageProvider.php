@@ -169,7 +169,6 @@ class PageProvider {
 			isset( $this->filterData['onlyModified'] ) &&
 			$this->filterData['onlyModified'] === true
 		) {
-
 			$exitsConds = [];
 			$exitsConds[] = 'push_history.ph_target = ' . $db->addQuotes( $this->filterData['target'] );
 			$exitsConds[] = 'push_history.ph_timestamp <= revision.rev_timestamp';
