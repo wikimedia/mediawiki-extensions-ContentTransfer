@@ -50,5 +50,15 @@
 	"contenttransfer-too-many-pages-warning": "Tek seferde {{PLURAL:$2|bir sayfa|$2 sayfa}} limiti ayarlandığı için sayfa listesi kesildi. Toplamda {{PLURAL:$1|1 sayfa|$1 sayfa}} bu kritere uyuyor",
 	"contenttransfer-ns-main": "(ana)",
 	"contenttransfer-generic-error": "Bir hata oluştu!",
-	"contenttransfer-include-related": "Alakalıları dahil et"
+	"contenttransfer-include-related": "Alakalıları dahil et",
+	"contenttransfer-modified-since-label": "Bu tarihten beri değişmiş",
+	"apihelp-content-transfer-get-pages-summary": "Verilen filtrelere göre gönderilebilir tüm sayaları listeler",
+	"apihelp-content-transfer-push-info-summary": "Hedef vikiye aktarılmak üzere olan sayfanın tüm kaynaklarını alır, dahil edilen dosyalar, bağlantılı sayfalar, vb.",
+	"apihelp-content-transfer-do-push-single-summary": "Alıcı vikiye tek bir sayfa aktarır",
+	"apihelp-content-transfer-purge-pages-summary": "Alıcı vikiye aktarılmış olan tüm sayfaları boşaltır",
+	"contenttransfer-apihelp-param-titles": "Sayfa isimlerinin çubukla ayrılmış listesi",
+	"contenttransfer-apihelp-param-pushtarget": "Alıcı viki adı",
+	"contenttransfer-apihelp-param-modifiedsince": "Tarih dizisi. Sadece bu tarihten itibaren değişmiş sayfaları aktar",
+	"contenttransfer-apihelp-param-target": "Alıcı viki adı",
+	"contenttransfer-apihelp-param-articleid": "Tamsayı. Aktarılması gereken sayfanın kimliği"
 }
