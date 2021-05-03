@@ -145,7 +145,7 @@ class PushInfo extends ApiBase {
 
 		ksort( $this->groupedInfo );
 		foreach ( $this->groupedInfo as $type => &$values ) {
-			usort( $values, function ( $a, $b ) {
+			usort( $values, static function ( $a, $b ) {
 				return $a['title'] < $b['title'] ? -1 : 1;
 			} );
 		}

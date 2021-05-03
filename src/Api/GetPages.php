@@ -70,7 +70,7 @@ class GetPages extends ApiBase {
 			];
 		}
 
-		usort( $this->pages, function ( $a, $b ) {
+		usort( $this->pages, static function ( $a, $b ) {
 			return $a['prefixed_text'] < $b['prefixed_text'] ? -1 : 1;
 		} );
 	}
