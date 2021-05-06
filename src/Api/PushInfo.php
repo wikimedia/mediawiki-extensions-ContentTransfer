@@ -39,7 +39,7 @@ class PushInfo extends ApiBase {
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-titles',
 			],
 			'onlyModified' => [
-				static::PARAM_TYPE => 'boolean',
+				static::PARAM_TYPE => 'string',
 				static::PARAM_REQUIRED => false,
 				static::PARAM_DFLT => false,
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-onlymodified',
@@ -169,9 +169,7 @@ class PushInfo extends ApiBase {
 		if ( $this->modifiedSince !== '' ) {
 			$data['date'] = PageProvider::getModifiedSinceDate( $this->modifiedSince );
 		}
-		if ( $this->onlyModified ) {
-			$data['onlyModified'] = true;
-		}
+		$data['onlyModified'] = $this->onlyModified;
 
 		return $data;
 	}
