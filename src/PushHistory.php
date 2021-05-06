@@ -3,6 +3,7 @@
 namespace ContentTransfer;
 
 use Database;
+use MediaWiki\MediaWikiServices;
 use Title;
 use User;
 
@@ -63,11 +64,15 @@ class PushHistory {
 			return true;
 		}
 
-		$touched = $this->title->getTouched();
-
-		if ( $touched > $lastPush->ph_timestamp ) {
+		$revision = MediaWikiServices::getInstance()->getRevisionStore()->getRevisionByTitle( $title );
+		if (
+			$revision &&
+			$revision->getTimestamp() &&
+			$revision->getTimestamp() > $lastPush->ph_timestamp
+		) {
 			return true;
 		}
+
 		return false;
 	}
 
