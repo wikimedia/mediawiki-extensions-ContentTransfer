@@ -41,7 +41,7 @@ class PushInfo extends ApiBase {
 			'onlyModified' => [
 				static::PARAM_TYPE => 'string',
 				static::PARAM_REQUIRED => false,
-				static::PARAM_DFLT => false,
+				static::PARAM_DFLT => '0',
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-onlymodified',
 			],
 			'modifiedSince' => [
