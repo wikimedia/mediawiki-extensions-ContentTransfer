@@ -64,7 +64,8 @@ class PushHistory {
 			return true;
 		}
 
-		$revision = MediaWikiServices::getInstance()->getRevisionStore()->getRevisionByTitle( $title );
+		$revision = MediaWikiServices::getInstance()->getRevisionStore()
+			->getRevisionByTitle( $this->title );
 		if (
 			$revision &&
 			$revision->getTimestamp() &&
