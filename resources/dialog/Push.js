@@ -109,7 +109,7 @@
 			var groupTitle = mw.message(
 				'contenttransfer-dialog-push-preview-page-group-label-' + group,
 				pages.length
-			).plain();
+			).text();
 
 			var checkbox = new OO.ui.CheckboxInputWidget( {
 				selected: true
@@ -167,7 +167,7 @@
 		this.$progressPanel = $( '<div>' ).addClass( 'content-transfer-progress-panel' );
 		this.$pushTarget = $( '<div>' )
 			.addClass( 'content-transfer-progress-panel-push-target' )
-			.html( mw.message( 'contenttransfer-progress-push-target-label', this.pushTarget.url ).plain() );
+			.html( mw.message( 'contenttransfer-progress-push-target-label', this.pushTarget.url ).text() );
 		this.$currentOperation = $( '<span>' ).addClass( 'content-transfer-progress-panel-current-op' );
 		this.progressBar = new OO.ui.ProgressBarWidget( {
 			progress: 0
@@ -268,7 +268,7 @@
 			return dfd.resolve();
 		}
 
-		this.$currentOperation.html( mw.message( 'contenttransfer-progress-current-operation', page.title ).plain() );
+		this.$currentOperation.html( mw.message( 'contenttransfer-progress-current-operation', page.title ).text() );
 
 		var data = {
 			articleId: page.id,
@@ -413,7 +413,7 @@
 			var pushedPage = this.pushedPages[ idx ];
 			if( pushedPage.success === false ) {
 				this.$reportFailures.append(
-					$( '<span>' ).html( mw.message( 'contenttransfer-report-failure', pushedPage.title ).plain() ),
+					$( '<span>' ).html( mw.message( 'contenttransfer-report-failure', pushedPage.title ).text() ),
 					$( '<span>' ).addClass( 'content-transfer-report-failure-reason' ).html( pushedPage.message )
 				);
 			} else {
@@ -423,9 +423,9 @@
 		}
 		if( interrupted ) {
 			this.reportIcon.setIcon( 'close' );
-			this.$reportCount.html( mw.message( 'contenttransfer-report-interrupted', successCount ).plain() );
+			this.$reportCount.html( mw.message( 'contenttransfer-report-interrupted', successCount ).text() );
 		} else {
-			this.$reportCount.html( mw.message( 'contenttransfer-report-success-count', successCount, total ).plain() );
+			this.$reportCount.html( mw.message( 'contenttransfer-report-success-count', successCount, total ).text() );
 		}
 		if( successCount < total ) {
 			this.reportIcon.setIcon( 'close' );
