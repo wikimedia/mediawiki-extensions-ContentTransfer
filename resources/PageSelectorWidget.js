@@ -4,9 +4,7 @@
 
 	contentTransfer.widget.PageSelectorWidget = function( cfg ) {
 		this.$element = cfg.$element;
-		this.filterData = cfg.filterData;
-		this.filterData.namespaces = this.filterData.namespaces || [];
-		this.filterData.categories = this.filterData.categories || [];
+		this.filters = cfg.filters;
 
 		this.api = new mw.Api( {
 			ajax: {
@@ -78,28 +76,7 @@
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.makeFilters = function() {
-		this.textFilter = new OO.ui.TextInputWidget( {
-			icon: 'search'
-		} );
-
-		this.namespaceFilter = new OO.ui.ComboBoxInputWidget( {
-			options: this.filterData.namespaces.map( function( item ) {
-				return { data: item.text };
-			} ),
-			menu: {
-				filterFromInput: true
-			}
-		} );
-
-		this.categoryFilter = new OO.ui.ComboBoxInputWidget( {
-			options: this.filterData.categories.map( function( item ) {
-				return { data: item.text };
-			} ),
-			menu: {
-				filterFromInput: true
-			}
-		} );
-
+		// Built-in filters
 		this.onlyModified = new OO.ui.CheckboxInputWidget( {
 			selected: true
 		} );
@@ -109,18 +86,15 @@
 			validate: /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/gm
 		} );
 
-		var textFilterLayout = new OO.ui.FieldLayout( this.textFilter, {
-			align: 'top',
-			label: mw.message( 'contenttransfer-text-filter-input-label' ).text()
+		this.onlyModified.connect( this, { change: 'loadPages' } );
+		this.modifiedSince.connect( this, {
+			change: function() {
+				this.modifiedSince.getValidity().done( function() {
+					this.loadPages();
+				}.bind( this ) );
+			}
 		} );
-		var namespaceFilterLayout = new OO.ui.FieldLayout( this.namespaceFilter, {
-			align: 'top',
-			label: mw.message( 'contenttransfer-namespace-filter-input-label' ).text()
-		} );
-		var categoryFilterLayout = new OO.ui.FieldLayout( this.categoryFilter, {
-			align: 'top',
-			label: mw.message( 'contenttransfer-category-filter-input-label' ).text()
-		} );
+
 		var onlyModifiedLayout = new OO.ui.FieldLayout( this.onlyModified, {
 			align: 'top',
 			label: mw.message( 'contenttransfer-only-modified-label' ).text(),
@@ -132,17 +106,26 @@
 			label: mw.message( 'contenttransfer-modified-since-label' ).text()
 		} );
 
-		this.textFilter.connect( this, { change: 'loadPages' } );
-		this.namespaceFilter.connect( this, { change: 'loadPages' } );
-		this.categoryFilter.connect( this, { change: 'loadPages' } );
-		this.onlyModified.connect( this, { change: 'loadPages' } );
-		this.modifiedSince.connect( this, {
-			change: function() {
-				this.modifiedSince.getValidity().done( function() {
-					this.loadPages();
-				}.bind( this ) )
+		// Plugin filters
+		this.filterInstances = {};
+		var layouts = [];
+		for ( var name in this.filters ) {
+			if ( !this.filters.hasOwnProperty( name ) ) {
+				continue;
 			}
-		} );
+			var filter = this.filters[name],
+				widgetClass = this.stringToCallback( filter.widgetClass ),
+				widget = new widgetClass( $.extend( {}, true, {
+					id: filter.id,
+				}, filter.widgetData || {} ) ),
+				layout = new OO.ui.FieldLayout( widget, {
+					align: 'top',
+					label: filter.displayName
+				} );
+			widget.connect( this, { change: 'loadPages' } );
+			layouts.push( layout );
+			this.filterInstances[name] = widget;
+		}
 
 		var $filterLayout = $( '<div>' ).addClass( 'contenttransfer-filter-layout' );
 		$filterLayout.append(
@@ -150,11 +133,7 @@
 					modifiedSinceLayout,
 					onlyModifiedLayout
 				] } ).$element,
-			new OO.ui.HorizontalLayout( { items: [
-					textFilterLayout,
-					namespaceFilterLayout,
-					categoryFilterLayout
-			] } ).$element
+			new OO.ui.HorizontalLayout( { items: layouts } ).$element
 		);
 
 		this.$element.append( $filterLayout );
@@ -264,22 +243,23 @@
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.getFilterData = function() {
-		var nsFilter = this.getComboValue( this.namespaceFilter.getValue(), 'namespaces' ),
-			catFilter = this.getComboValue( this.categoryFilter.getValue(), 'categories', 'text'),
-			modifiedSince = this.modifiedSince.getValue();
+		var values = {};
+		// Plugin filters
 
-		if ( nsFilter === null || catFilter === null ) {
-			return null;
+		for( var name in this.filterInstances ) {
+			if ( !this.filterInstances.hasOwnProperty( name ) ) {
+				continue;
+			}
+			var filterInstance = this.filterInstances[name];
+			values[filterInstance.$element.attr( 'id' )] = filterInstance.getValue();
 		}
+		// Build-in
+		values.modifiedSince = this.modifiedSince.getValue();
+		values.onlyModified = this.onlyModified.isSelected();
 
-		return {
-			term: this.textFilter.getValue(),
-			namespace: nsFilter,
-			category: catFilter,
-			onlyModified: this.onlyModified.isSelected(),
-			modifiedSince: modifiedSince,
+		return $.extend( values, {
 			target: this.currentPushTarget
-		};
+		} );
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.loadPages = function() {
@@ -405,7 +385,7 @@
 					]
 				} ).$element
 			);
-			return
+			return;
 		}
 		this.$element.find( '.content-transfer-too-many-pages-warning' ).remove();
 
@@ -464,12 +444,15 @@
 	contentTransfer.widget.PageSelectorWidget.prototype.setPushWaitingNotice = function ( wait ) {
 		this.pushPagesButton.setDisabled( wait );
 		this.pushTargetPicker.setDisabled( wait );
-		this.textFilter.setDisabled( wait );
-		this.namespaceFilter.setDisabled( wait );
-		this.categoryFilter.setDisabled( wait );
 		this.onlyModified.setDisabled( wait );
 		this.selectAllButton.setDisabled( wait );
 		this.selectNoneButton.setDisabled( wait );
+		for ( var name in this.filterInstances ) {
+			if ( !this.filterInstances.hasOwnProperty( name ) ) {
+				continue;
+			}
+			this.filterInstances[name].setDisabled( wait );
+		}
 
 		for( var id in this.displayedPages ) {
 			if ( !this.displayedPages.hasOwnProperty( id ) ) {
@@ -489,6 +472,17 @@
 			var loader = new OO.ui.ProgressBarWidget( { classes: [ 'loader'] } );
 			this.$element.prepend( loader.$element );
 		}
+	};
+
+	contentTransfer.widget.PageSelectorWidget.prototype.stringToCallback = function ( cls ) {
+		console.log( cls );
+		var parts = cls.split( '.' );
+		var func = window[parts[0]];
+		for( var i = 1; i < parts.length; i++ ) {
+			func = func[parts[i]];
+		}
+console.log( func );
+		return func;
 	};
 
 } )( mediaWiki, jQuery, document );
