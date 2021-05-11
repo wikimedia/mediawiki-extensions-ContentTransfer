@@ -3,6 +3,7 @@
 namespace ContentTransfer\Api;
 
 use ApiBase;
+use ContentTransfer\PageFilterFactory;
 use ContentTransfer\PageProvider;
 use FormatJson;
 use MediaWiki\MediaWikiServices;
@@ -59,7 +60,9 @@ class GetPages extends ApiBase {
 
 	protected function makePages() {
 		$provider = $this->makeProvider();
-		$provider->setFilterData( $this->filterData );
+		/** @var PageFilterFactory $filterFactory */
+		$filterFactory = MediaWikiServices::getInstance()->getService( 'ContentTransferPageFilterFactory' );
+		$provider->setFilters( $filterFactory->getFilters(), $this->filterData );
 		$provider->execute();
 		$this->pageCount = $provider->getPageCount();
 		$pageTitles = $provider->getPages();
