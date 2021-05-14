@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"contenttransfer-text-filter-input-label": "Numm vun der Säit",
+	"contenttransfer-namespace-filter-input-label": "Nummraum",
+	"contenttransfer-category-filter-input-label": "Kategorie",
+	"contenttransfer-pages-header": "Säite fir ze transferéieren",
+	"contenttransfer-push-pages-button-label": "Iwwerdroen",
+	"contenttransfer-dialog-push-title": "Inhalt iwwerdroen",
+	"contenttransfer-dialog-push-action-do-push-label": "Iwwerdroen",
+	"contenttransfer-dialog-push-action-cancel-label": "Ofbriechen",
+	"contenttransfer-dialog-push-action-done-label": "Fäerdeg",
+	"contenttransfer-dialog-push-preview-layout-label": "Säiteniwwersiicht",
+	"contenttransfer-dialog-push-progress-layout-label": "Fortschrëtt",
+	"contenttransfer-dialog-push-report-layout-label": "Rapport",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "Säit ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-file": "Fichier ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-category": "Kategoriesäit ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-template": "Schabloun ($1)",
+	"contenttransfer-cannot-create": "Säit kann net ugeluecht ginn",
+	"contenttransfer-edit-fail-message": "Ännerungsfeeler: $1",
+	"contenttransfer-upload-fail-message": "Feeler beim Eroplueden: $1"
+}
