@@ -5,6 +5,7 @@
 			"Beta16"
 		]
 	},
+	"contenttransfer-category-filter-input-label": "Categoria",
 	"contenttransfer-dialog-push-action-cancel-label": "Annulla",
 	"contenttransfer-dialog-push-preview-page-group-label-file": "File ($1)",
 	"contenttransfer-ns-main": "(principale)"
