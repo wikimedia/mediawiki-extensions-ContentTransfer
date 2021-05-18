@@ -113,6 +113,7 @@
 			if ( !this.filters.hasOwnProperty( name ) ) {
 				continue;
 			}
+
 			var filter = this.filters[name],
 				widgetClass = this.stringToCallback( filter.widgetClass ),
 				widget = new widgetClass( $.extend( {}, true, {
@@ -475,13 +476,12 @@
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.stringToCallback = function ( cls ) {
-		console.log( cls );
 		var parts = cls.split( '.' );
 		var func = window[parts[0]];
 		for( var i = 1; i < parts.length; i++ ) {
 			func = func[parts[i]];
 		}
-console.log( func );
+
 		return func;
 	};
 

@@ -2,7 +2,9 @@
 
 namespace ContentTransfer;
 
+use FatalError;
 use Hooks;
+use MWException;
 use Status;
 use Title;
 
@@ -96,10 +98,11 @@ class PagePusher {
 		if ( $this->requestHandler->getCSRFToken() === null ) {
 			return;
 		}
-		if ( $this->doPush() === false ) {
+		$pageId = $this->doPush();
+		if ( $pageId === false ) {
 			return;
 		}
-		$this->runAdditionalRequests();
+		$this->runAdditionalRequests( $pageId );
 	}
 
 	/**
@@ -186,15 +189,21 @@ class PagePusher {
 
 		$this->pushHistory->insert();
 
-		return true;
+		return $pageId;
 	}
 
-	protected function runAdditionalRequests() {
+	/**
+	 * @param int $pageId
+	 * @throws FatalError
+	 * @throws MWException
+	 */
+	protected function runAdditionalRequests( $pageId ) {
 		$requests = [];
 		Hooks::run( 'ContentTransferAdditionalRequests', [
 			$this->title,
 			$this->requestHandler->getTarget(),
-			&$requests
+			&$requests,
+			$pageId
 		] );
 		if ( !is_array( $requests ) || empty( $requests ) ) {
 			return;
