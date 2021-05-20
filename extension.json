@@ -21,6 +21,13 @@
 					"roles": [ "admin" ]
 				}
 			}
+		},
+		"ContentTransfer": {
+			"PageFilters": {
+				"term": "\\ContentTransfer\\PageFilter\\PageName::factory",
+				"category": "\\ContentTransfer\\PageFilter\\Category::factory",
+				"namespace": "\\ContentTransfer\\PageFilter\\NamespaceFilter::factory"
+			}
 		}
 	},
 	"ServiceWiringFiles": [
@@ -107,6 +114,18 @@
 				"contenttransfer-include-related",
 				"contenttransfer-modified-since-label",
 				"contenttransfer-modified-since-ph"
+			]
+		},
+		"ext.contenttransfer.filters": {
+			"scripts": [
+				"pageFilter/ComboBoxFilter.js",
+				"pageFilter/PageName.js",
+				"pageFilter/Category.js",
+				"pageFilter/Namespace.js"
+			],
+			"dependencies": [
+				"oojs",
+				"oojs-ui"
 			]
 		}
 	},
