@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"contenttransfer-text-filter-input-label": "Sidenavn",
+	"contenttransfer-namespace-filter-input-label": "Navnerom",
+	"contenttransfer-category-filter-input-label": "Kategori",
+	"contenttransfer-pages-header": "Sider som skal overføres",
+	"contenttransfer-pages-header-count": "Valgt: $2 Totalt: $1",
+	"contenttransfer-push-pages-button-label": "Overfør",
+	"contenttransfer-dialog-push-title": "Overfør innhold",
+	"contenttransfer-dialog-push-action-do-push-label": "Overfør",
+	"contenttransfer-dialog-push-action-cancel-label": "Avbryt",
+	"contenttransfer-dialog-push-action-done-label": "Ferdig",
+	"contenttransfer-dialog-push-preview-layout-label": "Sideoversikt",
+	"contenttransfer-dialog-push-progress-layout-label": "Framgang",
+	"contenttransfer-dialog-push-report-layout-label": "Rapport",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "Side ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-file": "Fil ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-category": "Kategoriside ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-template": "Mal ($1)",
+	"contenttransfer-progress-current-operation": "Overfører $1",
+	"contenttransfer-report-success-count": "Overførte $1 av {{PLURAL:$2|én side|$2 sider}}",
+	"contenttransfer-report-failure": "Mislyktes: $1",
+	"contenttransfer-target-picker-label": "Mottakerwiki",
+	"contenttransfer-progress-push-target-label": "Mottakerwiki: $1",
+	"contenttransfer-invalid-target": "Ugyldig mottakerwiki",
+	"contenttransfer-no-pageprops": "Sideegenskaper kan ikke hentes",
+	"contenttransfer-no-login-token": "Innloggingsnøkkel kan ikke hentes",
+	"contenttransfer-authentication-failed": "Autentisering feilet",
+	"contenttransfer-cannot-create": "Siden kan ikke opprettes",
+	"contenttransfer-namespace-not-found": "Navnerommet «$1» ikke funnet på mottakerwikien. Opprett navnerommet og prøv å overføre siden på nytt",
+	"contenttransfer-report-interrupted": "Overføring avbrutt! Overførte {{PLURAL:$1|éi side|$1 sider}}",
+	"contenttransfer-no-csrf-token": "Ingen CSFR-nøkkel",
+	"contenttransfer-edit-fail": "Siden kan ikke redigeres på mottakerwikien",
+	"contenttransfer-edit-fail-message": "Redigeringsfeil: $1",
+	"contenttransfer-upload-fail": "Fila kan ikke lastes opp på mottakerwikien",
+	"contenttransfer-upload-fail-message": "Opplastingsfeil: $1"
+}
