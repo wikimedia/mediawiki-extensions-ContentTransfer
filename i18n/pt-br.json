@@ -30,6 +30,8 @@
 	"right-content-transfer": "Permite que os usuários transfiram conteúdo para outros wikis",
 	"contenttransfer-no-pages-label": "Não existem páginas disponíveis!",
 	"contenttransfer-ns-main": "(principal)",
+	"contenttransfer-generic-error": "Ocorreu um erro!",
+	"contenttransfer-include-related": "Incluir relacionados",
 	"contenttransfer-modified-since-label": "Modificado desde",
 	"apihelp-content-transfer-push-info-summary": "Recupera todos os recursos, como arquivos incluídos, páginas vinculadas, etc. da página, que está prestes a ser transferida para uma wiki de destino",
 	"contenttransfer-apihelp-param-filterdata": "String JSON de dados para filtrar",

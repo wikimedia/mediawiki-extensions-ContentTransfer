@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Hedda",
-			"Joseph"
+			"Joseph",
+			"Mim.saitkilic"
 		]
 	},
 	"contenttransfer-extension-description": "İçeriğin bir wiki'den diğerine aktarılmasını sağlar",
@@ -62,8 +63,11 @@
 	"contenttransfer-apihelp-param-filterdata": "Filtrelenecek verinin JSON dizisi",
 	"contenttransfer-apihelp-param-titles": "Sayfa isimlerinin çubukla ayrılmış listesi",
 	"contenttransfer-apihelp-param-pushtarget": "Alıcı viki adı",
+	"contenttransfer-apihelp-param-onlymodified": "Bool. Yalnızca son içerik aktarımından bu yana değiştirilen sayfaların aktarılıp aktarılmayacağını ayarlayın.",
 	"contenttransfer-apihelp-param-modifiedsince": "Tarih dizisi. Sadece bu tarihten itibaren değişmiş sayfaları aktar",
 	"contenttransfer-apihelp-param-target": "Alıcı viki adı",
+	"contenttransfer-apihelp-param-includerelated": "Bool. Bağlantılı sayfalar, dosyalar ve sayfa kategorileri gibi kaynakların da aktarılıp aktarılmayacağını ayarlayın",
 	"contenttransfer-apihelp-param-articleid": "Tamsayı. Aktarılması gereken sayfanın kimliği",
+	"contenttransfer-apihelp-param-force": "Bool. Uyarıları dikkate almayın ve yine de aktarın",
 	"contenttransfer-apihelp-param-token": "Kullanıcının düzenleme anahtarı"
 }
