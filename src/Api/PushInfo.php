@@ -56,9 +56,9 @@ class PushInfo extends ApiBase {
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-target',
 			],
 			'includeRelated' => [
-				static::PARAM_TYPE => 'boolean',
+				static::PARAM_TYPE => 'string',
 				static::PARAM_REQUIRED => false,
-				static::PARAM_DFLT => false,
+				static::PARAM_DFLT => '0',
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-includerelated',
 			]
 		];
