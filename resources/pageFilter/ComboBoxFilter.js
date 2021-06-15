@@ -8,7 +8,9 @@ contentTransfer.widget.ComboBoxFilter = function( cfg ) {
     cfg.options = this.optionData.map( function( item ) {
         return { data: item.text };
     } );
-    cfg.filterFromInput = true;
+    cfg.menu = {
+        filterFromInput: true
+    };
 
     contentTransfer.widget.ComboBoxFilter.parent.call( this, cfg );
 };
