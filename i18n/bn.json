@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"আফতাবুজ্জামান"
+		]
+	},
+	"contenttransfer-text-filter-input-label": "পাতার নাম",
+	"contenttransfer-namespace-filter-input-label": "নামস্থান",
+	"contenttransfer-category-filter-input-label": "বিষয়শ্রেণী",
+	"contenttransfer-push-pages-button-label": "স্থানান্তর করুন",
+	"contenttransfer-dialog-push-action-do-push-label": "স্থানান্তর করুন",
+	"contenttransfer-dialog-push-action-cancel-label": "বাতিল",
+	"contenttransfer-dialog-push-action-done-label": "সম্পন্ন",
+	"contenttransfer-dialog-push-progress-layout-label": "অগ্রগতি"
+}
