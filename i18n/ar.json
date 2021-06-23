@@ -4,5 +4,6 @@
 			"محمد أحمد عبد الفتاح"
 		]
 	},
-	"contenttransfer-text-filter-input-label": "اسم الصفحة"
+	"contenttransfer-text-filter-input-label": "اسم الصفحة",
+	"contenttransfer-namespace-filter-input-label": "النطاق"
 }
