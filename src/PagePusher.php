@@ -178,7 +178,7 @@ class PagePusher {
 
 		// Maybe will be useful in the future
 		$editInfo = $response->edit;
-		$pageId = $editInfo->pageid;
+		$pageId = $editInfo['pageid'];
 
 		$this->pushHistory->insert();
 
