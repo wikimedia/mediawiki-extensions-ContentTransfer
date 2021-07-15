@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mainframe98"
+			"Mainframe98",
+			"Romaine"
 		]
 	},
 	"contenttransfer-text-filter-input-label": "Paginanaam",
@@ -17,5 +18,6 @@
 	"contenttransfer-report-failure": "Mislukt: $1",
 	"contenttransfer-target-picker-label": "Ontvangende wiki",
 	"contenttransfer-progress-push-target-label": "Ontvangende wiki: $1",
+	"contenttransfer-no-csrf-token": "Geen CSFR-token",
 	"contenttransfer-ns-main": "(hoofdnaamruimte)"
 }
