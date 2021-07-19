@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"contenttransfer-text-filter-input-label": "문서 이름",
+	"contenttransfer-namespace-filter-input-label": "이름공간",
+	"contenttransfer-category-filter-input-label": "분류",
+	"contenttransfer-dialog-push-action-cancel-label": "취소",
+	"contenttransfer-dialog-push-action-done-label": "완료",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "문서 ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-file": "파일 ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-category": "분류 문서 ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-template": "틀 ($1)",
+	"contenttransfer-cannot-create": "문서를 만들 수 없습니다",
+	"contenttransfer-no-csrf-token": "CSFR 토큰 없음",
+	"contenttransfer-edit-fail-message": "편집 오류: $1",
+	"contenttransfer-upload-fail-message": "업로드 오류: $1",
+	"contenttransfer-no-pages-label": "사용 가능한 문서가 없습니다!",
+	"contenttransfer-ns-main": "(일반)"
+}
