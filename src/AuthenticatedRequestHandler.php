@@ -363,7 +363,9 @@ class AuthenticatedRequestHandler {
 		];
 
 		$request = $this->getRequest( $requestData );
-		$request->setCookieJar( $this->cookieJar );
+		if ( $this->cookieJar ) {
+			$request->setCookieJar( $this->cookieJar );
+		}
 
 		$status = $request->execute();
 
