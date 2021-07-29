@@ -16,6 +16,10 @@ class PageContentProvider {
 	protected $parserOutput;
 
 	protected $relatedTitles = [];
+	/** @var array */
+	protected $transcluded = [];
+	/** @var bool */
+	private $relatedLoaded = false;
 
 	/**
 	 *
@@ -49,7 +53,24 @@ class PageContentProvider {
 			}
 		}
 
+		$this->relatedLoaded = true;
+
 		return $this->relatedTitles;
+	}
+
+	/**
+	 * @return array of dbkeys of transcluded titles
+	 * @throws \MWException
+	 */
+	public function getTranscluded() {
+		$this->assertLoaded();
+		return $this->transcluded;
+	}
+
+	private function assertLoaded() {
+		if ( !$this->relatedLoaded ) {
+			throw new \MWException( 'Related titles not loaded. Call getRelatedTitles()' );
+		}
 	}
 
 	/**
@@ -88,7 +109,7 @@ class PageContentProvider {
 
 	protected function extractTemplates() {
 		$rawTemplates = $this->parserOutput->getTemplates();
-		$this->relatedTitlesFromNestedArray( $rawTemplates );
+		$this->relatedTitlesFromNestedArray( $rawTemplates, true );
 	}
 
 	protected function extractFiles() {
@@ -120,13 +141,17 @@ class PageContentProvider {
 	/**
 	 *
 	 * @param array $nested
+	 * @param bool|null $transcluded
 	 */
-	protected function relatedTitlesFromNestedArray( $nested ) {
+	protected function relatedTitlesFromNestedArray( $nested, $transcluded = false ) {
 		foreach ( $nested as $ns => $pages ) {
 			foreach ( $pages as $dbKey => $pageId ) {
 				$title = Title::newFromId( $pageId );
 				if ( $title instanceof Title && $title->exists() ) {
 					$this->relatedTitles[ $title->getPrefixedDBkey() ] = $title;
+					if ( $transcluded ) {
+						$this->transcluded[] = $title->getPrefixedDBkey();
+					}
 				}
 			}
 		}
