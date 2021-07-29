@@ -69,5 +69,9 @@
 	"contenttransfer-apihelp-param-includerelated": "{{doc-apihelp-param|content-transfer-push-info|includeRelated}}",
 	"contenttransfer-apihelp-param-articleid": "{{doc-apihelp-param|content-transfer-do-push-single|articleId}}",
 	"contenttransfer-apihelp-param-force": "{{doc-apihelp-param|content-transfer-do-push-single|force}}",
-	"contenttransfer-apihelp-param-token": "{{doc-apihelp-param|content-transfer-do-push-single|token}}"
+	"contenttransfer-apihelp-param-token": "{{doc-apihelp-param|content-transfer-do-push-single|token}}",
+	"contenttransfer-dialog-push-preview-page-group-label-original": "Section headline of the list of pages, that will be transfered.\n* $1 - Number of pages",
+	"content-transfer-push-related-pages": "Section title for list of related pages",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Section title for pages that are referenced in selected pages",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Section title for pages that are transcluded to selected pages"
 }
