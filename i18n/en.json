@@ -69,5 +69,9 @@
 	"contenttransfer-apihelp-param-includerelated": "Bool. Set if also resources such as linked pages, files and categories of the page should get transferred",
 	"contenttransfer-apihelp-param-articleid": "Integer. ID of the page, that should get transferred",
 	"contenttransfer-apihelp-param-force": "Bool. Ignore warnings and transfer anyways",
-	"contenttransfer-apihelp-param-token": "The user's edit token"
+	"contenttransfer-apihelp-param-token": "The user's edit token",
+	"contenttransfer-dialog-push-preview-page-group-label-original": "Selected pages ($1)",
+	"content-transfer-push-related-pages": "Related pages",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Referenced",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Transcluded"
 }
