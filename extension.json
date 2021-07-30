@@ -73,6 +73,7 @@
 			],
 			"dependencies": [
 				"mediawiki.api",
+				"oojs-ui.styles.icons-media",
 				"oojs",
 				"oojs-ui"
 			],
@@ -110,7 +111,11 @@
 				"contenttransfer-generic-error",
 				"contenttransfer-include-related",
 				"contenttransfer-modified-since-label",
-				"contenttransfer-modified-since-ph"
+				"contenttransfer-modified-since-ph",
+				"contenttransfer-dialog-push-preview-page-group-label-original",
+				"content-transfer-push-related-pages",
+				"contenttransfer-dialog-push-subgroup-label-linked",
+				"contenttransfer-dialog-push-subgroup-label-transcluded"
 			]
 		},
 		"ext.contenttransfer.filters": {
@@ -140,7 +145,7 @@
 			"value": 200
 		},
 		"ContentTransferOnlyContentNamespaces": {
-			"value": true
+			"value": false
 		},
 		"ContentTransferAllowTalkNamespaces": {
 			"value": false

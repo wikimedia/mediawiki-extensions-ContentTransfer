@@ -14,12 +14,15 @@ class PushInfo extends ApiBase {
 	protected const TYPE_FILE = 'file';
 
 	protected $titles = [];
+	protected $related = [];
 	protected $onlyModified;
 	protected $modifiedSince = '';
 	protected $target = '';
 	protected $groupedInfo = [];
 	protected $joinedInfo = [];
 	protected $includeRelated = false;
+	/** @var array */
+	protected $transcluded = [];
 
 	public function execute() {
 		$this->readInParameters();
@@ -105,9 +108,12 @@ class PushInfo extends ApiBase {
 			$contentProvider = new PageContentProvider( $title );
 
 			if ( $this->includeRelated ) {
-				$this->titles = array_merge(
-					$this->titles,
+				$this->related = array_merge(
+					$this->related,
 					$contentProvider->getRelatedTitles( $this->getModificationData(), $this->target )
+				);
+				$this->transcluded = array_merge(
+					$this->transcluded, $contentProvider->getTranscluded()
 				);
 			}
 		}
@@ -115,8 +121,35 @@ class PushInfo extends ApiBase {
 		$this->generatePushInfo();
 	}
 
+	/**
+	 * @param Title $title
+	 * @return array
+	 */
+	protected function getInfoForTitle( Title $title ) {
+		return [
+			'id' => $title->getArticleId(),
+			'title' => $title->getFullText(),
+			'uri' => $title->getLocalURL()
+		];
+	}
+
 	protected function generatePushInfo() {
+		$this->groupedInfo['original'] = [];
 		foreach ( $this->titles as $title ) {
+			$this->groupedInfo['original'][$title->getPrefixedDBKey()] =
+				$this->getInfoForTitle( $title );
+			$this->joinedInfo[$title->getPrefixedDBKey()] = [
+				'id' => $title->getArticleId(),
+				'title' => $title->getFullText(),
+				'type' => 'original',
+				'groupKey' => 'original#linked'
+			];
+		}
+
+		foreach ( $this->related as $title ) {
+			if ( isset( $this->groupedInfo['original'][$title->getPrefixedDBKey()] ) ) {
+				continue;
+			}
 			$type = static::TYPE_WIKIPAGE;
 			switch ( $title->getNamespace() ) {
 				case NS_TEMPLATE:
@@ -130,17 +163,16 @@ class PushInfo extends ApiBase {
 					break;
 			}
 
+			$isTranscluded = in_array( $title->getPrefixedDbKey(), $this->transcluded );
 			$this->joinedInfo[ $title->getPrefixedDBKey() ] = [
 				'id' => $title->getArticleId(),
 				'title' => $title->getFullText(),
-				'type' => $type
+				'type' => $type,
+				'groupKey' => $type . '#' . ( $isTranscluded ? 'transcluded' : 'linked' ),
 			];
 
-			$this->groupedInfo[ $type ][ $title->getPrefixedDBKey() ] = [
-				'id' => $title->getArticleId(),
-				'title' => $title->getFullText(),
-				'uri' => $title->getLocalURL()
-			];
+			$this->groupedInfo[$type][$title->getPrefixedDBKey()] =
+				$this->getInfoForTitle( $title );
 		}
 
 		ksort( $this->groupedInfo );
@@ -150,7 +182,35 @@ class PushInfo extends ApiBase {
 			} );
 		}
 
+		foreach ( $this->groupedInfo as $type => &$values ) {
+			if ( !in_array( $type, [ static::TYPE_TEMPLATE, static::TYPE_WIKIPAGE ] ) ) {
+				continue;
+			}
+			$values = $this->separateTranscluded( $values );
+		}
+
 		ksort( $this->joinedInfo );
+	}
+
+	/**
+	 * @param array $titles
+	 * @return array
+	 */
+	private function separateTranscluded( $titles ) {
+		$separated = [
+			'linked' => [],
+			'transcluded' => []
+		];
+		/** @var Title $title */
+		foreach ( $titles as $dbKey => $title ) {
+			if ( in_array( $dbKey, $this->transcluded ) ) {
+				$separated['transcluded'][] = $title;
+			} else {
+				$separated['linked'][] = $title;
+			}
+		}
+
+		return $separated;
 	}
 
 	protected function returnData() {

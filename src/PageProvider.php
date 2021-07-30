@@ -153,7 +153,11 @@ class PageProvider {
 	 */
 	protected function makeConds( Database $db ) {
 		$conds = [];
-
+		if ( $this->config->get( 'ContentTransferOnlyContentNamespaces' ) ) {
+			$conds[] = 'page.page_namespace IN (' . $db->makeList(
+				array_unique( \MWNamespace::getContentNamespaces() )
+			) . ')';
+		}
 		if ( isset( $this->filterData['modifiedSince'] ) ) {
 			$sinceDate = static::getModifiedSinceDate( $this->filterData['modifiedSince' ] );
 			if ( $sinceDate !== null ) {
@@ -177,7 +181,6 @@ class PageProvider {
 		foreach ( $this->pageFilters as $name => $filter ) {
 			$filter->modifyConds( $this->filterData, $conds );
 		}
-
 		return $conds;
 	}
 
