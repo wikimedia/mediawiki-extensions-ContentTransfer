@@ -10,6 +10,9 @@
 		this.groupsToTransfer = {};
 		this.skipPages = [];
 		this.enableBeta = mw.config.get( 'ctEnableBeta' );
+		this.original = this.groupedInfo.original || [];
+		delete( this.groupedInfo.original );
+		this.checkboxes = {};
 
 		this.progressStep = 1;
 		this.pushedPages = [];
@@ -99,69 +102,149 @@
 
 		this.$previewPanel.append( targetInfo.$element );
 
+		this.makeGroup( 'original', this.original, true, false );
+		if ( !$.isEmptyObject( this.groupedInfo ) ) {
+			this.$previewPanel.append( new OO.ui.LabelWidget( {
+				label: mw.message( 'content-transfer-push-related-pages' ).text(),
+				classes: [ 'content-transfer-push-related-pages-label' ]
+			} ).$element );
+		}
+
 		for( var group in this.groupedInfo ) {
+			if ( !this.groupedInfo.hasOwnProperty( group ) ) {
+				continue;
+			}
 			var pages = this.groupedInfo[group];
 			this.groupsToTransfer[group] = true;
-			// contenttransfer-dialog-push-preview-page-group-label-wikipage
-			// contenttransfer-dialog-push-preview-page-group-label-file
-			// contenttransfer-dialog-push-preview-page-group-label-category
-			// contenttransfer-dialog-push-preview-page-group-label-template
-			var groupTitle = mw.message(
-				'contenttransfer-dialog-push-preview-page-group-label-' + group,
-				pages.length
-			).text();
+			this.makeGroup( group, pages, false, true );
+		}
+		return this.$previewPanel;
+	};
 
+	contentTransfer.dialog.Push.prototype.makeGroup = function( name, pages, expanded, selectable ) {
+		var groupLayout, i;
+		// contenttransfer-dialog-push-preview-page-group-label-original
+		// contenttransfer-dialog-push-preview-page-group-label-wikipage
+		// contenttransfer-dialog-push-preview-page-group-label-file
+		// contenttransfer-dialog-push-preview-page-group-label-category
+		// contenttransfer-dialog-push-preview-page-group-label-template
+		var totalPages = $.type( pages ) === 'array' ? pages.length :
+			this.getSubgroupedPageCount( pages );
+		var groupTitle = mw.message(
+			'contenttransfer-dialog-push-preview-page-group-label-' + name,
+			totalPages
+		).text();
+
+		this.checkboxes[name] = [];
+		if ( selectable ) {
 			var checkbox = new OO.ui.CheckboxInputWidget( {
 				selected: true
 			} );
-			checkbox.on( 'change', this.onGroupCheck.bind( this ), [ group ] );
-			var button = new OO.ui.ButtonInputWidget( {
-				framed: false,
-				label: groupTitle,
-				icon: contentTransfer.dialog.Push.static.groupIcons[group],
-				indicator: 'down'
-			} );
-
-			var groupLayout = new OO.ui.ActionFieldLayout( checkbox, button, {
-				align: 'inline',
-				classes: [ 'content-transfer-dialog-push-preview-panel-group-button' ]
-			} );
-
-			var $pageGroup = $( '<div>' ).addClass( 'content-transfer-dialog-push-preview-panel-page-group' );
-			if( group === 'wikipage' ) {
-				$pageGroup.addClass( 'page-group-visible' );
-				button.setIndicator( 'up' );
-			}
-			button.on( 'click', this.expandPageGroup, [ button, $pageGroup ] );
-
-			this.$previewPanel.append( groupLayout.$element );
-
-			for( var idx in pages ) {
-				if ( this.enableBeta ) {
-					var singlePageCheck = new OO.ui.CheckboxInputWidget( {
-						data: {
-							pid: pages[idx].id
-						},
-						selected: true
-					} );
-					singlePageCheck.on( 'change', this.onSinglePageCheck.bind( this ), [ pages[idx], group ] );
-				}
-				$pageGroup.append(
-					$( '<span>' )
-						.addClass( 'content-transfer-dialog-push-preview-panel-page-item' )
-						.append(
-							( this.enableBeta ? singlePageCheck.$element : '' ),
-							$( '<a>' )
-								.attr( 'href', pages[ idx ].uri )
-								.attr( 'target', '_blank' ).html( pages[ idx ].title )
-						)
-				);
-			}
-
-			this.$previewPanel.append( $pageGroup );
+			checkbox.on( 'change', this.onGroupCheck.bind( this ), [ name ] );
 		}
-		return this.$previewPanel;
-	}
+		var button = new OO.ui.ButtonInputWidget( {
+			framed: false,
+			label: groupTitle,
+			icon: contentTransfer.dialog.Push.static.groupIcons[name],
+			indicator: 'down'
+		} );
+
+		var groupLayoutConfig = {
+			align: 'inline',
+			classes: [ 'content-transfer-dialog-push-preview-panel-group-button' ]
+		};
+		if ( selectable ) {
+			groupLayout = new OO.ui.ActionFieldLayout( checkbox, button, groupLayoutConfig );
+		} else {
+			groupLayout = new OO.ui.FieldLayout( button, groupLayoutConfig );
+		}
+
+
+		var $pageGroup = $( '<div>' ).addClass( 'content-transfer-dialog-push-preview-panel-page-group' );
+		if( expanded ) {
+			$pageGroup.addClass( 'page-group-visible' );
+			button.setIndicator( 'up' );
+		}
+		button.on( 'click', this.expandPageGroup, [ button, $pageGroup ] );
+
+		this.$previewPanel.append( groupLayout.$element );
+
+		if ( $.type( pages ) === 'object' ) {
+			for( var subgroup in pages ) {
+				if ( !pages.hasOwnProperty( subgroup ) ) {
+					continue;
+				}
+				if ( pages[subgroup].length === 0 ) {
+					continue;
+				}
+				this.checkboxes[name + '#' + subgroup] = [];
+				var subgroupCheckbox = new OO.ui.CheckboxInputWidget( {
+					selected: true,
+					classes: [ 'content-transfer-dialog-push-check-subgroup' ]
+				} );
+				this.checkboxes[name].push( subgroupCheckbox );
+
+				var $subpageGroup = $( '<div>' )
+					.addClass( 'content-transfer-dialog-push-preview-panel-page-group subpage-group page-group-visible' );
+				subgroupCheckbox.on( 'change', this.onSubgroupCheckbox.bind( this ), [ name, subgroup ] );
+				$pageGroup.append( new OO.ui.FieldLayout( subgroupCheckbox, {
+					align: 'inline',
+					label: mw.message( 'contenttransfer-dialog-push-subgroup-label-' + subgroup ).text()
+				} ).$element );
+
+				for ( i = 0; i < pages[subgroup].length; i++ ) {
+					this.addPageToGroup( pages[subgroup][i], $subpageGroup, selectable, name, subgroup );
+				}
+				$pageGroup.append( $subpageGroup );
+			}
+		} else {
+			for( i = 0; i < pages.length; i++ ) {
+				this.addPageToGroup( pages[i], $pageGroup, selectable, name );
+			}
+		}
+
+		this.$previewPanel.append( $pageGroup );
+	};
+
+	contentTransfer.dialog.Push.prototype.addPageToGroup = function( page, $element, selectable, group, subgroup ) {
+		if ( selectable ) {
+			var singlePageCheck = new OO.ui.CheckboxInputWidget( {
+				data: {
+					pid: page.id
+				},
+				selected: true
+			} );
+			if ( subgroup ) {
+				var subgroupKey = group + '#' + subgroup;
+				this.checkboxes[subgroupKey].push( singlePageCheck );
+			}
+
+			this.checkboxes[group].push( singlePageCheck );
+			singlePageCheck.on( 'change', this.onSinglePageCheck.bind( this ), [ page ] );
+		}
+		$element.append(
+			$( '<span>' )
+			.addClass( 'content-transfer-dialog-push-preview-panel-page-item' )
+			.append(
+				( selectable ? singlePageCheck.$element : '' ),
+				$( '<a>' )
+				.attr( 'href', page.uri )
+				.attr( 'target', '_blank' ).html( page.title )
+			)
+		);
+	};
+
+	contentTransfer.dialog.Push.prototype.getSubgroupedPageCount = function( pages ) {
+		var count = 0;
+		for( var subgroup in pages ) {
+			if ( !pages.hasOwnProperty( subgroup ) ) {
+				continue;
+			}
+			count += pages[subgroup].length;
+		}
+
+		return count;
+	};
 
 	contentTransfer.dialog.Push.prototype.makeProgressPanel = function() {
 		this.$progressPanel = $( '<div>' ).addClass( 'content-transfer-progress-panel' );
@@ -181,7 +264,7 @@
 			this.$logContainer
 		);
 		return this.$progressPanel;
-	}
+	};
 
 	contentTransfer.dialog.Push.prototype.makeReportPanel = function() {
 		this.$reportPanel = $( '<div>' ).addClass( 'content-transfer-report-panel' );
@@ -464,8 +547,10 @@
 		this.actions.setAbilities( { done: true } );
 	};
 
-	contentTransfer.dialog.Push.prototype.onGroupCheck = function( group ) {
-		this.groupsToTransfer[group] = !this.groupsToTransfer[group];
+	contentTransfer.dialog.Push.prototype.onGroupCheck = function( group, value ) {
+		for( var i = 0; i < this.checkboxes[group].length; i++ ) {
+			this.checkboxes[group][i].setSelected( value );
+		}
 	};
 
 	contentTransfer.dialog.Push.prototype.filterOutExcluded = function() {
@@ -474,20 +559,27 @@
 				continue;
 			}
 			var page = this.joinedInfo[ dbKey ];
-			if ( !this.groupsToTransfer.hasOwnProperty( page.type ) || this.groupsToTransfer[page.type] === false ) {
-				delete( this.joinedInfo[dbKey] );
-			}
 			if ( this.skipPages.indexOf( page.id ) !== -1 ) {
 				delete( this.joinedInfo[dbKey] );
 			}
 		}
 	};
 
-	contentTransfer.dialog.Push.prototype.onSinglePageCheck = function( page, group ) {
-		if ( this.skipPages.indexOf( page.id ) !== -1 ) {
+	contentTransfer.dialog.Push.prototype.onSinglePageCheck = function( page, value ) {
+		if ( !page ) {
+			return;
+		}
+		if ( value && this.skipPages.indexOf( page.id ) !== -1 ) {
 			this.skipPages.splice( this.skipPages.indexOf( page.id ), 1 );
-		} else {
+		} else if ( !value ) {
 			this.skipPages.push( page.id );
+		}
+	};
+
+	contentTransfer.dialog.Push.prototype.onSubgroupCheckbox = function( group, subgroup, value ) {
+		var key = group + '#' + subgroup;
+		for( var i = 0; i < this.checkboxes[key].length; i++ ) {
+			this.checkboxes[key][i].setSelected( value );
 		}
 	};
 
@@ -495,6 +587,6 @@
 		wikipage: 'articles',
 		category: 'tag',
 		template: 'code',
-		file: 'imageGallery'
+		file: 'image'
 	};
 } )( mediaWiki, jQuery, document );

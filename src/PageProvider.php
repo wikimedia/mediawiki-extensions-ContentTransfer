@@ -130,25 +130,11 @@ class PageProvider {
 	 */
 	protected function makeConds( Database $db ) {
 		$conds = [];
-		if ( isset( $this->filterData['term'] ) && $this->filterData['term'] !== '' ) {
-			$bits = explode( ':', $this->filterData['term'] );
-			$term = trim( strtolower( array_pop( $bits ) ) );
-			$term = implode( '%', explode( ' ', $term ) );
-			$termConds[] = 'searchindex.si_title = ' . $db->addQuotes( $term );
-			$termConds[] = 'searchindex.si_title LIKE ' . $db->addQuotes( "%$term%" );
-			$termConds[] = 'searchindex.si_title LIKE ' . $db->addQuotes( "$term%" );
-			$termConds[] = 'searchindex.si_title LIKE ' . $db->addQuotes( "%$term" );
-			$conds[] = '(' . implode( '  OR ', $termConds ) . ')';
+		if ( $this->config->get( 'ContentTransferOnlyContentNamespaces' ) ) {
+			$conds[] = 'page.page_namespace IN (' . $db->makeList(
+				array_unique( \MWNamespace::getContentNamespaces() )
+			) . ')';
 		}
-
-		if ( isset( $this->filterData['namespace'] ) && $this->filterData['namespace'] !== false ) {
-			$conds[] = 'page.page_namespace = ' . $this->filterData['namespace'];
-		}
-
-		if ( isset( $this->filterData['category'] ) && $this->filterData['category'] !== false ) {
-			$conds[] = 'categorylinks.cl_to = ' . $db->addQuotes( $this->filterData['category'] );
-		}
-
 		if ( isset( $this->filterData['modifiedSince'] ) ) {
 			$sinceDate = static::getModifiedSinceDate( $this->filterData['modifiedSince' ] );
 			if ( $sinceDate !== null ) {
@@ -164,7 +150,6 @@ class PageProvider {
 			$modifiedConds[] = 'push_history.ph_timestamp <= revision.rev_timestamp';
 			$conds[] = 'push_history.ph_page IS NULL OR (' . implode( ' AND ', $modifiedConds ) . ')';
 		}
-
 		return $conds;
 	}
 
