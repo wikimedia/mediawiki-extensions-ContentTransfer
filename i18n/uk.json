@@ -61,11 +61,11 @@
 	"contenttransfer-apihelp-param-filterdata": "Рядок даних JSON для фільтрування",
 	"contenttransfer-apihelp-param-titles": "Список імен сторінок, розділених вертикальною рисою",
 	"contenttransfer-apihelp-param-pushtarget": "Отримання назви вікі",
-	"contenttransfer-apihelp-param-onlymodified": "Bool. Встановіть, якщо повинні передаватися лише сторінки, які були змінені після останньої передачі вмісту",
+	"contenttransfer-apihelp-param-onlymodified": "Встановіть, якщо повинні передаватися лише сторінки, які були змінені після останньої передачі вмісту",
 	"contenttransfer-apihelp-param-modifiedsince": "Рядок дати. Передайте лише ті сторінки, які були змінені відтоді",
 	"contenttransfer-apihelp-param-target": "Отримання назви вікі",
-	"contenttransfer-apihelp-param-includerelated": "Bool. Встановіть, чи повинні переноситися також такі ресурси, як пов’язані сторінки, файли та категорії сторінки",
+	"contenttransfer-apihelp-param-includerelated": "Встановіть, чи повинні переноситися також такі ресурси, як пов’язані сторінки, файли та категорії сторінки",
 	"contenttransfer-apihelp-param-articleid": "Ціле число. Ідентифікатор сторінки, яку слід передати",
-	"contenttransfer-apihelp-param-force": "Bool. Ігноруйте попередження та передавайте їх у будь-якому випадку",
+	"contenttransfer-apihelp-param-force": "Ігноруйте попередження та передавайте їх у будь-якому випадку",
 	"contenttransfer-apihelp-param-token": "Токен редагування користувача"
 }
