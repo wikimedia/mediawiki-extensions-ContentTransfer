@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nguyễn Mạnh An"
+		]
+	},
+	"contenttransfer-dialog-push-preview-page-group-label-original": "Các trang đã chọn ($1)",
+	"content-transfer-push-related-pages": "Các trang liên quan",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Tham khảo",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Nhúng bản mẫu"
+}

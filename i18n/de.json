@@ -51,5 +51,20 @@
 	"contenttransfer-generic-error": "Es ist ein Fehler aufgetreten!",
 	"contenttransfer-include-related": "Einschließen der zugehörigen",
 	"contenttransfer-modified-since-label": "Modifiziert seit",
-	"apihelp-content-transfer-get-pages-summary": "Listet alle Seiten auf, die basierend auf gegebenen Filtern pushbar sind"
+	"apihelp-content-transfer-get-pages-summary": "Listet alle Seiten auf, die basierend auf gegebenen Filtern pushbar sind",
+	"apihelp-content-transfer-push-info-summary": "Ruft alle Ressourcen wie eingebundene Dateien, verlinkte Seiten usw. der Seite ab, die in ein Ziel-Wiki übertragen werden sollen",
+	"contenttransfer-apihelp-param-filterdata": "JSON-Zeichenfolge der Daten, nach denen gefiltert werden soll",
+	"contenttransfer-apihelp-param-titles": "Durch Pipe getrennte Liste von Seitennamen",
+	"contenttransfer-apihelp-param-pushtarget": "Name des Empfangs-Wikis",
+	"contenttransfer-apihelp-param-onlymodified": "Bool. Legt fest, ob nur Seiten übertragen werden sollen, die seit der letzten Inhaltsübertragung geändert wurden",
+	"contenttransfer-apihelp-param-modifiedsince": "Datumszeichenfolge. Überträgt nur Seiten, die geändert wurden seit",
+	"contenttransfer-apihelp-param-target": "Name des Empfangs-Wikis",
+	"contenttransfer-apihelp-param-includerelated": "Bool. Legt fest, ob auch Ressourcen wie verlinkte Seiten, Dateien und Kategorien der Seite übertragen werden sollen",
+	"contenttransfer-apihelp-param-articleid": "Integer. ID der Seite, die übertragen werden soll",
+	"contenttransfer-apihelp-param-force": "Bool. Warnungen ignorieren und trotzdem übertragen",
+	"contenttransfer-apihelp-param-token": "Das Bearbeitungs-Token des Benutzers",
+	"contenttransfer-dialog-push-preview-page-group-label-original": "Ausgewählte Seiten ($1)",
+	"content-transfer-push-related-pages": "Verwandte Seiten",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Referenziert",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Eingebunden"
 }

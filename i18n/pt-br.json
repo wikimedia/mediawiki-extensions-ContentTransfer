@@ -49,5 +49,9 @@
 	"contenttransfer-apihelp-param-includerelated": "Bool. Defina se também recursos como páginas vinculadas, arquivos e categorias da página devem ser transferidos",
 	"contenttransfer-apihelp-param-articleid": "Inteiro. ID da página, que deve ser transferida",
 	"contenttransfer-apihelp-param-force": "Bool. Ignore os avisos e transfira de qualquer maneira",
-	"contenttransfer-apihelp-param-token": "Os usuários editam o token"
+	"contenttransfer-apihelp-param-token": "Os usuários editam o token",
+	"contenttransfer-dialog-push-preview-page-group-label-original": "Páginas selecionadas ($1)",
+	"content-transfer-push-related-pages": "Páginas relacionadas",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Referencias",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Transcluído"
 }

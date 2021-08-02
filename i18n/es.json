@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Juan t2905"
+			"Juan t2905",
+			"Luna Brillante 12"
 		]
 	},
 	"contenttransfer-extension-description": "Permite enviar contenido de una wiki a otra",
@@ -50,5 +51,7 @@
 	"contenttransfer-apihelp-param-modifiedsince": "Cadena de fecha. Transferir solo páginas que se hayan modificado desde",
 	"contenttransfer-apihelp-param-articleid": "Entero. Identificación de la pagina, que deberia ser transferido.",
 	"contenttransfer-apihelp-param-force": "Bool. Ignorar advertencias y transferir de todas maneras",
-	"contenttransfer-apihelp-param-token": "El token de edicion del usuario"
+	"contenttransfer-apihelp-param-token": "El token de edicion del usuario",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Referencias",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Transcluido"
 }

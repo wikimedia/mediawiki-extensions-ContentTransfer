@@ -67,5 +67,9 @@
 	"contenttransfer-apihelp-param-includerelated": "Булово. Задајте ако сајате да се пренесат и ресурси како поврзани страници, податотеки и категории",
 	"contenttransfer-apihelp-param-articleid": "Целобројна назнака на страницата која се пренесува",
 	"contenttransfer-apihelp-param-force": "Булово. Занемарувај предупредувања и бездруго пренесувај",
-	"contenttransfer-apihelp-param-token": "Корисничка шифра за уредување"
+	"contenttransfer-apihelp-param-token": "Корисничка шифра за уредување",
+	"contenttransfer-dialog-push-preview-page-group-label-original": "Избрани страници ($1)",
+	"content-transfer-push-related-pages": "Поврзани страници",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Наведени",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Превметнати"
 }
