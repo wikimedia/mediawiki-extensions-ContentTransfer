@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Gomoko",
 			"Verdy p"
 		]
 	},
@@ -67,5 +68,9 @@
 	"contenttransfer-apihelp-param-includerelated": "Drapeau booléen : le définir s'il faut également transférer les ressources de la page (comme les pages liées, fichiers et catégories).",
 	"contenttransfer-apihelp-param-articleid": "Entier : identifiant de la page à transférer",
 	"contenttransfer-apihelp-param-force": "Drapeau booléen : ignorer les avertissements et transférer malgré tout",
-	"contenttransfer-apihelp-param-token": "Le jeton de modification de l’utilisateur"
+	"contenttransfer-apihelp-param-token": "Le jeton de modification de l’utilisateur",
+	"contenttransfer-dialog-push-preview-page-group-label-original": "Pages sélectionnées ($1)",
+	"content-transfer-push-related-pages": "Pages associées",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Référencé",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Inclus"
 }
