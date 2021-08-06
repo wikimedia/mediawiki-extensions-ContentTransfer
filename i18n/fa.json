@@ -35,5 +35,9 @@
 	"contenttransfer-ns-main": "(اصلی)",
 	"contenttransfer-generic-error": "خطایی رخ داد!",
 	"contenttransfer-apihelp-param-pushtarget": "دریافت نام ویکی",
-	"contenttransfer-apihelp-param-target": "دریافت نام ویکی"
+	"contenttransfer-apihelp-param-target": "دریافت نام ویکی",
+	"contenttransfer-dialog-push-preview-page-group-label-original": "صفحه‌های انتخاب‌شده ($1)",
+	"content-transfer-push-related-pages": "صفحه‌های مرتبط",
+	"contenttransfer-dialog-push-subgroup-label-linked": "ارجاع داده‌شده",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "تراگنجانیده"
 }

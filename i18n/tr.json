@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Hedda",
+			"Jelican9",
 			"Joseph",
 			"Mim.saitkilic"
 		]
@@ -69,5 +70,8 @@
 	"contenttransfer-apihelp-param-includerelated": "Bool. Bağlantılı sayfalar, dosyalar ve sayfa kategorileri gibi kaynakların da aktarılıp aktarılmayacağını ayarlayın",
 	"contenttransfer-apihelp-param-articleid": "Tamsayı. Aktarılması gereken sayfanın kimliği",
 	"contenttransfer-apihelp-param-force": "Bool. Uyarıları dikkate almayın ve yine de aktarın",
-	"contenttransfer-apihelp-param-token": "Kullanıcının düzenleme anahtarı"
+	"contenttransfer-apihelp-param-token": "Kullanıcının düzenleme anahtarı",
+	"content-transfer-push-related-pages": "İlgili sayfalar",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Kaynak",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Görüntüle"
 }
