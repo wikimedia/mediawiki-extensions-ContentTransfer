@@ -67,5 +67,9 @@
 	"contenttransfer-apihelp-param-includerelated": "Встановіть, чи повинні переноситися також такі ресурси, як пов’язані сторінки, файли та категорії сторінки",
 	"contenttransfer-apihelp-param-articleid": "Ціле число. Ідентифікатор сторінки, яку слід передати",
 	"contenttransfer-apihelp-param-force": "Ігноруйте попередження та передавайте їх у будь-якому випадку",
-	"contenttransfer-apihelp-param-token": "Токен редагування користувача"
+	"contenttransfer-apihelp-param-token": "Токен редагування користувача",
+	"contenttransfer-dialog-push-preview-page-group-label-original": "Вибрані сторінки ($1)",
+	"content-transfer-push-related-pages": "Пов'язані сторінки",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Посилання",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Включено"
 }
