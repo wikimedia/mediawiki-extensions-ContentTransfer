@@ -71,6 +71,7 @@
 	"contenttransfer-apihelp-param-articleid": "Tamsayı. Aktarılması gereken sayfanın kimliği",
 	"contenttransfer-apihelp-param-force": "Bool. Uyarıları dikkate almayın ve yine de aktarın",
 	"contenttransfer-apihelp-param-token": "Kullanıcının düzenleme anahtarı",
+	"contenttransfer-dialog-push-preview-page-group-label-original": "Seçilen sayfalar ($1)",
 	"content-transfer-push-related-pages": "İlgili sayfalar",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Kaynak",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Görüntüle"
