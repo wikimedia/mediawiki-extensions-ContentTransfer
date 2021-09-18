@@ -2,10 +2,10 @@
 
 namespace ContentTransfer;
 
-use Database;
 use MediaWiki\MediaWikiServices;
 use Title;
 use User;
+use Wikimedia\Rdbms\Database;
 
 class PushHistory {
 
