@@ -1,9 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
+			")8",
 			"AYZ04"
 		]
 	},
+	"contenttransfer-text-filter-input-label": "页面名称",
+	"contenttransfer-namespace-filter-input-label": "名字空间",
+	"contenttransfer-category-filter-input-label": "分类",
+	"contenttransfer-dialog-push-action-cancel-label": "取消",
+	"contenttransfer-dialog-push-action-done-label": "完成",
 	"contenttransfer-apihelp-param-articleid": "整数。应该被转移的页面ID。",
 	"contenttransfer-apihelp-param-token": "用户的编辑标记"
 }
