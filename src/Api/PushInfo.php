@@ -205,11 +205,11 @@ class PushInfo extends ApiBase {
 			'transcluded' => []
 		];
 		/** @var Title $title */
-		foreach ( $titles as $dbKey => $title ) {
-			if ( in_array( $dbKey, $this->transcluded ) ) {
-				$separated['transcluded'][] = $title;
+		foreach ( $titles as $data ) {
+			if ( in_array( $data['title'], $this->transcluded ) ) {
+				$separated['transcluded'][] = $data;
 			} else {
-				$separated['linked'][] = $title;
+				$separated['linked'][] = $data;
 			}
 		}
 
