@@ -22,5 +22,9 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Schabloun ($1)",
 	"contenttransfer-cannot-create": "Säit kann net ugeluecht ginn",
 	"contenttransfer-edit-fail-message": "Ännerungsfeeler: $1",
-	"contenttransfer-upload-fail-message": "Feeler beim Eroplueden: $1"
+	"contenttransfer-upload-fail-message": "Feeler beim Eroplueden: $1",
+	"contenttransfer-ns-main": "(Haapt)",
+	"contenttransfer-generic-error": "Et ass e Feeler geschitt!",
+	"contenttransfer-modified-since-label": "Geännert zanter",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Referenzéiert"
 }
