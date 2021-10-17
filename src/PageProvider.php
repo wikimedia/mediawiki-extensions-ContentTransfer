@@ -154,8 +154,9 @@ class PageProvider {
 	protected function makeConds( Database $db ) {
 		$conds = [];
 		if ( $this->config->get( 'ContentTransferOnlyContentNamespaces' ) ) {
+			$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 			$conds[] = 'page.page_namespace IN (' . $db->makeList(
-				array_unique( \MWNamespace::getContentNamespaces() )
+				array_unique( $namespaceInfo->getContentNamespaces() )
 			) . ')';
 		}
 		if ( isset( $this->filterData['modifiedSince'] ) ) {
