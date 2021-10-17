@@ -7,7 +7,6 @@ use ContentTransfer\IPageFilter;
 use IContextSource;
 use Language;
 use MediaWiki\MediaWikiServices;
-use MWNamespace;
 use Wikimedia\Rdbms\LoadBalancer;
 
 class NamespaceFilter implements IPageFilter {
@@ -79,13 +78,14 @@ class NamespaceFilter implements IPageFilter {
 		$onlyContent = $this->config->get( 'ContentTransferOnlyContentNamespaces' );
 		$allowTalk = $this->config->get( 'ContentTransferAllowTalkNamespaces' );
 
-		$namespaceIds = array_unique( MWNamespace::getValidNamespaces() );
+		$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$namespaceIds = array_unique( $namespaceInfo->getValidNamespaces() );
 		if ( $onlyContent ) {
-			$namespaceIds = array_unique( MWNamespace::getContentNamespaces() );
+			$namespaceIds = array_unique( $namespaceInfo->getContentNamespaces() );
 		} elseif ( !$allowTalk ) {
 			$notTalk = [];
 			foreach ( $namespaceIds as $id ) {
-				if ( MWNamespace::isTalk( $id ) ) {
+				if ( $namespaceInfo->isTalk( $id ) ) {
 					continue;
 				}
 				$notTalk[] = $id;
