@@ -1,5 +1,6 @@
 <?php
 
+use ContentTransfer\TargetManager;
 use MediaWiki\MediaWikiServices;
 use ContentTransfer\PageProvider;
 
@@ -10,5 +11,9 @@ return [
 			$services->getMainConfig(),
 			$services->getDBLoadBalancer()
 		);
+	},
+	'ContentTransferTargetManager' => function ( MediaWikiServices $services ) {
+		$config = $services->getMainConfig()->get( 'ContentTransferTargets' );
+		return new TargetManager( $config );
 	}
 ];

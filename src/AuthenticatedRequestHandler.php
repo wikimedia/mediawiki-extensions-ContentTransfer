@@ -35,7 +35,7 @@ class AuthenticatedRequestHandler {
 	 */
 	protected $status;
 
-	/** @var array */
+	/** @var Target */
 	protected $target;
 
 	/** @var bool */
@@ -43,10 +43,10 @@ class AuthenticatedRequestHandler {
 
 	/**
 	 *
-	 * @param array $target
+	 * @param Target $target
 	 * @param bool $ignoreInsecureSSL
 	 */
-	public function __construct( $target, $ignoreInsecureSSL ) {
+	public function __construct( Target $target, $ignoreInsecureSSL ) {
 		$this->target = $target;
 		$this->ignoreInsecureSSL = $ignoreInsecureSSL;
 		$this->status = Status::newGood();
@@ -230,7 +230,7 @@ class AuthenticatedRequestHandler {
 
 		$httpEngine = \Http::$httpEngine;
 		\Http::$httpEngine = 'curl';
-		$request = \MWHttpRequest::factory( $this->target['url'], $requestData, __METHOD__ );
+		$request = \MWHttpRequest::factory( $this->target->getUrl(), $requestData, __METHOD__ );
 		\Http::$httpEngine = $httpEngine;
 
 		$request->setHeader(
@@ -266,7 +266,7 @@ class AuthenticatedRequestHandler {
 	/**
 	 * Get target config
 	 *
-	 * @return array
+	 * @return Target
 	 */
 	public function getTarget() {
 		return $this->target;
@@ -299,8 +299,8 @@ class AuthenticatedRequestHandler {
 	protected function doLogin() {
 		$requestData = [
 			'action' => 'login',
-			'lgname' => $this->target['user'],
-			'lgpassword' => $this->target['password'],
+			'lgname' => $this->target->getSelectedUser()['user'],
+			'lgpassword' => $this->target->getSelectedUser()['password'],
 			'lgtoken' => $this->tokens['login'],
 			'format' => 'json'
 		];
@@ -344,7 +344,7 @@ class AuthenticatedRequestHandler {
 			$this->deSecuritize( $params );
 		}
 		return \MWHttpRequest::factory(
-			$this->target['url'],
+			$this->target->getUrl(),
 			$params,
 			__METHOD__
 		);

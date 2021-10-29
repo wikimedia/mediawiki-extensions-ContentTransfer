@@ -60,22 +60,23 @@ class PagePusher {
 	/**
 	 *
 	 * @param Title $title
-	 * @param string $target
+	 * @param Target $target
 	 * @param PushHistory $pushHistory
 	 * @param bool|false $force
 	 * @param bool|false $ignoreInsecureSSL
 	 */
-	public function __construct( Title $title, $target, $pushHistory, $force = false,
-		$ignoreInsecureSSL = false ) {
+	public function __construct(
+		Title $title, Target $target, $pushHistory, $force = false, $ignoreInsecureSSL = false
+	) {
 		$this->title = $title;
 		$this->requestHandler = new AuthenticatedRequestHandler( $target, $ignoreInsecureSSL );
 		$this->contentProvider = new PageContentProvider( $title );
 		$this->force = $force;
 
-		if ( isset( $target[ 'pushToDraft' ] ) && $target[ 'pushToDraft' ] === true ) {
-			if ( isset( $target[ 'draftNamespace' ] ) ) {
+		if ( $target->shouldPushToDraft() ) {
+			if ( $target->getDraftNamespace() ) {
 				$this->pushToDraft = true;
-				$this->targetPushNamespaceName = $target[ 'draftNamespace' ];
+				$this->targetPushNamespaceName = $target->getDraftNamespace();
 			}
 		}
 
@@ -148,7 +149,7 @@ class PagePusher {
 			$file = $this->contentProvider->getFile();
 			$filename = $file->getName();
 			if ( $this->pushToDraft ) {
-				$filename = $this->requestHandler->getTarget()[ 'draftNamespace' ] . '_' . $filename;
+				$filename = $this->requestHandler->getTarget()->getDraftNamespace() . '_' . $filename;
 			}
 			if ( $this->requestHandler->uploadFile( $file, $content, $filename ) === false ) {
 				return false;
@@ -252,10 +253,10 @@ class PagePusher {
 		if ( $this->pushToDraft ) {
 			if ( $this->contentProvider->isFile() ) {
 				return $this->title->getNsText() . ':' .
-					$this->requestHandler->getTarget()[ 'draftNamespace' ]
+					$this->requestHandler->getTarget()->getDraftNamespace()
 						. '_' . $this->title->getDBkey();
 			} else {
-				return $this->requestHandler->getTarget()[ 'draftNamespace' ]
+				return $this->requestHandler->getTarget()->getDraftNamespace()
 					. ':' . $this->title->getPrefixedDBkey();
 			}
 		} else {

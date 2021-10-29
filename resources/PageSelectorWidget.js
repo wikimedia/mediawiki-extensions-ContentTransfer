@@ -18,6 +18,10 @@
 		this.makeFilters();
 		this.makePageContainer();
 
+		this.pushTargetPicker.getMenu().selectItem(
+			this.pushTargetPicker.getMenu().findFirstSelectableItem()
+		);
+
 		this.loadPages();
 	};
 
@@ -31,17 +35,32 @@
 				continue;
 			}
 			var pushTarget = this.pushTargets[ key ];
-			pickerOptions.push( {
-				data: pushTarget.url,
+			pickerOptions.push( new OO.ui.MenuOptionWidget( {
+				data: $.extend( {}, { key: key }, pushTarget ),
 				label: pushTarget.displayText || pushTarget.url
-			} );
+			} ) );
 		}
-		this.pushTargetPicker = new OO.ui.DropdownInputWidget( {
-			options: pickerOptions
+
+
+		this.userSelector = new OO.ui.DropdownInputWidget();
+		this.userSelector.connect( this, {
+			change: 'onPushUserChanged'
+		} );
+		this.userSelectorLayout = new OO.ui.FieldLayout( this.userSelector, {
+			align: 'top',
+			label: mw.message( 'contenttransfer-user-picker-label' ).plain(),
+			classes: [ 'picker' ]
+		} );
+		this.userSelectorLayout.$element.hide();
+
+		this.pushTargetPicker = new OO.ui.DropdownWidget( {
+			menu: {
+				items: pickerOptions
+			}
 		} );
 		this.pushTargetPicker.$element.addClass( 'content-transfer-push-target-picker' );
-		this.pushTargetPicker.connect( this, {
-			change: 'onPushTargetChanged'
+		this.pushTargetPicker.getMenu().connect( this, {
+			select: 'onPushTargetChanged'
 		} );
 
 		this.pushPagesButton = new OO.ui.ButtonWidget( {
@@ -56,13 +75,19 @@
 
 		this.includeRelated = new OO.ui.CheckboxInputWidget( { selected: true } );
 
-		this.pushTargetPickerLayout = new OO.ui.HorizontalLayout( {
+		this.pickerLayout = new OO.ui.HorizontalLayout( {
 			items: [
-				new OO.ui.FieldLayout( this.pushTargetPicker,{
-					align: 'left',
+				new OO.ui.FieldLayout( this.pushTargetPicker, {
+					align: 'top',
 					label: mw.message( 'contenttransfer-target-picker-label' ).plain(),
 					classes: [ 'picker' ]
 				} ),
+				this.userSelectorLayout
+			]
+		} );
+		this.pushTargetPickerLayout = new OO.ui.HorizontalLayout( {
+			items: [
+				this.pickerLayout,
 				new OO.ui.FieldLayout( this.includeRelated,{
 					align: 'right',
 					label: mw.message( 'contenttransfer-include-related' ).plain(),
@@ -72,8 +97,6 @@
 			]
 		} );
 		this.pushTargetPickerLayout.$element.addClass( 'content-transfer-targets-picker-layout' );
-
-		this.currentPushTarget = Object.keys( this.pushTargets )[0];
 		this.$element.append( this.pushTargetPickerLayout.$element );
 	};
 
@@ -218,7 +241,8 @@
 					grouped: response.grouped,
 					joined: response.joined,
 					pushTarget: $.extend( {
-						id: this.currentPushTarget
+						id: this.currentPushTarget,
+						selectedUser: this.currentPushUser
 					}, this.pushTargets[this.currentPushTarget] ),
 					originalIds: selectedPageIds
 				};
@@ -230,19 +254,38 @@
 			}.bind( this ) );
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.onPushTargetChanged = function( value ) {
-		for( var key in this.pushTargets ) {
-			if ( !this.pushTargets.hasOwnProperty( key ) ) {
-				continue;
-			}
-			var pushTarget = this.pushTargets[ key ];
-			if( pushTarget.url === value ) {
-				this.currentPushTarget = key;
-				this.loadPages();
-				return ;
-			}
+	contentTransfer.widget.PageSelectorWidget.prototype.onPushTargetChanged = function( selected ) {
+		if ( !selected ) {
+			this.currentPushTarget = null;
+			this.currentPushUser = null;
+			return;
 		}
-		this.currentPushTarget = null;
+		var data = selected.getData(),
+			users = data.users;
+
+		this.currentPushTarget = data.key;
+		this.loadPages();
+		if ( users.length === 0 ) {
+			return;
+		}
+		this.currentPushUser = users[0];
+		if ( users.length === 1 ) {
+			this.userSelectorLayout.$element.hide();
+			return;
+		}
+		var options = [];
+		for( var i = 0; i < users.length; i++ ) {
+			options.push( {
+				data: users[i]
+			} );
+		}
+		this.userSelector.setOptions( options );
+		this.userSelectorLayout.$element.show();
+		this.userSelector.setValue( this.currentPushUser );
+	};
+
+	contentTransfer.widget.PageSelectorWidget.prototype.onPushUserChanged = function( value ) {
+		this.currentPushUser = value;
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.getComboValue = function( value, type, key ) {
