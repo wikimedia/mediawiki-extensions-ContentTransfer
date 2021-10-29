@@ -2,15 +2,21 @@
 
 namespace ContentTransfer\Special;
 
-use ContentTransfer\Extension;
 use ContentTransfer\PageFilterFactory;
+use ContentTransfer\TargetManager;
 use Html;
 use MediaWiki\MediaWikiServices;
 use SpecialPage;
 
 class Push extends SpecialPage {
+	/** @var TargetManager */
+	private $targetManager;
+
 	public function __construct() {
 		parent::__construct( "ContentTransfer", "content-transfer" );
+		$this->targetManager = MediaWikiServices::getInstance()->getService(
+			'ContentTransferTargetManager'
+		);
 	}
 
 	/**
@@ -23,10 +29,9 @@ class Push extends SpecialPage {
 		$out = $this->getOutput();
 		$out->addModules( 'ext.contenttransfer' );
 
-		$pushTargetsForClient = Extension::getTargetsForClient( $this->getConfig() );
-
-		$out->addJsConfigVars( 'ctPushTargets', $pushTargetsForClient );
+		$out->addJsConfigVars( 'ctPushTargets', $this->targetManager->getTargetsForClient() );
 		$out->addJsConfigVars( 'ctFilters', $this->loadFilters() );
+
 		$out->addJsConfigVars(
 			'ctEnableBeta',
 			$this->getConfig()->get( 'ContentTransferEnableBetaFeatures' )

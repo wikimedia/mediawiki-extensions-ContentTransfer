@@ -118,7 +118,8 @@
 				"contenttransfer-dialog-push-preview-page-group-label-original",
 				"content-transfer-push-related-pages",
 				"contenttransfer-dialog-push-subgroup-label-linked",
-				"contenttransfer-dialog-push-subgroup-label-transcluded"
+				"contenttransfer-dialog-push-subgroup-label-transcluded",
+				"contenttransfer-user-picker-label"
 			]
 		},
 		"ext.contenttransfer.filters": {
