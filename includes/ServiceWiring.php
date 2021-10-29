@@ -2,6 +2,7 @@
 
 use ContentTransfer\PageFilterFactory;
 use ContentTransfer\PageProvider;
+use ContentTransfer\TargetManager;
 use MediaWiki\MediaWikiServices;
 
 return [
@@ -18,5 +19,9 @@ return [
 			$services->getDBLoadBalancer(),
 			RequestContext::getMain()
 		);
+	},
+	'ContentTransferTargetManager' => static function ( MediaWikiServices $services ) {
+		$config = $services->getMainConfig()->get( 'ContentTransferTargets' );
+		return new TargetManager( $config );
 	}
 ];

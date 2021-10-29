@@ -3,16 +3,20 @@
 namespace ContentTransfer\Api;
 
 use ApiBase;
+use ApiMain;
 use Content;
 use ContentTransfer\PageContentProvider;
 use ContentTransfer\PagePusher;
 use ContentTransfer\PushHistory;
+use ContentTransfer\Target;
+use ContentTransfer\TargetManager;
 use FormatJson;
+use MediaWiki\MediaWikiServices;
 use Message;
 use Title;
 
 class PushSingle extends ApiBase {
-	/** @var array */
+	/** @var Target */
 	protected $target;
 
 	/** @var Title */
@@ -23,6 +27,22 @@ class PushSingle extends ApiBase {
 	protected $pusher;
 	/** @var bool */
 	protected $force = false;
+	/** @var TargetManager */
+	private $targetManager;
+	/** @var string */
+	private $targetId;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param string $modulePrefix
+	 */
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
+		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+		$this->targetManager = MediaWikiServices::getInstance()->getService(
+			'ContentTransferTargetManager'
+		);
+	}
 
 	public function execute() {
 		$this->isAuthorized();
@@ -103,30 +123,35 @@ class PushSingle extends ApiBase {
 
 	/**
 	 *
-	 * @param string $pushTarget
+	 * @param array $pushTarget
 	 * @return void
 	 */
 	protected function setPushTarget( $pushTarget ) {
-		$pushTargets = $this->getConfig()->get( 'ContentTransferTargets' );
-
-		foreach ( $pushTargets as $id => $target ) {
-			if ( $target['url'] === $pushTarget['url'] ) {
-				$this->target = $target;
-				$this->target['id'] = $id;
-				return;
-			}
+		$target = $this->targetManager->getTarget( $pushTarget['id'] );
+		if ( !$target ) {
+			$this->dieWithError(
+				Message::newFromKey( 'contenttransfer-invalid-target' )->plain(),
+				'push-invalid-target'
+			);
 		}
-
-		$this->dieWithError(
-			Message::newFromKey( 'contenttransfer-invalid-target' )->plain(),
-			'push-invalid-target'
-		);
+		if ( isset( $pushTarget['selectedUser'] ) ) {
+			$target->selectUser( $pushTarget['selectedUser' ] );
+		}
+		$this->target = $target;
+		$this->targetId = $pushTarget['id'];
 	}
 
 	protected function doPush() {
 		$ignoreInsecureSSL = $this->getConfig()->get( 'ContentTransferIgnoreInsecureSSL' );
-		$pushHistory = new PushHistory( $this->title, $this->getUser(), $this->target['id'] );
-		$this->pusher = new PagePusher( $this->title, $this->target, $pushHistory, $this->force, $ignoreInsecureSSL );
+
+		$pushHistory = new PushHistory( $this->title, $this->getUser(), $this->targetId );
+		$this->pusher = new PagePusher(
+			$this->title,
+			$this->target,
+			$pushHistory,
+			$this->force,
+			$ignoreInsecureSSL
+		);
 		$this->pusher->push();
 	}
 

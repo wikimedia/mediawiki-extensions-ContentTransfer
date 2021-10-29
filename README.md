@@ -6,12 +6,31 @@ This extension needs to be installed on pushing wiki, and configured like so:
 
     $wgContentTransferTargets = [ 'privatewikiname' => [
         "url" => "http://target/api.php", // URL to the target wiki's API endpoint
-        "user" => "Uname@bot", // Bot username
+       
         "password" => "dvauaeersp02ds6s8n88bbrsj3asuuk", // Bot password
         "draftNamespace" => "Draft", // Name for the NS to be used as draft ("Draft" is automatically created by "MergeArticles" ext)
         "pushToDraft" => true // Whether to push to draft. If false will push directly to target pages
     ] ];
 
+If multiple users need to be defined per target, use this configuration
+
+    $wgContentTransferTargets = [ 'privatewikiname' => [
+        "url" => "http://target/api.php", // URL to the target wiki's API endpoint
+        "users" => [
+            [
+                "user" => "Uname1@bot", // Bot username
+                "password" => "dvauaeersp02ds6s8n88bbrsj3asuuk", // Bot password
+            ],
+            [
+                "user" => "Uname2@bot", // Bot username
+                "password" => "dvauaeersp02ds6s8n88bbrsj3asuuk", // Bot password
+            ]
+        ],
+        "draftNamespace" => "Draft", // Name for the NS to be used as draft ("Draft" is automatically created by "MergeArticles" ext)
+        "pushToDraft" => true // Whether to push to draft. If false will push directly to target pages
+    ] ];
+
+These will then be displayed in the UI, and it can be chosen which user to use for transfer
 
 If wiki is non-BS (non-role system):
 
