@@ -71,5 +71,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "Вибрані сторінки ($1)",
 	"content-transfer-push-related-pages": "Пов'язані сторінки",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Посилання",
-	"contenttransfer-dialog-push-subgroup-label-transcluded": "Включено"
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Включено",
+	"contenttransfer-user-picker-label": "Передати як користувач"
 }

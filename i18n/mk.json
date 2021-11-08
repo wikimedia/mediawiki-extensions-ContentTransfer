@@ -71,5 +71,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "Избрани страници ($1)",
 	"content-transfer-push-related-pages": "Поврзани страници",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Наведени",
-	"contenttransfer-dialog-push-subgroup-label-transcluded": "Превметнати"
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Превметнати",
+	"contenttransfer-user-picker-label": "Пренесување како корисник"
 }

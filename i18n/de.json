@@ -38,6 +38,7 @@
 	"contenttransfer-edit-fail-message": "Bearbeitungsfehler: $1",
 	"contenttransfer-upload-fail": "Datei kann nicht in das Empfangs-Wiki hochgeladen werden",
 	"contenttransfer-upload-fail-message": "Fehler beim Hochladen: $1",
+	"contenttransfer-progress-purge-pages": "Bereinigung von Seiten im Empfänger-Wiki …",
 	"right-content-transfer": "Erlaubt es Benutzern, Inhalte in andere Wikis zu übertragen",
 	"action-content-transfer": "Du hast keine Erlaubnis, Inhalte zu übertragen",
 	"contenttransfer-page-protected": "Die Seite ist geschützt; du kannst versuchen, die Übertragung erneut zu erzwingen",
@@ -53,6 +54,8 @@
 	"contenttransfer-modified-since-label": "Modifiziert seit",
 	"apihelp-content-transfer-get-pages-summary": "Listet alle Seiten auf, die basierend auf gegebenen Filtern pushbar sind",
 	"apihelp-content-transfer-push-info-summary": "Ruft alle Ressourcen wie eingebundene Dateien, verlinkte Seiten usw. der Seite ab, die in ein Ziel-Wiki übertragen werden sollen",
+	"apihelp-content-transfer-do-push-single-summary": "Überträgt eine einzelne Seite an ein Empfänger-Wiki",
+	"apihelp-content-transfer-purge-pages-summary": "Bereinigt alle Seiten, die an das empfangende Wiki übertragen wurden",
 	"contenttransfer-apihelp-param-filterdata": "JSON-Zeichenfolge der Daten, nach denen gefiltert werden soll",
 	"contenttransfer-apihelp-param-titles": "Durch Pipe getrennte Liste von Seitennamen",
 	"contenttransfer-apihelp-param-pushtarget": "Name des Empfangs-Wikis",
@@ -66,5 +69,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "Ausgewählte Seiten ($1)",
 	"content-transfer-push-related-pages": "Verwandte Seiten",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Referenziert",
-	"contenttransfer-dialog-push-subgroup-label-transcluded": "Eingebunden"
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Eingebunden",
+	"contenttransfer-user-picker-label": "Übertragung als Benutzer"
 }
