@@ -72,5 +72,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "Pages sélectionnées ($1)",
 	"content-transfer-push-related-pages": "Pages associées",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Référencé",
-	"contenttransfer-dialog-push-subgroup-label-transcluded": "Inclus"
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Inclus",
+	"contenttransfer-user-picker-label": "Transférer comme l’utilisateur"
 }
