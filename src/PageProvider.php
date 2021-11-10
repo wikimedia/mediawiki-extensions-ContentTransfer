@@ -12,13 +12,15 @@ class PageProvider {
 	protected $config;
 	/** @var LoadBalancer */
 	protected $lb;
-	/** @var array  */
+	/** @var array */
+	private $pageFilters;
+	/** @var array */
 	protected $filterData = [];
-	/** @var int  */
+	/** @var int */
 	protected $pageCount = 0;
-	/** @var array  */
+	/** @var array */
 	protected $pages = [];
-	/** @var bool  */
+	/** @var bool */
 	protected $executed = false;
 
 	/**
@@ -40,10 +42,11 @@ class PageProvider {
 	}
 
 	/**
-	 *
+	 * @param array $pageFilters
 	 * @param array $filterData
 	 */
-	public function setFilterData( array $filterData ) {
+	public function setFilters( array $pageFilters, array $filterData ) {
+		$this->pageFilters = $pageFilters;
 		$this->filterData = $filterData;
 	}
 
@@ -53,7 +56,7 @@ class PageProvider {
 	public function execute() {
 		$db = $this->lb->getConnection( DB_REPLICA );
 		$res = $db->select(
-			[ 'page', 'searchindex', 'categorylinks', 'push_history', 'revision' ],
+			$this->getTables(),
 			[ 'DISTINCT( page.page_id )', 'page.page_title', 'page.page_namespace' ],
 			$this->makeConds( $db ),
 			__METHOD__,
@@ -82,7 +85,7 @@ class PageProvider {
 	public function getPageCount() {
 		$db = $this->lb->getConnection( DB_REPLICA );
 		$res = $db->selectRow(
-			[ 'page', 'searchindex', 'categorylinks', 'push_history', 'revision' ],
+			$this->getTables(),
 			[ 'COUNT( DISTINCT( page.page_id ) ) as count' ],
 			$this->makeConds( $db ),
 			__METHOD__,
@@ -103,21 +106,42 @@ class PageProvider {
 	}
 
 	/**
-	 *
+	 * @return string[]
+	 */
+	protected function getTables() {
+		$tables = [ 'page', 'push_history', 'revision' ];
+		/**
+		 * @var string $name
+		 * @var IPageFilter $filter
+		 */
+		foreach ( $this->pageFilters as $name => $filter ) {
+			$filter->modifyTables( $tables );
+		}
+
+		return $tables;
+	}
+
+	/**
 	 * @param Database $db
 	 * @return array
 	 */
 	protected function makeJoins( Database $db ) {
 		$options = [
 			'revision' => [ 'INNER JOIN', [ 'page_latest = rev_id' ] ],
-			'searchindex' => [ 'INNER JOIN', [ 'page_id = si_page' ] ],
-			'categorylinks' => [ 'LEFT OUTER JOIN', [ 'page_id = cl_from' ] ],
 			'push_history' => [ 'LEFT OUTER JOIN', [ 'page_id = ph_page' ] ],
 		];
 
 		if ( isset( $this->filterData['target'] ) ) {
 			$target = $db->addQuotes( $this->filterData['target'] );
 			$options['push_history'] = [ 'LEFT OUTER JOIN', [ "page_id = ph_page", "ph_target = $target" ] ];
+		}
+
+		/**
+		 * @var string $name
+		 * @var IPageFilter $filter
+		 */
+		foreach ( $this->pageFilters as $name => $filter ) {
+			$filter->modifyJoins( $options );
 		}
 
 		return $options;
@@ -145,10 +169,19 @@ class PageProvider {
 			isset( $this->filterData['onlyModified'] ) &&
 			$this->filterData['onlyModified'] === true
 		) {
-			$modifiedConds = [];
-			$modifiedConds[] = 'push_history.ph_target = ' . $db->addQuotes( $this->filterData['target'] );
-			$modifiedConds[] = 'push_history.ph_timestamp <= revision.rev_timestamp';
-			$conds[] = 'push_history.ph_page IS NULL OR (' . implode( ' AND ', $modifiedConds ) . ')';
+
+			$exitsConds = [];
+			$exitsConds[] = 'push_history.ph_target = ' . $db->addQuotes( $this->filterData['target'] );
+			$exitsConds[] = 'push_history.ph_timestamp <= revision.rev_timestamp';
+			$conds[] = 'push_history.ph_page IS NULL OR (' . implode( ' AND ', $exitsConds ) . ')';
+		}
+
+		/**
+		 * @var string $name
+		 * @var IPageFilter $filter
+		 */
+		foreach ( $this->pageFilters as $name => $filter ) {
+			$filter->modifyConds( $this->filterData, $conds );
 		}
 		return $conds;
 	}

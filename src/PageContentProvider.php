@@ -4,17 +4,27 @@ namespace ContentTransfer;
 
 use File;
 use MediaWiki\MediaWikiServices;
+use ParserOutput;
 use RequestContext;
 use Title;
 use WikiPage;
 
 class PageContentProvider {
-	/** @var Title  */
+	/** @var Title */
 	protected $title;
-	/** @var WikiPage  */
+	/** @var WikiPage */
 	protected $wikipage;
+
+	/**
+	 *
+	 * @var ParserOutput
+	 */
 	protected $parserOutput;
 
+	/**
+	 *
+	 * @var array
+	 */
 	protected $relatedTitles = [];
 	/** @var array */
 	protected $transcluded = [];
@@ -169,7 +179,7 @@ class PageContentProvider {
 			if (
 				$revision &&
 				$revision->getTimestamp() &&
-				$modificationData['date'] > $revision->getTimestamp()
+				$revision->getTimestamp() >= $modificationData['date']
 			) {
 				return false;
 			}

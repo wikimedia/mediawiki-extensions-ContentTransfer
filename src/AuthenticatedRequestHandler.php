@@ -6,6 +6,7 @@ use CookieJar;
 use CURLFile;
 use File;
 use FormatJson;
+use MWHttpRequest;
 use Status;
 use StatusValue;
 
@@ -27,7 +28,7 @@ class AuthenticatedRequestHandler {
 	 */
 	protected $tokens;
 
-	/** @var bool  */
+	/** @var bool */
 	protected $ignoreInsecureSSL = false;
 
 	/**
@@ -167,7 +168,7 @@ class AuthenticatedRequestHandler {
 	/**
 	 *
 	 * @param array $requestData
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function runAuthenticatedRequest( $requestData ) {
 		if ( !$this->authenticate() ) {
@@ -234,8 +235,7 @@ class AuthenticatedRequestHandler {
 		\Http::$httpEngine = $httpEngine;
 
 		$request->setHeader(
-			'Content-Disposition',
-			"form-data; name=\"file\"; filename=\"{$file->getName()}\""
+			'Content-Disposition', "form-data; name=\"file\"; filename=\"{$file->getName()}\""
 		);
 		$request->setHeader( 'Content-Type', 'multipart/form-data' );
 		$request->setCookieJar( $this->cookieJar );
@@ -389,6 +389,10 @@ class AuthenticatedRequestHandler {
 		return true;
 	}
 
+	/**
+	 *
+	 * @param array &$params
+	 */
 	private function deSecuritize( array &$params ) {
 		$params[ 'sslVerifyCert'] = false;
 		$params[ 'sslVerifyHost'] = false;

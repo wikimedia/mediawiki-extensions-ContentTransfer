@@ -4,6 +4,9 @@
 	"license-name": "GPL-3.0-only",
 	"version": "1.0.0",
 	"descriptionmsg": "contenttransfer-extension-description",
+	"requires": {
+		"MediaWiki": ">= 1.31.0"
+	},
 	"MessagesDirs": {
 		"ContentTransfer": "i18n"
 	},
@@ -17,6 +20,13 @@
 					"type": "global",
 					"roles": [ "admin" ]
 				}
+			}
+		},
+		"ContentTransfer": {
+			"PageFilters": {
+				"term": "\\ContentTransfer\\PageFilter\\PageName::factory",
+				"category": "\\ContentTransfer\\PageFilter\\Category::factory",
+				"namespace": "\\ContentTransfer\\PageFilter\\NamespaceFilter::factory"
 			}
 		}
 	},
@@ -110,6 +120,18 @@
 				"contenttransfer-dialog-push-subgroup-label-linked",
 				"contenttransfer-dialog-push-subgroup-label-transcluded",
 				"contenttransfer-user-picker-label"
+			]
+		},
+		"ext.contenttransfer.filters": {
+			"scripts": [
+				"pageFilter/ComboBoxFilter.js",
+				"pageFilter/PageName.js",
+				"pageFilter/Category.js",
+				"pageFilter/Namespace.js"
+			],
+			"dependencies": [
+				"oojs",
+				"oojs-ui"
 			]
 		}
 	},

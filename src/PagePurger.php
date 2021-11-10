@@ -12,12 +12,12 @@ class PagePurger {
 	protected $titles;
 	/** @var array */
 	protected $target;
-	/** @var AuthenticatedRequestHandler  */
+	/** @var AuthenticatedRequestHandler */
 	protected $requestHandler;
 
 	/**
 	 * @param array $titles
-	 * @param array $target
+	 * @param Target $target
 	 * @param bool|null $ignoreInsecureSSL
 	 */
 	public function __construct( $titles, $target, $ignoreInsecureSSL = true ) {

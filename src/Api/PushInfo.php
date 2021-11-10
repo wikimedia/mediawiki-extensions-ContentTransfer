@@ -110,10 +110,7 @@ class PushInfo extends ApiBase {
 			if ( $this->includeRelated ) {
 				$this->related = array_merge(
 					$this->related,
-					$contentProvider->getRelatedTitles(
-						$this->getModificationData(),
-						$this->target
-					)
+					$contentProvider->getRelatedTitles( $this->getModificationData(), $this->target )
 				);
 				$this->transcluded = array_merge(
 					$this->transcluded, $contentProvider->getTranscluded()
@@ -223,6 +220,10 @@ class PushInfo extends ApiBase {
 		$result->addValue( null, 'grouped', $this->groupedInfo );
 	}
 
+	/**
+	 *
+	 * @return array
+	 */
 	private function getModificationData() {
 		$data = [];
 		if ( $this->modifiedSince !== '' ) {

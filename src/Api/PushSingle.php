@@ -25,7 +25,7 @@ class PushSingle extends ApiBase {
 	protected $content;
 	/** @var PagePusher */
 	protected $pusher;
-	/** @var bool  */
+	/** @var bool */
 	protected $force = false;
 	/** @var TargetManager */
 	private $targetManager;
@@ -143,6 +143,7 @@ class PushSingle extends ApiBase {
 
 	protected function doPush() {
 		$ignoreInsecureSSL = $this->getConfig()->get( 'ContentTransferIgnoreInsecureSSL' );
+
 		$pushHistory = new PushHistory( $this->title, $this->getUser(), $this->targetId );
 		$this->pusher = new PagePusher(
 			$this->title,

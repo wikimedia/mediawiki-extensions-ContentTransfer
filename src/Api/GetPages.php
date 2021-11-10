@@ -3,21 +3,22 @@
 namespace ContentTransfer\Api;
 
 use ApiBase;
+use ContentTransfer\PageFilterFactory;
 use ContentTransfer\PageProvider;
 use FormatJson;
 use MediaWiki\MediaWikiServices;
 
 class GetPages extends ApiBase {
-	/** @var array  */
+	/** @var array */
 	protected $filterData = [];
-	/** @var array  */
+	/** @var array */
 	protected $pages = [];
-	/** @var int  */
+	/** @var int */
 	protected $pageCount = 0;
 
 	public function execute() {
 		$this->readInParameters();
-		$this->getPages();
+		$this->makePages();
 		$this->returnPages();
 	}
 
@@ -30,6 +31,7 @@ class GetPages extends ApiBase {
 			'filterData' => [
 				static::PARAM_TYPE => 'string',
 				static::PARAM_REQUIRED => true,
+				static::PARAM_DFLT => '[]',
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-filterdata',
 			],
 		];
@@ -56,13 +58,13 @@ class GetPages extends ApiBase {
 		$this->filterData = $this->getParameter( 'filterData' );
 	}
 
-	// phpcs:ignore Generic.NamingConventions.ConstructorName.OldStyle, MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected
-	protected function getPages() {
-		$provider = PageProvider::factory(
-			$this->getConfig(),
-			MediaWikiServices::getInstance()->getDBLoadBalancer()
+	protected function makePages() {
+		$provider = $this->makeProvider();
+		/** @var PageFilterFactory $filterFactory */
+		$filterFactory = MediaWikiServices::getInstance()->getService(
+			'ContentTransferPageFilterFactory'
 		);
-		$provider->setFilterData( $this->filterData );
+		$provider->setFilters( $filterFactory->getFilters(), $this->filterData );
 		$provider->execute();
 		$this->pageCount = $provider->getPageCount();
 		$pageTitles = $provider->getPages();
@@ -76,6 +78,16 @@ class GetPages extends ApiBase {
 		usort( $this->pages, function ( $a, $b ) {
 			return $a['prefixed_text'] < $b['prefixed_text'] ? -1 : 1;
 		} );
+	}
+
+	/**
+	 *
+	 * @return PageProvider
+	 */
+	protected function makeProvider() {
+		return MediaWikiServices::getInstance()->getService(
+			'ContentTransferPageProvider'
+		);
 	}
 
 	protected function returnPages() {
