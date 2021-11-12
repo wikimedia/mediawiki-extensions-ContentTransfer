@@ -71,5 +71,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "Paginas seligite ($1)",
 	"content-transfer-push-related-pages": "Paginas associate",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Referentiate",
-	"contenttransfer-dialog-push-subgroup-label-transcluded": "Transcludite"
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Transcludite",
+	"contenttransfer-user-picker-label": "Transferer como usator"
 }
