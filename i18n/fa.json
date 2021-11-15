@@ -60,5 +60,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "صفحه‌های انتخاب‌شده ($1)",
 	"content-transfer-push-related-pages": "صفحه‌های مرتبط",
 	"contenttransfer-dialog-push-subgroup-label-linked": "ارجاع داده‌شده",
-	"contenttransfer-dialog-push-subgroup-label-transcluded": "تراگنجانیده"
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "تراگنجانیده",
+	"contenttransfer-user-picker-label": "انتقال به‌عنوان کاربر"
 }
