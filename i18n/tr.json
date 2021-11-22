@@ -4,7 +4,8 @@
 			"Hedda",
 			"Jelican9",
 			"Joseph",
-			"Mim.saitkilic"
+			"Mim.saitkilic",
+			"SaldırganSincap"
 		]
 	},
 	"contenttransfer-extension-description": "İçeriğin bir wiki'den diğerine aktarılmasını sağlar",
@@ -74,5 +75,5 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "Seçilen sayfalar ($1)",
 	"content-transfer-push-related-pages": "İlgili sayfalar",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Kaynak",
-	"contenttransfer-dialog-push-subgroup-label-transcluded": "Görüntüle"
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Yansıtılmış"
 }
