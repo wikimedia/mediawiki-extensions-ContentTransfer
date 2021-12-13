@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Veeven"
+		]
+	},
+	"contenttransfer-text-filter-input-label": "పేజీ పేరు",
+	"contenttransfer-namespace-filter-input-label": "పేరుబరి",
+	"contenttransfer-category-filter-input-label": "వర్గం",
+	"contenttransfer-dialog-push-action-cancel-label": "రద్దుచేయి",
+	"contenttransfer-dialog-push-action-done-label": "పూర్తయ్యింది",
+	"contenttransfer-dialog-push-preview-layout-label": "పేజీ అవలోకనం",
+	"contenttransfer-dialog-push-progress-layout-label": "పురోగతి",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "పేజీ ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-file": "దస్త్రం ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-template": "మూస ($1)",
+	"contenttransfer-target-picker-label": "అందుకునే వికీ"
+}

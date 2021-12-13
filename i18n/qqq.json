@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Dejan Savuljesku",
-			"Patric Wirth"
+			"Patric Wirth",
+			"Verdy p"
 		]
 	},
 	"contenttransfer-extension-description": "{{desc|name=ContentTransfer}}",
@@ -25,10 +26,10 @@
 	"contenttransfer-dialog-push-preview-page-group-label-category": "Section headline of the list of categories, that will be transfered.\n* $1 - Number of categories",
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Section headline of the list of templates, that will be transfered.\n* $1 - Number of templates",
 	"contenttransfer-progress-current-operation": "Info text that shows what page is transfering at the moment\n* $1 - Name of the page that is transfering",
-	"contenttransfer-report-success-count": "Info text that shows how many pages of an amout of total available have been transfered.\n* $1 - Number of transfered pages\n* $2 - Total amount of availabe pages",
+	"contenttransfer-report-success-count": "Info text that shows how many pages of an amout of total available have been transfered.\n* $1 - Number of transfered pages\n* $2 - Total amount of available pages",
 	"contenttransfer-report-failure": "Info text that shows the error, whenever a page could not be transfered\n.* $1 - The reason why the page could not be transfered",
 	"contenttransfer-target-picker-label": "Label for target selection input\n{{Identical|Transfer target}}",
-	"contenttransfer-progress-push-target-label": "Info text, that shows the target, the page will be translfered to.\n* $1 - Name of the target",
+	"contenttransfer-progress-push-target-label": "Info text, that shows the target, where the page will be transfered to.\n* $1 - Name of the target",
 	"contenttransfer-invalid-target": "Error message, when the selected target is invalid",
 	"contenttransfer-no-pageprops": "Error message, when the pages properties cannot be retrieved",
 	"contenttransfer-no-login-token": "Error message, when the login token cannot be retrieved",

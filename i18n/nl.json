@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mainframe98",
+			"Romaine"
+		]
+	},
+	"contenttransfer-text-filter-input-label": "Paginanaam",
+	"contenttransfer-namespace-filter-input-label": "Naamruimte",
+	"contenttransfer-category-filter-input-label": "Categorie",
+	"contenttransfer-dialog-push-action-cancel-label": "Annuleren",
+	"contenttransfer-dialog-push-action-done-label": "Afgerond",
+	"contenttransfer-dialog-push-progress-layout-label": "Voortgang",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "Pagina ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-file": "Bestand ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-category": "Categoriepagina ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-template": "Sjabloon ($1)",
+	"contenttransfer-report-failure": "Mislukt: $1",
+	"contenttransfer-target-picker-label": "Ontvangende wiki",
+	"contenttransfer-progress-push-target-label": "Ontvangende wiki: $1",
+	"contenttransfer-authentication-failed": "Verificatie mislukt",
+	"contenttransfer-cannot-create": "Pagina kan niet worden aangemaakt",
+	"contenttransfer-no-csrf-token": "Geen CSFR-token",
+	"contenttransfer-ns-main": "(hoofdnaamruimte)",
+	"contenttransfer-dialog-push-preview-page-group-label-original": "Geselecteerde pagina's ($1)",
+	"content-transfer-push-related-pages": "Gerelateerde pagina's",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Getranscludeerd"
+}
