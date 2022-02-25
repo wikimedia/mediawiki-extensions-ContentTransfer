@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"DDPAT"
+			"DDPAT",
+			"Ice bulldog"
 		]
 	},
 	"contenttransfer-extension-description": "Уможливлює перенесення вмісту з однієї вікі на іншу",
