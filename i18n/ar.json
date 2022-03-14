@@ -1,9 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"FiberAhmed"
 		]
 	},
 	"contenttransfer-text-filter-input-label": "اسم الصفحة",
-	"contenttransfer-namespace-filter-input-label": "النطاق"
+	"contenttransfer-namespace-filter-input-label": "النطاق",
+	"contenttransfer-category-filter-input-label": "تصنيف",
+	"contenttransfer-dialog-push-action-cancel-label": "إلغاء",
+	"contenttransfer-dialog-push-action-done-label": "تم",
+	"contenttransfer-dialog-push-preview-layout-label": "نظرة عامة على الصفحة",
+	"contenttransfer-dialog-push-progress-layout-label": "التقدم",
+	"contenttransfer-dialog-push-report-layout-label": "تقرير",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "صفحة ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-file": "الملف ($1)",
+	"contenttransfer-ns-main": "(رئيسي)"
 }
