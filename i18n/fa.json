@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Beginneruser",
 			"Jeeputer"
 		]
 	},
@@ -31,7 +32,7 @@
 	"contenttransfer-invalid-target": "ویکی دیافت‌کننده نامعتبر است",
 	"contenttransfer-no-pageprops": "ناتوان در بازیابی ویژگی‌های صفحه",
 	"contenttransfer-no-login-token": "ناتوان در بازیابی بلیط ورود به حساب",
-	"contenttransfer-authentication-failed": "اعتبارسنجی ناموفق",
+	"contenttransfer-authentication-failed": "تأیید اعتبار ناموفق بود",
 	"contenttransfer-cannot-create": "ناتوان در ایجاد صفحه",
 	"contenttransfer-namespace-not-found": "فضای نام «$1» در ویکی دریافت‌کننده یافت نشد. فضای نام را ایجاد کرده و برای انتقال این صفحه مجدداً تلاش کنید",
 	"contenttransfer-report-interrupted": "انتقال قطع شد! {{PLURAL:$1|$1 صفحه}} با موفقیت منتقل شد",
