@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Juan t2905",
-			"Luna Brillante 12"
+			"Luna Brillante 12",
+			"DiegoAmbrocio"
 		]
 	},
 	"contenttransfer-extension-description": "Permite enviar contenido de una wiki a otra",
@@ -47,6 +48,7 @@
 	"contenttransfer-apihelp-param-pushtarget": "Nombre de la wiki receptora",
 	"contenttransfer-apihelp-param-onlymodified": "Bool. Establecer si solo se deben transferir las páginas que se han modificado desde la última transferencia de contenido",
 	"contenttransfer-apihelp-param-modifiedsince": "Cadena de fecha. Transferir solo páginas que se hayan modificado desde",
+	"contenttransfer-apihelp-param-includerelated": "Booleano. Establece si también los recursos como las páginas enlazadas, los archivos y las categorías de la página deben ser transferidos",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Referencias",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Transcluido"
 }
