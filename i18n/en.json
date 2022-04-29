@@ -36,7 +36,7 @@
 	"contenttransfer-cannot-create": "Page cannot be created",
 	"contenttransfer-namespace-not-found": "Namespace \"$1\" not found on receiving wiki. Create the namespace and try transfering this page again",
 	"contenttransfer-report-interrupted": "Transfer interrupted! Successfully transferred {{PLURAL:$1|$1 page|$1 pages}}",
-	"contenttransfer-no-csrf-token": "No CSFR token",
+	"contenttransfer-no-csrf-token": "No CSRF token",
 	"contenttransfer-edit-fail": "Page cannot be edited on receiving wiki",
 	"contenttransfer-edit-fail-message": "Edit error: $1",
 	"contenttransfer-upload-fail": "File cannot be uploaded to receiving wiki",
