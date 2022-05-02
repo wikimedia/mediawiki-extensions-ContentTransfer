@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Mainframe98",
+			"McDutchie",
 			"Romaine"
 		]
 	},
@@ -20,7 +21,7 @@
 	"contenttransfer-progress-push-target-label": "Ontvangende wiki: $1",
 	"contenttransfer-authentication-failed": "Verificatie mislukt",
 	"contenttransfer-cannot-create": "Pagina kan niet worden aangemaakt",
-	"contenttransfer-no-csrf-token": "Geen CSFR-token",
+	"contenttransfer-no-csrf-token": "Geen CSRF-token",
 	"contenttransfer-ns-main": "(hoofdnaamruimte)",
 	"contenttransfer-generic-error": "Er is een fout opgetreden!",
 	"contenttransfer-dialog-push-preview-page-group-label-original": "Geselecteerde pagina's ($1)",

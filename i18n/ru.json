@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kareyac"
+			"Kareyac",
+			"Pacha Tchernof"
 		]
 	},
 	"contenttransfer-namespace-filter-input-label": "Пространство имён",
@@ -10,6 +11,7 @@
 	"contenttransfer-dialog-push-action-done-label": "Готово",
 	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "Страница ($1)",
 	"contenttransfer-dialog-push-preview-page-group-label-file": "Файл ($1)",
+	"contenttransfer-no-csrf-token": "Нет CSRF-токена",
 	"contenttransfer-dialog-push-preview-page-group-label-original": "Выбранные страницы ($1)",
 	"content-transfer-push-related-pages": "Связанные страницы",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Включено"

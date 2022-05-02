@@ -35,7 +35,7 @@
 	"contenttransfer-cannot-create": "Pagina non pote esser create",
 	"contenttransfer-namespace-not-found": "Spatio de nomines \"$1\" non trovate sur wiki receptor. Crea le spatio de nomines e tenta transferer iste pagina de novo.",
 	"contenttransfer-report-interrupted": "Transferentia interrumpite! Transferite con successo $1 pagina{{PLURAL:$1||s}}",
-	"contenttransfer-no-csrf-token": "Nulle token CSFR",
+	"contenttransfer-no-csrf-token": "Nulle token CSRF",
 	"contenttransfer-edit-fail": "Pagina non pote esser modificate sur wiki receptor",
 	"contenttransfer-edit-fail-message": "Error de modification: $1",
 	"contenttransfer-upload-fail": "File non pote esser incargate in wiki receptor",

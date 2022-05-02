@@ -36,7 +36,7 @@
 	"contenttransfer-cannot-create": "La page ne peut pas être créée",
 	"contenttransfer-namespace-not-found": "Espace de noms « $1 » non trouvé sur le wiki destinataire. Créez l’espace de noms et essayez de transférer cette page à nouveau.",
 	"contenttransfer-report-interrupted": "Transfert interrompu ! $1 {{PLURAL:$1|page a été transférée|pages ont été transférées}} avec succès.",
-	"contenttransfer-no-csrf-token": "Aucun jeton CSFR",
+	"contenttransfer-no-csrf-token": "Aucun jeton CSRF",
 	"contenttransfer-edit-fail": "La page ne peut pas être modifiée sur le wiki destinataire",
 	"contenttransfer-edit-fail-message": "Erreur de modification : $1",
 	"contenttransfer-upload-fail": "Le fichier n’a pas pu être téléversé sur le wiki destinataire",
