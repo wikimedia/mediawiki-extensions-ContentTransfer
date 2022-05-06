@@ -34,7 +34,7 @@
 	"contenttransfer-cannot-create": "문서를 만들 수 없습니다",
 	"contenttransfer-namespace-not-found": "\"$1\" 이름공간을 수신하는 위키에서 찾지 못했습니다. 이름공간을 만든 다음 이 문서를 다시 전송해 보십시오",
 	"contenttransfer-report-interrupted": "전송이 중단되었습니다! {{PLURAL:$1|$1개 문서}}를 성공적으로 전송했습니다",
-	"contenttransfer-no-csrf-token": "CSFR 토큰 없음",
+	"contenttransfer-no-csrf-token": "CSRF 토큰 없음",
 	"contenttransfer-edit-fail": "수신하는 위키에서 문서를 편집할 수 없습니다",
 	"contenttransfer-edit-fail-message": "편집 오류: $1",
 	"contenttransfer-upload-fail": "수신하는 위키에 파일을 올릴 수 없습니다",
