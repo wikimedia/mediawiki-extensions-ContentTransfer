@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pginer"
+		]
+	},
+	"contenttransfer-text-filter-input-label": "Nom de la pàgina",
+	"contenttransfer-category-filter-input-label": "Categoria",
+	"contenttransfer-dialog-push-action-done-label": "Fet"
+}

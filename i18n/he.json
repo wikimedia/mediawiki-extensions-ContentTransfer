@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ex-Diktator"
+			"Ex-Diktator",
+			"Amire80"
 		]
 	},
 	"contenttransfer-extension-description": "אפשרות לדחוף תוכן מוויקי אחד לאחר",
@@ -28,11 +29,11 @@
 	"contenttransfer-report-failure": "נכשל: $1",
 	"contenttransfer-target-picker-label": "הוויקי המקבל",
 	"contenttransfer-progress-push-target-label": "הוויקי המקבל: $1",
-	"contenttransfer-invalid-target": "ויקי מקבל בלתי תקין",
+	"contenttransfer-invalid-target": "ויקי מקבל בלתי־תקין",
 	"contenttransfer-no-pageprops": "לא היה אפשר לאחזר את מאפייני הדף",
 	"contenttransfer-no-login-token": "לא היה אפשר לאחזר את אסימון הכניסה",
 	"contenttransfer-authentication-failed": "האימות נכשל",
-	"contenttransfer-cannot-create": "ךא ניתן ליצור את הדף",
+	"contenttransfer-cannot-create": "לא ניתן ליצור את הדף",
 	"contenttransfer-namespace-not-found": "מרחב השם \"$1\" לא נמצא בוויקי המקבל. נא ליצור את מרחב השם ולנסות להעביר את הדף הזה לשם שוב",
 	"contenttransfer-report-interrupted": "ההעברה הופסקה! {{PLURAL:$1|דף אחד הועבר|$1 דפים הועברו}} בהצלחה",
 	"contenttransfer-edit-fail": "לא היה אפשר לערוך את הדף בוויקי המקבל",
@@ -43,7 +44,7 @@
 	"right-content-transfer": "לאפשר למשתמשים להעביר תכן לאתרי ויקי אחרים",
 	"action-content-transfer": "אין לך הרשאה להעביר תוכן",
 	"contenttransfer-page-protected": "הדף מוגן, באפשרותך לנסות לכפות לנסות שוב את ההעברה",
-	"contenttransfer-only-modified-label": "שפים ששונו מאז ההעברה האחרונה",
+	"contenttransfer-only-modified-label": "דפים ששונו מאז ההעברה האחרונה",
 	"contenttransfer-only-modified-help": "להציג רק דפים ששונו מאז ההעברה האחרונה. זה ישפיע גם על דפים קשורים.",
 	"contenttransfer-no-pages-label": "אין דפים זמינים!",
 	"contenttransfer-dialog-preview-target-info": "להעביר אל: $1",
@@ -61,7 +62,7 @@
 	"contenttransfer-apihelp-param-onlymodified": "בוליאני. יש להגדיר את זה אם רק דפים ששונו מאז העברת התוכן האחרונה צריכים להיות מועברים",
 	"contenttransfer-apihelp-param-modifiedsince": "מחרוזת תאריך. נא להעביר רק דפים ששונו מאז",
 	"contenttransfer-apihelp-param-target": "שם הוויקי המקבל",
-	"contenttransfer-apihelp-param-includerelated": "בוליאני. יש לנגדיר את זה אם גם משרבים כגון דפים מקושרים, קבצים, וקטגוריות של הדף צריכות להיות מועברות",
+	"contenttransfer-apihelp-param-includerelated": "בוליאני. יש להגדיר את זה אם גם משרבים כגון דפים מקושרים, קבצים, וקטגוריות של הדף צריכות להיות מועברות",
 	"contenttransfer-dialog-push-preview-page-group-label-original": "דפים נבחרים ($1)",
 	"content-transfer-push-related-pages": "דפים קשורים",
 	"contenttransfer-dialog-push-subgroup-label-linked": "דפים שמפנים אליהם",
