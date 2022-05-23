@@ -3,6 +3,7 @@
 		"authors": [
 			")8",
 			"AYZ04",
+			"GuoPC",
 			"Xiplus"
 		]
 	},
@@ -11,6 +12,8 @@
 	"contenttransfer-category-filter-input-label": "分类",
 	"contenttransfer-dialog-push-action-cancel-label": "取消",
 	"contenttransfer-dialog-push-action-done-label": "完成",
+	"right-content-transfer": "将内容转移至其他wiki",
+	"action-content-transfer": "将内容转移至其他wiki",
 	"contenttransfer-apihelp-param-articleid": "整数。应该被转移的页面ID。",
 	"contenttransfer-apihelp-param-token": "用户的编辑标记"
 }
