@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Asma",
 			"FiberAhmed",
 			"أَحمد",
 			"محمد أحمد عبد الفتاح"
@@ -16,5 +17,7 @@
 	"contenttransfer-dialog-push-report-layout-label": "تقرير",
 	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "صفحة ($1)",
 	"contenttransfer-dialog-push-preview-page-group-label-file": "الملف ($1)",
+	"right-content-transfer": "نقل المحتوى إلى مواقع الويكي الأخرى",
+	"action-content-transfer": "نقل المحتوى إلى مواقع الويكي الأخرى",
 	"contenttransfer-ns-main": "(رئيسي)"
 }
