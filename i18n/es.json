@@ -3,7 +3,8 @@
 		"authors": [
 			"DiegoAmbrocio",
 			"Juan t2905",
-			"Luna Brillante 12"
+			"Luna Brillante 12",
+			"OriginReboot"
 		]
 	},
 	"contenttransfer-extension-description": "Permite enviar contenido de una wiki a otra",
@@ -48,6 +49,7 @@
 	"contenttransfer-only-modified-help": "Solo mostrar la páginas que han sido modificadas desde la última transferencia. Esto también afectará las páginas relacionadas.",
 	"contenttransfer-no-pages-label": "¡No hay páginas disponibles!",
 	"contenttransfer-dialog-preview-target-info": "Transferencia a: $1",
+	"contenttransfer-dialog-preview-target-draft": "Transfiriendo al espacio de nombres de borrador.",
 	"contenttransfer-too-many-pages-warning": "La lista de páginas está truncada debido al límite configurado de {{PLURAL:$2|one page|$2 pages}} por envío. El total de {{PLURAL:$1|1 page|$1 page}} cumple los criterios",
 	"contenttransfer-ns-main": "(Principal)",
 	"contenttransfer-generic-error": "Se produjo un error.",
