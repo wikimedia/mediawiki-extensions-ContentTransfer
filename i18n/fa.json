@@ -43,7 +43,7 @@
 	"contenttransfer-upload-fail-message": "خطای بارگذاری: $1",
 	"contenttransfer-progress-purge-pages": "پاکسازی میان‌گیر صفحه‌ها در ویکی دریافت‌کننده...",
 	"right-content-transfer": "اجازه به کاربران برای انتقال محتوا به ویکی‌های دیگر",
-	"action-content-transfer": "شما مجاز به انتقال محتوا نیستید",
+	"action-content-transfer": "انتقال محتوا به ویکی‌های دیگر",
 	"contenttransfer-page-protected": "صفحه محافظت شده‌است، می‌تواند تلاش مجدد اجباری برای انتقال را امتحان کنید",
 	"contenttransfer-only-modified-label": "تغییر یافته از آخرین انتقال",
 	"contenttransfer-only-modified-help": "تنها نمایش صفحه‌هایی که از آخرین انتقال تغییر یافته‌اند. این بر صفحه‌های مرتبط نیز اثر خواهد گذاشت.",
