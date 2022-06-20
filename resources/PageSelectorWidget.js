@@ -15,6 +15,7 @@
 		this.makeTargetPicker();
 		this.makeFilters();
 		this.makePageContainer();
+		mw.hook( 'ext.contenttransfer.pageselector.init' ).fire( this );
 
 		this.pushTargetPicker.getMenu().selectItem(
 			this.pushTargetPicker.getMenu().findFirstSelectableItem()
@@ -439,7 +440,9 @@
 			var pageCheckbox = new OO.ui.CheckboxInputWidget( {
 				name: page.id,
 				selected: true,
-				title: page.prefixed_text
+				title: page.prefixed_text,
+				data:  page,
+				classes: [ 'content-transfer-page-item-control' ]
 			} );
 			var pageLayout = new OO.ui.FieldLayout(
 				pageCheckbox, {
@@ -457,6 +460,7 @@
 		}
 
 		this.updateSelectedCount();
+		mw.hook( 'ext.contenttransfer.pageselector.pagesUpdated' ).fire( this, this.displayedPages, this.$pageContainer );
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.onPageSelected = function ( pageId, value ) {
