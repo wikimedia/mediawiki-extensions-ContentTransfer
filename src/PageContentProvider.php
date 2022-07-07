@@ -113,7 +113,7 @@ class PageContentProvider {
 			return null;
 		}
 
-		$file = wfFindFile( $this->title );
+		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->title );
 		return $file;
 	}
 
