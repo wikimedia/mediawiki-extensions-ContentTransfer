@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"DDPAT"
+			"DDPAT",
+			"Ice bulldog"
 		]
 	},
 	"contenttransfer-extension-description": "Уможливлює перенесення вмісту з однієї вікі на іншу",
@@ -67,5 +68,10 @@
 	"content-transfer-push-related-pages": "Пов'язані сторінки",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Посилання",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Включено",
-	"contenttransfer-user-picker-label": "Передати як користувач"
+	"contenttransfer-user-picker-label": "Передати як користувач",
+	"contenttransfer-too-many-pages-warning": "Список сторінок усічений через налаштований ліміт {{PLURAL:$2|однієї сторінки|$2 сторінок}} за поштовх. Загалом {{PLURAL:$1|1 сторінка відповідає|$1 сторінок відповідають}} критеріям",
+	"apihelp-content-transfer-push-info-summary": "Отримує всі ресурси, такі як включені файли, пов’язані сторінки тощо сторінки, які збираються перенести у цільову вікі",
+	"contenttransfer-apihelp-param-articleid": "Ціле число. Ідентифікатор сторінки, яку слід передати",
+	"contenttransfer-apihelp-param-force": "Ігноруйте попередження та передавайте їх у будь-якому випадку",
+	"contenttransfer-apihelp-param-token": "Токен редагування користувача"
 }

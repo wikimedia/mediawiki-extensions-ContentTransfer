@@ -52,5 +52,6 @@
 	"contenttransfer-ns-main": "(Główna)",
 	"contenttransfer-generic-error": "Wystąpił błąd!",
 	"contenttransfer-include-related": "Dołącz powiązane strony",
-	"contenttransfer-modified-since-label": "Zmodyfikowane po"
+	"contenttransfer-modified-since-label": "Zmodyfikowane po",
+	"contenttransfer-too-many-pages-warning": "Lista stron została skrócona w związku z ustalonym limitem $2 {{PLURAL:$2|strony|stron}} do przeniesienia na raz. Maksymalnie $1 {{PLURAL:$1|strona|strony|stron}} spełnia to kryterium."
 }

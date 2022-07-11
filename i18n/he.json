@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ex-Diktator",
-			"Amire80"
+			"Amire80",
+			"Ex-Diktator"
 		]
 	},
 	"contenttransfer-extension-description": "אפשרות לדחוף תוכן מוויקי אחד לאחר",
@@ -41,8 +41,8 @@
 	"contenttransfer-upload-fail": "לא ניתן להעלות את הקובץ לוויקי המקבל",
 	"contenttransfer-upload-fail-message": "שגיאת העלאה: $1",
 	"contenttransfer-progress-purge-pages": "ניקוי דפים בוויקי המקבל...",
-	"right-content-transfer": "לאפשר למשתמשים להעביר תכן לאתרי ויקי אחרים",
-	"action-content-transfer": "אין לך הרשאה להעביר תוכן",
+	"right-content-transfer": "העברת תוכן לאתרי ויקי אחרים",
+	"action-content-transfer": "להעביר תוכן לאתרי ויקי אחרים",
 	"contenttransfer-page-protected": "הדף מוגן, באפשרותך לנסות לכפות לנסות שוב את ההעברה",
 	"contenttransfer-only-modified-label": "דפים ששונו מאז ההעברה האחרונה",
 	"contenttransfer-only-modified-help": "להציג רק דפים ששונו מאז ההעברה האחרונה. זה ישפיע גם על דפים קשורים.",
@@ -67,5 +67,11 @@
 	"content-transfer-push-related-pages": "דפים קשורים",
 	"contenttransfer-dialog-push-subgroup-label-linked": "דפים שמפנים אליהם",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "מוכללים",
-	"contenttransfer-user-picker-label": "להעביר כמשתמש"
+	"contenttransfer-user-picker-label": "להעביר כמשתמש",
+	"contenttransfer-no-csrf-token": "אין אסימון CSRF",
+	"contenttransfer-too-many-pages-warning": "רשימת הדפים קוצרה בשל מגבלה מוגדרת של {{PLURAL:$2|דף אחד|$2 דפים}} לכל דחיפה. בסך הכול, {{PLURAL:$1|דף אחד מתאים|$1 דפים מתאימים}} לתנאים",
+	"apihelp-content-transfer-push-info-summary": "אחזור כל המשאבים כגון קבצים מוכללים, דפים מקושרים, וכו', של הדף שעומד להיות מועבר לוויקי היעד",
+	"contenttransfer-apihelp-param-articleid": "מספר שלם. מזהה הדף שצריך להעביר",
+	"contenttransfer-apihelp-param-force": "בוליאני. להתעלם מאזהרות ולהעביר בכל־זאת",
+	"contenttransfer-apihelp-param-token": "אסימון העריכה של העורך"
 }

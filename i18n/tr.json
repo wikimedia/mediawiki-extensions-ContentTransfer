@@ -70,5 +70,10 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "Seçilen sayfalar ($1)",
 	"content-transfer-push-related-pages": "İlgili sayfalar",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Kaynak",
-	"contenttransfer-dialog-push-subgroup-label-transcluded": "Yansıtılmış"
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Yansıtılmış",
+	"contenttransfer-too-many-pages-warning": "Tek seferde {{PLURAL:$2|bir sayfa|$2 sayfa}} limiti ayarlandığı için sayfa listesi kesildi. Toplamda {{PLURAL:$1|1 sayfa|$1 sayfa}} bu kritere uyuyor",
+	"apihelp-content-transfer-push-info-summary": "Hedef vikiye aktarılmak üzere olan sayfanın tüm kaynaklarını alır, dahil edilen dosyalar, bağlantılı sayfalar, vb.",
+	"contenttransfer-apihelp-param-articleid": "Tamsayı. Aktarılması gereken sayfanın kimliği",
+	"contenttransfer-apihelp-param-force": "Bool. Uyarıları dikkate almayın ve yine de aktarın",
+	"contenttransfer-apihelp-param-token": "Kullanıcının düzenleme anahtarı"
 }

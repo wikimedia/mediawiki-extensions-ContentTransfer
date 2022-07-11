@@ -53,5 +53,6 @@
 	"contenttransfer-ns-main": "(Huvudnamnrymden)",
 	"contenttransfer-generic-error": "Det har uppstått ett fel!",
 	"contenttransfer-include-related": "Inkludera relaterade",
-	"contenttransfer-modified-since-label": "Ändrad sedan"
+	"contenttransfer-modified-since-label": "Ändrad sedan",
+	"contenttransfer-too-many-pages-warning": "Sidlistan är trunkerad på grund av konfigurationsbegränsning av {{PLURAL:$2|en sida|$2 sidor}} per push. Sammanlagt {{PLURAL:$1|1 sida|$1 sidor}} stämmer in på kriteriet."
 }

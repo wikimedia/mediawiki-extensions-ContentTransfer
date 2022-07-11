@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Theshinster123",
 			"Ykhwong"
 		]
 	},
@@ -34,14 +35,14 @@
 	"contenttransfer-cannot-create": "문서를 만들 수 없습니다",
 	"contenttransfer-namespace-not-found": "\"$1\" 이름공간을 수신하는 위키에서 찾지 못했습니다. 이름공간을 만든 다음 이 문서를 다시 전송해 보십시오",
 	"contenttransfer-report-interrupted": "전송이 중단되었습니다! {{PLURAL:$1|$1개 문서}}를 성공적으로 전송했습니다",
-	"contenttransfer-no-csrf-token": "CSFR 토큰 없음",
+	"contenttransfer-no-csrf-token": "CSRF 토큰 없음",
 	"contenttransfer-edit-fail": "수신하는 위키에서 문서를 편집할 수 없습니다",
 	"contenttransfer-edit-fail-message": "편집 오류: $1",
 	"contenttransfer-upload-fail": "수신하는 위키에 파일을 올릴 수 없습니다",
 	"contenttransfer-upload-fail-message": "업로드 오류: $1",
 	"contenttransfer-progress-purge-pages": "수신하는 위키에서 문서를 새로 고치는 중...",
-	"right-content-transfer": "사용자가 콘텐츠를 다른 위키에 전송할 수 있게 합니다",
-	"action-content-transfer": "콘텐츠를 전송할 권한이 없습니다",
+	"right-content-transfer": "콘텐츠를 다른 위키에 전송하기",
+	"action-content-transfer": "콘텐츠를 다른 위키에 전송하기",
 	"contenttransfer-page-protected": "문서가 보호되어 있습니다. 전송을 강제로 다시 시도할 수 있습니다",
 	"contenttransfer-only-modified-label": "지난 전송 이후 수정됨",
 	"contenttransfer-only-modified-help": "지난 전송 이후 수정된 문서만 표시합니다. 관련 문서에도 영향을 미칩니다.",
@@ -56,5 +57,8 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "선택된 문서 ($1)",
 	"content-transfer-push-related-pages": "관련 문서",
 	"contenttransfer-dialog-push-subgroup-label-linked": "참조된 문서",
-	"contenttransfer-dialog-push-subgroup-label-transcluded": "끼워넣은 문서"
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "끼워넣은 문서",
+	"contenttransfer-apihelp-param-articleid": "정수입니다. 전송되어야 하는 문서의 ID입니다",
+	"contenttransfer-apihelp-param-force": "불리언입니다. 경고와 전송을 무시합니다",
+	"contenttransfer-apihelp-param-token": "사용자의 편집 토큰"
 }
