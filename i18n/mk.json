@@ -67,5 +67,10 @@
 	"content-transfer-push-related-pages": "Поврзани страници",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Наведени",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Превметнати",
-	"contenttransfer-user-picker-label": "Пренесување како корисник"
+	"contenttransfer-user-picker-label": "Пренесување како корисник",
+	"contenttransfer-too-many-pages-warning": "Списокот на страници е скусен поради поставената граница од {{PLURAL:$2|една страница|$2 страници}} по пренос. Условите ги {{PLURAL:$1|задоволува вкупно 1 страница|задоволуваат вкупно $1 страници}}",
+	"apihelp-content-transfer-push-info-summary": "Ги презема сите ресурси на страницата како вклучени податотеки, поврзани страници итн. кои ќе се пренесат на целното вики",
+	"contenttransfer-apihelp-param-articleid": "Целобројна назнака на страницата која се пренесува",
+	"contenttransfer-apihelp-param-force": "Булово. Занемарувај предупредувања и бездруго пренесувај",
+	"contenttransfer-apihelp-param-token": "Корисничка шифра за уредување"
 }

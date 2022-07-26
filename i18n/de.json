@@ -39,8 +39,8 @@
 	"contenttransfer-upload-fail": "Datei kann nicht in das Empfangs-Wiki hochgeladen werden",
 	"contenttransfer-upload-fail-message": "Fehler beim Hochladen: $1",
 	"contenttransfer-progress-purge-pages": "Bereinigung von Seiten im Empfänger-Wiki …",
-	"right-content-transfer": "Erlaubt es Benutzern, Inhalte in andere Wikis zu übertragen",
-	"action-content-transfer": "Du hast keine Erlaubnis, Inhalte zu übertragen",
+	"right-content-transfer": "Übertragen von Inhalten auf andere Wikis",
+	"action-content-transfer": "übertragen von Inhalten auf andere Wikis",
 	"contenttransfer-page-protected": "Die Seite ist geschützt; du kannst versuchen, die Übertragung erneut zu erzwingen",
 	"contenttransfer-only-modified-label": "Geändert seit der letzten Übertragung",
 	"contenttransfer-only-modified-help": "Nur Seiten anzeigen, die seit der letzten Übertragung geändert wurden. Dies wirkt sich auch auf verwandte Seiten aus.",
@@ -65,5 +65,10 @@
 	"content-transfer-push-related-pages": "Verwandte Seiten",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Referenziert",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Eingebunden",
-	"contenttransfer-user-picker-label": "Übertragung als Benutzer"
+	"contenttransfer-user-picker-label": "Übertragung als Benutzer",
+	"contenttransfer-too-many-pages-warning": "Die Seitenliste wird aufgrund des konfigurierten Limits von {{PLURAL:$2|einer Seite|$2 Seiten}} pro Push gekürzt. Insgesamt {{PLURAL:$1|passt 1 Seite|passen $1 Seiten}} zu den Kriterien",
+	"apihelp-content-transfer-push-info-summary": "Ruft alle Ressourcen wie eingebundene Dateien, verlinkte Seiten usw. der Seite ab, die in ein Ziel-Wiki übertragen werden sollen",
+	"contenttransfer-apihelp-param-articleid": "Integer. ID der Seite, die übertragen werden soll",
+	"contenttransfer-apihelp-param-force": "Bool. Warnungen ignorieren und trotzdem übertragen",
+	"contenttransfer-apihelp-param-token": "Das Bearbeitungs-Token des Benutzers"
 }

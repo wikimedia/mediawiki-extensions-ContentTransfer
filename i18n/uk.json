@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"DDPAT"
+			"DDPAT",
+			"Ice bulldog",
+			"Ата"
 		]
 	},
 	"contenttransfer-extension-description": "Уможливлює перенесення вмісту з однієї вікі на іншу",
@@ -35,14 +37,14 @@
 	"contenttransfer-cannot-create": "Неможливо створити сторінку",
 	"contenttransfer-namespace-not-found": "Простір назв \"$1\" не знайдено при отриманні вікі. Створити простір назв, і спробуйте перенести цю сторінку ще раз",
 	"contenttransfer-report-interrupted": "Передача перервана! Передано {{PLURAL:$1|$1 сторінку|$1 сторінок}}",
-	"contenttransfer-no-csrf-token": "Немає маркера CSFR",
+	"contenttransfer-no-csrf-token": "Немає маркера CSRF",
 	"contenttransfer-edit-fail": "Сторінку не можна редагувати при отриманні вікі",
 	"contenttransfer-edit-fail-message": "Помилка редагування: $1",
 	"contenttransfer-upload-fail": "Файл не може бути завантажений у вікі-отримувач",
 	"contenttransfer-upload-fail-message": "Помилка завантаження: $1",
 	"contenttransfer-progress-purge-pages": "Очищення сторінок на вікі, що отримує...",
-	"right-content-transfer": "Дозволяє користувачам переносити вміст на інші вікі",
-	"action-content-transfer": "У вас немає дозволу на передачу вмісту",
+	"right-content-transfer": "Перенесення вмісту на інші вікі",
+	"action-content-transfer": "перенесення вмісту на інші вікі",
 	"contenttransfer-page-protected": "Сторінка захищена, ви можете спробувати змусити повторити спробу передачі",
 	"contenttransfer-only-modified-label": "Змінено з моменту останньої передачі",
 	"contenttransfer-only-modified-help": "Показати лише сторінки, які були змінені після останньої передачі. Це також вплине на пов’язані сторінки.",
@@ -67,5 +69,10 @@
 	"content-transfer-push-related-pages": "Пов'язані сторінки",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Посилання",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Включено",
-	"contenttransfer-user-picker-label": "Передати як користувач"
+	"contenttransfer-user-picker-label": "Передати як користувач",
+	"contenttransfer-too-many-pages-warning": "Список сторінок усічений через налаштований ліміт {{PLURAL:$2|однієї сторінки|$2 сторінок}} за поштовх. Загалом {{PLURAL:$1|1 сторінка відповідає|$1 сторінок відповідають}} критеріям",
+	"apihelp-content-transfer-push-info-summary": "Отримує всі ресурси, такі як включені файли, пов’язані сторінки тощо сторінки, які збираються перенести у цільову вікі",
+	"contenttransfer-apihelp-param-articleid": "Ціле число. Ідентифікатор сторінки, яку слід передати",
+	"contenttransfer-apihelp-param-force": "Ігноруйте попередження та передавайте їх у будь-якому випадку",
+	"contenttransfer-apihelp-param-token": "Токен редагування користувача"
 }
