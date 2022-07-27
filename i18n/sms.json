@@ -8,5 +8,6 @@
 	"contenttransfer-category-filter-input-label": "Kategoria",
 	"contenttransfer-dialog-push-preview-page-group-label-file": "Teâttõs ($1)",
 	"contenttransfer-dialog-push-preview-page-group-label-category": "Kategoriaseidd ($1)",
-	"contenttransfer-report-failure": "Ij oʹnnstam: $1"
+	"contenttransfer-report-failure": "Ij oʹnnstam: $1",
+	"contenttransfer-dialog-push-report-layout-label": "Raportt"
 }
