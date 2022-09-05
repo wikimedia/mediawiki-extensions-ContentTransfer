@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"contenttransfer-text-filter-input-label": "Ime stranice",
+	"contenttransfer-namespace-filter-input-label": "Imenski prostor",
+	"contenttransfer-category-filter-input-label": "Kategorija"
+}
