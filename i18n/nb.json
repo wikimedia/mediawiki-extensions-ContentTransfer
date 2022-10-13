@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"EdoAug"
 		]
 	},
 	"contenttransfer-text-filter-input-label": "Sidenavn",
@@ -33,7 +34,7 @@
 	"contenttransfer-cannot-create": "Siden kan ikke opprettes",
 	"contenttransfer-namespace-not-found": "Navnerommet «$1» ikke funnet på mottakerwikien. Opprett navnerommet og prøv å overføre siden på nytt",
 	"contenttransfer-report-interrupted": "Overføring avbrutt! Overførte {{PLURAL:$1|éi side|$1 sider}}",
-	"contenttransfer-no-csrf-token": "Ingen CSFR-nøkkel",
+	"contenttransfer-no-csrf-token": "Ingen CSRF-nøkkel",
 	"contenttransfer-edit-fail": "Siden kan ikke redigeres på mottakerwikien",
 	"contenttransfer-edit-fail-message": "Redigeringsfeil: $1",
 	"contenttransfer-upload-fail": "Fila kan ikke lastes opp på mottakerwikien",
