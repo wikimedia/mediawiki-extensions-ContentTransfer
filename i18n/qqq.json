@@ -3,7 +3,8 @@
 		"authors": [
 			"Dejan Savuljesku",
 			"Patric Wirth",
-			"Verdy p"
+			"Verdy p",
+			"Hamilton Abreu"
 		]
 	},
 	"contenttransfer-extension-description": "{{desc|name=ContentTransfer}}",
@@ -39,7 +40,7 @@
 	"contenttransfer-report-interrupted": "Info text for when the transfer was interupted.\n* $1 Number of pages already transfered",
 	"contenttransfer-no-csrf-token": "Error message when no csrf token could be retrieved",
 	"contenttransfer-edit-fail": "Error message, when the page cannot be edited on receiving wiki",
-	"contenttransfer-edit-fail-message": "Error message when there was an error while saving the page\n* $1 - Error, that occoured while saving the page",
+	"contenttransfer-edit-fail-message": "Error message when there was an error while saving the page\n* $1 - Error that occurred while saving the page",
 	"contenttransfer-upload-fail": "File cannot be uploaded to receiving wiki",
 	"contenttransfer-upload-fail-message": "Error message when the upload of a file failed\n* $1 - Error, that occoured while uploading",
 	"contenttransfer-progress-purge-pages": "Info text while pages on target wiki get purged",
