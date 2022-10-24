@@ -9,5 +9,9 @@
 	"contenttransfer-category-filter-input-label": "Kategori",
 	"contenttransfer-dialog-push-progress-layout-label": "Fremskridt",
 	"contenttransfer-dialog-push-preview-page-group-label-file": "Fil ($1)",
-	"contenttransfer-dialog-push-preview-page-group-label-template": "Skabelon ($1)"
+	"contenttransfer-dialog-push-preview-page-group-label-template": "Skabelon ($1)",
+	"contenttransfer-push-pages-button-label": "Overfør",
+	"contenttransfer-dialog-push-title": "Overfør indhold",
+	"contenttransfer-dialog-push-action-do-push-label": "Overfør",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "Side ($1)"
 }
