@@ -7,7 +7,11 @@
 	"contenttransfer-text-filter-input-label": "Sidenavn",
 	"contenttransfer-namespace-filter-input-label": "Navnerum",
 	"contenttransfer-category-filter-input-label": "Kategori",
+	"contenttransfer-push-pages-button-label": "Overfør",
+	"contenttransfer-dialog-push-title": "Overfør indhold",
+	"contenttransfer-dialog-push-action-do-push-label": "Overfør",
 	"contenttransfer-dialog-push-progress-layout-label": "Fremskridt",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "Side ($1)",
 	"contenttransfer-dialog-push-preview-page-group-label-file": "Fil ($1)",
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Skabelon ($1)"
 }
