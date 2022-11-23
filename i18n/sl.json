@@ -5,5 +5,6 @@
 		]
 	},
 	"contenttransfer-dialog-push-action-cancel-label": "Prekliči",
-	"contenttransfer-namespace-filter-input-label": "Imenski prostor"
+	"contenttransfer-namespace-filter-input-label": "Imenski prostor",
+	"contenttransfer-dialog-push-report-layout-label": "Poročilo"
 }
