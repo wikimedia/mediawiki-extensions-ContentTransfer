@@ -4,5 +4,7 @@
 			"Yupik"
 		]
 	},
-	"contenttransfer-namespace-filter-input-label": "Nammagomuvuohta"
+	"contenttransfer-namespace-filter-input-label": "Nammagomuvuohta",
+	"contenttransfer-text-filter-input-label": "Siidonamma",
+	"contenttransfer-dialog-push-preview-page-group-label-category": "Kategoriijasiidu ($1)"
 }
