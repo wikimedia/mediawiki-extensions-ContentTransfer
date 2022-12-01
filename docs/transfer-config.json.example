@@ -1,0 +1,18 @@
+{
+	"targets": [
+		"TargetKey1=User1",
+		"TargetKey2",
+		"TargetKey3"
+	],
+	"category": "GlobalPage",
+	"namespace": "Global",
+	"pages": [
+		"Page1",
+		"Page2"
+	],
+	"user": "",
+	"onlyModified": true,
+	"modifiedSince": "22.10.2022",
+	"includeRelated": true,
+	"force": false
+}

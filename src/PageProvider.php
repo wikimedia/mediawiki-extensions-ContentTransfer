@@ -3,6 +3,7 @@
 namespace ContentTransfer;
 
 use Config;
+use MediaWiki\MediaWikiServices;
 use Title;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\LoadBalancer;
