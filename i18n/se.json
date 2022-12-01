@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yupik"
+		]
+	},
+	"contenttransfer-text-filter-input-label": "Siidonamma",
+	"contenttransfer-namespace-filter-input-label": "Nammagomuvuohta",
+	"contenttransfer-dialog-push-preview-page-group-label-category": "Kategoriijasiidu ($1)"
+}
