@@ -6,6 +6,7 @@ use CookieJar;
 use CURLFile;
 use File;
 use FormatJson;
+use MediaWiki\MediaWikiServices;
 use Status;
 use StatusValue;
 
@@ -228,10 +229,8 @@ class AuthenticatedRequestHandler {
 			return false;
 		}
 
-		$httpEngine = \Http::$httpEngine;
-		\Http::$httpEngine = 'curl';
-		$request = \MWHttpRequest::factory( $this->target->getUrl(), $requestData, __METHOD__ );
-		\Http::$httpEngine = $httpEngine;
+		$request = MediaWikiServices::getInstance()->getHttpRequestFactory()
+			->create( $this->target->getUrl(), $requestData, __METHOD__ );
 
 		$request->setHeader(
 			'Content-Disposition', "form-data; name=\"file\"; filename=\"{$file->getName()}\""
@@ -339,7 +338,7 @@ class AuthenticatedRequestHandler {
 		if ( $this->ignoreInsecureSSL ) {
 			$this->deSecuritize( $params );
 		}
-		return \MWHttpRequest::factory(
+		return MediaWikiServices::getInstance()->getHttpRequestFactory()->create(
 			$this->target->getUrl(),
 			$params,
 			__METHOD__
