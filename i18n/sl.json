@@ -9,5 +9,6 @@
 	"contenttransfer-dialog-push-report-layout-label": "Poročilo",
 	"contenttransfer-report-failure": "Neuspešno: $1",
 	"contenttransfer-authentication-failed": "Avtentikacija ni uspela",
-	"contenttransfer-generic-error": "Prišlo je do napake!"
+	"contenttransfer-generic-error": "Prišlo je do napake!",
+	"contenttransfer-cannot-create": "Strani ni mogoče ustvariti"
 }
