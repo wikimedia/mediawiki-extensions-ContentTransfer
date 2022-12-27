@@ -6,5 +6,9 @@
 	},
 	"contenttransfer-namespace-filter-input-label": "Imenski prostor",
 	"contenttransfer-dialog-push-action-cancel-label": "Prekliči",
-	"contenttransfer-dialog-push-report-layout-label": "Poročilo"
+	"contenttransfer-dialog-push-report-layout-label": "Poročilo",
+	"contenttransfer-report-failure": "Neuspešno: $1",
+	"contenttransfer-authentication-failed": "Avtentikacija ni uspela",
+	"contenttransfer-cannot-create": "Strani ni mogoče ustvariti",
+	"contenttransfer-generic-error": "Prišlo je do napake!"
 }
