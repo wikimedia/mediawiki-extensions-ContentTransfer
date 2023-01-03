@@ -6,5 +6,7 @@
 	},
 	"contenttransfer-text-filter-input-label": "Ime stranice",
 	"contenttransfer-namespace-filter-input-label": "Imenski prostor",
-	"contenttransfer-category-filter-input-label": "Kategorija"
+	"contenttransfer-category-filter-input-label": "Kategorija",
+	"contenttransfer-dialog-push-action-cancel-label": "Otkaži",
+	"contenttransfer-dialog-push-action-done-label": "Gotovo"
 }
