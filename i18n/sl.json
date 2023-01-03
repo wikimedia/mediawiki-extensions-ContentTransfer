@@ -10,5 +10,7 @@
 	"contenttransfer-report-failure": "Neuspešno: $1",
 	"contenttransfer-authentication-failed": "Avtentikacija ni uspela",
 	"contenttransfer-cannot-create": "Strani ni mogoče ustvariti",
+	"right-content-transfer": "Prenos vsebine v druge vikije",
+	"action-content-transfer": "prenos vsebine v druge vikije",
 	"contenttransfer-generic-error": "Prišlo je do napake!"
 }
