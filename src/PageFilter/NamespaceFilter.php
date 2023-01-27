@@ -22,7 +22,7 @@ class NamespaceFilter implements IPageFilter {
 	 * @param IContextSource $context
 	 * @return static
 	 */
-	public function factory( LoadBalancer $lb, IContextSource $context ) {
+	public static function factory( LoadBalancer $lb, IContextSource $context ) {
 		return new static(
 			$context,
 			$context->getLanguage(),
