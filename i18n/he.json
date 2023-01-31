@@ -60,7 +60,7 @@
 	"apihelp-content-transfer-do-push-single-summary": "מעביר דף בודד לוויקי המקבל",
 	"apihelp-content-transfer-purge-pages-summary": "ניקוי כל הדפים שהועברו לוויקי המקבל",
 	"contenttransfer-apihelp-param-filterdata": "מחרוזת JSON של נתונים שצריך לסנן לפיהם",
-	"contenttransfer-apihelp-param-titles": "רשימה של שמות דפים מופרדת בקווים אנכיים",
+	"contenttransfer-apihelp-param-titles": "רשימה של שמות דפים מופרדת בקווים ניצבים",
 	"contenttransfer-apihelp-param-pushtarget": "שם הוויקי המקבל",
 	"contenttransfer-apihelp-param-onlymodified": "בוליאני. יש להגדיר את זה אם רק דפים ששונו מאז העברת התוכן האחרונה צריכים להיות מועברים",
 	"contenttransfer-apihelp-param-modifiedsince": "מחרוזת תאריך. נא להעביר רק דפים ששונו מאז",
