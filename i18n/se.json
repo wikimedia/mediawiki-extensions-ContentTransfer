@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kimberli Mäkäräinen (WMNO)",
 			"Yupik"
 		]
 	},
 	"contenttransfer-namespace-filter-input-label": "Nammagomuvuohta",
 	"contenttransfer-text-filter-input-label": "Siidonamma",
-	"contenttransfer-dialog-push-preview-page-group-label-category": "Kategoriijasiidu ($1)"
+	"contenttransfer-dialog-push-preview-page-group-label-category": "Kategoriijasiidu ($1)",
+	"contenttransfer-dialog-push-action-cancel-label": "Šluhtte"
 }
