@@ -8,5 +8,6 @@
 	"contenttransfer-namespace-filter-input-label": "Nammagomuvuohta",
 	"contenttransfer-text-filter-input-label": "Siidonamma",
 	"contenttransfer-dialog-push-preview-page-group-label-category": "Kategoriijasiidu ($1)",
-	"contenttransfer-dialog-push-action-cancel-label": "Šluhtte"
+	"contenttransfer-dialog-push-action-cancel-label": "Šluhtte",
+	"contenttransfer-dialog-push-preview-page-group-label-file": "Fiila ($1)"
 }
