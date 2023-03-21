@@ -38,5 +38,6 @@
 	"contenttransfer-edit-fail": "Siden kan ikke redigeres på mottakerwikien",
 	"contenttransfer-edit-fail-message": "Redigeringsfeil: $1",
 	"contenttransfer-upload-fail": "Fila kan ikke lastes opp på mottakerwikien",
-	"contenttransfer-upload-fail-message": "Opplastingsfeil: $1"
+	"contenttransfer-upload-fail-message": "Opplastingsfeil: $1",
+	"content-transfer-push-related-pages": "Relaterte sider"
 }
