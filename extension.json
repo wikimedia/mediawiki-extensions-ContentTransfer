@@ -1,6 +1,9 @@
 {
 	"name": "ContentTransfer",
-	"author": "Dejan Savuljesku <savuljesku@hallowelt.com>",
+	"author": [
+		"[https://www.hallowelt.com Hallo Welt! GmbH]",
+		"Dejan Savuljesku <savuljesku@hallowelt.com>"
+	],
 	"license-name": "GPL-3.0-only",
 	"version": "1.2-alpha",
 	"descriptionmsg": "contenttransfer-extension-description",
