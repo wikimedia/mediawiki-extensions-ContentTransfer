@@ -112,7 +112,7 @@ class PagePusher {
 	 * @return Status
 	 */
 	public function getStatus() {
-		return $this->requestHandler->getStatus();
+		return $this->status;
 	}
 
 	/**
@@ -156,6 +156,7 @@ class PagePusher {
 					'_' . $filename;
 			}
 			if ( $this->requestHandler->uploadFile( $file, $content, $filename ) === false ) {
+				$this->status = $this->requestHandler->getStatus();
 				return false;
 			}
 		}
