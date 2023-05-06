@@ -6,7 +6,6 @@ use ApiBase;
 use ContentTransfer\PageFilterFactory;
 use ContentTransfer\PageProvider;
 use FormatJson;
-use Hooks;
 use MediaWiki\MediaWikiServices;
 
 class GetPages extends ApiBase {
@@ -78,7 +77,8 @@ class GetPages extends ApiBase {
 			return $a['prefixed_text'] < $b['prefixed_text'] ? -1 : 1;
 		} );
 
-		Hooks::run( 'ContentTransferApiAfterGetPages', [ &$this->pageCount, &$this->pages ] );
+		MediaWikiServices::getInstance()->getHookContainer()
+			->run( 'ContentTransferApiAfterGetPages', [ &$this->pageCount, &$this->pages ] );
 	}
 
 	/**
