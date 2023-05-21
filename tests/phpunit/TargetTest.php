@@ -26,7 +26,7 @@ class TargetTest extends TestCase {
 		] );
 	}
 
-	public function provideData() {
+	public static function provideData() {
 		return [
 			'single-user' => [
 				[
