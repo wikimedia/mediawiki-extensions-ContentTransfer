@@ -107,7 +107,7 @@ class ExecuteTransfer extends Maintenance {
 			'"Target1=User1,Target2,Target3"', false, true );
 		$this->addOption( 'category', 'Category which can be used to select certain wiki pages to transfer',
 			false, true );
-		$this->addOption( 'namespace', 'Namespace which can be used to select certain wiki pages to transfer',
+		$this->addOption( 'namespace', 'Namespace ID which can be used to select certain wiki pages to transfer',
 			false, true );
 		$this->addOption( 'pages', 'Explicit list of wiki pages to transfer, separated by comma. ' .
 			'If wiki pages to transfer are passed in that way, there will be no filtering by category or namespace',
@@ -170,22 +170,28 @@ class ExecuteTransfer extends Maintenance {
 		// * which target is this title should be transferred to
 		$targetTitlesMap = [];
 
+		// Contains actual titles objects to transfer. Key is title DB key, value is object
+		$titlesToTransfer = [];
+
 		// Contains actual related titles objects to transfer. Key is title DB key, value is object
 		$relatedTitlesToTransfer = [];
-		$titlesToTransfer = $this->getTitles();
-		foreach ( $titlesToTransfer as $titleToTransfer ) {
-			$titleKey = $titleToTransfer->getDBkey();
+		$titlesObjects = $this->getTitles();
+		foreach ( $titlesObjects as $titleObj ) {
+			$titleKey = $titleObj->getDBkey();
 
 			// Exclude non-existing pages or pages with incorrect names
-			if ( !$titleToTransfer->exists() ) {
+			if ( !$titleObj->exists() ) {
 				$this->output( "Page '$titleKey' does not exist in the source wiki! Skipping...\n" );
 				continue;
 			}
 
+			// Save title objects in one place to not pollute memory
+			$titlesToTransfer[$titleKey] = $titleObj;
+
 			// Check to which targets we should transfer this title
 			// It depends on title "modification date" on each target wiki (if such filters were set)
 			foreach ( $this->targets as $targetKey => $target ) {
-				if ( !$this->shouldTransfer( $this->modificationData, $titleToTransfer, $targetKey ) ) {
+				if ( !$this->shouldTransfer( $this->modificationData, $titleObj, $targetKey ) ) {
 					$this->output( "Title '$titleKey' was not modified since last transfer or date provided." .
 						"Skipping...\n" );
 					continue;
@@ -197,7 +203,7 @@ class ExecuteTransfer extends Maintenance {
 
 			// Collect related titles
 			if ( $this->includeRelated ) {
-				$pageContentProvider = new PageContentProvider( $titleToTransfer );
+				$pageContentProvider = new PageContentProvider( $titleObj );
 				$relatedTitles = $pageContentProvider->getRelatedTitles( [] );
 
 				foreach ( $this->targets as $targetKey => $target ) {
@@ -218,6 +224,9 @@ class ExecuteTransfer extends Maintenance {
 				}
 			}
 		}
+
+		// Free memory, this array is not needed anymore
+		unset( $titlesObjects );
 
 		$this->output( "\nTitles to transfer per target:\n" );
 		foreach ( $this->targets as $targetKey => $target ) {
@@ -251,10 +260,11 @@ class ExecuteTransfer extends Maintenance {
 		foreach ( $this->targets as $targetKey => $target ) {
 			// If there are titles to transfer to that target
 			if ( !empty( $targetTitlesMap[$targetKey] ) ) {
+				$this->output( "\nTransferring to target '$targetKey'...\n" );
 
 				$titleKeys = $targetTitlesMap[$targetKey];
 				foreach ( $titleKeys as $titleKey ) {
-					$this->output( "Transferring title '$titleKey'...\n" );
+					$this->output( "Transferring title '$titleKey'... " );
 					$this->transferTitle( $titlesToTransfer[$titleKey], $target );
 
 					// If there are related titles to transfer to that target
@@ -262,7 +272,7 @@ class ExecuteTransfer extends Maintenance {
 
 						$relatedTitles = $relatedTitlesMap[$titleKey][$targetKey];
 						foreach ( $relatedTitles as $relatedTitleKey ) {
-							$this->output( "Transferring related title '$relatedTitleKey'...\n" );
+							$this->output( "Transferring related title '$relatedTitleKey'... " );
 							$this->transferTitle( $relatedTitlesToTransfer[$relatedTitleKey], $target );
 						}
 					}
@@ -440,25 +450,6 @@ class ExecuteTransfer extends Maintenance {
 	}
 
 	/**
-	 * Returns an array with so-called "modification data".
-	 * It is used when collecting related titles to filter out titles by "modified since" and "only modified" params
-	 *
-	 * @return array
-	 */
-	private function getModificationData(): array {
-		$modificationData = [];
-
-		if ( isset( $this->filterData['modifiedSince'] ) ) {
-
-		}
-		if ( isset( $this->filterData['onlyModified'] ) ) {
-
-		}
-
-		return $modificationData;
-	}
-
-	/**
 	 * Filter out necessary titles to transfer.
 	 * If wiki pages are explicitly specified by 'pages' option - no filtering will be done.
 	 *
@@ -513,7 +504,7 @@ class ExecuteTransfer extends Maintenance {
 			return;
 		}
 
-		$this->output( "Transfer done." );
+		$this->output( "Transfer done.\n" );
 	}
 
 	/**
