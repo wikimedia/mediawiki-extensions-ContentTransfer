@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pyscowicz"
+		]
+	},
+	"contenttransfer-extension-description": "Mahdollistaa sisällön siirtämisen wikistä toiseen",
+	"contenttransfer": "Sisällön siirto",
+	"contenttransfer-text-filter-input-label": "Sivun nimi",
+	"contenttransfer-namespace-filter-input-label": "Nimiavaruus",
+	"contenttransfer-category-filter-input-label": "Luokka",
+	"contenttransfer-pages-header": "Siirrettävät sivut",
+	"contenttransfer-pages-header-count": "Valittu: $2 Yhteensä: $1",
+	"contenttransfer-push-pages-button-label": "Siirrä",
+	"contenttransfer-dialog-push-action-do-push-label": "Siirrä",
+	"contenttransfer-dialog-push-action-cancel-label": "Peruuta",
+	"contenttransfer-dialog-push-action-done-label": "Valmis",
+	"contenttransfer-dialog-push-preview-layout-label": "Sivun yleiskatsaus",
+	"contenttransfer-dialog-push-progress-layout-label": "Edistyminen",
+	"contenttransfer-dialog-push-preview-page-group-label-file": "Tiedosto ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-category": "Luokkasivu ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-template": "Malline ($1)",
+	"contenttransfer-progress-current-operation": "Siirretään sivua $1"
+}
