@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rodrigue"
+			"Piano1forte2"
 		]
 	},
-	"contenttransfer-no-csrf-token": "Nta Kimenyetso cya CSRF"
+	"contenttransfer-no-csrf-token": "Nta Kimenyetso cya CSRF",
+	"contenttransfer-namespace-not-found": "Namespace '$1' not found on receiving wiki. Create the namespace and try transferring this page again"
 }
