@@ -5,7 +5,7 @@ namespace ContentTransfer;
 use Config;
 use MediaWiki\MediaWikiServices;
 use Title;
-use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 
 class PageProvider {
@@ -123,10 +123,10 @@ class PageProvider {
 	}
 
 	/**
-	 * @param Database $db
+	 * @param IDatabase $db
 	 * @return array
 	 */
-	protected function makeJoins( Database $db ) {
+	protected function makeJoins( IDatabase $db ) {
 		$options = [
 			'revision' => [ 'INNER JOIN', [ 'page_latest = rev_id' ] ],
 			'push_history' => [ 'LEFT OUTER JOIN', [ 'page_id = ph_page' ] ],
@@ -149,10 +149,10 @@ class PageProvider {
 	}
 
 	/**
-	 * @param Database $db
+	 * @param IDatabase $db
 	 * @return array
 	 */
-	protected function makeConds( Database $db ) {
+	protected function makeConds( IDatabase $db ) {
 		$conds = [];
 		if ( $this->config->get( 'ContentTransferOnlyContentNamespaces' ) ) {
 			$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
