@@ -38,7 +38,9 @@ class PushHistory {
 		$this->user = $user;
 		$this->target = $target;
 
-		$this->db = wfGetDB( DB_MASTER );
+		$this->db = MediaWikiServices::getInstance()
+			->getDBLoadBalancer()
+			->getConnection( DB_PRIMARY );
 	}
 
 	/**
