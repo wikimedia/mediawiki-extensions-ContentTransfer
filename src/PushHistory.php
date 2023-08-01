@@ -5,12 +5,12 @@ namespace ContentTransfer;
 use MediaWiki\MediaWikiServices;
 use Title;
 use User;
-use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 
 class PushHistory {
 
 	/**
-	 * @var Database
+	 * @var IDatabase
 	 */
 	protected $db;
 
