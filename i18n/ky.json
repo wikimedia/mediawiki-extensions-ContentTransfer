@@ -4,5 +4,6 @@
 			"Bosogo"
 		]
 	},
-	"contenttransfer-dialog-push-action-cancel-label": "Жокко чыгаруу"
+	"contenttransfer-dialog-push-action-cancel-label": "Жокко чыгаруу",
+	"contenttransfer-namespace-filter-input-label": "Аталыш мейкиндиги"
 }
