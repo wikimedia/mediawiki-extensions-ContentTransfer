@@ -26,5 +26,7 @@
 	"contenttransfer-generic-error": "Er is een fout opgetreden!",
 	"contenttransfer-dialog-push-preview-page-group-label-original": "Geselecteerde pagina's ($1)",
 	"content-transfer-push-related-pages": "Gerelateerde pagina's",
-	"contenttransfer-dialog-push-subgroup-label-transcluded": "Getranscludeerd"
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "Getranscludeerd",
+	"contenttransfer-modified-since-label": "Gewijzigd sinds",
+	"apihelp-content-transfer-get-pages-summary": "Geeft een overzicht van alle pagina's die pushbaar zijn op basis van opgegeven filters"
 }
