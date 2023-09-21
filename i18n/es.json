@@ -4,7 +4,8 @@
 			"DiegoAmbrocio",
 			"Juan t2905",
 			"Luna Brillante 12",
-			"OriginReboot"
+			"OriginReboot",
+			"Amire80"
 		]
 	},
 	"contenttransfer-extension-description": "Permite enviar contenido de una wiki a otra",
@@ -55,7 +56,7 @@
 	"contenttransfer-generic-error": "Se produjo un error.",
 	"contenttransfer-include-related": "Incluir relacionados",
 	"contenttransfer-modified-since-label": "Modificado desde",
-	"apihelp-content-transfer-push-info-summary": "Recupera todos los  recursos como archivos incluidos, páginas vinculadas etc. de la página, que está a punto de ser transferida a una wiki de destino",
+	"apihelp-content-transfer-push-info-summary": "Recupera todos los recursos como archivos incluidos, páginas vinculadas etc. de la página, que está a punto de ser transferida a una wiki de destino",
 	"apihelp-content-transfer-do-push-single-summary": "Transfiere una sola página a una wiki receptora",
 	"contenttransfer-apihelp-param-filterdata": "Cadena de datos JSON para filtrar por",
 	"contenttransfer-apihelp-param-titles": "Lista de nombres de página separados por tubería",
