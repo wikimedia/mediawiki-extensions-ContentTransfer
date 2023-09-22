@@ -70,5 +70,9 @@
 	"contenttransfer-apihelp-param-modifiedsince": "Datumtekst. Alleen pagina's overplaatsen die sindsdien zijn gewijzigd",
 	"contenttransfer-apihelp-param-target": "Naam ontvangende wiki",
 	"contenttransfer-apihelp-param-includerelated": "Booleaanse waarde. Stelt in of ook hulpbronnen zoals gekoppelde pagina's, bestanden en categorieën van de pagina moeten worden overgedragen",
-	"contenttransfer-apihelp-param-articleid": "Geheel getal. ID van de pagina die moet worden overgedragen"
+	"contenttransfer-apihelp-param-articleid": "Geheel getal. ID van de pagina die moet worden overgedragen",
+	"contenttransfer-apihelp-param-force": "Booleaanse waarde. Waarschuwingen negeren en toch overplaatsen",
+	"contenttransfer-apihelp-param-token": "Het bewerkingstoken van de gebruiker",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Verwezen",
+	"contenttransfer-user-picker-label": "Overdragen als gebruiker"
 }
