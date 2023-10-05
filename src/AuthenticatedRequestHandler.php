@@ -3,12 +3,15 @@
 namespace ContentTransfer;
 
 use CookieJar;
-use CURLFile;
+use Exception;
 use File;
 use FormatJson;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use MediaWiki\MediaWikiServices;
 use Status;
 use StatusValue;
+use Throwable;
 
 class AuthenticatedRequestHandler {
 
@@ -192,61 +195,57 @@ class AuthenticatedRequestHandler {
 	 * @return bool
 	 */
 	public function uploadFile( File $file, $content, $filename ) {
-		$curlFile = new CURLFile(
-			$file->getLocalRefPath(),
-			$file->getMimeType(),
-			'file'
-		);
-
 		$postData = [
-			'action' => 'upload',
-			'token' => $this->tokens[ 'csrf' ],
-			'filename' => $filename,
-			'text' => $content,
-			'ignorewarnings' => 1,
-			'file' => $curlFile,
-			'filesize' => $file->getSize(),
-			'format' => 'json'
+			'verify' => !$this->ignoreInsecureSSL,
+			'multipart' => [
+				[
+					'name' => 'token',
+					'contents' => $this->tokens[ 'csrf' ]
+				],
+				[
+					'name' => 'filename',
+					'contents' => $filename
+				],
+				[
+					'name' => 'text',
+					'contents' => $content
+				],
+				[
+					'name' => 'ignorewarnings',
+					'contents' => 1
+				],
+				[
+					'name' => 'filesize',
+					'contents' => $file->getSize()
+				],
+				[
+					'name' => 'format',
+					'contents' => 'json'
+				],
+				[
+					'name' => 'action',
+					'contents' => 'upload'
+				],
+				[
+					'name' => 'file',
+					'contents' => file_get_contents( $file->getLocalRefPath() ),
+					'filename' => 'file'
+				]
+			]
 		];
 
-		$requestData = [
-			'postData' => $postData,
-			'method' => 'POST',
-			'timeout' => 'default'
-		];
-		if ( $this->ignoreInsecureSSL ) {
-			$this->deSecuritize( $requestData );
-		}
-
-		if ( !function_exists( 'curl_init' ) ) {
-			$this->status = Status::newFatal( 'contenttransfer-no-curl' );
-			return false;
-		} elseif (
-			!defined( 'CurlHttpRequest::SUPPORTS_FILE_POSTS' )
-			|| !\CurlHttpRequest::SUPPORTS_FILE_POSTS
-		) {
-			$this->status = Status::newFatal( 'contenttransfer-curl-file-posts-not-supported' );
-			return false;
-		}
-
-		$request = MediaWikiServices::getInstance()->getHttpRequestFactory()
-			->create( $this->target->getUrl(), $requestData, __METHOD__ );
-
-		$request->setHeader(
-			'Content-Disposition', "form-data; name=\"file\"; filename=\"{$file->getName()}\""
-		);
-		$request->setHeader( 'Content-Type', 'multipart/form-data' );
-		$request->setCookieJar( $this->cookieJar );
-
-		$status = $request->execute();
-		if ( !$status->isOK() ) {
+		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
+		$parsedUrl = $urlUtils->parse( $this->target->getUrl() );
+		$cookieHeader = $this->cookieJar->serializeToHttpRequest( $parsedUrl['path'] ?: '/', $parsedUrl['host'] );
+		try {
+			$response = $this->guzzleDirectRequest( $this->target->getUrl(), $postData, [ 'Cookie' => $cookieHeader ] );
+			$response = FormatJson::decode( $response );
+		} catch ( Throwable $ex ) {
 			$this->status = Status::newFatal( 'contenttransfer-upload-fail' );
 			return false;
 		}
 
-		$response = FormatJson::decode( $request->getContent() );
-
-		if ( property_exists( $response, 'error' ) ) {
+		if ( $response && property_exists( $response, 'error' ) ) {
 			if ( $response->error->code === 'fileexists-no-change' ) {
 				// Do not consider pushing duplicate files as an error
 				return true;
@@ -392,5 +391,29 @@ class AuthenticatedRequestHandler {
 		$params[ 'sslVerifyCert'] = false;
 		$params[ 'sslVerifyHost'] = false;
 		$params[ 'sslVerifyPeer'] = false;
+	}
+
+	/**
+	 * @param string $url
+	 * @param array $options
+	 * @param array|null $headers
+	 *
+	 * @return string
+	 * @throws GuzzleException
+	 */
+	private function guzzleDirectRequest( string $url, array $options, ?array $headers = [] ): string {
+		$config = [
+			'headers' => $headers,
+			'timeout' => 120
+		];
+		$config['headers']['User-Agent'] = MediaWikiServices::getInstance()->getHttpRequestFactory()->getUserAgent();
+		// Create client manually, since calling `createGuzzleClient` on httpFactory will throw a fatal
+		// complaining `$this->options` is NULL. Which should not happen, but I cannot find why it happens
+		$client = new Client( $config );
+		$response = $client->request( 'POST', $url, $options );
+		if ( $response->getStatusCode() !== 200 ) {
+			throw new Exception( 'HTTP error: ' . $response->getStatusCode() );
+		}
+		return $response->getBody()->getContents();
 	}
 }
