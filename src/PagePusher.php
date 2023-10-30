@@ -4,6 +4,7 @@ namespace ContentTransfer;
 
 use FatalError;
 use Hooks;
+use MediaWiki\MediaWikiServices;
 use MWException;
 use Status;
 use Title;
@@ -148,6 +149,14 @@ class PagePusher {
 
 	protected function doPush() {
 		$content = $this->contentProvider->getContent();
+
+		$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$wikiLanguage = MediaWikiServices::getInstance()->getContentLanguage();
+
+		$wikitextProcessor = new WikitextProcessor( $namespaceInfo, $wikiLanguage );
+
+		$content = $wikitextProcessor->canonizeNamespacesInLinks( $content );
+
 		if ( $this->contentProvider->isFile() ) {
 			$file = $this->contentProvider->getFile();
 			$filename = $file->getName();
