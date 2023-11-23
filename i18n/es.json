@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"DiegoAmbrocio",
 			"Juan t2905",
 			"Luna Brillante 12",
-			"OriginReboot",
-			"Amire80"
+			"OriginReboot"
 		]
 	},
 	"contenttransfer-extension-description": "Permite enviar contenido de una wiki a otra",
