@@ -8,7 +8,9 @@ use File;
 use FormatJson;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Psr\Log\LoggerInterface;
 use Status;
 use StatusValue;
 use Throwable;
@@ -45,6 +47,9 @@ class AuthenticatedRequestHandler {
 	/** @var bool */
 	protected $authenticated = false;
 
+	/** @var LoggerInterface */
+	protected $logger;
+
 	/**
 	 *
 	 * @param Target $target
@@ -54,6 +59,8 @@ class AuthenticatedRequestHandler {
 		$this->target = $target;
 		$this->ignoreInsecureSSL = $ignoreInsecureSSL;
 		$this->status = Status::newGood();
+
+		$this->logger = LoggerFactory::getInstance( 'ContentTransfer' );
 	}
 
 	protected function authenticate() {
@@ -175,10 +182,10 @@ class AuthenticatedRequestHandler {
 	 */
 	public function runAuthenticatedRequest( $requestData ) {
 		if ( !$this->authenticate() ) {
-			return StatusValue::newFatal( 'contenttransfer-authentication-failed' );
+			return $this->status;
 		}
 		if ( !$this->getCSRFToken() ) {
-			return StatusValue::newFatal( 'contenttransfer-no-csrf-token' );
+			return Status::newFatal( 'contenttransfer-no-csrf-token' );
 		}
 
 		$request = $this->getRequest( $requestData );
@@ -239,9 +246,11 @@ class AuthenticatedRequestHandler {
 		$cookieHeader = $this->cookieJar->serializeToHttpRequest( $parsedUrl['path'] ?: '/', $parsedUrl['host'] );
 		try {
 			$response = $this->guzzleDirectRequest( $this->target->getUrl(), $postData, [ 'Cookie' => $cookieHeader ] );
+			$this->logger->debug( 'File upload done. Response - ' . print_r( $response, true ) );
 			$response = FormatJson::decode( $response );
 		} catch ( Throwable $ex ) {
 			$this->status = Status::newFatal( 'contenttransfer-upload-fail' );
+			$this->logger->error( 'File upload failed. Exception message - "' . $ex->getMessage() . '"' );
 			return false;
 		}
 
@@ -305,16 +314,19 @@ class AuthenticatedRequestHandler {
 		$status = $request->execute();
 
 		if ( !$status->isOK() ) {
-			$this->status = Status::newFatal( 'contenttransfer-authentication-failed' );
+			$this->status = $status;
+			$this->logger->error( 'Login failed. $status message - "' . $status->getMessage() . '"' );
 			return false;
 		}
+
+		$this->logger->debug( 'Login request executed. Request content - "' . $request->getContent() . '"' );
 
 		$response = FormatJson::decode( $request->getContent() );
 
 		if ( $response->login->result === 'Success' ) {
 			$this->cookieJar = $request->getCookieJar();
 		} else {
-			$this->status = Status::newFatal( 'contenttransfer-authentication-failed' );
+			$this->status = Status::newFatal( 'contenttransfer-authentication-bad-login' );
 			return false;
 		}
 
@@ -364,9 +376,12 @@ class AuthenticatedRequestHandler {
 		$status = $request->execute();
 
 		if ( !$status->isOK() ) {
-			$this->status = Status::newFatal( 'contenttransfer-no-login-token' );
+			$this->status = $status;
+			$this->logger->error( 'Getting login token failed. $status message - "' . $status->getMessage() . '"' );
 			return false;
 		}
+
+		$this->logger->debug( 'Login token request executed. Request content - "' . $request->getContent() . '"' );
 
 		$response = FormatJson::decode( $request->getContent() );
 
