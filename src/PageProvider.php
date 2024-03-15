@@ -56,9 +56,14 @@ class PageProvider {
 	 */
 	public function execute() {
 		$db = $this->lb->getConnection( DB_REPLICA );
+		$pageTableName = $db->tableName( 'page' );
 		$res = $db->select(
 			$this->getTables(),
-			[ 'DISTINCT( page.page_id )', 'page.page_title', 'page.page_namespace' ],
+			[
+				"DISTINCT( $pageTableName.page_id )",
+				"$pageTableName.page_title",
+				"$pageTableName.page_namespace"
+			],
 			$this->makeConds( $db ),
 			__METHOD__,
 			[
@@ -85,9 +90,10 @@ class PageProvider {
 	 */
 	public function getPageCount() {
 		$db = $this->lb->getConnection( DB_REPLICA );
+		$pageTableName = $db->tableName( 'page' );
 		$res = $db->selectRow(
 			$this->getTables(),
-			[ 'COUNT( DISTINCT( page.page_id ) ) as count' ],
+			[ "COUNT( DISTINCT( $pageTableName.page_id ) ) as count" ],
 			$this->makeConds( $db ),
 			__METHOD__,
 			[
@@ -156,24 +162,28 @@ class PageProvider {
 		$conds = [];
 		if ( $this->config->get( 'ContentTransferOnlyContentNamespaces' ) ) {
 			$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-			$conds[] = 'page.page_namespace IN (' . $db->makeList(
+			$pageTableName = $db->tableName( 'page' );
+			$conds[] = "$pageTableName.page_namespace IN (" . $db->makeList(
 				array_unique( $namespaceInfo->getContentNamespaces() )
 			) . ')';
 		}
 		if ( isset( $this->filterData['modifiedSince'] ) ) {
 			$sinceDate = static::getModifiedSinceDate( $this->filterData['modifiedSince' ] );
 			if ( $sinceDate !== null ) {
-				$conds[] = 'revision.rev_timestamp >= ' . $db->timestamp( $sinceDate );
+				$revisionTableName = $db->tableName( 'revision' );
+				$conds[] = "$revisionTableName.rev_timestamp >= " . $db->timestamp( $sinceDate );
 			}
 		}
 		if (
 			isset( $this->filterData['onlyModified'] ) &&
 			$this->filterData['onlyModified'] === true
 		) {
+			$pushHistoryTableName = $db->tableName( 'push_history' );
+			$revisionTableName = $db->tableName( 'revision' );
 			$exitsConds = [];
-			$exitsConds[] = 'push_history.ph_target = ' . $db->addQuotes( $this->filterData['target'] );
-			$exitsConds[] = 'push_history.ph_timestamp <= revision.rev_timestamp';
-			$conds[] = 'push_history.ph_page IS NULL OR (' . implode( ' AND ', $exitsConds ) . ')';
+			$exitsConds[] = "$pushHistoryTableName.ph_target = " . $db->addQuotes( $this->filterData['target'] );
+			$exitsConds[] = "$pushHistoryTableName.ph_timestamp <= $revisionTableName.rev_timestamp";
+			$conds[] = "$pushHistoryTableName.ph_page IS NULL OR (" . implode( ' AND ', $exitsConds ) . ')';
 		}
 
 		/**
