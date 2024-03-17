@@ -352,7 +352,7 @@ class ExecuteTransfer extends Maintenance {
 			foreach ( $targets as $targetSpec ) {
 				// Target specification may also contain user, who should be used to create pages on target wiki
 				if ( strpos( $targetSpec, '=' ) ) {
-					list( $targetName, $selectedUser ) = explode( '=', $targetSpec );
+					[ $targetName, $selectedUser ] = explode( '=', $targetSpec );
 				} else {
 					$targetName = $targetSpec;
 					$selectedUser = null;
