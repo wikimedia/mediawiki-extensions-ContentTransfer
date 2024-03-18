@@ -12,6 +12,9 @@ class PageName implements IPageFilter {
 	/** @var IContextSource */
 	protected $context;
 
+	/** @var string */
+	protected $searchIndexTableName;
+
 	/**
 	 * @param LoadBalancer $lb
 	 * @param IContextSource $context
@@ -28,6 +31,9 @@ class PageName implements IPageFilter {
 	public function __construct( LoadBalancer $lb, IContextSource $context ) {
 		$this->lb = $lb;
 		$this->context = $context;
+
+		$this->searchIndexTableName =
+			$lb->getConnection( DB_REPLICA )->tableName( 'searchindex' );
 	}
 
 	/**
@@ -69,14 +75,14 @@ class PageName implements IPageFilter {
 	 * @inheritDoc
 	 */
 	public function modifyTables( &$tables ) {
-		 $tables[] = 'searchindex';
+		$tables[] = $this->searchIndexTableName;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function modifyJoins( &$joins ) {
-		$joins['searchindex'] = [ 'INNER JOIN', [ 'page_id = si_page' ] ];
+		$joins[$this->searchIndexTableName] = [ 'INNER JOIN', [ 'page_id = si_page' ] ];
 	}
 
 	/**
@@ -88,10 +94,11 @@ class PageName implements IPageFilter {
 			$bits = explode( ':', $filterData['term'] );
 			$term = trim( strtolower( array_pop( $bits ) ) );
 			$term = implode( '%', explode( ' ', $term ) );
-			$termConds[] = 'searchindex.si_title = ' . $db->addQuotes( $term );
-			$termConds[] = 'searchindex.si_title LIKE ' . $db->addQuotes( "%$term%" );
-			$termConds[] = 'searchindex.si_title LIKE ' . $db->addQuotes( "$term%" );
-			$termConds[] = 'searchindex.si_title LIKE ' . $db->addQuotes( "%$term" );
+			$tableName = $this->searchIndexTableName;
+			$termConds[] = "$tableName.si_title = " . $db->addQuotes( $term );
+			$termConds[] = "$tableName.si_title LIKE " . $db->addQuotes( "%$term%" );
+			$termConds[] = "$tableName.si_title LIKE " . $db->addQuotes( "$term%" );
+			$termConds[] = "$tableName.si_title LIKE " . $db->addQuotes( "%$term" );
 			$conds[] = '(' . implode( '  OR ', $termConds ) . ')';
 		}
 	}
