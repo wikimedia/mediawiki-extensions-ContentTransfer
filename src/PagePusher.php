@@ -3,6 +3,7 @@
 namespace ContentTransfer;
 
 use FatalError;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MWException;
 use Status;
@@ -60,6 +61,11 @@ class PagePusher {
 	protected $targetPushNamespaceName = '';
 
 	/**
+	 * @var \Psr\Log\LoggerInterface
+	 */
+	protected $logger = null;
+
+	/**
 	 *
 	 * @param Title $title
 	 * @param Target $target
@@ -89,24 +95,26 @@ class PagePusher {
 
 		$this->pushHistory = $pushHistory;
 		$this->status = Status::newGood();
+		$this->logger = LoggerFactory::getInstance( 'ContentTransfer' );
 	}
 
 	/**
 	 * Do the push process
 	 */
 	public function push() {
+		$this->logger->info( 'Pushing to ' . $this->getTargetTitleText() );
 		if ( $this->requestHandler->getPageProps( $this->getTargetTitleText() ) === null ) {
-			return;
+			throw new MWException( 'Could not get page props' );
 		}
 		if ( $this->ensurePushPossible() === false ) {
-			return;
+			throw new MWException( 'Push not possible' );
 		}
 		if ( $this->requestHandler->getCSRFToken() === null ) {
-			return;
+			throw new MWException( 'Could not get CSRF token' );
 		}
 		$pageId = $this->doPush();
 		if ( $pageId === false ) {
-			return;
+			throw new MWException( 'Main push failed' );
 		}
 		$this->runAdditionalRequests( $pageId );
 	}
