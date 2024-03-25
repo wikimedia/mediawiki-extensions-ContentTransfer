@@ -5,7 +5,8 @@ namespace ContentTransfer\Api;
 use ApiBase;
 use ApiMain;
 use Content;
-use ContentTransfer\PageContentProvider;
+use ContentTransfer\AuthenticatedRequestHandlerFactory;
+use ContentTransfer\PageContentProviderFactory;
 use ContentTransfer\PagePusher;
 use ContentTransfer\PushHistory;
 use ContentTransfer\Target;
@@ -29,19 +30,37 @@ class PushSingle extends ApiBase {
 	protected $force = false;
 	/** @var TargetManager */
 	private $targetManager;
+
+	/**
+	 * @var PageContentProviderFactory
+	 */
+	protected $contentProviderFactory;
+
+	/**
+	 * @var AuthenticatedRequestHandlerFactory
+	 */
+	protected $requestHandlerFactory;
+
 	/** @var string */
 	private $targetId;
 
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
-	 * @param string $modulePrefix
+	 * @param PageContentProviderFactory $contentProviderFactory
+	 * @param AuthenticatedRequestHandlerFactory $requestHandlerFactory
 	 */
-	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
-		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+	public function __construct(
+		ApiMain $mainModule, $moduleName,
+		PageContentProviderFactory $contentProviderFactory,
+		AuthenticatedRequestHandlerFactory $requestHandlerFactory
+	) {
+		parent::__construct( $mainModule, $moduleName );
 		$this->targetManager = MediaWikiServices::getInstance()->getService(
 			'ContentTransferTargetManager'
 		);
+		$this->contentProviderFactory = $contentProviderFactory;
+		$this->requestHandlerFactory = $requestHandlerFactory;
 	}
 
 	public function execute() {
@@ -117,7 +136,7 @@ class PushSingle extends ApiBase {
 	}
 
 	protected function prepareContent() {
-		$contentProvider = new PageContentProvider( $this->title );
+		$contentProvider = $this->contentProviderFactory->newFromTitle( $this->title );
 		$this->content = $contentProvider->getContent();
 	}
 
@@ -149,6 +168,8 @@ class PushSingle extends ApiBase {
 			$this->title,
 			$this->target,
 			$pushHistory,
+			$this->requestHandlerFactory,
+			$this->contentProviderFactory,
 			$this->force,
 			$ignoreInsecureSSL
 		);

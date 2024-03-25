@@ -65,15 +65,20 @@ class PagePusher {
 	 * @param Title $title
 	 * @param Target $target
 	 * @param PushHistory $pushHistory
+	 * @param AuthenticatedRequestHandlerFactory $requestHandlerFactory
+	 * @param PageContentProviderFactory $contentProviderFactory
 	 * @param bool|false $force
 	 * @param bool|false $ignoreInsecureSSL
 	 */
 	public function __construct(
-		Title $title, Target $target, $pushHistory, $force = false, $ignoreInsecureSSL = false
+		Title $title, Target $target, $pushHistory,
+		AuthenticatedRequestHandlerFactory $requestHandlerFactory,
+		PageContentProviderFactory $contentProviderFactory,
+		bool $force = false, bool $ignoreInsecureSSL = false
 	) {
 		$this->title = $title;
-		$this->requestHandler = new AuthenticatedRequestHandler( $target, $ignoreInsecureSSL );
-		$this->contentProvider = new PageContentProvider( $title );
+		$this->requestHandler = $requestHandlerFactory->newFromTarget( $target, $ignoreInsecureSSL );
+		$this->contentProvider = $contentProviderFactory->newFromTitle( $title );
 		$this->force = $force;
 
 		if ( $target->shouldPushToDraft() ) {
