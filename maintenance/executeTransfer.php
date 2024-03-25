@@ -1,6 +1,7 @@
 <?php
 
-use ContentTransfer\PageContentProvider;
+use ContentTransfer\AuthenticatedRequestHandlerFactory;
+use ContentTransfer\PageContentProviderFactory;
 use ContentTransfer\PageFilterFactory;
 use ContentTransfer\PageProvider;
 use ContentTransfer\PagePusher;
@@ -88,6 +89,16 @@ class ExecuteTransfer extends Maintenance {
 	private $targetManager;
 
 	/**
+	 * @var PageContentProviderFactory
+	 */
+	private $contentProviderFactory;
+
+	/**
+	 * @var AuthenticatedRequestHandlerFactory
+	 */
+	private $requestHandlerFactory;
+
+	/**
 	 * See config "ContentTransferIgnoreInsecureSSL"
 	 *
 	 * @var bool
@@ -136,6 +147,12 @@ class ExecuteTransfer extends Maintenance {
 	public function execute() {
 		$this->targetManager = MediaWikiServices::getInstance()->getService(
 			'ContentTransferTargetManager'
+		);
+		$this->contentProviderFactory = MediaWikiServices::getInstance()->getService(
+			'ContentTransferPageContentProviderFactory'
+		);
+		$this->requestHandlerFactory = MediaWikiServices::getInstance()->getService(
+			'ContentTransferAuthenticatedRequestHandlerFactory'
 		);
 
 		if ( $this->hasOption( 'json-config' ) ) {
@@ -203,7 +220,7 @@ class ExecuteTransfer extends Maintenance {
 
 			// Collect related titles
 			if ( $this->includeRelated ) {
-				$pageContentProvider = new PageContentProvider( $titleObj );
+				$pageContentProvider = $this->contentProviderFactory->newFromTitle( $titleObj );
 				$relatedTitles = $pageContentProvider->getRelatedTitles( [] );
 
 				foreach ( $this->targets as $targetKey => $target ) {
@@ -491,6 +508,8 @@ class ExecuteTransfer extends Maintenance {
 			$title,
 			$target,
 			$pushHistory,
+			$this->requestHandlerFactory,
+			$this->contentProviderFactory,
 			$this->force,
 			$this->ignoreInsecureSsl
 		);

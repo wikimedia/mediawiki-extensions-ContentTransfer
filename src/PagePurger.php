@@ -16,14 +16,16 @@ class PagePurger {
 	protected $requestHandler;
 
 	/**
+	 * @param AuthenticatedRequestHandlerFactory $requestHandlerFactory
 	 * @param array $titles
 	 * @param Target $target
 	 * @param bool|null $ignoreInsecureSSL
 	 */
-	public function __construct( $titles, $target, $ignoreInsecureSSL = true ) {
+	public function __construct( $requestHandlerFactory, $titles, $target, $ignoreInsecureSSL = true ) {
 		$this->titles = $titles;
 		$this->target = $target;
-		$this->requestHandler = new AuthenticatedRequestHandler( $target, $ignoreInsecureSSL );
+
+		$this->requestHandler = $requestHandlerFactory->newFromTarget( $target, $ignoreInsecureSSL );
 	}
 
 	/**

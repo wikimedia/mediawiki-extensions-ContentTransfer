@@ -59,6 +59,7 @@ class PurgePages extends PushSingle {
 
 	protected function doPurge() {
 		$purger = new PagePurger(
+			$this->requestHandlerFactory,
 			$this->titles,
 			$this->target,
 			$this->getConfig()->get( 'ContentTransferIgnoreInsecureSSL' )
