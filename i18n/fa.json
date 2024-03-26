@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Beginneruser",
+			"Ebraminio",
 			"Jeeputer"
 		]
 	},
@@ -44,13 +45,13 @@
 	"contenttransfer-progress-purge-pages": "پاکسازی میان‌گیر صفحه‌ها در ویکی دریافت‌کننده...",
 	"right-content-transfer": "اجازه به کاربران برای انتقال محتوا به ویکی‌های دیگر",
 	"action-content-transfer": "انتقال محتوا به ویکی‌های دیگر",
-	"contenttransfer-page-protected": "صفحه محافظت شده‌است، می‌تواند تلاش مجدد اجباری برای انتقال را امتحان کنید",
+	"contenttransfer-page-protected": "صفحه محافظت شده است، می‌تواند تلاش مجدد اجباری برای انتقال را امتحان کنید",
 	"contenttransfer-only-modified-label": "تغییر یافته از آخرین انتقال",
 	"contenttransfer-only-modified-help": "تنها نمایش صفحه‌هایی که از آخرین انتقال تغییر یافته‌اند. این بر صفحه‌های مرتبط نیز اثر خواهد گذاشت.",
 	"contenttransfer-no-pages-label": "صفحه‌ای در دسترس نیست!",
 	"contenttransfer-dialog-preview-target-info": "انتقال به: $1",
 	"contenttransfer-dialog-preview-target-draft": "در حال انتقال به فضای نام پیش‌نویس!",
-	"contenttransfer-too-many-pages-warning": "به‌دلیل محدودیت پیکربندی‌شدهٔ {{PLURAL:$2|یک صفحه|$2 صفحه}} به‌ازای هر واکشی، فهرست صفحه‌ها کوتاه شده‌است. در مجموع {{PLURAL:$1|۱ صفحه|$1 صفحه}} با معیارها منطبق {{PLURAL:$1|است|هستند}}",
+	"contenttransfer-too-many-pages-warning": "به‌دلیل محدودیت پیکربندی‌شدهٔ {{PLURAL:$2|یک صفحه|$2 صفحه}} به‌ازای هر واکشی، فهرست صفحه‌ها کوتاه شده است. در مجموع {{PLURAL:$1|۱ صفحه|$1 صفحه}} با معیارها منطبق {{PLURAL:$1|است|هستند}}",
 	"contenttransfer-ns-main": "(اصلی)",
 	"contenttransfer-generic-error": "خطایی رخ داد!",
 	"contenttransfer-include-related": "شامل‌شدن مرتبط‌ها",
