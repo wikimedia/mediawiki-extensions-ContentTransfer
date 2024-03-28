@@ -60,8 +60,9 @@ class GetPages extends ApiBase {
 
 	protected function makePages() {
 		$provider = $this->makeProvider();
+		$services = MediaWikiServices::getInstance();
 		/** @var PageFilterFactory $filterFactory */
-		$filterFactory = MediaWikiServices::getInstance()->getService( 'ContentTransferPageFilterFactory' );
+		$filterFactory = $services->getService( 'ContentTransferPageFilterFactory' );
 		$provider->setFilters( $filterFactory->getFilters(), $this->filterData );
 		$provider->execute();
 		$this->pageCount = $provider->getPageCount();
@@ -77,8 +78,10 @@ class GetPages extends ApiBase {
 			return $a['prefixed_text'] < $b['prefixed_text'] ? -1 : 1;
 		} );
 
-		MediaWikiServices::getInstance()->getHookContainer()
-			->run( 'ContentTransferApiAfterGetPages', [ &$this->pageCount, &$this->pages ] );
+		$services->getHookContainer()->run(
+			'ContentTransferApiAfterGetPages',
+			[ &$this->pageCount, &$this->pages ]
+		);
 	}
 
 	/**
