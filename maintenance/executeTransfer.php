@@ -416,7 +416,8 @@ class ExecuteTransfer extends Maintenance {
 
 		// Set context user
 		if ( $config['user'] ) {
-			$this->user = User::newFromName( $config['user'] );
+			$userFactory = MediaWikiServices::getInstance()->getUserFactory();
+			$this->user = $userFactory->newFromName( $config['user'] );
 		} elseif ( !$this->user ) {
 			// If user was set in JSON and was not passed as CLI param - we will leave keep it
 			// But if user was not passed at all - use maintenance one
