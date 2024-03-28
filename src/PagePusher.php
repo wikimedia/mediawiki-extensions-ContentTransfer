@@ -3,7 +3,6 @@
 namespace ContentTransfer;
 
 use FatalError;
-use Hooks;
 use MediaWiki\MediaWikiServices;
 use MWException;
 use Status;
@@ -210,12 +209,15 @@ class PagePusher {
 	 */
 	protected function runAdditionalRequests( $pageId ) {
 		$requests = [];
-		Hooks::run( 'ContentTransferAdditionalRequests', [
-			$this->title,
-			$this->requestHandler->getTarget(),
-			&$requests,
-			$pageId
-		] );
+		MediaWikiServices::getInstance()->getHookContainer()->run(
+			'ContentTransferAdditionalRequests',
+			[
+				$this->title,
+				$this->requestHandler->getTarget(),
+				&$requests,
+				$pageId
+			]
+		);
 		if ( !is_array( $requests ) || empty( $requests ) ) {
 			return;
 		}
