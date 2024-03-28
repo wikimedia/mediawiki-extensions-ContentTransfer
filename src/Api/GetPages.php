@@ -8,6 +8,7 @@ use ContentTransfer\PageProvider;
 use FormatJson;
 use Hooks;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class GetPages extends ApiBase {
 	/** @var array */
@@ -30,9 +31,9 @@ class GetPages extends ApiBase {
 	protected function getAllowedParams() {
 		return [
 			'filterData' => [
-				static::PARAM_TYPE => 'string',
-				static::PARAM_REQUIRED => true,
-				static::PARAM_DFLT => '[]',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_DEFAULT => '[]',
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-filterdata',
 			],
 		];

@@ -4,6 +4,7 @@ namespace ContentTransfer\Api;
 
 use ContentTransfer\PagePurger;
 use Title;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class PurgePages extends PushSingle {
 	/** @var Title[] */
@@ -22,13 +23,13 @@ class PurgePages extends PushSingle {
 	protected function getAllowedParams() {
 		return [
 			'titles' => [
-				static::PARAM_TYPE => 'string',
-				static::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-titles',
 			],
 			'pushTarget' => [
-				static::PARAM_TYPE => 'string',
-				static::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-pushtarget',
 			]
 		];

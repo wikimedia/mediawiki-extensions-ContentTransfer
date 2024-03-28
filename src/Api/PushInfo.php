@@ -6,6 +6,7 @@ use ApiBase;
 use ContentTransfer\PageContentProvider;
 use ContentTransfer\PageProvider;
 use Title;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class PushInfo extends ApiBase {
 	protected const TYPE_WIKIPAGE = 'wikipage';
@@ -37,31 +38,31 @@ class PushInfo extends ApiBase {
 	protected function getAllowedParams() {
 		return [
 			'titles' => [
-				static::PARAM_TYPE => 'string',
-				static::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-titles',
 			],
 			'onlyModified' => [
-				static::PARAM_TYPE => 'string',
-				static::PARAM_REQUIRED => false,
-				static::PARAM_DFLT => '0',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_DEFAULT => '0',
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-onlymodified',
 			],
 			'modifiedSince' => [
-				static::PARAM_TYPE => 'string',
-				static::PARAM_REQUIRED => false,
-				static::PARAM_DFLT => '',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_DEFAULT => '',
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-modifiedsince',
 			],
 			'target' => [
-				static::PARAM_TYPE => 'string',
-				static::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-target',
 			],
 			'includeRelated' => [
-				static::PARAM_TYPE => 'string',
-				static::PARAM_REQUIRED => false,
-				static::PARAM_DFLT => '0',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_DEFAULT => '0',
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-includerelated',
 			]
 		];

@@ -14,6 +14,7 @@ use FormatJson;
 use MediaWiki\MediaWikiServices;
 use Message;
 use Title;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class PushSingle extends ApiBase {
 	/** @var Target */
@@ -67,24 +68,24 @@ class PushSingle extends ApiBase {
 	protected function getAllowedParams() {
 		return [
 			'articleId' => [
-				static::PARAM_TYPE => 'integer',
-				static::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_REQUIRED => true,
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-articleid',
 			],
 			'pushTarget' => [
-				static::PARAM_TYPE => 'string',
-				static::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-pushtarget',
 			],
 			'force' => [
-				static::PARAM_TYPE => 'boolean',
-				static::PARAM_REQUIRED => false,
-				static::PARAM_DFLT => false,
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-force',
 			],
 			'token' => [
-				static::PARAM_TYPE => 'string',
-				static::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 				static::PARAM_HELP_MSG => 'contenttransfer-apihelp-param-token',
 			]
 		];
