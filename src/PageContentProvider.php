@@ -37,12 +37,7 @@ class PageContentProvider {
 	 */
 	public function __construct( Title $title ) {
 		$this->title = $title;
-		if ( method_exists( MediaWikiServices::class, 'getWikiPageFactory' ) ) {
-			// MW 1.36+
-			$this->wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->title );
-		} else {
-			$this->wikipage = WikiPage::factory( $this->title );
-		}
+		$this->wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->title );
 		$this->parserOutput = $this->wikipage->getContent()->getParserOutput( $this->title );
 	}
 
