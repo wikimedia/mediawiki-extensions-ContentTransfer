@@ -6,6 +6,7 @@ use File;
 use MediaWiki\MediaWikiServices;
 use ParserOutput;
 use RequestContext;
+use TextContent;
 use Title;
 use WikiPage;
 
@@ -93,7 +94,8 @@ class PageContentProvider {
 	 * @return string
 	 */
 	public function getContent() {
-		return $this->wikipage->getContent()->getNativeData();
+		$content = $this->wikipage->getContent();
+		return ( $content instanceof TextContent ) ? $content->getText() : '';
 	}
 
 	/**
