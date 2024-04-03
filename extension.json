@@ -48,9 +48,26 @@
 	},
 	"APIModules": {
 		"content-transfer-get-pages": "\\ContentTransfer\\Api\\GetPages",
-		"content-transfer-push-info": "\\ContentTransfer\\Api\\PushInfo",
-		"content-transfer-do-push-single": "\\ContentTransfer\\Api\\PushSingle",
-		"content-transfer-purge-pages": "\\ContentTransfer\\Api\\PurgePages"
+		"content-transfer-push-info": {
+			"class": "\\ContentTransfer\\Api\\PushInfo",
+			"services": [
+				"ContentTransferPageContentProviderFactory"
+			]
+		},
+		"content-transfer-do-push-single": {
+			"class": "\\ContentTransfer\\Api\\PushSingle",
+			"services": [
+				"ContentTransferPageContentProviderFactory",
+				"ContentTransferAuthenticatedRequestHandlerFactory"
+			]
+		},
+		"content-transfer-purge-pages": {
+			"class": "\\ContentTransfer\\Api\\PurgePages",
+			"services": [
+				"ContentTransferPageContentProviderFactory",
+				"ContentTransferAuthenticatedRequestHandlerFactory"
+			]
+		}
 	},
 	"AvailableRights": [
 		"content-transfer"

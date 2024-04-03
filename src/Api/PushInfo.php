@@ -3,7 +3,8 @@
 namespace ContentTransfer\Api;
 
 use ApiBase;
-use ContentTransfer\PageContentProvider;
+use ApiMain;
+use ContentTransfer\PageContentProviderFactory;
 use ContentTransfer\PageProvider;
 use Title;
 
@@ -23,6 +24,24 @@ class PushInfo extends ApiBase {
 	protected $includeRelated = false;
 	/** @var array */
 	protected $transcluded = [];
+
+	/**
+	 * @var PageContentProviderFactory
+	 */
+	private $contentProviderFactory;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param PageContentProviderFactory $contentProviderFactory
+	 */
+	public function __construct(
+		ApiMain $mainModule, $moduleName,
+		PageContentProviderFactory $contentProviderFactory
+	) {
+		parent::__construct( $mainModule, $moduleName );
+		$this->contentProviderFactory = $contentProviderFactory;
+	}
 
 	public function execute() {
 		$this->readInParameters();
@@ -105,7 +124,7 @@ class PushInfo extends ApiBase {
 	 */
 	protected function getInfo() {
 		foreach ( $this->titles as $dbKey => $title ) {
-			$contentProvider = new PageContentProvider( $title );
+			$contentProvider = $this->contentProviderFactory->newFromTitle( $title );
 
 			if ( $this->includeRelated ) {
 				$this->related = array_merge(
