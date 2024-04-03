@@ -141,8 +141,8 @@ class PageContentProvider {
 		$rawCategories = $this->parserOutput->getCategories();
 		foreach ( $rawCategories as $catName => $displayText ) {
 			$category = \Category::newFromName( $catName );
-			if ( $category->getTitle()->exists() ) {
-				$categoryTitle = $category->getTitle();
+			if ( $category->getPage()->exists() ) {
+				$categoryTitle = Title::castFromPageIdentity( $category->getPage() );
 				$this->relatedTitles[ $categoryTitle->getPrefixedDBkey() ] = $categoryTitle;
 			}
 		}
