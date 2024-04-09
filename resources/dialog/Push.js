@@ -32,21 +32,21 @@
 
 	contentTransfer.dialog.Push.static.actions = [
 		{
-			action: 'doPush',
-			label: mw.message( 'contenttransfer-dialog-push-action-do-push-label' ).plain(),
-			flags: [ 'primary' ],
-			disabled: false
+			action: 'cancel',
+			label: mw.message( 'contenttransfer-dialog-push-action-cancel-label' ).plain(),
+			flags: 'safe'
 		},
 		{
 			action: 'done',
 			label: mw.message( 'contenttransfer-dialog-push-action-done-label' ).plain(),
-			flags: [ 'primary' ],
+			flags: [ 'primary', 'progressive' ],
 			disabled: true
 		},
 		{
-			action: 'cancel',
-			label: mw.message( 'contenttransfer-dialog-push-action-cancel-label' ).plain(),
-			flags: 'safe'
+			action: 'doPush',
+			label: mw.message( 'contenttransfer-dialog-push-action-do-push-label' ).plain(),
+			flags: [ 'primary' ],
+			disabled: false
 		}
 	];
 
