@@ -155,8 +155,13 @@
 			]
 		}
 	},
+	"HookHandlers": {
+		"runDatabaseUpdates": {
+			"class": "\\ContentTransfer\\Hook\\RunDatabaseUpdates"
+		}
+	},
 	"Hooks": {
-		"LoadExtensionSchemaUpdates": "\\ContentTransfer\\Extension::onLoadExtensionSchemaUpdates"
+		"LoadExtensionSchemaUpdates": "runDatabaseUpdates"
 	},
 	"config": {
 		"ContentTransferTargets": {

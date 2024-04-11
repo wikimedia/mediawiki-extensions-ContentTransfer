@@ -1,0 +1,40 @@
+[
+	{
+		"name": "push_history",
+		"columns": [
+			{
+				"name": "ph_page",
+				"type": "integer",
+				"options": {
+					"length": 6,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ph_user",
+				"type": "integer",
+				"options": {
+					"length": 6,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ph_target",
+				"type": "binary",
+				"options": {
+					"length": 255,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ph_timestamp",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			}
+		],
+		"indexes": [],
+		"pk": []
+	}
+]
