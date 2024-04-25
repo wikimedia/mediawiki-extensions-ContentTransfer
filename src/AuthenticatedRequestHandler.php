@@ -349,11 +349,12 @@ class AuthenticatedRequestHandler {
 		if ( $this->ignoreInsecureSSL ) {
 			$this->deSecuritize( $params );
 		}
-		return \MWHttpRequest::factory(
-			$this->target->getUrl(),
-			$params,
-			__METHOD__
-		);
+		return MediaWikiServices::getInstance()->getHttpRequestFactory()
+			->create(
+				$this->target->getUrl(),
+				$params,
+				__METHOD__
+			);
 	}
 
 	/**
