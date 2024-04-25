@@ -74,7 +74,7 @@ class PushSingle extends ApiBase {
 		if ( !$this->getUser()->isAllowed( 'content-transfer' ) ) {
 			$this->dieWithError( 'You don\'t have permission to push pages', 'permissiondenied' );
 		}
-		if ( !$this->getUser()->matchEditToken( $this->getParameter( 'token' ) ) ) {
+		if ( !$this->getCsrfTokenSet()->matchToken( $this->getParameter( 'token' ) ) ) {
 			$this->dieWithError( 'Edit token invalid', 'invalidtoken' );
 		}
 	}
