@@ -281,6 +281,25 @@ class PagePusher {
 	 * @return string
 	 */
 	protected function getTargetTitleText() {
+		$nsPrefix = '';
+
+		$nsId = $this->title->getNamespace();
+		if ( $nsId !== NS_MAIN ) {
+			$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+
+			$nsCanonicalText = $namespaceInfo->getCanonicalName( $nsId );
+			if ( $nsCanonicalText ) {
+				// If that's local variant of namespace like "Datei" - then translate it to canonical
+				$nsText = $nsCanonicalText;
+			} else {
+				$nsText = $this->title->getNsText();
+			}
+
+			if ( $nsText ) {
+				$nsPrefix = $nsText . ':';
+			}
+		}
+
 		if ( $this->pushToDraft ) {
 			if ( $this->contentProvider->isFile() ) {
 				return $this->title->getNsText() . ':' .
@@ -288,10 +307,10 @@ class PagePusher {
 						. '_' . $this->title->getDBkey();
 			} else {
 				return $this->requestHandler->getTarget()->getDraftNamespace()
-					. ':' . $this->title->getPrefixedDBkey();
+					. $nsPrefix . $this->title->getDBkey();
 			}
 		} else {
-			return $this->title->getPrefixedDBkey();
+			return $nsPrefix . $this->title->getDBkey();
 		}
 	}
 }
