@@ -193,7 +193,7 @@ class PagePusher {
 		$status = $this->requestHandler->runPushRequest( $requestData );
 
 		if ( !$status->isOK() ) {
-			$this->status = Status::newFatal( 'contenttransfer-edit-fail' );
+			$this->status = Status::newFatal( 'contenttransfer-edit-fail', $status->getWikiText() );
 			return false;
 		}
 
@@ -201,7 +201,7 @@ class PagePusher {
 		if ( property_exists( $response, 'error' ) ) {
 			$this->status = Status::newFatal(
 				'contenttransfer-edit-fail-message',
-				$response->error->info
+				$response->error['info']
 			);
 			return false;
 		}
