@@ -3,7 +3,8 @@
 		"authors": [
 			"Mainframe98",
 			"McDutchie",
-			"Romaine"
+			"Romaine",
+			"Siebrand"
 		]
 	},
 	"contenttransfer-text-filter-input-label": "Paginanaam",
@@ -52,7 +53,7 @@
 	"action-content-transfer": "inhoud naar andere wiki’s over te plaatsen",
 	"contenttransfer-page-protected": "De pagina is beveiligd. U kunt proberen de overdracht geforceerd opnieuw te proberen.",
 	"contenttransfer-only-modified-label": "Gewijzigd sinds de laatste overdracht",
-	"contenttransfer-only-modified-help": "Alleen pagina’s tonen die sinds de laatste overdracht zijn gewijzigd. Dit geldt ook voor gerelateerde pagina's.",
+	"contenttransfer-only-modified-help": "Alleen pagina’s weergeven die sinds de laatste overdracht zijn gewijzigd. Dit geldt ook voor gerelateerde pagina's.",
 	"contenttransfer-no-pages-label": "Er zijn geen pagina’s beschikbaar!",
 	"contenttransfer-dialog-preview-target-info": "Overplaatsen naar: $1",
 	"contenttransfer-dialog-preview-target-draft": "Aan het overplaatsen naar een conceptnaamruimte!",
