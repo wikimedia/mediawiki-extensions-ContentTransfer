@@ -15,13 +15,21 @@ class PushInfo extends ApiBase {
 	protected const TYPE_CATEGORY = 'category';
 	protected const TYPE_FILE = 'file';
 
+	/** @var array */
 	protected $titles = [];
+	/** @var array */
 	protected $related = [];
+	/** @var bool */
 	protected $onlyModified;
+	/** @var string */
 	protected $modifiedSince = '';
+	/** @var string */
 	protected $target = '';
+	/** @var array */
 	protected $groupedInfo = [];
+	/** @var array */
 	protected $joinedInfo = [];
+	/** @var bool */
 	protected $includeRelated = false;
 	/** @var array */
 	protected $transcluded = [];
