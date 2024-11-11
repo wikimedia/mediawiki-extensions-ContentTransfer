@@ -1,8 +1,6 @@
 {
 	"@metadata": {
-		"authors": [
-			"Amire80"
-		]
+		"authors": []
 	},
 	"contenttransfer-no-csrf-token": "Nta Kimenyetso cya CSRF"
 }
