@@ -5,7 +5,8 @@
 			"Asma",
 			"FiberAhmed",
 			"أَحمد",
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"Meno25"
 		]
 	},
 	"contenttransfer-extension-description": "يتيح دفع المحتوى من موقع wiki إلى آخر",
@@ -75,5 +76,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "الصفحات المحددة ( $1 )",
 	"content-transfer-push-related-pages": "الصفحات ذات الصلة",
 	"contenttransfer-dialog-push-subgroup-label-linked": "مرجع",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "مُدرج",
 	"contenttransfer-user-picker-label": "نقل كمستخدم"
 }
