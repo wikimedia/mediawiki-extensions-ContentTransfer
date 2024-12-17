@@ -101,7 +101,8 @@ class Category implements IPageFilter {
 	public function modifyConds( $filterData, &$conds ) {
 		$db = $this->lb->getConnection( DB_REPLICA );
 		if ( isset( $filterData['category'] ) && $filterData['category'] !== false ) {
-			$conds[] = 'categorylinks.cl_to = ' . $db->addQuotes( $filterData['category'] );
+			$categoryLinksTableName = $db->tableName( 'categorylinks' );
+			$conds[] = "$categoryLinksTableName.cl_to = " . $db->addQuotes( $filterData['category'] );
 		}
 	}
 
