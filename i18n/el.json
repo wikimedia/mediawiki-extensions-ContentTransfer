@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fotis A."
+		]
+	},
+	"contenttransfer-extension-description": "Επιτρέπει την μεταφορά περιεχομένου από ένα wiki σε άλλο",
+	"contenttransfer": "Μεταφορά περιεχομένου",
+	"contenttransfer-text-filter-input-label": "Όνομα σελίδας",
+	"contenttransfer-namespace-filter-input-label": "Ονοματοχώρος",
+	"contenttransfer-dialog-push-action-done-label": "Ολοκληρώθηκε",
+	"contenttransfer-dialog-push-report-layout-label": "Αναφορά",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "Σελίδα $1",
+	"contenttransfer-target-picker-label": "Λήψη wiki",
+	"contenttransfer-no-pageprops": "Δεν είναι δυνατή η ανάκτηση των ιδιοτήτων της σελίδας",
+	"contenttransfer-no-login-token": "Δεν είναι δυνατή η ανάκτηση του διακριτικού σύνδεσης",
+	"contenttransfer-namespace-not-found": "Ο ονοματοχώρος \" $1 \" δεν βρέθηκε κατά τη λήψη του wiki. Δημιουργήστε τον ονοματοχώρο και δοκιμάστε να μεταφέρετε ξανά αυτήν τη σελίδα",
+	"contenttransfer-report-interrupted": "Η μεταφορά διακόπηκε! {{PLURAL:$1| μεταφέρθηκε με επιτυχία $1 σελίδα| $1 σελίδες}}",
+	"contenttransfer-no-csrf-token": "Δεν υπάρχει διακριτικό CSRF",
+	"contenttransfer-edit-fail": "Δεν είναι δυνατή η επεξεργασία της σελίδας κατά τη λήψη wiki",
+	"action-content-transfer": "μεταφορά περιεχομένου σε άλλα wiki",
+	"contenttransfer-page-protected": "Η σελίδα προστατεύεται, μπορείτε να προσπαθήσετε να επαναλάβετε τη μεταφορά",
+	"contenttransfer-only-modified-label": "Τροποποιήθηκε από την τελευταία μεταφορά",
+	"contenttransfer-only-modified-help": "Εμφάνιση μόνο σελίδων που έχουν τροποποιηθεί από την τελευταία μεταφορά. Αυτό θα επηρεάσει επίσης τις σχετικές σελίδες.",
+	"contenttransfer-generic-error": "Παρουσιάστηκε ένα σφάλμα",
+	"contenttransfer-include-related": "Συμπερίληψη προτύπων",
+	"contenttransfer-modified-since-label": "Τροποποιημένο από",
+	"apihelp-content-transfer-do-push-single-summary": "Μεταφέρει μια μονή σελίδα σε ένα wiki λήψης",
+	"apihelp-content-transfer-purge-pages-summary": "Καθαρίζει όλες τις σελίδες που μεταφέρθηκαν στο wiki λήψης",
+	"contenttransfer-apihelp-param-titles": "Διαχωρίστε τη λίστα ονομάτων σελίδων",
+	"contenttransfer-apihelp-param-target": "Λήψη ονόματος wiki",
+	"contenttransfer-apihelp-param-includerelated": "Bool. Ορίστε εάν θα πρέπει να μεταφέρονται και πόροι όπως συνδεδεμένες σελίδες, αρχεία και κατηγορίες της σελίδας",
+	"contenttransfer-apihelp-param-articleid": "Ακέραιος αριθμός. ID της σελίδας, που θα πρέπει να μεταφερθεί",
+	"contenttransfer-apihelp-param-force": "Bool. Αγνοήστε τις προειδοποιήσεις και μεταφέρετε ούτως ή άλλως",
+	"contenttransfer-dialog-push-subgroup-label-linked": "Παραπομπές",
+	"contenttransfer-user-picker-label": "Μεταφορά ως χρήστης"
+}
