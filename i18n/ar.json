@@ -4,6 +4,7 @@
 			"Alshamiri1",
 			"Asma",
 			"FiberAhmed",
+			"Meno25",
 			"أَحمد",
 			"محمد أحمد عبد الفتاح"
 		]
@@ -75,5 +76,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "الصفحات المحددة ( $1 )",
 	"content-transfer-push-related-pages": "الصفحات ذات الصلة",
 	"contenttransfer-dialog-push-subgroup-label-linked": "مرجع",
-	"contenttransfer-user-picker-label": "نقل كمستخدم"
+	"contenttransfer-user-picker-label": "نقل كمستخدم",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "مُدرج"
 }
