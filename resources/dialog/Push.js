@@ -84,8 +84,10 @@
 
 	contentTransfer.dialog.Push.prototype.makePreviewPanel = function() {
 		this.$previewPanel = $( '<div>' ).addClass( 'content-transfer-dialog-push-preview-panel' );
+
+		var pushTargetLabel = this.pushTarget.displayText || this.pushTarget.id;
 		var targetInfo = new OO.ui.LabelWidget( {
-			label: mw.message( 'contenttransfer-dialog-preview-target-info', this.pushTarget.url ).text()
+			label: mw.message( 'contenttransfer-dialog-preview-target-info', pushTargetLabel ).text()
 		} );
 		targetInfo.$element.addClass( 'content-transfer-preview-target-info' );
 		if( this.pushTarget.pushToDraft ) {
