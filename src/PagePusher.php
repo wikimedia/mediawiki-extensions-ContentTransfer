@@ -5,9 +5,9 @@ namespace ContentTransfer;
 use FatalError;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MWException;
 use Status;
-use Title;
 
 class PagePusher {
 	protected const USER_ACTION_ACKNOWLEDGE = 'ack';

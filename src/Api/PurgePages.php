@@ -3,7 +3,7 @@
 namespace ContentTransfer\Api;
 
 use ContentTransfer\PagePurger;
-use Title;
+use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class PurgePages extends PushSingle {

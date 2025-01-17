@@ -2,7 +2,7 @@
 
 namespace ContentTransfer;
 
-use Title;
+use MediaWiki\Title\Title;
 
 class PageContentProviderFactory {
 	/**

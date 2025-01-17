@@ -13,8 +13,8 @@ use ContentTransfer\Target;
 use ContentTransfer\TargetManager;
 use FormatJson;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Message;
-use Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class PushSingle extends ApiBase {
