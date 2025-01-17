@@ -4,7 +4,7 @@ namespace ContentTransfer;
 
 use Config;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 

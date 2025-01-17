@@ -4,10 +4,10 @@ namespace ContentTransfer;
 
 use File;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use ParserOutput;
 use RequestContext;
 use TextContent;
-use Title;
 use WikiPage;
 
 class PageContentProvider {

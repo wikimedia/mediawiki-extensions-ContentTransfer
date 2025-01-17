@@ -3,7 +3,7 @@
 namespace ContentTransfer;
 
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 use User;
 use Wikimedia\Rdbms\IDatabase;
 

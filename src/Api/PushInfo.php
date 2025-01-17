@@ -6,7 +6,7 @@ use ApiBase;
 use ApiMain;
 use ContentTransfer\PageContentProviderFactory;
 use ContentTransfer\PageProvider;
-use Title;
+use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class PushInfo extends ApiBase {
