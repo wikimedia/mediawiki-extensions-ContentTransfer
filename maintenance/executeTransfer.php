@@ -10,6 +10,7 @@ use ContentTransfer\Target;
 use ContentTransfer\TargetManager;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 require_once dirname( dirname( dirname( __DIR__ ) ) ) . '/maintenance/Maintenance.php';
 
