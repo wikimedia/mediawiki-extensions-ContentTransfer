@@ -4,7 +4,7 @@ namespace ContentTransfer;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use User;
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\IDatabase;
 
 class PushHistory {
