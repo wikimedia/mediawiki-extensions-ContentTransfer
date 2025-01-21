@@ -5,6 +5,7 @@ use ContentTransfer\PageContentProviderFactory;
 use ContentTransfer\PageFilterFactory;
 use ContentTransfer\PageProvider;
 use ContentTransfer\TargetManager;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 
 return [
