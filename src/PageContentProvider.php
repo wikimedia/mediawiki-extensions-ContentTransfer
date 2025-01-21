@@ -3,10 +3,10 @@
 namespace ContentTransfer;
 
 use File;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use ParserOutput;
-use RequestContext;
 use TextContent;
 use WikiPage;
 
