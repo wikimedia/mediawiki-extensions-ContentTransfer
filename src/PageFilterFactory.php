@@ -2,7 +2,7 @@
 
 namespace ContentTransfer;
 
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use Wikimedia\Rdbms\LoadBalancer;
 
 class PageFilterFactory {
