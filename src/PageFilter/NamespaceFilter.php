@@ -3,9 +3,9 @@
 namespace ContentTransfer\PageFilter;
 
 use ContentTransfer\IPageFilter;
-use IContextSource;
 use Language;
 use MediaWiki\Config\Config;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancer;
 

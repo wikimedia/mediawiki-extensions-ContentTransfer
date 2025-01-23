@@ -3,7 +3,7 @@
 namespace ContentTransfer\PageFilter;
 
 use ContentTransfer\IPageFilter;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use Wikimedia\Rdbms\LoadBalancer;
 
 class Category implements IPageFilter {
