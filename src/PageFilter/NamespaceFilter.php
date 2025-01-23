@@ -2,10 +2,10 @@
 
 namespace ContentTransfer\PageFilter;
 
-use Config;
 use ContentTransfer\IPageFilter;
 use IContextSource;
 use Language;
+use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancer;
 
