@@ -4,7 +4,7 @@ namespace ContentTransfer\Special;
 
 use ContentTransfer\PageFilterFactory;
 use ContentTransfer\TargetManager;
-use Html;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 
