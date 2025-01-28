@@ -2,10 +2,10 @@
 
 namespace ContentTransfer\Api;
 
-use ApiBase;
 use ContentTransfer\PageFilterFactory;
 use ContentTransfer\PageProvider;
 use FormatJson;
+use MediaWiki\Api\ApiBase;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ParamValidator\ParamValidator;
 

@@ -2,7 +2,6 @@
 
 namespace ContentTransfer\Api;
 
-use ApiBase;
 use ApiMain;
 use Content;
 use ContentTransfer\AuthenticatedRequestHandlerFactory;
@@ -12,6 +11,7 @@ use ContentTransfer\PushHistory;
 use ContentTransfer\Target;
 use ContentTransfer\TargetManager;
 use FormatJson;
+use MediaWiki\Api\ApiBase;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
