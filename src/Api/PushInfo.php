@@ -2,10 +2,10 @@
 
 namespace ContentTransfer\Api;
 
-use ApiBase;
 use ApiMain;
 use ContentTransfer\PageContentProviderFactory;
 use ContentTransfer\PageProvider;
+use MediaWiki\Api\ApiBase;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
