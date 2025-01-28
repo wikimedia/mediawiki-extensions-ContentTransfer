@@ -10,8 +10,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 use Psr\Log\LoggerInterface;
-use Status;
 use StatusValue;
 use Throwable;
 
