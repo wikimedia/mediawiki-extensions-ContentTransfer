@@ -6,7 +6,7 @@ use ContentTransfer\PageFilterFactory;
 use ContentTransfer\TargetManager;
 use Html;
 use MediaWiki\MediaWikiServices;
-use SpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 
 class Push extends SpecialPage {
 	/** @var TargetManager */
