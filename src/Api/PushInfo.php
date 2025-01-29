@@ -6,6 +6,7 @@ use ContentTransfer\PageContentProviderFactory;
 use ContentTransfer\PageProvider;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -107,7 +108,7 @@ class PushInfo extends ApiBase {
 	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
 		$value = parent::getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
 		if ( $paramName === 'titles' ) {
-			$titleIds = \FormatJson::decode( $value, true );
+			$titleIds = FormatJson::decode( $value, true );
 			$res = [];
 			foreach ( $titleIds as $titleId ) {
 				$title = Title::newFromId( $titleId );
