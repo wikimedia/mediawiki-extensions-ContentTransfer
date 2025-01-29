@@ -5,8 +5,8 @@ namespace ContentTransfer;
 use File;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
-use ParserOutput;
 use TextContent;
 use WikiPage;
 
