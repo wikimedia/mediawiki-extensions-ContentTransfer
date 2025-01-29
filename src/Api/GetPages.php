@@ -4,8 +4,8 @@ namespace ContentTransfer\Api;
 
 use ContentTransfer\PageFilterFactory;
 use ContentTransfer\PageProvider;
-use FormatJson;
 use MediaWiki\Api\ApiBase;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ParamValidator\ParamValidator;
 
