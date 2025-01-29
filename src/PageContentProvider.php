@@ -3,11 +3,11 @@
 namespace ContentTransfer;
 
 use File;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
-use TextContent;
 use WikiPage;
 
 class PageContentProvider {
