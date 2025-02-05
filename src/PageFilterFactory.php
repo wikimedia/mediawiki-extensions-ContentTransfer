@@ -3,29 +3,27 @@
 namespace ContentTransfer;
 
 use MediaWiki\Context\IContextSource;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 class PageFilterFactory {
 	/** @var array */
 	private $attribute;
-	/** @var LoadBalancer */
-	private $lb;
 	/** @var array */
 	private $filters = [];
 	/** @var bool */
 	private $isLoaded = false;
-	/** @var IContextSource */
-	private $context;
 
 	/**
 	 * @param array $attribute
-	 * @param LoadBalancer $lb
-	 * @param IContextSource $context
+	 * @param ObjectFactory $objectFactory
+	 * @param IContextSource $contextSource
 	 */
-	public function __construct( $attribute, LoadBalancer $lb, IContextSource $context ) {
+	public function __construct(
+		array $attribute,
+		private readonly ObjectFactory $objectFactory,
+		private readonly IContextSource $contextSource
+	) {
 		$this->attribute = $attribute;
-		$this->lb = $lb;
-		$this->context = $context;
 	}
 
 	/**
@@ -65,7 +63,7 @@ class PageFilterFactory {
 		}
 
 		$modules = [];
-		foreach ( $this->filters as $name => $instance ) {
+		foreach ( $this->filters as $instance ) {
 			$modules[] = $instance->getRLModule();
 		}
 
@@ -77,7 +75,7 @@ class PageFilterFactory {
 	 * @param IPageFilter $filter
 	 * @return array
 	 */
-	private function prepareForClient( IPageFilter $filter ) {
+	private function prepareForClient( IPageFilter $filter ): array {
 		return [
 			'id' => $filter->getId(),
 			'displayName' => $filter->getDisplayName(),
@@ -90,14 +88,12 @@ class PageFilterFactory {
 	 * Load Filters
 	 */
 	private function load() {
-		foreach ( $this->attribute as $name => $callable ) {
-			if ( !is_callable( $callable ) ) {
-				continue;
-			}
-			$instance = call_user_func_array( $callable, [ $this->lb, $this->context ] );
+		foreach ( $this->attribute as $name => $spec ) {
+			$instance = $this->objectFactory->createObject( $spec );
 			if ( !$instance instanceof IPageFilter ) {
 				continue;
 			}
+			$instance->setContextSource( $this->contextSource );
 			$this->filters[$name] = $instance;
 		}
 

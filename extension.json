@@ -27,9 +27,23 @@
 		},
 		"ContentTransfer": {
 			"PageFilters": {
-				"term": "\\ContentTransfer\\PageFilter\\PageName::factory",
-				"category": "\\ContentTransfer\\PageFilter\\Category::factory",
-				"namespace": "\\ContentTransfer\\PageFilter\\NamespaceFilter::factory"
+				"term": {
+					"class": "\\ContentTransfer\\PageFilter\\PageName",
+					"services": [ "DBLoadBalancer" ]
+				},
+				"category": {
+					"class": "\\ContentTransfer\\PageFilter\\Category",
+					"services": [ "DBLoadBalancer" ]
+				},
+				"namespace": {
+					"class": "\\ContentTransfer\\PageFilter\\NamespaceFilter",
+					"services": [
+						"DBLoadBalancer",
+						"ContentLanguage",
+						"MainConfig",
+						"NamespaceInfo"
+					]
+				}
 			}
 		}
 	},
@@ -47,7 +61,14 @@
 		"ContentTransfer\\": "src/"
 	},
 	"APIModules": {
-		"content-transfer-get-pages": "\\ContentTransfer\\Api\\GetPages",
+		"content-transfer-get-pages": {
+			"class": "\\ContentTransfer\\Api\\GetPages",
+			"services": [
+				"ContentTransferPageProvider",
+				"ContentTransferPageFilterFactory",
+				"HookContainer"
+			]
+		},
 		"content-transfer-push-info": {
 			"class": "\\ContentTransfer\\Api\\PushInfo",
 			"services": [
@@ -57,15 +78,19 @@
 		"content-transfer-do-push-single": {
 			"class": "\\ContentTransfer\\Api\\PushSingle",
 			"services": [
-				"ContentTransferPageContentProviderFactory",
-				"ContentTransferAuthenticatedRequestHandlerFactory"
+				"ContentTransferAuthenticatedRequestHandlerFactory",
+				"ContentTransferTargetManager",
+				"TitleFactory",
+				"ContentTransfer.PagePusherFactory"
 			]
 		},
 		"content-transfer-purge-pages": {
 			"class": "\\ContentTransfer\\Api\\PurgePages",
 			"services": [
-				"ContentTransferPageContentProviderFactory",
-				"ContentTransferAuthenticatedRequestHandlerFactory"
+				"ContentTransferAuthenticatedRequestHandlerFactory",
+				"ContentTransferTargetManager",
+				"TitleFactory",
+				"ContentTransfer.PagePusherFactory"
 			]
 		}
 	},

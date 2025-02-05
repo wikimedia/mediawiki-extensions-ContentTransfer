@@ -2,42 +2,37 @@
 
 namespace ContentTransfer\PageFilter;
 
+use Config;
 use ContentTransfer\IPageFilter;
 use Language;
-use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\LoadBalancer;
+use MediaWiki\Title\NamespaceInfo;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 class NamespaceFilter implements IPageFilter {
-	/** @var Language */
-	protected $lang;
-	/** @var Config */
-	protected $config;
+
 	/** @var IContextSource */
-	protected $context;
+	protected $context = null;
 
 	/**
-	 * @param LoadBalancer $lb
-	 * @param IContextSource $context
-	 * @return static
+	 * @param ILoadBalancer $lb
+	 * @param Language $lang
+	 * @param Config $config
+	 * @param NamespaceInfo $nsInfo
 	 */
-	public static function factory( LoadBalancer $lb, IContextSource $context ) {
-		return new static(
-			$context,
-			$context->getLanguage(),
-			MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'bsg' )
-		);
+	public function __construct(
+		private readonly ILoadBalancer $lb,
+		private readonly Language $lang,
+		private readonly Config $config,
+		private readonly NamespaceInfo $nsInfo
+	) {
 	}
 
 	/**
 	 * @param IContextSource $context
-	 * @param Language $language
-	 * @param Config $config
+	 * @return void
 	 */
-	public function __construct( IContextSource $context, Language $language, Config $config ) {
-		$this->lang = $language;
-		$this->config = $config;
+	public function setContextSource( IContextSource $context ): void {
 		$this->context = $context;
 	}
 
@@ -78,14 +73,13 @@ class NamespaceFilter implements IPageFilter {
 		$onlyContent = $this->config->get( 'ContentTransferOnlyContentNamespaces' );
 		$allowTalk = $this->config->get( 'ContentTransferAllowTalkNamespaces' );
 
-		$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-		$namespaceIds = array_unique( $namespaceInfo->getValidNamespaces() );
+		$namespaceIds = array_unique( $this->nsInfo->getValidNamespaces() );
 		if ( $onlyContent ) {
-			$namespaceIds = array_unique( $namespaceInfo->getContentNamespaces() );
+			$namespaceIds = array_unique( $this->nsInfo->getContentNamespaces() );
 		} elseif ( !$allowTalk ) {
 			$notTalk = [];
 			foreach ( $namespaceIds as $id ) {
-				if ( $namespaceInfo->isTalk( $id ) ) {
+				if ( $this->nsInfo->isTalk( $id ) ) {
 					continue;
 				}
 				$notTalk[] = $id;
@@ -129,9 +123,7 @@ class NamespaceFilter implements IPageFilter {
 	 */
 	public function modifyConds( $filterData, &$conds ) {
 		if ( isset( $filterData['namespace'] ) && $filterData['namespace'] !== false ) {
-			$dbr = MediaWikiServices::getInstance()
-				->getDBLoadBalancer()
-				->getConnection( DB_REPLICA );
+			$dbr = $this->lb->getConnection( DB_REPLICA );
 			$pageTableName = $dbr->tableName( 'page' );
 			$conds[] = "$pageTableName.page_namespace = " . (int)$filterData['namespace'];
 		}

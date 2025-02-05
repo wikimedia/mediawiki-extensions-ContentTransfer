@@ -38,15 +38,15 @@ class PurgePages extends PushSingle {
 	/**
 	 * Using the settings determine the value for the given parameter
 	 *
-	 * @param string $paramName Parameter name
-	 * @param array|mixed $paramSettings Default value or an array of settings
+	 * @param string $name Parameter name
+	 * @param array|mixed $settings Default value or an array of settings
 	 *  using PARAM_* constants.
 	 * @param bool $parseLimit Whether to parse and validate 'limit' parameters
 	 * @return mixed Parameter value
 	 */
-	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
-		$value = parent::getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
-		if ( $paramName === 'titles' ) {
+	protected function getParameterFromSettings( $name, $settings, $parseLimit ) {
+		$value = parent::getParameterFromSettings( $name, $settings, $parseLimit );
+		if ( $name === 'titles' ) {
 			return explode( '|', $value );
 		}
 		return $value;

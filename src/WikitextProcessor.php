@@ -49,7 +49,7 @@ class WikitextProcessor {
 			$nsMap[$nsName] = $nsCanonicalName;
 		}
 
-		$content = preg_replace_callback( "#\[\[(.*?)]]#", static function ( $matches ) use ( $nsMap ) {
+		return preg_replace_callback( "#\[\[(.*?)]]#", static function ( $matches ) use ( $nsMap ) {
 			$internalWikiLink = $matches[1];
 
 			$linkArr = explode( ':', $internalWikiLink );
@@ -76,7 +76,5 @@ class WikitextProcessor {
 
 			return $matches[0];
 		}, $content );
-
-		return $content;
 	}
 }

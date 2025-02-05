@@ -6,14 +6,8 @@ use StatusValue;
 
 class PagePurger {
 
-	/**
-	 * @var array
-	 */
-	protected $titles;
-	/** @var array */
-	protected $target;
 	/** @var AuthenticatedRequestHandler */
-	protected $requestHandler;
+	protected AuthenticatedRequestHandler $requestHandler;
 
 	/**
 	 * @param AuthenticatedRequestHandlerFactory $requestHandlerFactory
@@ -21,10 +15,12 @@ class PagePurger {
 	 * @param Target $target
 	 * @param bool|null $ignoreInsecureSSL
 	 */
-	public function __construct( $requestHandlerFactory, $titles, $target, $ignoreInsecureSSL = true ) {
-		$this->titles = $titles;
-		$this->target = $target;
-
+	public function __construct(
+		AuthenticatedRequestHandlerFactory $requestHandlerFactory,
+		private readonly array $titles,
+		Target $target,
+		bool $ignoreInsecureSSL = true
+	) {
 		$this->requestHandler = $requestHandlerFactory->newFromTarget( $target, $ignoreInsecureSSL );
 	}
 

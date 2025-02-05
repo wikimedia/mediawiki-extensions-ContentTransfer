@@ -2,89 +2,75 @@
 
 namespace ContentTransfer;
 
-use FatalError;
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Language\Language;
 use MediaWiki\Status\Status;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use MWException;
+use Psr\Log\LoggerInterface;
+use RuntimeException;
 
 class PagePusher {
 	protected const USER_ACTION_ACKNOWLEDGE = 'ack';
 	protected const USER_ACTION_FORCE = 'force';
 
-	/**
-	 * Title object being pushed
-	 *
-	 * @var Title
-	 */
-	protected $title;
-
 	/** @var AuthenticatedRequestHandler */
-	protected $requestHandler;
+	protected AuthenticatedRequestHandler $requestHandler;
 
 	/**
 	 * @var PageContentProvider
 	 */
-	protected $contentProvider;
+	protected PageContentProvider $contentProvider;
 
 	/**
-	 * Ignore warnings
-	 *
-	 * @var bool
+	 * @var string|bool
 	 */
-	protected $force;
-
-	/**
-	 * @var string
-	 */
-	protected $userAction = false;
-
-	/**
-	 * @var PushHistory
-	 */
-	protected $pushHistory;
+	protected string|bool $userAction = false;
 
 	/**
 	 * @var Status
 	 */
-	protected $status;
+	protected Status $status;
 
 	/**
 	 * @var bool
 	 */
-	protected $pushToDraft = false;
+	protected bool $pushToDraft = false;
 
 	/**
 	 * @var string
 	 */
-	protected $targetPushNamespaceName = '';
-
-	/**
-	 * @var \Psr\Log\LoggerInterface
-	 */
-	protected $logger = null;
+	protected string $targetPushNamespaceName = '';
 
 	/**
 	 *
 	 * @param Title $title
 	 * @param Target $target
 	 * @param PushHistory $pushHistory
-	 * @param AuthenticatedRequestHandlerFactory $requestHandlerFactory
-	 * @param PageContentProviderFactory $contentProviderFactory
 	 * @param bool|false $force
 	 * @param bool|false $ignoreInsecureSSL
+	 * @param AuthenticatedRequestHandlerFactory $requestHandlerFactory
+	 * @param PageContentProviderFactory $contentProviderFactory
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param Language $language
+	 * @param HookContainer $hookContainer
+	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
-		Title $title, Target $target, $pushHistory,
+		private readonly Title $title,
+		Target $target,
+		private readonly PushHistory $pushHistory,
+		private readonly bool $force,
+		bool $ignoreInsecureSSL,
 		AuthenticatedRequestHandlerFactory $requestHandlerFactory,
 		PageContentProviderFactory $contentProviderFactory,
-		bool $force = false, bool $ignoreInsecureSSL = false
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly Language $language,
+		private readonly HookContainer $hookContainer,
+		private readonly LoggerInterface $logger
 	) {
-		$this->title = $title;
 		$this->requestHandler = $requestHandlerFactory->newFromTarget( $target, $ignoreInsecureSSL );
 		$this->contentProvider = $contentProviderFactory->newFromTitle( $title );
-		$this->force = $force;
 
 		if ( $target->shouldPushToDraft() ) {
 			if ( $target->getDraftNamespace() ) {
@@ -92,10 +78,7 @@ class PagePusher {
 				$this->targetPushNamespaceName = $target->getDraftNamespace();
 			}
 		}
-
-		$this->pushHistory = $pushHistory;
 		$this->status = Status::newGood();
-		$this->logger = LoggerFactory::getInstance( 'ContentTransfer' );
 	}
 
 	/**
@@ -104,17 +87,17 @@ class PagePusher {
 	public function push() {
 		$this->logger->info( 'Pushing to ' . $this->getTargetTitleText() );
 		if ( $this->requestHandler->getPageProps( $this->getTargetTitleText() ) === null ) {
-			throw new MWException( 'Could not get page props' );
+			throw new RuntimeException( 'Could not get page props' );
 		}
 		if ( $this->ensurePushPossible() === false ) {
-			throw new MWException( 'Push not possible' );
+			throw new RuntimeException( 'Push not possible' );
 		}
 		if ( $this->requestHandler->getCSRFToken() === null ) {
-			throw new MWException( 'Could not get CSRF token' );
+			throw new RuntimeException( 'Could not get CSRF token' );
 		}
 		$pageId = $this->doPush();
 		if ( $pageId === false ) {
-			throw new MWException( 'Main push failed' );
+			throw new RuntimeException( 'Main push failed' );
 		}
 		$this->runAdditionalRequests( $pageId );
 	}
@@ -162,10 +145,7 @@ class PagePusher {
 	protected function doPush() {
 		$content = $this->contentProvider->getContent();
 
-		$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-		$wikiLanguage = MediaWikiServices::getInstance()->getContentLanguage();
-
-		$wikitextProcessor = new WikitextProcessor( $namespaceInfo, $wikiLanguage );
+		$wikitextProcessor = new WikitextProcessor( $this->namespaceInfo, $this->language );
 
 		$content = $wikitextProcessor->canonizeNamespacesInLinks( $content );
 
@@ -217,12 +197,10 @@ class PagePusher {
 
 	/**
 	 * @param int $pageId
-	 * @throws FatalError
-	 * @throws MWException
 	 */
 	protected function runAdditionalRequests( $pageId ) {
 		$requests = [];
-		MediaWikiServices::getInstance()->getHookContainer()->run(
+		$this->hookContainer->run(
 			'ContentTransferAdditionalRequests',
 			[
 				$this->title,
@@ -290,11 +268,10 @@ class PagePusher {
 	 */
 	protected function getTargetTitleText() {
 		$nsText = $this->title->getNsText();
-		$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 
 		$nsId = $this->title->getNamespace();
 		if ( $nsId !== NS_MAIN ) {
-			$nsCanonicalText = $namespaceInfo->getCanonicalName( $nsId );
+			$nsCanonicalText = $this->namespaceInfo->getCanonicalName( $nsId );
 			if ( $nsCanonicalText ) {
 				// If that's local variant of namespace like "Datei" - then translate it to canonical
 				$nsText = $nsCanonicalText;
@@ -303,7 +280,7 @@ class PagePusher {
 
 		if ( $this->pushToDraft ) {
 			if ( $this->contentProvider->isFile() ) {
-				$canonicalFileNs = $namespaceInfo->getCanonicalName( NS_FILE );
+				$canonicalFileNs = $this->namespaceInfo->getCanonicalName( NS_FILE );
 				return $canonicalFileNs . ':' .
 					$this->requestHandler->getTarget()->getDraftNamespace()
 						. '_' . $this->title->getDBkey();

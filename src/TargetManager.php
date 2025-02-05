@@ -9,7 +9,7 @@ class TargetManager {
 	/**
 	 * @param array $data
 	 */
-	public function __construct( $data ) {
+	public function __construct( array $data ) {
 		foreach ( $data as $key => $targetData ) {
 			$this->targets[$key] = Target::newFromData( $targetData );
 		}

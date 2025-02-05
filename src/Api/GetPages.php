@@ -5,8 +5,9 @@ namespace ContentTransfer\Api;
 use ContentTransfer\PageFilterFactory;
 use ContentTransfer\PageProvider;
 use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class GetPages extends ApiBase {
@@ -17,6 +18,19 @@ class GetPages extends ApiBase {
 	/** @var int */
 	protected $pageCount = 0;
 
+	public function __construct(
+		ApiMain $mainModule, string $moduleName,
+		private readonly PageProvider $pageProvider,
+		private readonly PageFilterFactory $pageFilterFactory,
+		private readonly HookContainer $hookContainer
+	) {
+		parent::__construct( $mainModule, $moduleName );
+	}
+
+	/**
+	 * @return void
+	 * @throws \MediaWiki\Api\ApiUsageException
+	 */
 	public function execute() {
 		$this->readInParameters();
 		$this->makePages();
@@ -41,33 +55,36 @@ class GetPages extends ApiBase {
 	/**
 	 * Using the settings determine the value for the given parameter
 	 *
-	 * @param string $paramName Parameter name
-	 * @param array|mixed $paramSettings Default value or an array of settings
+	 * @param string $name Parameter name
+	 * @param array|mixed $settings Default value or an array of settings
 	 *  using PARAM_* constants.
 	 * @param bool $parseLimit Whether to parse and validate 'limit' parameters
 	 * @return mixed Parameter value
 	 */
-	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
-		$value = parent::getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
-		if ( $paramName === 'filterData' ) {
+	protected function getParameterFromSettings( $name, $settings, $parseLimit ) {
+		$value = parent::getParameterFromSettings( $name, $settings, $parseLimit );
+		if ( $name === 'filterData' ) {
 			return FormatJson::decode( $value, true );
 		}
 		return $value;
 	}
 
+	/**
+	 * @return void
+	 * @throws \MediaWiki\Api\ApiUsageException
+	 */
 	protected function readInParameters() {
 		$this->filterData = $this->getParameter( 'filterData' );
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function makePages() {
-		$provider = $this->makeProvider();
-		$services = MediaWikiServices::getInstance();
-		/** @var PageFilterFactory $filterFactory */
-		$filterFactory = $services->getService( 'ContentTransferPageFilterFactory' );
-		$provider->setFilters( $filterFactory->getFilters(), $this->filterData );
-		$provider->execute();
-		$this->pageCount = $provider->getPageCount();
-		$pageTitles = $provider->getPages();
+		$this->pageProvider->setFilters( $this->pageFilterFactory->getFilters(), $this->filterData );
+		$this->pageProvider->execute();
+		$this->pageCount = $this->pageProvider->getPageCount();
+		$pageTitles = $this->pageProvider->getPages();
 		foreach ( $pageTitles as $title ) {
 			$this->pages[] = [
 				'id' => $title->getArticleId(),
@@ -79,22 +96,15 @@ class GetPages extends ApiBase {
 			return $a['prefixed_text'] < $b['prefixed_text'] ? -1 : 1;
 		} );
 
-		$services->getHookContainer()->run(
+		$this->hookContainer->run(
 			'ContentTransferApiAfterGetPages',
 			[ &$this->pageCount, &$this->pages ]
 		);
 	}
 
 	/**
-	 *
-	 * @return PageProvider
+	 * @return void
 	 */
-	protected function makeProvider() {
-		return MediaWikiServices::getInstance()->getService(
-			'ContentTransferPageProvider'
-		);
-	}
-
 	protected function returnPages() {
 		$result = $this->getResult();
 

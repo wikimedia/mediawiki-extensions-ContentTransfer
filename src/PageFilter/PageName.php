@@ -4,36 +4,32 @@ namespace ContentTransfer\PageFilter;
 
 use ContentTransfer\IPageFilter;
 use MediaWiki\Context\IContextSource;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LoadBalancer;
 
 class PageName implements IPageFilter {
-	/** @var LoadBalancer */
-	protected $lb;
 	/** @var IContextSource */
-	protected $context;
+	protected $context = null;
 
 	/** @var string */
-	protected $searchIndexTableName;
+	private string $searchIndexTableName;
 
 	/**
 	 * @param LoadBalancer $lb
-	 * @param IContextSource $context
-	 * @return static
 	 */
-	public static function factory( LoadBalancer $lb, IContextSource $context ) {
-		return new static( $lb, $context );
+	public function __construct(
+		private readonly ILoadBalancer $lb
+	) {
+		$this->searchIndexTableName =
+			$lb->getConnection( DB_REPLICA )->tableName( 'searchindex' );
 	}
 
 	/**
-	 * @param LoadBalancer $lb
 	 * @param IContextSource $context
+	 * @return void
 	 */
-	public function __construct( LoadBalancer $lb, IContextSource $context ) {
-		$this->lb = $lb;
+	public function setContextSource( IContextSource $context ): void {
 		$this->context = $context;
-
-		$this->searchIndexTableName =
-			$lb->getConnection( DB_REPLICA )->tableName( 'searchindex' );
 	}
 
 	/**

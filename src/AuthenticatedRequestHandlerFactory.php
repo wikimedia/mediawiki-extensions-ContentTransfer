@@ -3,17 +3,24 @@
 namespace ContentTransfer;
 
 use MediaWiki\Config\Config;
+use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Utils\UrlUtils;
+use Psr\Log\LoggerInterface;
 
 class AuthenticatedRequestHandlerFactory {
 
-	/** @var Config */
-	private Config $config;
-
 	/**
 	 * @param Config $config
+	 * @param HttpRequestFactory $httpRequestFactory
+	 * @param UrlUtils $urlUtils
+	 * @param LoggerInterface $logger
 	 */
-	public function __construct( Config $config ) {
-		$this->config = $config;
+	public function __construct(
+		private readonly Config $config,
+		private readonly HttpRequestFactory $httpRequestFactory,
+		private readonly UrlUtils $urlUtils,
+		private readonly LoggerInterface $logger
+	) {
 	}
 
 	/**
@@ -27,7 +34,9 @@ class AuthenticatedRequestHandlerFactory {
 			$ignoreInsecureSSL = $this->isInsecure();
 		}
 
-		return new AuthenticatedRequestHandler( $target, $ignoreInsecureSSL );
+		return new AuthenticatedRequestHandler(
+			$target, $ignoreInsecureSSL, $this->httpRequestFactory, $this->logger, $this->urlUtils
+		);
 	}
 
 	/**
