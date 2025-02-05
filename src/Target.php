@@ -3,16 +3,6 @@
 namespace ContentTransfer;
 
 class Target {
-	/** @var string */
-	private $url;
-	/** @var array */
-	private $users;
-	/** @var string */
-	private $draftNamespace;
-	/** @var bool */
-	private $pushToDraft;
-	/** @var string */
-	private $displayText;
 	/** @var array */
 	private $selectedUser;
 
@@ -30,28 +20,27 @@ class Target {
 				'password' => $data['password']
 			];
 		}
-		$draftNs = isset( $data['draftNamespace'] ) ? $data['draftNamespace'] : '';
-		$pushToDraft = isset( $data['pushToDraft'] ) ? (bool)$data['pushToDraft'] : false;
-		$displayText = isset( $data['displayText'] ) ? $data['displayText'] : '';
+		$draftNs = $data['draftNamespace'] ?? '';
+		$pushToDraft = isset( $data['pushToDraft'] ) && $data['pushToDraft'];
+		$displayText = $data['displayText'] ?? '';
 
 		return new static( $data['url'], $users, $draftNs, $pushToDraft, $displayText );
 	}
 
 	/**
 	 * @param string $url
-	 * @param string $users
-	 * @param string|null $draftNamespace
+	 * @param array $users
+	 * @param string $draftNamespace
 	 * @param bool|null $pushToDraft
-	 * @param string|null $displayText
+	 * @param string $displayText
 	 */
 	public function __construct(
-		$url, $users, $draftNamespace = '', $pushToDraft = false, $displayText = ''
+		private readonly string $url,
+		private readonly array $users,
+		private readonly string $draftNamespace = '',
+		private readonly bool $pushToDraft = false,
+		private readonly string $displayText = ''
 	) {
-		$this->url = $url;
-		$this->users = $users;
-		$this->draftNamespace = $draftNamespace;
-		$this->pushToDraft = $pushToDraft;
-		$this->displayText = $displayText;
 	}
 
 	/**

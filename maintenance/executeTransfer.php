@@ -1,11 +1,9 @@
 <?php
 
-use ContentTransfer\AuthenticatedRequestHandlerFactory;
 use ContentTransfer\PageContentProviderFactory;
 use ContentTransfer\PageFilterFactory;
 use ContentTransfer\PageProvider;
-use ContentTransfer\PagePusher;
-use ContentTransfer\PushHistory;
+use ContentTransfer\PagePusherFactory;
 use ContentTransfer\Target;
 use ContentTransfer\TargetManager;
 use MediaWiki\MediaWikiServices;
@@ -95,17 +93,8 @@ class ExecuteTransfer extends Maintenance {
 	 */
 	private $contentProviderFactory;
 
-	/**
-	 * @var AuthenticatedRequestHandlerFactory
-	 */
-	private $requestHandlerFactory;
-
-	/**
-	 * See config "ContentTransferIgnoreInsecureSSL"
-	 *
-	 * @var bool
-	 */
-	private $ignoreInsecureSsl;
+	/** @var PagePusherFactory */
+	private readonly PagePusherFactory $pagePusherFactory;
 
 	public function __construct() {
 		parent::__construct();
@@ -153,8 +142,9 @@ class ExecuteTransfer extends Maintenance {
 		$this->contentProviderFactory = MediaWikiServices::getInstance()->getService(
 			'ContentTransferPageContentProviderFactory'
 		);
-		$this->requestHandlerFactory = MediaWikiServices::getInstance()->getService(
-			'ContentTransferAuthenticatedRequestHandlerFactory'
+
+		$this->pagePusherFactory = $this->getServiceContainer()->getService(
+			'ContentTransfer.PagePusherFactory'
 		);
 
 		if ( $this->hasOption( 'json-config' ) ) {
@@ -168,8 +158,6 @@ class ExecuteTransfer extends Maintenance {
 		}
 
 		$this->output( "User: {$this->user->getName()}\n\n" );
-
-		$this->ignoreInsecureSsl = $this->getConfig()->get( 'ContentTransferIgnoreInsecureSSL' );
 
 		$this->output( "Content transfer started.\n" );
 
@@ -506,23 +494,20 @@ class ExecuteTransfer extends Maintenance {
 	 * @return void
 	 */
 	private function transferTitle( Title $title, Target $target ): void {
-		$pushHistory = new PushHistory( $title, $this->user, $target->getDisplayText() );
-		$pagePusher = new PagePusher(
-			$title,
-			$target,
-			$pushHistory,
-			$this->requestHandlerFactory,
-			$this->contentProviderFactory,
-			$this->force,
-			$this->ignoreInsecureSsl
+		$pushHistory = $this->pagePusherFactory->newPushHistory( $title, $this->user, $target->getDisplayText() );
+		$pagePusher = $this->pagePusherFactory->newPusher(
+			$title, $target, $pushHistory, $this->force
 		);
 
 		$pagePusher->push();
 
 		$status = $pagePusher->getStatus();
-		if ( $status->getErrors() ) {
+		if ( !$status->isOK() ) {
 			$this->output( "Transfer failed. Errors:\n" );
-			$this->output( "{$status->getMessage()}\n\n" );
+			foreach ( $status->getMessages() as $error ) {
+				$errorMsg = \MediaWiki\Message\Message::newFromSpecifier( $error )->text();
+				$this->output( "Error: $errorMsg\n" );
+			}
 			return;
 		}
 
@@ -561,7 +546,7 @@ class ExecuteTransfer extends Maintenance {
 		}
 
 		if ( isset( $modificationData['onlyModified'] ) && $modificationData['onlyModified'] ) {
-			$pushHistory = new PushHistory( $title, $this->user, $target );
+			$pushHistory = $this->pagePusherFactory->newPushHistory( $title, $this->user, $target );
 			return $pushHistory->isChangedSinceLastPush();
 		}
 

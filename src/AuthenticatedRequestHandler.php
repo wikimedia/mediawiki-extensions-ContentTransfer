@@ -7,10 +7,12 @@ use Exception;
 use File;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttpRequest;
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
+use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
 use StatusValue;
 use Throwable;
@@ -33,34 +35,30 @@ class AuthenticatedRequestHandler {
 	 */
 	protected $tokens;
 
-	/** @var bool */
-	protected $ignoreInsecureSSL = false;
-
 	/**
 	 * @var Status
 	 */
 	protected $status;
 
-	/** @var Target */
-	protected $target;
-
 	/** @var bool */
 	protected $authenticated = false;
-
-	/** @var LoggerInterface */
-	protected $logger;
 
 	/**
 	 *
 	 * @param Target $target
 	 * @param bool $ignoreInsecureSSL
+	 * @param HttpRequestFactory $httpRequestFactory
+	 * @param LoggerInterface $logger
+	 * @param UrlUtils $urlUtils
 	 */
-	public function __construct( Target $target, $ignoreInsecureSSL ) {
-		$this->target = $target;
-		$this->ignoreInsecureSSL = $ignoreInsecureSSL;
+	public function __construct(
+		private readonly Target $target,
+		private readonly bool $ignoreInsecureSSL,
+		private readonly HttpRequestFactory $httpRequestFactory,
+		private readonly LoggerInterface $logger,
+		private readonly UrlUtils $urlUtils
+	) {
 		$this->status = Status::newGood();
-
-		$this->logger = LoggerFactory::getInstance( 'ContentTransfer' );
 	}
 
 	protected function authenticate() {
@@ -241,8 +239,7 @@ class AuthenticatedRequestHandler {
 			]
 		];
 
-		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
-		$parsedUrl = $urlUtils->parse( $this->target->getUrl() );
+		$parsedUrl = $this->urlUtils->parse( $this->target->getUrl() );
 		$cookieHeader = $this->cookieJar->serializeToHttpRequest( $parsedUrl['path'] ?: '/', $parsedUrl['host'] );
 		try {
 			$response = $this->guzzleDirectRequest( $this->target->getUrl(), $postData, [ 'Cookie' => $cookieHeader ] );
@@ -284,7 +281,7 @@ class AuthenticatedRequestHandler {
 
 	/**
 	 *
-	 * @param MWHttpRequest $request
+	 * @param GuzzleHttpRequest $request
 	 * @param Status $status
 	 * @return StatusValue
 	 */
@@ -315,7 +312,9 @@ class AuthenticatedRequestHandler {
 
 		if ( !$status->isOK() ) {
 			$this->status = $status;
-			$this->logger->error( 'Login failed. $status message - "' . $status->getMessage() . '"' );
+			$msg = $status->getMessages()[0];
+			$msg = Message::newFromSpecifier( $msg )->text();
+			$this->logger->error( 'Login failed. $status message - "' . $msg . '"' );
 			return false;
 		}
 
@@ -350,12 +349,10 @@ class AuthenticatedRequestHandler {
 			$this->deSecuritize( $params );
 		}
 
-		return MediaWikiServices::getInstance()->getHttpRequestFactory()
-			->create(
-				$this->target->getUrl(),
-				$params,
-				__METHOD__
-			);
+		return $this->httpRequestFactory->create(
+			$this->target->getUrl(),
+			$params
+		);
 	}
 
 	/**
@@ -423,7 +420,7 @@ class AuthenticatedRequestHandler {
 			'headers' => $headers,
 			'timeout' => 120
 		];
-		$config['headers']['User-Agent'] = MediaWikiServices::getInstance()->getHttpRequestFactory()->getUserAgent();
+		$config['headers']['User-Agent'] = $this->httpRequestFactory->getUserAgent();
 		// Create client manually, since calling `createGuzzleClient` on httpFactory will throw a fatal
 		// complaining `$this->options` is NULL. Which should not happen, but I cannot find why it happens
 		$client = new Client( $config );

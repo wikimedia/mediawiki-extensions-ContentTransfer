@@ -3,18 +3,18 @@
 namespace ContentTransfer\Api;
 
 use ContentTransfer\AuthenticatedRequestHandlerFactory;
-use ContentTransfer\PageContentProviderFactory;
 use ContentTransfer\PagePusher;
-use ContentTransfer\PushHistory;
+use ContentTransfer\PagePusherFactory;
 use ContentTransfer\Target;
 use ContentTransfer\TargetManager;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Content\Content;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class PushSingle extends ApiBase {
@@ -29,18 +29,6 @@ class PushSingle extends ApiBase {
 	protected $pusher;
 	/** @var bool */
 	protected $force = false;
-	/** @var TargetManager */
-	private $targetManager;
-
-	/**
-	 * @var PageContentProviderFactory
-	 */
-	protected $contentProviderFactory;
-
-	/**
-	 * @var AuthenticatedRequestHandlerFactory
-	 */
-	protected $requestHandlerFactory;
 
 	/** @var string */
 	private $targetId;
@@ -48,22 +36,25 @@ class PushSingle extends ApiBase {
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
-	 * @param PageContentProviderFactory $contentProviderFactory
 	 * @param AuthenticatedRequestHandlerFactory $requestHandlerFactory
+	 * @param TargetManager $targetManager
+	 * @param TitleFactory $titleFactory
+	 * @param PagePusherFactory $pagePusherFactory
 	 */
 	public function __construct(
-		ApiMain $mainModule, $moduleName,
-		PageContentProviderFactory $contentProviderFactory,
-		AuthenticatedRequestHandlerFactory $requestHandlerFactory
+		ApiMain $mainModule, string $moduleName,
+		protected readonly AuthenticatedRequestHandlerFactory $requestHandlerFactory,
+		private readonly TargetManager $targetManager,
+		private readonly TitleFactory $titleFactory,
+		private readonly PagePusherFactory $pagePusherFactory
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->targetManager = MediaWikiServices::getInstance()->getService(
-			'ContentTransferTargetManager'
-		);
-		$this->contentProviderFactory = $contentProviderFactory;
-		$this->requestHandlerFactory = $requestHandlerFactory;
 	}
 
+	/**
+	 * @return void
+	 * @throws ApiUsageException
+	 */
 	public function execute() {
 		$this->isAuthorized();
 		$this->readInParameters();
@@ -71,6 +62,10 @@ class PushSingle extends ApiBase {
 		$this->returnData();
 	}
 
+	/**
+	 * @return void
+	 * @throws ApiUsageException
+	 */
 	protected function isAuthorized() {
 		if ( !$this->getUser()->isAllowed( 'content-transfer' ) ) {
 			$this->dieWithError( 'You don\'t have permission to push pages', 'permissiondenied' );
@@ -113,38 +108,37 @@ class PushSingle extends ApiBase {
 	/**
 	 * Using the settings determine the value for the given parameter
 	 *
-	 * @param string $paramName Parameter name
-	 * @param array|mixed $paramSettings Default value or an array of settings
+	 * @param string $name Parameter name
+	 * @param array|mixed $settings Default value or an array of settings
 	 *  using PARAM_* constants.
 	 * @param bool $parseLimit Whether to parse and validate 'limit' parameters
 	 * @return mixed Parameter value
 	 */
-	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
-		$value = parent::getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
-		if ( $paramName === 'pushTarget' ) {
+	protected function getParameterFromSettings( $name, $settings, $parseLimit ) {
+		$value = parent::getParameterFromSettings( $name, $settings, $parseLimit );
+		if ( $name === 'pushTarget' ) {
 			return FormatJson::decode( $value, true );
 
 		}
 		return $value;
 	}
 
+	/**
+	 * @throws ApiUsageException
+	 */
 	protected function readInParameters() {
 		$articleId = $this->getParameter( 'articleId' );
 		$pushTarget = $this->getParameter( 'pushTarget' );
 		$this->setPushTarget( $pushTarget );
-		$this->title = Title::newFromID( $articleId );
-		$this->force = $this->getParameter( 'force' ) ? true : false;
-	}
-
-	protected function prepareContent() {
-		$contentProvider = $this->contentProviderFactory->newFromTitle( $this->title );
-		$this->content = $contentProvider->getContent();
+		$this->title = $this->titleFactory->newFromID( $articleId );
+		$this->force = (bool)$this->getParameter( 'force' );
 	}
 
 	/**
 	 *
 	 * @param array $pushTarget
 	 * @return void
+	 * @throws ApiUsageException
 	 */
 	protected function setPushTarget( $pushTarget ) {
 		$target = $this->targetManager->getTarget( $pushTarget['id'] );
@@ -161,22 +155,23 @@ class PushSingle extends ApiBase {
 		$this->targetId = $pushTarget['id'];
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function doPush() {
-		$ignoreInsecureSSL = $this->getConfig()->get( 'ContentTransferIgnoreInsecureSSL' );
-
-		$pushHistory = new PushHistory( $this->title, $this->getUser(), $this->targetId );
-		$this->pusher = new PagePusher(
+		$pushHistory = $this->pagePusherFactory->newPushHistory( $this->title, $this->getUser(), $this->targetId );
+		$this->pusher = $this->pagePusherFactory->newPusher(
 			$this->title,
 			$this->target,
 			$pushHistory,
-			$this->requestHandlerFactory,
-			$this->contentProviderFactory,
-			$this->force,
-			$ignoreInsecureSSL
+			$this->force
 		);
 		$this->pusher->push();
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function returnData() {
 		$result = $this->getResult();
 
@@ -190,7 +185,6 @@ class PushSingle extends ApiBase {
 			if ( $this->pusher->getUserAction() !== false ) {
 				$result->addValue( null, 'userAction', $this->pusher->getUserAction() );
 			}
-			return;
 		}
 	}
 

@@ -2,44 +2,51 @@
 
 namespace ContentTransfer;
 
+use BadMethodCallException;
+use Category;
 use File;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputLinkTypes;
+use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
-use WikiPage;
+use MediaWiki\Title\TitleFactory;
+use RepoGroup;
+use RuntimeException;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 class PageContentProvider {
-	/** @var Title */
-	protected $title;
-	/** @var WikiPage */
-	protected $wikipage;
-
-	/**
-	 *
-	 * @var ParserOutput
-	 */
-	protected $parserOutput;
-
-	/**
-	 *
-	 * @var array
-	 */
-	protected $relatedTitles = [];
+	/** @var ParserOutput|null */
+	protected ?ParserOutput $parserOutput = null;
 	/** @var array */
-	protected $transcluded = [];
+	protected array $relatedTitles = [];
+	/** @var array */
+	protected array $transcluded = [];
 	/** @var bool */
-	private $relatedLoaded = false;
+	private bool $relatedLoaded = false;
 
 	/**
 	 *
 	 * @param Title $title
+	 * @param RevisionLookup $revisionLookup
+	 * @param RevisionRenderer $revisionRenderer
+	 * @param TitleFactory $titleFactory
+	 * @param RepoGroup $repoGroup
+	 * @param ILoadBalancer $lb
 	 */
-	public function __construct( Title $title ) {
-		$this->title = $title;
-		$this->wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->title );
-		$this->parserOutput = $this->wikipage->getContent()->getParserOutput( $this->title );
+	public function __construct(
+		private readonly Title $title,
+		private readonly RevisionLookup $revisionLookup,
+		private readonly RevisionRenderer $revisionRenderer,
+		private readonly TitleFactory $titleFactory,
+		private readonly RepoGroup $repoGroup,
+		private readonly ILoadBalancer $lb
+	) {
 	}
 
 	/**
@@ -51,6 +58,19 @@ class PageContentProvider {
 	 * @return Title[]
 	 */
 	public function getRelatedTitles( array $modificationData, $target = '' ) {
+		$revision = $this->revisionLookup->getRevisionByTitle( $this->title );
+		if ( !$revision ) {
+			throw new RuntimeException( 'Revision not found' );
+		}
+		$options = ParserOptions::newFromAnon();
+		$renderedRevision = $this->revisionRenderer->getRenderedRevision( $revision, $options );
+		if ( !$renderedRevision ) {
+			throw new RuntimeException( 'Failed to render revision' );
+		}
+		$this->parserOutput = $renderedRevision->getRevisionParserOutput();
+		if ( !$this->parserOutput ) {
+			throw new RuntimeException( 'Failed to get parser output' );
+		}
 		$this->extractTemplates();
 		$this->extractFiles();
 		$this->extractCategories();
@@ -71,16 +91,18 @@ class PageContentProvider {
 
 	/**
 	 * @return array of dbkeys of transcluded titles
-	 * @throws \MWException
 	 */
 	public function getTranscluded() {
 		$this->assertLoaded();
 		return $this->transcluded;
 	}
 
+	/**
+	 * @return void
+	 */
 	private function assertLoaded() {
 		if ( !$this->relatedLoaded ) {
-			throw new \MWException( 'Related titles not loaded. Call getRelatedTitles()' );
+			throw new BadMethodCallException( 'Related titles not loaded. Call getRelatedTitles()' );
 		}
 	}
 
@@ -89,7 +111,11 @@ class PageContentProvider {
 	 * @return string
 	 */
 	public function getContent() {
-		$content = $this->wikipage->getContent();
+		$revision = $this->revisionLookup->getRevisionByTitle( $this->title );
+		if ( !$revision ) {
+			throw new RuntimeException( 'Revision not found' );
+		}
+		$content = $revision->getContent( SlotRecord::MAIN );
 		return ( $content instanceof TextContent ) ? $content->getText() : '';
 	}
 
@@ -115,38 +141,49 @@ class PageContentProvider {
 			return null;
 		}
 
-		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->title );
-		return $file;
+		return $this->repoGroup->findFile( $this->title );
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function extractTemplates() {
-		$rawTemplates = $this->parserOutput->getTemplates();
+		$rawTemplates = $this->parserOutput->getLinkList( ParserOutputLinkTypes::TEMPLATE );
 		$this->relatedTitlesFromNestedArray( $rawTemplates, true );
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function extractFiles() {
-		$rawFiles = $this->parserOutput->getImages();
+		$rawFiles = $this->parserOutput->getLinkList( ParserOutputLinkTypes::MEDIA );
 		foreach ( $rawFiles as $dbKey => $value ) {
-			$fileTitle = Title::makeTitle( NS_FILE, $dbKey );
-			if ( $fileTitle instanceof Title && $fileTitle->exists() ) {
+			$fileTitle = $this->titleFactory->makeTitle( NS_FILE, $dbKey );
+			if ( $fileTitle->exists() ) {
 				$this->relatedTitles[ $fileTitle->getPrefixedDBkey() ] = $fileTitle;
 			}
 		}
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function extractCategories() {
-		$rawCategories = $this->parserOutput->getCategories();
+		$rawCategories = $this->parserOutput->getLinkList( ParserOutputLinkTypes::CATEGORY );
 		foreach ( $rawCategories as $catName => $displayText ) {
-			$category = \Category::newFromName( $catName );
+			$category = Category::newFromName( $catName );
 			if ( $category->getPage()->exists() ) {
-				$categoryTitle = Title::castFromPageIdentity( $category->getPage() );
+				$categoryTitle = $this->titleFactory->castFromPageIdentity( $category->getPage() );
 				$this->relatedTitles[ $categoryTitle->getPrefixedDBkey() ] = $categoryTitle;
 			}
 		}
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function extractLinks() {
-		$rawLinks = $this->parserOutput->getLinks();
+		$rawLinks = $this->parserOutput->getLinkList( ParserOutputLinkTypes::LOCAL );
 		$this->relatedTitlesFromNestedArray( $rawLinks );
 	}
 
@@ -156,9 +193,9 @@ class PageContentProvider {
 	 * @param bool|null $transcluded
 	 */
 	protected function relatedTitlesFromNestedArray( $nested, $transcluded = false ) {
-		foreach ( $nested as $ns => $pages ) {
-			foreach ( $pages as $dbKey => $pageId ) {
-				$title = Title::newFromId( $pageId );
+		foreach ( $nested as $pages ) {
+			foreach ( $pages as $pageId ) {
+				$title = $this->titleFactory->newFromID( $pageId );
 				if ( $title instanceof Title && $title->exists() ) {
 					$this->relatedTitles[ $title->getPrefixedDBkey() ] = $title;
 					if ( $transcluded ) {
@@ -188,7 +225,10 @@ class PageContentProvider {
 		}
 
 		if ( isset( $modificationData['onlyModified'] ) && $modificationData['onlyModified'] ) {
-			$pushHistory = new PushHistory( $title, RequestContext::getMain()->getUser(), $target );
+			$pushHistory = new PushHistory(
+				$title, RequestContext::getMain()->getUser(), $target,
+				$this->lb, $this->revisionLookup
+			);
 			return $pushHistory->isChangedSinceLastPush();
 		}
 

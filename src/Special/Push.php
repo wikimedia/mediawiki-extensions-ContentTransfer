@@ -27,7 +27,7 @@ class Push extends SpecialPage {
 		parent::execute( $subPage );
 
 		$out = $this->getOutput();
-		$out->addModules( 'ext.contenttransfer' );
+		$out->addModules( [ 'ext.contenttransfer' ] );
 
 		$out->addJsConfigVars( 'ctPushTargets', $this->targetManager->getTargetsForClient() );
 		$out->addJsConfigVars( 'ctFilters', $this->loadFilters() );

@@ -2,7 +2,9 @@
 
 namespace ContentTransfer;
 
-interface IPageFilter {
+use BlueSpice\Discovery\IContextSourceAware;
+
+interface IPageFilter extends IContextSourceAware {
 	/**
 	 * @return string
 	 */

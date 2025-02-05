@@ -5,41 +5,33 @@ namespace ContentTransfer;
 use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFactory;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LoadBalancer;
 
 class PageProvider {
-	/** @var Config */
-	protected $config;
-	/** @var LoadBalancer */
-	protected $lb;
 	/** @var array */
-	private $pageFilters;
+	private array $pageFilters;
 	/** @var array */
-	protected $filterData = [];
+	protected array $filterData = [];
 	/** @var int */
-	protected $pageCount = 0;
+	protected int $pageCount = 0;
 	/** @var array */
-	protected $pages = [];
+	protected array $pages = [];
 	/** @var bool */
-	protected $executed = false;
+	protected bool $executed = false;
 
 	/**
 	 * @param Config $config
 	 * @param LoadBalancer $lb
-	 * @return static
+	 * @param TitleFactory $titleFactory
 	 */
-	public static function factory( $config, $lb ) {
-		return new static( $config, $lb );
-	}
-
-	/**
-	 * @param Config $config
-	 * @param LoadBalancer $lb
-	 */
-	public function __construct( $config, $lb ) {
-		$this->config = $config;
-		$this->lb = $lb;
+	public function __construct(
+		private readonly Config $config,
+		private readonly ILoadBalancer $lb,
+		private readonly TitleFactory $titleFactory
+	) {
 	}
 
 	/**
@@ -56,26 +48,23 @@ class PageProvider {
 	 */
 	public function execute() {
 		$db = $this->lb->getConnection( DB_REPLICA );
-		$pageTableName = $db->tableName( 'page' );
-		$res = $db->select(
-			$this->getTables(),
-			[
-				"DISTINCT( $pageTableName.page_id )",
-				"$pageTableName.page_title",
-				"$pageTableName.page_namespace"
-			],
-			$this->makeConds( $db ),
-			__METHOD__,
-			[
-				'LIMIT' => $this->getLimit()
-			],
-			$this->makeJoins( $db )
-		);
+		$res = $db->newSelectQueryBuilder()
+			->tables( $this->getTables() )
+			->select( [
+				"DISTINCT( page_id )",
+				"page_title",
+				"page_namespace"
+			] )
+			->where( $this->makeConds( $db ) )
+			->limit( $this->getLimit() )
+			->joinConds( $this->makeJoins( $db ) )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$this->pages = [];
 		foreach ( $res as $row ) {
-			$title = Title::newFromRow( $row );
-			if ( $title instanceof Title && $title->exists() ) {
+			$title = $this->titleFactory->newFromRow( $row );
+			if ( $title->exists() ) {
 				$this->pages[] = $title;
 			}
 		}
@@ -90,17 +79,16 @@ class PageProvider {
 	 */
 	public function getPageCount() {
 		$db = $this->lb->getConnection( DB_REPLICA );
-		$pageTableName = $db->tableName( 'page' );
-		$res = $db->selectRow(
-			$this->getTables(),
-			[ "COUNT( DISTINCT( $pageTableName.page_id ) ) as count" ],
-			$this->makeConds( $db ),
-			__METHOD__,
-			[
-				'LIMIT' => $this->getLimit()
-			],
-			$this->makeJoins( $db )
-		);
+		$res = $db->newSelectQueryBuilder()
+			->tables( $this->getTables() )
+			->select( [
+				"COUNT( DISTINCT( page_id ) ) as count"
+			] )
+			->where( $this->makeConds( $db ) )
+			->limit( $this->getLimit() )
+			->joinConds( $this->makeJoins( $db ) )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		return (int)$res->count;
 	}
@@ -121,7 +109,7 @@ class PageProvider {
 		 * @var string $name
 		 * @var IPageFilter $filter
 		 */
-		foreach ( $this->pageFilters as $name => $filter ) {
+		foreach ( $this->pageFilters as $filter ) {
 			$filter->modifyTables( $tables );
 		}
 
@@ -162,35 +150,30 @@ class PageProvider {
 		$conds = [];
 		if ( $this->config->get( 'ContentTransferOnlyContentNamespaces' ) ) {
 			$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-			$pageTableName = $db->tableName( 'page' );
-			$conds[] = "$pageTableName.page_namespace IN (" . $db->makeList(
+			$conds[] = "page_namespace IN (" . $db->makeList(
 				array_unique( $namespaceInfo->getContentNamespaces() )
 			) . ')';
 		}
 		if ( isset( $this->filterData['modifiedSince'] ) ) {
 			$sinceDate = static::getModifiedSinceDate( $this->filterData['modifiedSince' ] );
 			if ( $sinceDate !== null ) {
-				$revisionTableName = $db->tableName( 'revision' );
-				$conds[] = "$revisionTableName.rev_timestamp >= " . $db->timestamp( $sinceDate );
+				$conds[] = "rev_timestamp >= " . $db->timestamp( $sinceDate );
 			}
 		}
 		if (
 			isset( $this->filterData['onlyModified'] ) &&
 			$this->filterData['onlyModified'] === true
 		) {
-			$pushHistoryTableName = $db->tableName( 'push_history' );
-			$revisionTableName = $db->tableName( 'revision' );
 			$exitsConds = [];
-			$exitsConds[] = "$pushHistoryTableName.ph_target = " . $db->addQuotes( $this->filterData['target'] );
-			$exitsConds[] = "$pushHistoryTableName.ph_timestamp <= $revisionTableName.rev_timestamp";
-			$conds[] = "$pushHistoryTableName.ph_page IS NULL OR (" . implode( ' AND ', $exitsConds ) . ')';
+			$exitsConds[] = "ph_target = " . $db->addQuotes( $this->filterData['target'] );
+			$exitsConds[] = "ph_timestamp <= rev_timestamp";
+			$conds[] = "ph_page IS NULL OR (" . implode( ' AND ', $exitsConds ) . ')';
 		}
 
 		/**
-		 * @var string $name
 		 * @var IPageFilter $filter
 		 */
-		foreach ( $this->pageFilters as $name => $filter ) {
+		foreach ( $this->pageFilters as $filter ) {
 			$filter->modifyConds( $this->filterData, $conds );
 		}
 		return $conds;

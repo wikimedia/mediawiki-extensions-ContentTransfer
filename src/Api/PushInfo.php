@@ -36,21 +36,15 @@ class PushInfo extends ApiBase {
 	protected $transcluded = [];
 
 	/**
-	 * @var PageContentProviderFactory
-	 */
-	private $contentProviderFactory;
-
-	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param PageContentProviderFactory $contentProviderFactory
 	 */
 	public function __construct(
-		ApiMain $mainModule, $moduleName,
-		PageContentProviderFactory $contentProviderFactory
+		ApiMain $mainModule, string $moduleName,
+		private readonly PageContentProviderFactory $contentProviderFactory
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->contentProviderFactory = $contentProviderFactory;
 	}
 
 	public function execute() {
@@ -99,15 +93,15 @@ class PushInfo extends ApiBase {
 	/**
 	 * Using the settings determine the value for the given parameter
 	 *
-	 * @param string $paramName Parameter name
-	 * @param array|mixed $paramSettings Default value or an array of settings
+	 * @param string $name Parameter name
+	 * @param array|mixed $settings Default value or an array of settings
 	 *  using PARAM_* constants.
 	 * @param bool $parseLimit Whether to parse and validate 'limit' parameters
 	 * @return mixed Parameter value
 	 */
-	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
-		$value = parent::getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
-		if ( $paramName === 'titles' ) {
+	protected function getParameterFromSettings( $name, $settings, $parseLimit ) {
+		$value = parent::getParameterFromSettings( $name, $settings, $parseLimit );
+		if ( $name === 'titles' ) {
 			$titleIds = FormatJson::decode( $value, true );
 			$res = [];
 			foreach ( $titleIds as $titleId ) {
