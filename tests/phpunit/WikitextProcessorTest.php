@@ -5,7 +5,7 @@ namespace ContentTransfer\Tests;
 use ContentTransfer\WikitextProcessor;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\MediaWikiServices;
-use NamespaceInfo;
+use MediaWiki\Title\NamespaceInfo;
 use PHPUnit\Framework\TestCase;
 
 /**

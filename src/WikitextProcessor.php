@@ -3,7 +3,7 @@
 namespace ContentTransfer;
 
 use MediaWiki\Language\Language;
-use NamespaceInfo;
+use MediaWiki\Title\NamespaceInfo;
 
 class WikitextProcessor {
 
