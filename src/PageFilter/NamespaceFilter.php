@@ -2,9 +2,9 @@
 
 namespace ContentTransfer\PageFilter;
 
-use Config;
 use ContentTransfer\IPageFilter;
 use Language;
+use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Rdbms\ILoadBalancer;
