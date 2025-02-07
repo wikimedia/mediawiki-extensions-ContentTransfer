@@ -2,7 +2,7 @@
 
 namespace ContentTransfer;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Revision\RevisionLookup;
