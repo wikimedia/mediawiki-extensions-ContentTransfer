@@ -9,6 +9,7 @@ use ContentTransfer\TargetManager;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 
 return [
 	'ContentTransferPageProvider' => static function ( MediaWikiServices $services ) {
