@@ -6,6 +6,7 @@ use ContentTransfer\PageProvider;
 use ContentTransfer\PagePusherFactory;
 use ContentTransfer\Target;
 use ContentTransfer\TargetManager;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
