@@ -28,9 +28,7 @@ return [
 		);
 	},
 	'ContentTransferTargetManager' => static function ( MediaWikiServices $services ) {
-		$config = $services->getMainConfig()->get( 'ContentTransferTargets' );
-
-		return new TargetManager( $config );
+		return new TargetManager( $services->getMainConfig() );
 	},
 	'ContentTransferAuthenticatedRequestHandlerFactory' => static function ( MediaWikiServices $services ) {
 		return new AuthenticatedRequestHandlerFactory(

@@ -6,6 +6,7 @@ use ContentTransfer\AuthenticatedRequestHandlerFactory;
 use ContentTransfer\PagePusher;
 use ContentTransfer\PagePusherFactory;
 use ContentTransfer\Target;
+use ContentTransfer\TargetAuthenticator\BotPassword;
 use ContentTransfer\TargetManager;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
@@ -140,7 +141,7 @@ class PushSingle extends ApiBase {
 	 * @return void
 	 * @throws ApiUsageException
 	 */
-	protected function setPushTarget( $pushTarget ) {
+	protected function setPushTarget( array $pushTarget ) {
 		$target = $this->targetManager->getTarget( $pushTarget['id'] );
 		if ( !$target ) {
 			$this->dieWithError(
@@ -148,7 +149,7 @@ class PushSingle extends ApiBase {
 				'push-invalid-target'
 			);
 		}
-		if ( isset( $pushTarget['selectedUser'] ) ) {
+		if ( isset( $pushTarget['selectedUser'] ) && $target instanceof BotPassword ) {
 			$target->selectUser( $pushTarget['selectedUser' ] );
 		}
 		$this->target = $target;

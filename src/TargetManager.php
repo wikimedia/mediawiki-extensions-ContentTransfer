@@ -2,17 +2,18 @@
 
 namespace ContentTransfer;
 
+use Config;
+
 class TargetManager {
 	/** @var Target[] */
-	private $targets = [];
+	private $targets = null;
 
 	/**
-	 * @param array $data
+	 * @param Config $config
 	 */
-	public function __construct( array $data ) {
-		foreach ( $data as $key => $targetData ) {
-			$this->targets[$key] = Target::newFromData( $targetData );
-		}
+	public function __construct(
+		private readonly Config $config
+	) {
 	}
 
 	/**
@@ -20,6 +21,7 @@ class TargetManager {
 	 * @return Target|null
 	 */
 	public function getTarget( $key ) {
+		$this->assertLoaded();
 		if ( !isset( $this->targets[$key] ) ) {
 			return null;
 		}
@@ -29,24 +31,21 @@ class TargetManager {
 	/**
 	 * @return array
 	 */
-	public function getTargetsForClient() {
-		$pushTargetsForClient = [];
-		foreach ( $this->targets as $key => $target ) {
-			$config = [
-				'url' => $target->getUrl(),
-				'pushToDraft' => $target->shouldPushToDraft(),
-				'draftNamespace' => $target->getDraftNamespace(),
-				'displayText' => $target->getDisplayText() ?: $key,
-				'users' => [],
-			];
+	public function getTargets() {
+		$this->assertLoaded();
+		return $this->targets;
+	}
 
-			foreach ( $target->getUsers() as $userConfig ) {
-				$config['users'][] = $userConfig['user'];
+	/**
+	 * @return void
+	 */
+	private function assertLoaded() {
+		if ( $this->targets === null ) {
+			$this->targets = [];
+			$data = $this->config->get( 'ContentTransferTargets' );
+			foreach ( $data as $key => $targetDefinition ) {
+				$this->targets[$key] = Target::newFromData( $key, $targetDefinition );
 			}
-
-			$pushTargetsForClient[$key] = $config;
 		}
-
-		return $pushTargetsForClient;
 	}
 }
