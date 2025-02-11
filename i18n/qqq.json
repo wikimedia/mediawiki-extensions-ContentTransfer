@@ -77,5 +77,6 @@
 	"content-transfer-push-related-pages": "Section title for list of related pages",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Section title for pages that are referenced in selected pages",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Section title for pages that are transcluded to selected pages",
-	"contenttransfer-user-picker-label": "Label for the transfer user field"
+	"contenttransfer-user-picker-label": "Label for the transfer user field",
+	"contenttransfer-authentication-no-user": "Error message when no user is selected"
 }

@@ -2,7 +2,6 @@
 
 namespace ContentTransfer;
 
-use CookieJar;
 use Exception;
 use File;
 use GuzzleHttp\Client;
@@ -10,9 +9,9 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttpRequest;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\UrlUtils;
+use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use StatusValue;
 use Throwable;
@@ -25,12 +24,6 @@ class AuthenticatedRequestHandler {
 	protected $pageProps = null;
 
 	/**
-	 *
-	 * @var CookieJar
-	 */
-	protected $cookieJar;
-
-	/**
 	 * @var array
 	 */
 	protected $tokens;
@@ -39,9 +32,6 @@ class AuthenticatedRequestHandler {
 	 * @var Status
 	 */
 	protected $status;
-
-	/** @var bool */
-	protected $authenticated = false;
 
 	/**
 	 *
@@ -59,16 +49,9 @@ class AuthenticatedRequestHandler {
 		private readonly UrlUtils $urlUtils
 	) {
 		$this->status = Status::newGood();
-	}
-
-	protected function authenticate() {
-		if ( !$this->authenticated ) {
-			$this->authenticated =
-				$this->getLoginToken() &&
-				$this->doLogin();
+		if ( $this->target->getAuthentication() instanceof LoggerAwareInterface ) {
+			$this->target->getAuthentication()->setLogger( $this->logger );
 		}
-
-		return $this->authenticated;
 	}
 
 	/**
@@ -77,7 +60,8 @@ class AuthenticatedRequestHandler {
 	 */
 	public function getPageProps( $title ) {
 		if ( !$this->pageProps ) {
-			if ( !$this->authenticate() ) {
+			if ( !$this->getTarget()->getAuthentication()->authenticate( $this ) ) {
+				$this->status = $this->getTarget()->getAuthentication()->getStatus();
 				return null;
 			}
 			$requestData = [
@@ -88,8 +72,6 @@ class AuthenticatedRequestHandler {
 			];
 
 			$request = $this->getRequest( $requestData );
-			$request->setCookieJar( $this->cookieJar );
-
 			$status = $request->execute();
 
 			if ( !$status->isOK() ) {
@@ -123,7 +105,8 @@ class AuthenticatedRequestHandler {
 	 */
 	public function getCSRFToken() {
 		if ( !isset( $this->tokens['csrf'] ) ) {
-			if ( !$this->authenticate() ) {
+			if ( !$this->getTarget()->getAuthentication()->authenticate( $this ) ) {
+				$this->status = $this->getTarget()->getAuthentication()->getStatus();
 				return null;
 			}
 			$requestData = [
@@ -134,7 +117,6 @@ class AuthenticatedRequestHandler {
 			];
 
 			$request = $this->getRequest( $requestData );
-			$request->setCookieJar( $this->cookieJar );
 
 			$status = $request->execute();
 
@@ -164,11 +146,10 @@ class AuthenticatedRequestHandler {
 	 * @return StatusValue
 	 */
 	public function runPushRequest( $requestData ) {
-		if ( !$this->authenticated || !isset( $this->tokens['csrf'] ) ) {
+		if ( !$this->getTarget()->getAuthentication()->isAuthenticated() || !isset( $this->tokens['csrf'] ) ) {
 			return StatusValue::newFatal( 'Preflight conditions not met' );
 		}
 		$request = $this->getRequest( $requestData );
-		$request->setCookieJar( $this->cookieJar );
 
 		return $this->statusFromRequest( $request, $request->execute() );
 	}
@@ -178,8 +159,9 @@ class AuthenticatedRequestHandler {
 	 * @param array $requestData
 	 * @return Status
 	 */
-	public function runAuthenticatedRequest( $requestData ) {
-		if ( !$this->authenticate() ) {
+	public function runAuthenticatedRequest( array $requestData ) {
+		if ( !$this->getTarget()->getAuthentication()->authenticate( $this ) ) {
+			$this->status = $this->getTarget()->getAuthentication()->getStatus();
 			return $this->status;
 		}
 		if ( !$this->getCSRFToken() ) {
@@ -187,7 +169,7 @@ class AuthenticatedRequestHandler {
 		}
 
 		$request = $this->getRequest( $requestData );
-		$request->setCookieJar( $this->cookieJar );
+		$this->target->getAuthentication()->decorateWithAuthentication( $request );
 
 		return $this->statusFromRequest( $request, $request->execute() );
 	}
@@ -240,9 +222,11 @@ class AuthenticatedRequestHandler {
 		];
 
 		$parsedUrl = $this->urlUtils->parse( $this->target->getUrl() );
-		$cookieHeader = $this->cookieJar->serializeToHttpRequest( $parsedUrl['path'] ?: '/', $parsedUrl['host'] );
 		try {
-			$response = $this->guzzleDirectRequest( $this->target->getUrl(), $postData, [ 'Cookie' => $cookieHeader ] );
+			$response = $this->guzzleDirectRequest(
+				$this->target->getUrl(), $postData,
+				$this->target->getAuthentication()->getAuthenticationHeader( $parsedUrl )
+			);
 			$this->logger->debug( 'File upload done. Response - ' . print_r( $response, true ) );
 			$response = FormatJson::decode( $response );
 		} catch ( Throwable $ex ) {
@@ -294,52 +278,12 @@ class AuthenticatedRequestHandler {
 
 	/**
 	 *
-	 * @return bool
-	 */
-	protected function doLogin() {
-		$requestData = [
-			'action' => 'login',
-			'lgname' => $this->target->getSelectedUser()['user'],
-			'lgpassword' => $this->target->getSelectedUser()['password'],
-			'lgtoken' => $this->tokens['login'],
-			'format' => 'json'
-		];
-
-		$request = $this->getRequest( $requestData );
-		$request->setCookieJar( $this->cookieJar );
-
-		$status = $request->execute();
-
-		if ( !$status->isOK() ) {
-			$this->status = $status;
-			$msg = $status->getMessages()[0];
-			$msg = Message::newFromSpecifier( $msg )->text();
-			$this->logger->error( 'Login failed. $status message - "' . $msg . '"' );
-			return false;
-		}
-
-		$this->logger->debug( 'Login request executed. Request content - "' . $request->getContent() . '"' );
-
-		$response = FormatJson::decode( $request->getContent() );
-
-		if ( $response->login->result === 'Success' ) {
-			$this->cookieJar = $request->getCookieJar();
-		} else {
-			$this->status = Status::newFatal( 'contenttransfer-authentication-bad-login' );
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 *
 	 * @param array $requestData
 	 * @param string $method
 	 * @param string|int $timeout
 	 * @return \MWHttpRequest
 	 */
-	protected function getRequest( $requestData, $method = 'POST', $timeout = 'default' ) {
+	public function getRequest( $requestData, $method = 'POST', $timeout = 'default' ) {
 		$params = [
 			'postData' => $requestData,
 			'method' => $method,
@@ -349,52 +293,12 @@ class AuthenticatedRequestHandler {
 			$this->deSecuritize( $params );
 		}
 
-		return $this->httpRequestFactory->create(
+		$request = $this->httpRequestFactory->create(
 			$this->target->getUrl(),
 			$params
 		);
-	}
-
-	/**
-	 *
-	 * @return bool
-	 */
-	protected function getLoginToken() {
-		$requestData = [
-			'action' => 'query',
-			'meta' => 'tokens',
-			'type' => 'login',
-			'format' => 'json'
-		];
-
-		$request = $this->getRequest( $requestData );
-		if ( $this->cookieJar ) {
-			$request->setCookieJar( $this->cookieJar );
-		}
-
-		$status = $request->execute();
-
-		if ( !$status->isOK() ) {
-			$this->status = $status;
-			$this->logger->error( 'Getting login token failed. $status message - "' . $status->getMessage() . '"' );
-			return false;
-		}
-
-		$this->logger->debug( 'Login token request executed. Request content - "' . $request->getContent() . '"' );
-
-		$response = FormatJson::decode( $request->getContent() );
-
-		if ( !property_exists( $response->query, 'tokens' ) ||
-			!property_exists( $response->query->tokens, 'logintoken' ) ) {
-			$this->status = Status::newFatal( 'contenttransfer-no-login-token' );
-			return false;
-		}
-
-		$this->cookieJar = $request->getCookieJar();
-
-		$this->tokens[ 'login' ] = $response->query->tokens->logintoken;
-
-		return true;
+		$this->target->getAuthentication()->decorateWithAuthentication( $request );
+		return $request;
 	}
 
 	/**
