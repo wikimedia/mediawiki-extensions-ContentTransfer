@@ -8,6 +8,7 @@ use ContentTransfer\TargetManager;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
+use OOUI\MessageWidget;
 
 class Push extends SpecialPage {
 	/** @var TargetManager */
@@ -26,6 +27,17 @@ class Push extends SpecialPage {
 	 */
 	public function execute( $subPage ) {
 		parent::execute( $subPage );
+
+		if ( $this->targetManager->getTargetsForClient() === [] ) {
+			$this->getOutput()->enableOOUI();
+			$this->getOutput()->addHTML(
+				new MessageWidget( [
+					'type' => 'warning',
+					'label' => $this->getContext()->msg( 'contenttransfer-no-targets' )->text()
+				] )
+			);
+			return;
+		}
 
 		$out = $this->getOutput();
 		$out->addModules( [ 'ext.contenttransfer' ] );
