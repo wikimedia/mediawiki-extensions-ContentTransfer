@@ -74,5 +74,6 @@
 	"content-transfer-push-related-pages": "Related pages",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Referenced",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Transcluded",
-	"contenttransfer-user-picker-label": "Transfer as user"
+	"contenttransfer-user-picker-label": "Transfer as user",
+	"contenttransfer-authentication-no-user": "No user for transfer selected"
 }
