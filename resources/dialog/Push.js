@@ -252,7 +252,11 @@
 		this.$progressPanel = $( '<div>' ).addClass( 'content-transfer-progress-panel' );
 		this.$pushTarget = $( '<div>' )
 			.addClass( 'content-transfer-progress-panel-push-target' )
-			.html( mw.message( 'contenttransfer-progress-push-target-label', this.pushTarget.url ).text() );
+			.html(
+				mw.message(
+				'contenttransfer-progress-push-target-label', this.pushTarget.displayText || this.pushTarget.id
+				).text()
+			);
 		this.$currentOperation = $( '<span>' ).addClass( 'content-transfer-progress-panel-current-op' );
 		this.progressBar = new OO.ui.ProgressBarWidget( {
 			progress: 0
