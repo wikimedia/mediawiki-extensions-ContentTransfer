@@ -5,6 +5,7 @@ use ContentTransfer\PageFilterFactory;
 use ContentTransfer\PageProvider;
 use ContentTransfer\PagePusherFactory;
 use ContentTransfer\Target;
+use ContentTransfer\TargetAuthenticator\BotPassword as BotPasswordAuthentication;
 use ContentTransfer\TargetManager;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
@@ -372,8 +373,11 @@ class ExecuteTransfer extends Maintenance {
 					continue;
 				}
 
-				if ( $selectedUser !== null ) {
-					$target->selectUser( $selectedUser );
+				if (
+					$selectedUser !== null && $target->getAuthentication() instanceof
+					BotPasswordAuthentication
+				) {
+					$target->getAuthentication()->selectUser( $selectedUser );
 				}
 
 				$this->targets[$targetName] = $target;

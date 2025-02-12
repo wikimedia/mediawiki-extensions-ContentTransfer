@@ -3,6 +3,7 @@
 namespace ContentTransfer\Special;
 
 use ContentTransfer\PageFilterFactory;
+use ContentTransfer\Target;
 use ContentTransfer\TargetManager;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
@@ -29,7 +30,10 @@ class Push extends SpecialPage {
 		$out = $this->getOutput();
 		$out->addModules( [ 'ext.contenttransfer' ] );
 
-		$out->addJsConfigVars( 'ctPushTargets', $this->targetManager->getTargetsForClient() );
+		$serializedTargets = array_map( static function ( Target $target ) {
+			return $target->jsonSerialize();
+		}, $this->targetManager->getTargets() );
+		$out->addJsConfigVars( 'ctPushTargets', $serializedTargets );
 		$out->addJsConfigVars( 'ctFilters', $this->loadFilters() );
 
 		$out->addJsConfigVars(

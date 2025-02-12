@@ -242,7 +242,7 @@
 			return;
 		}
 		var data = selected.getData(),
-			users = data.users;
+			users = data.users || [];
 
 		this.currentPushTarget = data.key;
 		this.loadPages();
