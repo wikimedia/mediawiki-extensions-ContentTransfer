@@ -70,5 +70,6 @@
 	"content-transfer-push-related-pages": "Verwandte Seiten",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Referenziert",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Eingebunden",
-	"contenttransfer-user-picker-label": "Übertragung als Benutzer"
+	"contenttransfer-user-picker-label": "Übertragung als Benutzer",
+	"contenttransfer-authentication-no-user": "Kein Benutzer für die Übertragung ausgewählt"
 }
