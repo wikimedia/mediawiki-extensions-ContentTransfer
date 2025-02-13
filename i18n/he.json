@@ -73,5 +73,6 @@
 	"content-transfer-push-related-pages": "דפים קשורים",
 	"contenttransfer-dialog-push-subgroup-label-linked": "דפים שמפנים אליהם",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "מוכללים",
-	"contenttransfer-user-picker-label": "להעביר כמשתמש"
+	"contenttransfer-user-picker-label": "להעביר כמשתמש",
+	"contenttransfer-authentication-no-user": "לא נבחר משתמש להעברה"
 }
