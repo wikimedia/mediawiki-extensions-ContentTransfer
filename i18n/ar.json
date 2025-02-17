@@ -77,5 +77,7 @@
 	"content-transfer-push-related-pages": "الصفحات ذات الصلة",
 	"contenttransfer-dialog-push-subgroup-label-linked": "مرجع",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "مُدرج",
-	"contenttransfer-user-picker-label": "نقل كمستخدم"
+	"contenttransfer-user-picker-label": "نقل كمستخدم",
+	"contenttransfer-authentication-no-user": "لم يتم تحديد أي مستخدم للنقل",
+	"contenttransfer-no-targets": "لم يتم تكوين أهداف النقل!"
 }
