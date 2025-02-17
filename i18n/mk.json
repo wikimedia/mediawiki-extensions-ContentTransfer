@@ -72,5 +72,6 @@
 	"content-transfer-push-related-pages": "Поврзани страници",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Наведени",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Превметнати",
-	"contenttransfer-user-picker-label": "Пренесување како корисник"
+	"contenttransfer-user-picker-label": "Пренесување како корисник",
+	"contenttransfer-authentication-no-user": "Нема избрано корисник за пренесување"
 }

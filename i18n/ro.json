@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Trotinel Iftode"
+		]
+	},
+	"contenttransfer-authentication-no-user": "Nu a fost selectat niciun utilizator pentru transfer",
+	"contenttransfer-no-targets": "Nu există ținte de transfer configurate!"
+}
