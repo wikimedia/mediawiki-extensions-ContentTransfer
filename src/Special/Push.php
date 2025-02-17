@@ -28,7 +28,7 @@ class Push extends SpecialPage {
 	public function execute( $subPage ) {
 		parent::execute( $subPage );
 
-		if ( $this->targetManager->getTargetsForClient() === [] ) {
+		if ( empty( $this->targetManager->getTargets() ) ) {
 			$this->getOutput()->enableOOUI();
 			$this->getOutput()->addHTML(
 				new MessageWidget( [
