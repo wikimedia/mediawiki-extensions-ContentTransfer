@@ -73,5 +73,6 @@
 	"contenttransfer-dialog-push-subgroup-label-linked": "Наведени",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Превметнати",
 	"contenttransfer-user-picker-label": "Пренесување како корисник",
-	"contenttransfer-authentication-no-user": "Нема избрано корисник за пренесување"
+	"contenttransfer-authentication-no-user": "Нема избрано корисник за пренесување",
+	"contenttransfer-no-targets": "Нема поставено цели за пренос."
 }

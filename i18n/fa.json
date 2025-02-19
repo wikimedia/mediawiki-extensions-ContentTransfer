@@ -64,5 +64,7 @@
 	"content-transfer-push-related-pages": "صفحه‌های مرتبط",
 	"contenttransfer-dialog-push-subgroup-label-linked": "ارجاع داده‌شده",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "تراگنجانیده",
-	"contenttransfer-user-picker-label": "انتقال به‌عنوان کاربر"
+	"contenttransfer-user-picker-label": "انتقال به‌عنوان کاربر",
+	"contenttransfer-authentication-no-user": "کاربری برای انتقال انتخاب نشده است",
+	"contenttransfer-no-targets": "هیچ هدفی برای انتقال پیکربندی نشده است!"
 }
