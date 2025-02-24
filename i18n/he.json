@@ -74,5 +74,6 @@
 	"contenttransfer-dialog-push-subgroup-label-linked": "דפים שמפנים אליהם",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "מוכללים",
 	"contenttransfer-user-picker-label": "להעביר כמשתמש",
-	"contenttransfer-authentication-no-user": "לא נבחר משתמש להעברה"
+	"contenttransfer-authentication-no-user": "לא נבחר משתמש להעברה",
+	"contenttransfer-no-targets": "אין יעדי העברה מוגדרים!"
 }
