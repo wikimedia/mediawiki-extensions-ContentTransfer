@@ -72,5 +72,7 @@
 	"content-transfer-push-related-pages": "Paginas associate",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Referentiate",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Transcludite",
-	"contenttransfer-user-picker-label": "Transferer como usator"
+	"contenttransfer-user-picker-label": "Transferer como usator",
+	"contenttransfer-authentication-no-user": "Necun usator seligite pro le transferimento",
+	"contenttransfer-no-targets": "Il non ha destinationes de transferimento configurate!"
 }
