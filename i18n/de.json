@@ -24,6 +24,7 @@
 	"contenttransfer-progress-current-operation": "Übertragen von $1",
 	"contenttransfer-report-success-count": "$1 von {{PLURAL:$2|einer Seite|$2 Seiten}} übertragen",
 	"contenttransfer-report-failure": "Gescheitert: $1",
+	"contenttransfer-report-failure-label": "Fehlgeschlagen",
 	"contenttransfer-target-picker-label": "Empfangs-Wiki",
 	"contenttransfer-progress-push-target-label": "Empfangs-Wiki: $1",
 	"contenttransfer-invalid-target": "Ungültiges Empfangs-Wiki",
@@ -72,5 +73,11 @@
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Eingebunden",
 	"contenttransfer-user-picker-label": "Übertragung als Benutzer",
 	"contenttransfer-authentication-no-user": "Kein Benutzer für die Übertragung ausgewählt",
-	"contenttransfer-no-targets": "Es sind keine Übertragungsziele konfiguriert!"
+	"contenttransfer-no-targets": "Es sind keine Übertragungsziele konfiguriert!",
+	"contenttransfer-progress-user-action-skip": "Überspringen",
+	"contenttransfer-progress-user-action-stop": "Übertragung stoppen",
+	"contenttransfer-progress-user-action-force": "Wiederholung erzwingen",
+	"contenttransfer-filter-panel-label": "Filter",
+	"contenttransfer-filter-toggle-btn-hide": "Verstecken",
+	"contenttransfer-filter-toggle-btn-show": "Anzeigen"
 }

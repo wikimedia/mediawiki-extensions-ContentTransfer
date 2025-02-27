@@ -26,7 +26,7 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Template ($1)",
 	"contenttransfer-progress-current-operation": "Transfering $1",
 	"contenttransfer-report-success-count": "Transferred $1 of {{PLURAL:$2|one page|$2 pages}}",
-	"contenttransfer-report-failure": "Failed: $1",
+	"contenttransfer-report-failure-label": "Failed",
 	"contenttransfer-target-picker-label": "Receiving wiki",
 	"contenttransfer-progress-push-target-label": "Receiving wiki: $1",
 	"contenttransfer-invalid-target": "Invalid receiving wiki",
@@ -53,7 +53,7 @@
 	"contenttransfer-too-many-pages-warning": "Page list is truncated due to configured limit of {{PLURAL:$2|one page|$2 pages}} per push. Total of {{PLURAL:$1|1 page|$1 pages}} fit the criteria",
 	"contenttransfer-ns-main": "(main)",
 	"contenttransfer-generic-error": "An error has occurred!",
-	"contenttransfer-include-related": "Include related",
+	"contenttransfer-include-related": "Include related pages",
 	"contenttransfer-modified-since-label": "Modified since",
 	"contenttransfer-modified-since-ph": "DD.MM.YYYY",
 	"apihelp-content-transfer-get-pages-summary": "Lists all pages that are pushable based on given filters",
@@ -76,5 +76,11 @@
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Transcluded",
 	"contenttransfer-user-picker-label": "Transfer as user",
 	"contenttransfer-authentication-no-user": "No user for transfer selected",
-	"contenttransfer-no-targets": "There are no transfer targets configured!"
+	"contenttransfer-no-targets": "There are no transfer targets configured!",
+	"contenttransfer-progress-user-action-skip": "Skip",
+	"contenttransfer-progress-user-action-stop": "Stop transfer",
+	"contenttransfer-progress-user-action-force": "Force retry",
+	"contenttransfer-filter-panel-label": "Filter",
+	"contenttransfer-filter-toggle-btn-hide": "Hide",
+	"contenttransfer-filter-toggle-btn-show": "Show"
 }

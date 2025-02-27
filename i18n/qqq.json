@@ -29,7 +29,7 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Section headline of the list of templates, that will be transfered.\n* $1 - Number of templates",
 	"contenttransfer-progress-current-operation": "Info text that shows what page is transfering at the moment\n* $1 - Name of the page that is transfering",
 	"contenttransfer-report-success-count": "Info text that shows how many pages of an amout of total available have been transfered.\n* $1 - Number of transfered pages\n* $2 - Total amount of available pages",
-	"contenttransfer-report-failure": "Info text that shows the error, whenever a page could not be transfered\n* $1 - The reason why the page could not be transfered",
+	"contenttransfer-report-failure-label": "Label for section that shows the error, whenever a page could not be transfered",
 	"contenttransfer-target-picker-label": "Label for target selection input\n{{Identical|Transfer target}}",
 	"contenttransfer-progress-push-target-label": "Info text, that shows the target, where the page will be transfered to.\n* $1 - Name of the target",
 	"contenttransfer-invalid-target": "Error message, when the selected target is invalid",
@@ -79,5 +79,11 @@
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Section title for pages that are transcluded to selected pages",
 	"contenttransfer-user-picker-label": "Label for the transfer user field",
 	"contenttransfer-authentication-no-user": "Error message when no user is selected",
-	"contenttransfer-no-targets": "Error message when no targets are available"
+	"contenttransfer-no-targets": "Error message when no targets are available",
+	"contenttransfer-progress-user-action-skip": "Button label for user action to skip transfer",
+	"contenttransfer-progress-user-action-stop": "Button label for user action to stop transfer",
+	"contenttransfer-progress-user-action-force": "Button label for user action to force retry transfer",
+	"contenttransfer-filter-panel-label": "Label for panel which contains filter for page selection",
+	"contenttransfer-filter-toggle-btn-hide": "Title for toggle button to hide filter panel",
+	"contenttransfer-filter-toggle-btn-show": "Title for toggle button to show filter panel"
 }

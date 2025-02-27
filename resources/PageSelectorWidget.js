@@ -12,8 +12,8 @@
 			}
 		} );
 
-		this.makeTargetPicker();
-		this.makeFilters();
+		this.makeSaveContainer();
+		this.makeTargetContainer();
 		this.makePageContainer();
 		mw.hook( 'ext.contenttransfer.pageselector.init' ).fire( this );
 
@@ -25,6 +25,36 @@
 	};
 
 	OO.initClass( contentTransfer.widget.PageSelectorWidget );
+
+	contentTransfer.widget.PageSelectorWidget.prototype.makeSaveContainer = function() {
+		this.includeRelated = new OO.ui.CheckboxInputWidget( { selected: true } );
+		this.pushPagesButton = new OO.ui.ButtonWidget( {
+			label: mw.message( 'contenttransfer-push-pages-button-label' ).plain(),
+			disabled: true,
+			flags: [
+				'primary',
+				'progressive'
+			]
+		} );
+		this.pushPagesButton.connect( this, { click: 'pushPages' } );
+		this.pushTargetLayout = new OO.ui.HorizontalLayout( {
+			items: [
+				new OO.ui.FieldLayout( this.includeRelated,{
+					align: 'inline',
+					label: mw.message( 'contenttransfer-include-related' ).plain(),
+					classes: [ 'related' ]
+				} ),
+				this.pushPagesButton
+			]
+		} );
+		this.pushTargetLayout.$element.addClass( 'content-transfer-push-cnt' );
+		this.$element.append( this.pushTargetLayout.$element );
+	};
+
+	contentTransfer.widget.PageSelectorWidget.prototype.makeTargetContainer = function() {
+		this.$element.append( $( '<h2>' ).html( 'Transfer to wiki' ) );
+		this.makeTargetPicker();
+	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.makeTargetPicker = function() {
 		this.pushTargets = mw.config.get( 'ctPushTargets' );
@@ -40,7 +70,6 @@
 			} ) );
 		}
 
-
 		this.userSelector = new OO.ui.DropdownInputWidget();
 		this.userSelector.connect( this, {
 			change: 'onPushUserChanged'
@@ -50,7 +79,7 @@
 			label: mw.message( 'contenttransfer-user-picker-label' ).plain(),
 			classes: [ 'picker' ]
 		} );
-		this.userSelectorLayout.$element.hide();
+		//this.userSelectorLayout.$element.hide();
 
 		this.pushTargetPicker = new OO.ui.DropdownWidget( {
 			menu: {
@@ -62,18 +91,6 @@
 			select: 'onPushTargetChanged'
 		} );
 
-		this.pushPagesButton = new OO.ui.ButtonWidget( {
-			label: mw.message( 'contenttransfer-push-pages-button-label' ).plain(),
-			disabled: true,
-			flags: [
-				'primary',
-				'progressive'
-			]
-		} );
-		this.pushPagesButton.connect( this, { click: 'pushPages' } );
-
-		this.includeRelated = new OO.ui.CheckboxInputWidget( { selected: true } );
-
 		this.pickerLayout = new OO.ui.HorizontalLayout( {
 			items: [
 				new OO.ui.FieldLayout( this.pushTargetPicker, {
@@ -84,22 +101,41 @@
 				this.userSelectorLayout
 			]
 		} );
-		this.pushTargetPickerLayout = new OO.ui.HorizontalLayout( {
-			items: [
-				this.pickerLayout,
-				new OO.ui.FieldLayout( this.includeRelated,{
-					align: 'right',
-					label: mw.message( 'contenttransfer-include-related' ).plain(),
-					classes: [ 'related' ]
-				} ),
-				this.pushPagesButton
-			]
-		} );
-		this.pushTargetPickerLayout.$element.addClass( 'content-transfer-targets-picker-layout' );
-		this.$element.append( this.pushTargetPickerLayout.$element );
+		this.pickerLayout.$element.addClass( 'content-transfer-targets-picker-layout' );
+		this.$element.append( this.pickerLayout.$element );
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.makeFilters = function() {
+		this.toggleFilterButton = new OO.ui.ButtonWidget( {
+			icon: this.expanded ? 'collapse' : 'expand',
+			framed: false,
+			classes: [ 'toggle-icon', 'collapsed-panel' ],
+			title: this.expanded ?
+				mw.message( 'contenttransfer-filter-toggle-btn-hide' ).text() :
+				mw.message( 'contenttransfer-filter-toggle-btn-show' ).text()
+		} );
+	
+		this.toggleFilterButton.connect( this, {
+			click: 'onToggleFilter'
+		} );
+	
+		this.filterHeaderLine = new OO.ui.HorizontalLayout( {
+			items: [
+				new OO.ui.LabelWidget( {
+					label: mw.message( 'contenttransfer-filter-panel-label' ).text()
+				} ),
+				this.toggleFilterButton
+			],
+			classes: [ 'content-transfer-pages-filter-header' ]
+		} );
+		this.$element.append( this.filterHeaderLine.$element );
+		this.filterPanel = new OO.ui.PanelLayout( {
+			expanded: false
+		});
+		if ( !this.expanded ) {
+			this.filterPanel.$element.hide();
+		}
+		
 		// Built-in filters
 		this.onlyModified = new OO.ui.CheckboxInputWidget( {
 			selected: true
@@ -120,7 +156,7 @@
 		} );
 
 		var onlyModifiedLayout = new OO.ui.FieldLayout( this.onlyModified, {
-			align: 'top',
+			align: 'inline',
 			label: mw.message( 'contenttransfer-only-modified-label' ).text(),
 			help: mw.message( 'contenttransfer-only-modified-help' ).text(),
 			classes: [ 'only-modified-layout' ]
@@ -161,37 +197,55 @@
 			new OO.ui.HorizontalLayout( { items: layouts } ).$element
 		);
 
-		this.$element.append( $filterLayout );
+		this.filterPanel.$element.append( $filterLayout );
+		this.$element.append( this.filterPanel.$element );
+	};
+
+	contentTransfer.widget.PageSelectorWidget.prototype.onToggleFilter = function () {
+		if ( !this.expanded ) {
+			// eslint-disable-next-line no-jquery/no-slide
+			this.filterPanel.$element.slideDown( 300, function () {
+				this.toggleFilterButton.setIcon( 'collapse' );
+				this.toggleFilterButton.setTitle( mw.message( 'contenttransfer-filter-toggle-btn-hide' ).text() );
+				this.expanded = true;
+			}.bind( this ) );
+		} else {
+			// eslint-disable-next-line no-jquery/no-slide
+			this.filterPanel.$element.slideUp( 300, function () {
+				this.toggleFilterButton.setIcon( 'expand' );
+				this.toggleFilterButton.setTitle( mw.message( 'contenttransfer-filter-toggle-btn-show' ).text() );
+				this.expanded = false;
+			}.bind( this ) );
+		}
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.makePageContainer = function() {
-		this.$pageContainer = $( '<div>' ).addClass( 'content-transfer-page-container' );
-		this.$element.append( this.$pageContainer );
-
 		this.$pagesHeader = $( '<div>' ).addClass( 'content-transfer-pages-header' );
-		this.$pagesHeader.insertBefore( this.$pageContainer );
+		this.$element.append( this.$pagesHeader );
 		var headerLayout = new OO.ui.HorizontalLayout( {
 			classes: [ 'header-layout' ]
 		} );
-		this.selectAllButton = new OO.ui.ButtonWidget( {
-			label: 'Select all',
-			framed: false
-		} );
-		this.selectNoneButton = new OO.ui.ButtonWidget( {
-			label: 'Select none',
-			framed: false
-		} );
-		this.selectAllButton.connect( this, { click: 'selectAll' } );
-		this.selectNoneButton.connect( this, { click: 'selectNone' } );
 
+		let $selectionCnt = $( '<div>' ).addClass( 'selection-cnt' );
+		this.selectAllButton = new OO.ui.ToggleButtonWidget( {
+			label: 'Select all',
+			classes: ['content-transfer-toggle-btn']
+		} );
+		this.selectAllButton.connect( this, { click: 'selectToggle' } );
+		$selectionCnt.append( this.selectAllButton.$element );
+		this.$pagesCount = $( '<div>' ).addClass( 'selected-count' );
+		$selectionCnt.append( this.$pagesCount );
+		
 		headerLayout.$element.append(
 			$( '<h2>' ).html( mw.message( 'contenttransfer-pages-header' ).plain() ),
-			this.selectAllButton.$element,
-			this.selectNoneButton.$element
+			$selectionCnt
 		);
 
-
 		this.$pagesHeader.append( headerLayout.$element );
+
+		this.makeFilters();
+		this.$pageContainer = $( '<div>' ).addClass( 'content-transfer-page-container' );
+		this.$element.append( this.$pageContainer );
 		this.updateSelectedCount();
 	};
 
@@ -351,21 +405,10 @@
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.setTooManyPagesWarning = function( total, retrieved ) {
-		var icon = new OO.ui.IconWidget( {
-			icon: 'alert'
-		} );
-		var label = new OO.ui.LabelWidget( {
+		this.$pageContainer.prepend( new OO.ui.MessageWidget ( {
+			type: 'warning',
 			label: mw.message( 'contenttransfer-too-many-pages-warning', total, retrieved ).text()
-		} );
-		var layout = new OO.ui.HorizontalLayout( {
-			items: [
-				icon,
-				label
-			]
-		} );
-		layout.$element.addClass( 'content-transfer-too-many-pages-warning' );
-
-		this.$pageContainer.prepend( layout.$element );
+		} ).$element );
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.updateSelectedCount = function() {
@@ -388,10 +431,13 @@
 			this.pushPagesButton.setDisabled( true );
 		}
 
-		this.$pagesHeader.find( 'span.selected-count' ).remove();
-		this.$pagesHeader.append(
+		if ( total === selected ) {
+			this.selectAllButton.setActive( true );
+		}
+
+		this.$pagesCount.find( 'span' ).remove();
+		this.$pagesCount.append(
 			$( '<span>' )
-				.addClass( 'selected-count' )
 				.html( mw.message( 'contenttransfer-pages-header-count', total, selected ).plain() )
 		);
 	};
@@ -405,15 +451,9 @@
 	contentTransfer.widget.PageSelectorWidget.prototype.displayError = function( error ) {
 		error = error || mw.message( 'contenttransfer-generic-error' ).text();
 		this.$pageContainer.html(
-			new OO.ui.HorizontalLayout( {
-				items: [
-					new OO.ui.IconWidget( {
-						icon: 'block',
-						flags: [ 'destructive' ]
-					} ),
-					new OO.ui.LabelWidget( { label: error } )
-				],
-				classes: [ 'contenttransfer-error' ]
+			new OO.ui.MessageWidget( {
+				type: 'error',
+				label: error
 			} ).$element
 		);
 	};
@@ -421,13 +461,9 @@
 	contentTransfer.widget.PageSelectorWidget.prototype.displayPages = function ( response ) {
 		if( response.page_count === 0 ) {
 			this.$pageContainer.append(
-				new OO.ui.HorizontalLayout( {
-					items: [
-						new OO.ui.IconWidget( { icon: 'alert' } ),
-						new OO.ui.LabelWidget( {
-							label: mw.message( 'contenttransfer-no-pages-label' ).text()
-						} )
-					]
+				new OO.ui.MessageWidget ( {
+					type: 'warning',
+					label: mw.message( 'contenttransfer-no-pages-label' ).text()
 				} ).$element
 			);
 			return;
@@ -470,11 +506,14 @@
 		this.updateSelectedCount();
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.selectAll = function () {
-		this.selectGroup( true );
-	};
-	contentTransfer.widget.PageSelectorWidget.prototype.selectNone = function () {
-		this.selectGroup( false );
+	contentTransfer.widget.PageSelectorWidget.prototype.selectToggle = function () {
+		if ( this.selectAllButton.isActive() ) {
+			this.selectGroup( false );
+			this.selectAllButton.setActive( false );
+		} else {
+			this.selectGroup( true );
+			this.selectAllButton.setActive( true );
+		}
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.selectGroup = function ( selected ) {
@@ -494,7 +533,6 @@
 		this.pushTargetPicker.setDisabled( wait );
 		this.onlyModified.setDisabled( wait );
 		this.selectAllButton.setDisabled( wait );
-		this.selectNoneButton.setDisabled( wait );
 		for ( var name in this.filterInstances ) {
 			if ( !this.filterInstances.hasOwnProperty( name ) ) {
 				continue;
