@@ -142,7 +142,7 @@
 				"contenttransfer-progress-current-operation",
 				"contenttransfer-dialog-push-action-done-label",
 				"contenttransfer-report-success-count",
-				"contenttransfer-report-failure",
+				"contenttransfer-report-failure-label",
 				"contenttransfer-target-picker-label",
 				"contenttransfer-progress-push-target-label",
 				"contenttransfer-report-interrupted",
@@ -164,7 +164,13 @@
 				"content-transfer-push-related-pages",
 				"contenttransfer-dialog-push-subgroup-label-linked",
 				"contenttransfer-dialog-push-subgroup-label-transcluded",
-				"contenttransfer-user-picker-label"
+				"contenttransfer-user-picker-label",
+				"contenttransfer-progress-user-action-skip",
+				"contenttransfer-progress-user-action-stop",
+				"contenttransfer-progress-user-action-force",
+				"contenttransfer-filter-panel-label",
+				"contenttransfer-filter-toggle-btn-hide",
+				"contenttransfer-filter-toggle-btn-show"
 			]
 		},
 		"ext.contenttransfer.filters": {

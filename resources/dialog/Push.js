@@ -34,21 +34,30 @@
 		{
 			action: 'cancel',
 			label: mw.message( 'contenttransfer-dialog-push-action-cancel-label' ).plain(),
-			flags: 'safe'
+			flags: 'safe',
+			modes: [ 'preview', 'progress', 'report' ]
+		},
+		{
+			action: 'doPush',
+			label: mw.message( 'contenttransfer-dialog-push-action-do-push-label' ).plain(),
+			flags: [ 'primary', 'progressive' ],
+			modes: [ 'preview' ]
 		},
 		{
 			action: 'done',
 			label: mw.message( 'contenttransfer-dialog-push-action-done-label' ).plain(),
 			flags: [ 'primary', 'progressive' ],
-			disabled: true
-		},
-		{
-			action: 'doPush',
-			label: mw.message( 'contenttransfer-dialog-push-action-do-push-label' ).plain(),
-			flags: [ 'primary' ],
-			disabled: false
+			modes: [ 'progress', 'report' ]
 		}
 	];
+
+	contentTransfer.dialog.Push.prototype.getSetupProcess = function ( data ) {
+		/* eslint-disable-next-line */
+		return contentTransfer.dialog.Push.parent.prototype.getSetupProcess.call( this, data )
+			.next( function () {
+				this.actions.setMode( 'preview' );
+			}, this );
+	};
 
 	contentTransfer.dialog.Push.prototype.initialize = function() {
 		contentTransfer.dialog.Push.parent.prototype.initialize.call( this );
@@ -85,24 +94,23 @@
 	contentTransfer.dialog.Push.prototype.makePreviewPanel = function() {
 		this.$previewPanel = $( '<div>' ).addClass( 'content-transfer-dialog-push-preview-panel' );
 
+		let $targetCnt = $( '<div>' ).addClass( 'content-transfer-preview-target-info' );
 		var pushTargetLabel = this.pushTarget.displayText || this.pushTarget.id;
 		var targetInfo = new OO.ui.LabelWidget( {
-			label: mw.message( 'contenttransfer-dialog-preview-target-info', pushTargetLabel ).text()
+			label: mw.message( 'contenttransfer-dialog-preview-target-info', pushTargetLabel ).text(),
 		} );
-		targetInfo.$element.addClass( 'content-transfer-preview-target-info' );
-		if( this.pushTarget.pushToDraft ) {
-			targetInfo.setLabel(
-				new OO.ui.HtmlSnippet(
-					'<span>' + targetInfo.getLabel() + '</span>' +
-					'<span class="push-to-draft">' +
-						mw.message( 'contenttransfer-dialog-preview-target-draft' ).text() +
-					'</span>'
-				)
-			);
-			targetInfo.$element.addClass( 'push-to-draft' );
-		}
+		$targetCnt.append( targetInfo.$element );
 
-		this.$previewPanel.append( targetInfo.$element );
+		if ( this.pushTarget.pushToDraft ) {
+			$targetCnt.append(
+				new OO.ui.MessageWidget( {
+					type: 'warning',
+					inline: true,
+					label: mw.message( 'contenttransfer-dialog-preview-target-draft' ).text()
+				} ).$element
+			);
+		}
+		this.$previewPanel.append( $targetCnt );
 
 		this.makeGroup( 'original', this.original, true, false );
 		if ( !$.isEmptyObject( this.groupedInfo ) ) {
@@ -277,7 +285,11 @@
 
 		this.reportIcon = new OO.ui.IconWidget( { icon: 'check' } );
 		this.$reportCount = $( '<span>' ).addClass( 'content-transfer-report-panel-count' );
-		this.$reportFailures = $( '<div>' ).addClass( 'content-transfer-report-panel-failures' );
+		this.$reportFailures = $( '<div>' ).addClass( 'content-transfer-report-panel-failures hidden' );
+		this.$reportFailures.append(
+			$( '<div>' ).addClass( 'content-transfer-report-panel-failed' )
+			.text( mw.message( 'contenttransfer-report-failure-label' ).text() )
+		);
 
 		this.$reportPanel.append(
 			this.reportIcon.$element,
@@ -301,7 +313,9 @@
 	contentTransfer.dialog.Push.prototype.getActionProcess = function( action ) {
 		var me = this;
 
-		if( action === 'doPush' ){
+		if ( action === 'doPush' ) {
+			this.actions.setAbilities( { cancel: true, done: true, doPush: false } );
+			this.actions.setMode( 'progress' );
 			return new OO.ui.Process( function() {
 				me.layout.nextStage();
 				return me.pushPages();
@@ -411,14 +425,14 @@
 		var $actionCnt = $( '<div> ').addClass( 'content-transfer-progress-user-action-container' );
 		var label = new OO.ui.LabelWidget( { label: response.message } );
 		var btnSkip = new OO.ui.ButtonWidget( {
-			label: "Skip",
+			label: mw.message( 'contenttransfer-progress-user-action-skip' ).text(),
 			framed: false,
 			flags: [
 				'primary'
 			]
 		} );
 		var btnStop = new OO.ui.ButtonWidget( {
-			label: "Stop pushing",
+			label: mw.message( 'contenttransfer-progress-user-action-stop' ).text(),
 			framed: false,
 			icon: 'cancel',
 			flags: [
@@ -426,7 +440,7 @@
 			]
 		} );
 		var btnForce = new OO.ui.ButtonWidget( {
-			label: "Force retry",
+			label: mw.message( 'contenttransfer-progress-user-action-force' ).text(),
 			framed: false,
 			flags: [
 				'primary',
@@ -501,10 +515,14 @@
 
 			var pushedPage = this.pushedPages[ idx ];
 			if( pushedPage.success === false ) {
-				this.$reportFailures.append(
-					$( '<span>' ).html( mw.message( 'contenttransfer-report-failure', pushedPage.title ).text() ),
+				if ( this.$reportFailures.hasClass( 'hidden' ) ) {
+					this.$reportFailures.removeClass( 'hidden' );
+				}
+				var $failure = $( '<p>' ).append(
+					$( '<span>' ).html( pushedPage.title ),
 					$( '<span>' ).addClass( 'content-transfer-report-failure-reason' ).html( pushedPage.message )
 				);
+				this.$reportFailures.append( $failure );
 			} else {
 				successCount++;
 				pagesToPurge.push( pushedPage.title );
