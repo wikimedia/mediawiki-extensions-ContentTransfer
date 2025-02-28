@@ -25,7 +25,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Templat ($1)",
 	"contenttransfer-progress-current-operation": "Memindah laman $1",
 	"contenttransfer-report-success-count": "Memindahkan $1 daripada {{PLURAL:$2|satu halaman|$2 halaman}}",
-	"contenttransfer-report-failure": "Gagal: $1",
 	"contenttransfer-target-picker-label": "Wiki penerima",
 	"contenttransfer-progress-push-target-label": "Wiki penerima: $1",
 	"contenttransfer-invalid-target": "Wiki penerima tidak sah",

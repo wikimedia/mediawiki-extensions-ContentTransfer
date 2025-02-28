@@ -26,7 +26,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "మూస ($1)",
 	"contenttransfer-progress-current-operation": "$1 ను బదిలీ చేస్తున్నాం",
 	"contenttransfer-report-success-count": "{{PLURAL:$2|ఒక పేజీలో|$2 పేజీలలో}} $1 ను బదిలీ చేసాం",
-	"contenttransfer-report-failure": "విఫలమైంది: $1",
 	"contenttransfer-target-picker-label": "స్వీకరించే వికీ",
 	"contenttransfer-progress-push-target-label": "స్వీకరించే వికీ: $1",
 	"contenttransfer-invalid-target": "స్వీకరించే వికీ చెల్లనిది",

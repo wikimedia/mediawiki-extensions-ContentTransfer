@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"22258",
 			"Theshinster123",
 			"Ykhwong"
 		]
@@ -25,7 +26,7 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "틀 ($1)",
 	"contenttransfer-progress-current-operation": "$1 전송 중",
 	"contenttransfer-report-success-count": "{{PLURAL:$2|1개 문서|$2개 문서}} 중 $1개 전송됨",
-	"contenttransfer-report-failure": "실패: $1",
+	"contenttransfer-report-failure-label": "실패",
 	"contenttransfer-target-picker-label": "위키를 수신하는 중",
 	"contenttransfer-progress-push-target-label": "수신하는 위키: $1",
 	"contenttransfer-invalid-target": "수신 위키가 유효하지 않습니다",
@@ -51,7 +52,7 @@
 	"contenttransfer-dialog-preview-target-draft": "초안 이름공간으로 전송하고 있습니다!",
 	"contenttransfer-ns-main": "(일반)",
 	"contenttransfer-generic-error": "오류가 발생했습니다!",
-	"contenttransfer-include-related": "관련 항목 포함",
+	"contenttransfer-include-related": "관련 문서 포함",
 	"contenttransfer-apihelp-param-pushtarget": "수신하는 위키 이름",
 	"contenttransfer-apihelp-param-target": "수신하는 위키 이름",
 	"contenttransfer-apihelp-param-articleid": "정수입니다. 전송되어야 하는 문서의 ID입니다",
@@ -60,5 +61,11 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "선택된 문서 ($1)",
 	"content-transfer-push-related-pages": "관련 문서",
 	"contenttransfer-dialog-push-subgroup-label-linked": "참조된 문서",
-	"contenttransfer-dialog-push-subgroup-label-transcluded": "끼워넣은 문서"
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "끼워넣은 문서",
+	"contenttransfer-progress-user-action-skip": "건너뛰기",
+	"contenttransfer-progress-user-action-stop": "전송 중지",
+	"contenttransfer-progress-user-action-force": "다시 강제 시도",
+	"contenttransfer-filter-panel-label": "필터",
+	"contenttransfer-filter-toggle-btn-hide": "숨기기",
+	"contenttransfer-filter-toggle-btn-show": "표시"
 }

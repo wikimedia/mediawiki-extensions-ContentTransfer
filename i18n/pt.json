@@ -25,7 +25,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Predefinição ($1)",
 	"contenttransfer-progress-current-operation": "A transferir $1",
 	"contenttransfer-report-success-count": "{{PLURAL:$2|Foi transferida $1 página|Foram transferidas $1  páginas}} (de $2)",
-	"contenttransfer-report-failure": "Falhou: $1",
 	"contenttransfer-target-picker-label": "Wiki de destino",
 	"contenttransfer-progress-push-target-label": "Wiki de destino: $1",
 	"contenttransfer-invalid-target": "Wiki de destino inválida",

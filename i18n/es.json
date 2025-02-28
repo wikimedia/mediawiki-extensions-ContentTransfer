@@ -27,7 +27,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Plantilla ($1)",
 	"contenttransfer-progress-current-operation": "Transfiriendo $1",
 	"contenttransfer-report-success-count": "Transferido $1 de {{PLURAL:$2|one page|$2 pages}}",
-	"contenttransfer-report-failure": "Fallo: $1",
 	"contenttransfer-target-picker-label": "Wiki receptora",
 	"contenttransfer-progress-push-target-label": "Recibiendo wiki: $1",
 	"contenttransfer-invalid-target": "Wiki de recepción no válida",

@@ -25,7 +25,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Предлошка ($1)",
 	"contenttransfer-progress-current-operation": "Се пренесува $1",
 	"contenttransfer-report-success-count": "Пренесени $1 од {{PLURAL:$2|една страница|$2 страници}}",
-	"contenttransfer-report-failure": "Неуспешно: $1",
 	"contenttransfer-target-picker-label": "Вики-примач",
 	"contenttransfer-progress-push-target-label": "Вики-примач: $1",
 	"contenttransfer-invalid-target": "Неважечко вики-примач",

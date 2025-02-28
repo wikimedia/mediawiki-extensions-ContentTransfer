@@ -24,7 +24,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-category": "Página de categoria ($1)",
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Predefinição ($1)",
 	"contenttransfer-progress-current-operation": "Transferindo $1",
-	"contenttransfer-report-failure": "Falhou: $1",
 	"contenttransfer-target-picker-label": "Wiki receptora",
 	"contenttransfer-progress-push-target-label": "Wiki receptora: $1",
 	"contenttransfer-invalid-target": "Recebimento de wiki inválida",

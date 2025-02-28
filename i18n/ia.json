@@ -25,7 +25,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Patrono ($1)",
 	"contenttransfer-progress-current-operation": "In transferentia: $1",
 	"contenttransfer-report-success-count": "Transferite $1 de $2 pagina{{PLURAL:$2||s}}",
-	"contenttransfer-report-failure": "Fallite: $1",
 	"contenttransfer-target-picker-label": "Wiki receptor",
 	"contenttransfer-progress-push-target-label": "Wiki receptor: $1",
 	"contenttransfer-invalid-target": "Wiki receptor non valide",

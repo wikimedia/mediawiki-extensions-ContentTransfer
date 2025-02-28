@@ -25,7 +25,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Predloga ($1)",
 	"contenttransfer-progress-current-operation": "Prenašanje $1",
 	"contenttransfer-report-success-count": "Preneseno $1 od {{PLURAL:$2|ene strani|$2 strani}}",
-	"contenttransfer-report-failure": "Neuspešno: $1",
 	"contenttransfer-target-picker-label": "Sprejemni viki",
 	"contenttransfer-progress-push-target-label": "Sprejemni viki: $1",
 	"contenttransfer-invalid-target": "Neveljavni sprejemni viki",

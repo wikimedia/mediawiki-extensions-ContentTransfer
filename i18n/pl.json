@@ -25,7 +25,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Szablony ($1)",
 	"contenttransfer-progress-current-operation": "Przenoszenie $1 {{PLURAL:$1|strony|stron}}",
 	"contenttransfer-report-success-count": "Przeniesiono $1 z $1 {{PLURAL:$2|strony|stron}}",
-	"contenttransfer-report-failure": "Strony z błędami przenoszenia: $1",
 	"contenttransfer-target-picker-label": "Docelowa wiki",
 	"contenttransfer-progress-push-target-label": "Docelowa wiki: $1",
 	"contenttransfer-invalid-target": "Nieprawidłowa docelowa wiki",

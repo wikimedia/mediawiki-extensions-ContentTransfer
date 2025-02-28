@@ -23,7 +23,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Vorlage ($1)",
 	"contenttransfer-progress-current-operation": "Übertragen von $1",
 	"contenttransfer-report-success-count": "$1 von {{PLURAL:$2|einer Seite|$2 Seiten}} übertragen",
-	"contenttransfer-report-failure": "Gescheitert: $1",
 	"contenttransfer-report-failure-label": "Fehlgeschlagen",
 	"contenttransfer-target-picker-label": "Empfangs-Wiki",
 	"contenttransfer-progress-push-target-label": "Empfangs-Wiki: $1",

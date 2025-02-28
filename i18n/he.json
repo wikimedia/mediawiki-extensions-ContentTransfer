@@ -26,7 +26,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "תבנית ($1)",
 	"contenttransfer-progress-current-operation": "העברת $1",
 	"contenttransfer-report-success-count": "{{PLURAL:$1|הועבר דף אחד|הועברו $1 דפים}} מתוך $2",
-	"contenttransfer-report-failure": "נכשל: $1",
 	"contenttransfer-target-picker-label": "הוויקי המקבל",
 	"contenttransfer-progress-push-target-label": "הוויקי המקבל: $1",
 	"contenttransfer-invalid-target": "ויקי מקבל בלתי־תקין",
