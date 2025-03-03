@@ -79,7 +79,7 @@
 			label: mw.message( 'contenttransfer-user-picker-label' ).plain(),
 			classes: [ 'picker' ]
 		} );
-		//this.userSelectorLayout.$element.hide();
+		this.userSelectorLayout.$element.hide();
 
 		this.pushTargetPicker = new OO.ui.DropdownWidget( {
 			menu: {
@@ -114,11 +114,11 @@
 				mw.message( 'contenttransfer-filter-toggle-btn-hide' ).text() :
 				mw.message( 'contenttransfer-filter-toggle-btn-show' ).text()
 		} );
-	
+
 		this.toggleFilterButton.connect( this, {
 			click: 'onToggleFilter'
 		} );
-	
+
 		this.filterHeaderLine = new OO.ui.HorizontalLayout( {
 			items: [
 				new OO.ui.LabelWidget( {
@@ -135,7 +135,7 @@
 		if ( !this.expanded ) {
 			this.filterPanel.$element.hide();
 		}
-		
+
 		// Built-in filters
 		this.onlyModified = new OO.ui.CheckboxInputWidget( {
 			selected: true
