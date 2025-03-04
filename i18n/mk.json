@@ -25,7 +25,7 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Предлошка ($1)",
 	"contenttransfer-progress-current-operation": "Се пренесува $1",
 	"contenttransfer-report-success-count": "Пренесени $1 од {{PLURAL:$2|една страница|$2 страници}}",
-	"contenttransfer-report-failure": "Неуспешно: $1",
+	"contenttransfer-report-failure-label": "Неуспешно",
 	"contenttransfer-target-picker-label": "Вики-примач",
 	"contenttransfer-progress-push-target-label": "Вики-примач: $1",
 	"contenttransfer-invalid-target": "Неважечко вики-примач",
@@ -52,7 +52,7 @@
 	"contenttransfer-too-many-pages-warning": "Списокот на страници е скусен поради поставената граница од {{PLURAL:$2|една страница|$2 страници}} по пренос. Условите ги {{PLURAL:$1|задоволува вкупно 1 страница|задоволуваат вкупно $1 страници}}",
 	"contenttransfer-ns-main": "(Главен)",
 	"contenttransfer-generic-error": "Се појави грешка!",
-	"contenttransfer-include-related": "Вклучи и поврзани",
+	"contenttransfer-include-related": "Вклучи и поврзани страници",
 	"contenttransfer-modified-since-label": "Изменето од",
 	"apihelp-content-transfer-get-pages-summary": "Список на страници кои се преносливи според дадени филтри",
 	"apihelp-content-transfer-push-info-summary": "Ги презема сите ресурси на страницата како вклучени податотеки, поврзани страници итн. кои ќе се пренесат на целното вики",
@@ -74,5 +74,11 @@
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Превметнати",
 	"contenttransfer-user-picker-label": "Пренесување како корисник",
 	"contenttransfer-authentication-no-user": "Нема избрано корисник за пренесување",
-	"contenttransfer-no-targets": "Нема поставено цели за пренос."
+	"contenttransfer-no-targets": "Нема поставено цели за пренос.",
+	"contenttransfer-progress-user-action-skip": "Прескокни",
+	"contenttransfer-progress-user-action-stop": "Прескокни пренос",
+	"contenttransfer-progress-user-action-force": "Принуди повторен обид",
+	"contenttransfer-filter-panel-label": "Филтер",
+	"contenttransfer-filter-toggle-btn-hide": "Скриј",
+	"contenttransfer-filter-toggle-btn-show": "Прикажи"
 }

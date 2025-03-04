@@ -29,7 +29,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Şablon ($1)",
 	"contenttransfer-progress-current-operation": "$1 transfer ediliyor",
 	"contenttransfer-report-success-count": "{{PLURAL:$2|Bir sayfadan|$2 sayfadan}} $1 sayfa aktarıldı",
-	"contenttransfer-report-failure": "Başarısız: $1",
 	"contenttransfer-target-picker-label": "Viki alınıyor",
 	"contenttransfer-progress-push-target-label": "Viki alınıyor: $1",
 	"contenttransfer-invalid-target": "Geçersiz alıcı viki",

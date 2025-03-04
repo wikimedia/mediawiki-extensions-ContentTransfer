@@ -25,7 +25,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Šablonas ($1)",
 	"contenttransfer-progress-current-operation": "Perkeliama $1",
 	"contenttransfer-report-success-count": "Perkelta $1 iš {{PLURAL:$2|vieno puslapio|$2 puslapių}}",
-	"contenttransfer-report-failure": "Nepavyko: $1",
 	"contenttransfer-target-picker-label": "Tikslo viki",
 	"contenttransfer-progress-push-target-label": "Tikslo viki: $1",
 	"contenttransfer-invalid-target": "Netinkama tikslo viki",

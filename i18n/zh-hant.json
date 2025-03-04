@@ -25,7 +25,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "模版（$1）",
 	"contenttransfer-progress-current-operation": "正在轉移$1",
 	"contenttransfer-report-success-count": "已轉移 $1/{{PLURAL:$2|1|$2}} 頁",
-	"contenttransfer-report-failure": "失敗：$1",
 	"contenttransfer-target-picker-label": "接收 wiki",
 	"contenttransfer-progress-push-target-label": "接收 wiki：$1",
 	"contenttransfer-invalid-target": "無效的接收 wiki",

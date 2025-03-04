@@ -26,7 +26,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Mall ($1)",
 	"contenttransfer-progress-current-operation": "Överför $1",
 	"contenttransfer-report-success-count": "$1 av {{PLURAL:$2|en sida|$2 sidor}} överförs",
-	"contenttransfer-report-failure": "Misslyckades: $1",
 	"contenttransfer-target-picker-label": "Mottagande wiki",
 	"contenttransfer-progress-push-target-label": "Mottagande wiki: $1",
 	"contenttransfer-invalid-target": "Ogiltig mottagande wiki",

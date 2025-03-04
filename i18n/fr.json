@@ -26,7 +26,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Modèles ($1)",
 	"contenttransfer-progress-current-operation": "Transfert de $1",
 	"contenttransfer-report-success-count": "$1 page{{PLURAL:$1||s}} (sur $2) transférée{{PLURAL:$1||s}}",
-	"contenttransfer-report-failure": "Échec : $1",
 	"contenttransfer-target-picker-label": "Wiki destinataire",
 	"contenttransfer-progress-push-target-label": "Wiki destinataire : $1",
 	"contenttransfer-invalid-target": "Wiki destinataire non valide",

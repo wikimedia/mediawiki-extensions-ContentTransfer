@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
 	"contenttransfer-text-filter-input-label": "Numm vun der Säit",
@@ -26,5 +27,9 @@
 	"contenttransfer-ns-main": "(Haapt)",
 	"contenttransfer-generic-error": "Et ass e Feeler geschitt!",
 	"contenttransfer-modified-since-label": "Geännert zanter",
-	"contenttransfer-dialog-push-subgroup-label-linked": "Referenzéiert"
+	"contenttransfer-dialog-push-subgroup-label-linked": "Referenzéiert",
+	"contenttransfer-progress-user-action-skip": "Iwwersprangen",
+	"contenttransfer-filter-panel-label": "Filter",
+	"contenttransfer-filter-toggle-btn-hide": "Verstoppen",
+	"contenttransfer-filter-toggle-btn-show": "Weisen"
 }

@@ -28,7 +28,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "الگو ($1)",
 	"contenttransfer-progress-current-operation": "انتقال $1",
 	"contenttransfer-report-success-count": "$1 صفحه از {{PLURAL:$2|یک صفحه|$2 صفحه}} منتقل شد",
-	"contenttransfer-report-failure": "ناموفق: $1",
 	"contenttransfer-target-picker-label": "دریافت ویکی",
 	"contenttransfer-progress-push-target-label": "دریافت ویکی: $1",
 	"contenttransfer-invalid-target": "ویکی دیافت‌کننده نامعتبر است",

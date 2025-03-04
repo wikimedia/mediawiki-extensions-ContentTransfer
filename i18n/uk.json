@@ -27,7 +27,6 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Шаблон ($1)",
 	"contenttransfer-progress-current-operation": "Передача $1",
 	"contenttransfer-report-success-count": "Перенесено $1 {{PLURAL:$2|однієї сторінки|$2 сторінок}}",
-	"contenttransfer-report-failure": "Помилка: $1",
 	"contenttransfer-target-picker-label": "Отримання вікі",
 	"contenttransfer-progress-push-target-label": "Отримання вікі: $1",
 	"contenttransfer-invalid-target": "Недійсне отримання вікі",

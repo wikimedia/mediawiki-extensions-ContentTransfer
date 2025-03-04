@@ -6,5 +6,10 @@
 		]
 	},
 	"contenttransfer-dialog-push-preview-page-group-label-template": "ਫਰਮਾ ($1)",
-	"contenttransfer-ns-main": "(ਮੁੱਖ)"
+	"contenttransfer-ns-main": "(ਮੁੱਖ)",
+	"contenttransfer-progress-user-action-skip": "ਛੱਡੋ",
+	"contenttransfer-progress-user-action-force": "ਜ਼ਬਰਦਸਤੀ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ",
+	"contenttransfer-filter-panel-label": "ਛਾਨਣੀ",
+	"contenttransfer-filter-toggle-btn-hide": "ਲੁਕਾਓ",
+	"contenttransfer-filter-toggle-btn-show": "ਵਿਖਾਓ"
 }
