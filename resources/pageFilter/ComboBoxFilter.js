@@ -11,7 +11,7 @@ contentTransfer.widget.ComboBoxFilter = function( cfg ) {
     cfg.menu = {
         filterFromInput: true
     };
-
+	cfg.$overlay = true;
     contentTransfer.widget.ComboBoxFilter.parent.call( this, cfg );
 };
 
