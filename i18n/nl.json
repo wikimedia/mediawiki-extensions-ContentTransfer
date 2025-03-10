@@ -28,6 +28,7 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Sjabloon ($1)",
 	"contenttransfer-progress-current-operation": "Aan het overplaatsen: $1",
 	"contenttransfer-report-success-count": "$1 van {{PLURAL:$2|één pagina|$2 pagina’s}} overgeplaatst",
+	"contenttransfer-report-failure-label": "Mislukt",
 	"contenttransfer-target-picker-label": "Ontvangende wiki",
 	"contenttransfer-progress-push-target-label": "Ontvangende wiki: $1",
 	"contenttransfer-invalid-target": "De ontvangende wiki is niet juist",
@@ -74,5 +75,13 @@
 	"content-transfer-push-related-pages": "Gerelateerde pagina's",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Verwezen",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Getranscludeerd",
-	"contenttransfer-user-picker-label": "Overdragen als gebruiker"
+	"contenttransfer-user-picker-label": "Overdragen als gebruiker",
+	"contenttransfer-authentication-no-user": "Geen gebruiker voor overdracht geselecteerd",
+	"contenttransfer-no-targets": "Er zijn geen overdrachtsdoelen ingesteld!",
+	"contenttransfer-progress-user-action-skip": "Overslaan",
+	"contenttransfer-progress-user-action-stop": "Overdracht stoppen",
+	"contenttransfer-progress-user-action-force": "Toch opnieuw proberen",
+	"contenttransfer-filter-panel-label": "Filter",
+	"contenttransfer-filter-toggle-btn-hide": "Verbergen",
+	"contenttransfer-filter-toggle-btn-show": "Weergeven"
 }
