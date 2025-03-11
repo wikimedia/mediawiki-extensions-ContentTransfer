@@ -28,6 +28,7 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "الگو ($1)",
 	"contenttransfer-progress-current-operation": "انتقال $1",
 	"contenttransfer-report-success-count": "$1 صفحه از {{PLURAL:$2|یک صفحه|$2 صفحه}} منتقل شد",
+	"contenttransfer-report-failure-label": "ناموفق",
 	"contenttransfer-target-picker-label": "دریافت ویکی",
 	"contenttransfer-progress-push-target-label": "دریافت ویکی: $1",
 	"contenttransfer-invalid-target": "ویکی دیافت‌کننده نامعتبر است",
@@ -54,7 +55,7 @@
 	"contenttransfer-too-many-pages-warning": "به‌دلیل محدودیت پیکربندی‌شدهٔ {{PLURAL:$2|یک صفحه|$2 صفحه}} به‌ازای هر واکشی، فهرست صفحه‌ها کوتاه شده است. در مجموع {{PLURAL:$1|۱ صفحه|$1 صفحه}} با معیارها منطبق {{PLURAL:$1|است|هستند}}",
 	"contenttransfer-ns-main": "(اصلی)",
 	"contenttransfer-generic-error": "خطایی رخ داد!",
-	"contenttransfer-include-related": "شامل‌شدن مرتبط‌ها",
+	"contenttransfer-include-related": "شامل‌شدن صفحه‌ها مرتبط",
 	"contenttransfer-modified-since-label": "تغییر یافته از",
 	"apihelp-content-transfer-get-pages-summary": "تمام صفحه‌هایی که بر پایهٔ پالایه‌های واردشده قابل واکشی هستند را فهرست می‌کند",
 	"contenttransfer-apihelp-param-pushtarget": "دریافت نام ویکی",
@@ -65,5 +66,11 @@
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "تراگنجانیده",
 	"contenttransfer-user-picker-label": "انتقال به‌عنوان کاربر",
 	"contenttransfer-authentication-no-user": "کاربری برای انتقال انتخاب نشده است",
-	"contenttransfer-no-targets": "هیچ هدفی برای انتقال پیکربندی نشده است!"
+	"contenttransfer-no-targets": "هیچ هدفی برای انتقال پیکربندی نشده است!",
+	"contenttransfer-progress-user-action-skip": "رها کردن",
+	"contenttransfer-progress-user-action-stop": "توقف انتقال",
+	"contenttransfer-progress-user-action-force": "تلاش مجدد اجباری",
+	"contenttransfer-filter-panel-label": "پالایه",
+	"contenttransfer-filter-toggle-btn-hide": "نهفتن",
+	"contenttransfer-filter-toggle-btn-show": "نمایش"
 }

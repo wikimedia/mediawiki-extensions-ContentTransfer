@@ -30,6 +30,7 @@
 	"contenttransfer-dialog-push-preview-page-group-label-template": "القالب $1",
 	"contenttransfer-progress-current-operation": "تحويل $1",
 	"contenttransfer-report-success-count": "تم تحويل $1 من {{PLURAL:$2| صفحة واحدة | $2 صفحات}}",
+	"contenttransfer-report-failure-label": "فشل",
 	"contenttransfer-target-picker-label": "تلقي الويكي",
 	"contenttransfer-progress-push-target-label": "تلقي الويكي: $1",
 	"contenttransfer-invalid-target": "تلقي ويكي غير صالح",
@@ -78,5 +79,11 @@
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "مُدرج",
 	"contenttransfer-user-picker-label": "نقل كمستخدم",
 	"contenttransfer-authentication-no-user": "لم يتم تحديد أي مستخدم للنقل",
-	"contenttransfer-no-targets": "لم يتم تكوين أهداف النقل!"
+	"contenttransfer-no-targets": "لم يتم تكوين أهداف النقل!",
+	"contenttransfer-progress-user-action-skip": "تجاوز",
+	"contenttransfer-progress-user-action-stop": "ايقاف النقل",
+	"contenttransfer-progress-user-action-force": "إعادة المحاولة بالقوة",
+	"contenttransfer-filter-panel-label": "مرشح",
+	"contenttransfer-filter-toggle-btn-hide": "إخفاء",
+	"contenttransfer-filter-toggle-btn-show": "عرض"
 }
