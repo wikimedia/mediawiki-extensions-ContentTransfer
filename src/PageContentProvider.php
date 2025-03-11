@@ -3,8 +3,8 @@
 namespace ContentTransfer;
 
 use BadMethodCallException;
-use Category;
 use File;
+use MediaWiki\Category\Category;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
@@ -158,7 +158,11 @@ class PageContentProvider {
 	protected function extractFiles() {
 		$rawFiles = $this->parserOutput->getLinkList( ParserOutputLinkTypes::MEDIA );
 		foreach ( $rawFiles as $dbKey => $value ) {
-			$fileTitle = $this->titleFactory->makeTitle( NS_FILE, $dbKey );
+			if ( !isset( $value['link'] ) ) {
+				continue;
+			}
+			$linkTitle = $value['link'];
+			$fileTitle = $this->titleFactory->makeTitle( NS_FILE, $linkTitle->getDBkey() );
 			if ( $fileTitle->exists() ) {
 				$this->relatedTitles[ $fileTitle->getPrefixedDBkey() ] = $fileTitle;
 			}
@@ -171,7 +175,11 @@ class PageContentProvider {
 	protected function extractCategories() {
 		$rawCategories = $this->parserOutput->getLinkList( ParserOutputLinkTypes::CATEGORY );
 		foreach ( $rawCategories as $catName => $displayText ) {
-			$category = Category::newFromName( $catName );
+			if ( !isset( $displayText['link'] ) ) {
+				continue;
+			}
+			$categoryText = $displayText['link']->getDBkey();
+			$category = Category::newFromName( $categoryText );
 			if ( $category->getPage()->exists() ) {
 				$categoryTitle = $this->titleFactory->castFromPageIdentity( $category->getPage() );
 				$this->relatedTitles[ $categoryTitle->getPrefixedDBkey() ] = $categoryTitle;
