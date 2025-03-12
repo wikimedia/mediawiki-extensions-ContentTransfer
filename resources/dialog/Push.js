@@ -1,6 +1,6 @@
-( function( mw, $, d ) {
+( function ( mw, $ ) {
 	contentTransfer.dialog = {};
-	contentTransfer.dialog.Push = function( cfg ) {
+	contentTransfer.dialog.Push = function ( cfg ) {
 		cfg = cfg || {};
 
 		this.groupedInfo = cfg.grouped;
@@ -11,7 +11,7 @@
 		this.skipPages = [];
 		this.enableBeta = mw.config.get( 'ctEnableBeta' );
 		this.original = this.groupedInfo.original || [];
-		delete( this.groupedInfo.original );
+		delete ( this.groupedInfo.original );
 		this.checkboxes = {};
 
 		this.progressStep = 1;
@@ -52,14 +52,14 @@
 	];
 
 	contentTransfer.dialog.Push.prototype.getSetupProcess = function ( data ) {
-		/* eslint-disable-next-line */
+
 		return contentTransfer.dialog.Push.parent.prototype.getSetupProcess.call( this, data )
 			.next( function () {
 				this.actions.setMode( 'preview' );
 			}, this );
 	};
 
-	contentTransfer.dialog.Push.prototype.initialize = function() {
+	contentTransfer.dialog.Push.prototype.initialize = function () {
 		contentTransfer.dialog.Push.parent.prototype.initialize.call( this );
 
 		this.layout = new contentTransfer.layout.Push();
@@ -91,13 +91,13 @@
 		return 500;
 	};
 
-	contentTransfer.dialog.Push.prototype.makePreviewPanel = function() {
+	contentTransfer.dialog.Push.prototype.makePreviewPanel = function () {
 		this.$previewPanel = $( '<div>' ).addClass( 'content-transfer-dialog-push-preview-panel' );
 
-		let $targetCnt = $( '<div>' ).addClass( 'content-transfer-preview-target-info' );
-		var pushTargetLabel = this.pushTarget.displayText || this.pushTarget.id;
-		var targetInfo = new OO.ui.LabelWidget( {
-			label: mw.message( 'contenttransfer-dialog-preview-target-info', pushTargetLabel ).text(),
+		const $targetCnt = $( '<div>' ).addClass( 'content-transfer-preview-target-info' );
+		const pushTargetLabel = this.pushTarget.displayText || this.pushTarget.id;
+		const targetInfo = new OO.ui.LabelWidget( {
+			label: mw.message( 'contenttransfer-dialog-preview-target-info', pushTargetLabel ).text()
 		} );
 		$targetCnt.append( targetInfo.$element );
 
@@ -120,46 +120,48 @@
 			} ).$element );
 		}
 
-		for( var group in this.groupedInfo ) {
+		for ( const group in this.groupedInfo ) {
 			if ( !this.groupedInfo.hasOwnProperty( group ) ) {
 				continue;
 			}
-			var pages = this.groupedInfo[group];
-			this.groupsToTransfer[group] = true;
+			const pages = this.groupedInfo[ group ];
+			this.groupsToTransfer[ group ] = true;
 			this.makeGroup( group, pages, false, true );
 		}
 		return this.$previewPanel;
 	};
 
-	contentTransfer.dialog.Push.prototype.makeGroup = function( name, pages, expanded, selectable ) {
-		var groupLayout, i;
-		// contenttransfer-dialog-push-preview-page-group-label-original
-		// contenttransfer-dialog-push-preview-page-group-label-wikipage
-		// contenttransfer-dialog-push-preview-page-group-label-file
-		// contenttransfer-dialog-push-preview-page-group-label-category
-		// contenttransfer-dialog-push-preview-page-group-label-template
-		var totalPages = $.type( pages ) === 'array' ? pages.length :
+	contentTransfer.dialog.Push.prototype.makeGroup = function ( name, pages, expanded, selectable ) {
+		let groupLayout, i;
+		const totalPages = Array.isArray( pages ) ? pages.length :
 			this.getSubgroupedPageCount( pages );
-		var groupTitle = mw.message(
+		// Messages that can be used here:
+		// * contenttransfer-dialog-push-preview-page-group-label-original
+		// * contenttransfer-dialog-push-preview-page-group-label-wikipage
+		// * contenttransfer-dialog-push-preview-page-group-label-file
+		// * contenttransfer-dialog-push-preview-page-group-label-category
+		// * contenttransfer-dialog-push-preview-page-group-label-template
+		const groupTitle = mw.message(
 			'contenttransfer-dialog-push-preview-page-group-label-' + name,
 			totalPages
 		).text();
 
-		this.checkboxes[name] = [];
+		this.checkboxes[ name ] = [];
+		let checkbox;
 		if ( selectable ) {
-			var checkbox = new OO.ui.CheckboxInputWidget( {
+			checkbox = new OO.ui.CheckboxInputWidget( {
 				selected: true
 			} );
 			checkbox.on( 'change', this.onGroupCheck.bind( this ), [ name ] );
 		}
-		var button = new OO.ui.ButtonInputWidget( {
+		const button = new OO.ui.ButtonInputWidget( {
 			framed: false,
 			label: groupTitle,
-			icon: contentTransfer.dialog.Push.static.groupIcons[name],
+			icon: contentTransfer.dialog.Push.static.groupIcons[ name ],
 			indicator: 'down'
 		} );
 
-		var groupLayoutConfig = {
+		const groupLayoutConfig = {
 			align: 'inline',
 			classes: [ 'content-transfer-dialog-push-preview-panel-group-button' ]
 		};
@@ -169,9 +171,8 @@
 			groupLayout = new OO.ui.FieldLayout( button, groupLayoutConfig );
 		}
 
-
-		var $pageGroup = $( '<div>' ).addClass( 'content-transfer-dialog-push-preview-panel-page-group' );
-		if( expanded ) {
+		const $pageGroup = $( '<div>' ).addClass( 'content-transfer-dialog-push-preview-panel-page-group' );
+		if ( expanded ) {
 			$pageGroup.addClass( 'page-group-visible' );
 			button.setIndicator( 'up' );
 		}
@@ -179,90 +180,94 @@
 
 		this.$previewPanel.append( groupLayout.$element );
 
-		if ( $.type( pages ) === 'object' ) {
-			for( var subgroup in pages ) {
+		if ( $.type( pages ) === 'object' ) { // eslint-disable-line no-jquery/no-type
+			for ( const subgroup in pages ) {
 				if ( !pages.hasOwnProperty( subgroup ) ) {
 					continue;
 				}
-				if ( pages[subgroup].length === 0 ) {
+				if ( pages[ subgroup ].length === 0 ) {
 					continue;
 				}
-				this.checkboxes[name + '#' + subgroup] = [];
-				var subgroupCheckbox = new OO.ui.CheckboxInputWidget( {
+				this.checkboxes[ name + '#' + subgroup ] = [];
+				const subgroupCheckbox = new OO.ui.CheckboxInputWidget( {
 					selected: true,
 					classes: [ 'content-transfer-dialog-push-check-subgroup' ]
 				} );
-				this.checkboxes[name].push( subgroupCheckbox );
+				this.checkboxes[ name ].push( subgroupCheckbox );
 
-				var $subpageGroup = $( '<div>' )
+				const $subpageGroup = $( '<div>' )
 					.addClass( 'content-transfer-dialog-push-preview-panel-page-group subpage-group page-group-visible' );
 				subgroupCheckbox.on( 'change', this.onSubgroupCheckbox.bind( this ), [ name, subgroup ] );
 				$pageGroup.append( new OO.ui.FieldLayout( subgroupCheckbox, {
 					align: 'inline',
+					// Messages that can be used here:
+					// * contenttransfer-dialog-push-subgroup-label-linked
+					// * contenttransfer-dialog-push-subgroup-label-transcluded
 					label: mw.message( 'contenttransfer-dialog-push-subgroup-label-' + subgroup ).text()
 				} ).$element );
 
-				for ( i = 0; i < pages[subgroup].length; i++ ) {
-					this.addPageToGroup( pages[subgroup][i], $subpageGroup, selectable, name, subgroup );
+				for ( i = 0; i < pages[ subgroup ].length; i++ ) {
+					this.addPageToGroup( pages[ subgroup ][ i ], $subpageGroup, selectable, name, subgroup );
 				}
 				$pageGroup.append( $subpageGroup );
 			}
 		} else {
-			for( i = 0; i < pages.length; i++ ) {
-				this.addPageToGroup( pages[i], $pageGroup, selectable, name );
+			for ( i = 0; i < pages.length; i++ ) {
+				this.addPageToGroup( pages[ i ], $pageGroup, selectable, name );
 			}
 		}
 
 		this.$previewPanel.append( $pageGroup );
 	};
 
-	contentTransfer.dialog.Push.prototype.addPageToGroup = function( page, $element, selectable, group, subgroup ) {
+	contentTransfer.dialog.Push.prototype.addPageToGroup = function ( page, $element, selectable, group, subgroup ) {
+		let singlePageCheck;
 		if ( selectable ) {
-			var singlePageCheck = new OO.ui.CheckboxInputWidget( {
+			singlePageCheck = new OO.ui.CheckboxInputWidget( {
 				data: {
 					pid: page.id
 				},
 				selected: true
 			} );
 			if ( subgroup ) {
-				var subgroupKey = group + '#' + subgroup;
-				this.checkboxes[subgroupKey].push( singlePageCheck );
+				const subgroupKey = group + '#' + subgroup;
+				this.checkboxes[ subgroupKey ].push( singlePageCheck );
 			}
 
-			this.checkboxes[group].push( singlePageCheck );
+			this.checkboxes[ group ].push( singlePageCheck );
 			singlePageCheck.on( 'change', this.onSinglePageCheck.bind( this ), [ page ] );
 		}
 		$element.append(
 			$( '<span>' )
-			.addClass( 'content-transfer-dialog-push-preview-panel-page-item' )
-			.append(
-				( selectable ? singlePageCheck.$element : '' ),
-				$( '<a>' )
-				.attr( 'href', page.uri )
-				.attr( 'target', '_blank' ).html( page.title )
-			)
+				.addClass( 'content-transfer-dialog-push-preview-panel-page-item' )
+				.append(
+					( selectable ? singlePageCheck.$element : '' ),
+					$( '<a>' )
+						.attr( 'href', page.uri )
+						.attr( 'target', '_blank' ).html( page.title )
+				)
 		);
 	};
 
-	contentTransfer.dialog.Push.prototype.getSubgroupedPageCount = function( pages ) {
-		var count = 0;
-		for( var subgroup in pages ) {
+	contentTransfer.dialog.Push.prototype.getSubgroupedPageCount = function ( pages ) {
+		let count = 0;
+		for ( const subgroup in pages ) {
 			if ( !pages.hasOwnProperty( subgroup ) ) {
 				continue;
 			}
-			count += pages[subgroup].length;
+			count += pages[ subgroup ].length;
 		}
 
 		return count;
 	};
 
-	contentTransfer.dialog.Push.prototype.makeProgressPanel = function() {
+	contentTransfer.dialog.Push.prototype.makeProgressPanel = function () {
 		this.$progressPanel = $( '<div>' ).addClass( 'content-transfer-progress-panel' );
 		this.$pushTarget = $( '<div>' )
 			.addClass( 'content-transfer-progress-panel-push-target' )
 			.html(
 				mw.message(
-				'contenttransfer-progress-push-target-label', this.pushTarget.displayText || this.pushTarget.id
+					'contenttransfer-progress-push-target-label', this.pushTarget.displayText || this.pushTarget.id
 				).text()
 			);
 		this.$currentOperation = $( '<span>' ).addClass( 'content-transfer-progress-panel-current-op' );
@@ -280,7 +285,7 @@
 		return this.$progressPanel;
 	};
 
-	contentTransfer.dialog.Push.prototype.makeReportPanel = function() {
+	contentTransfer.dialog.Push.prototype.makeReportPanel = function () {
 		this.$reportPanel = $( '<div>' ).addClass( 'content-transfer-report-panel' );
 
 		this.reportIcon = new OO.ui.IconWidget( { icon: 'check' } );
@@ -288,7 +293,7 @@
 		this.$reportFailures = $( '<div>' ).addClass( 'content-transfer-report-panel-failures hidden' );
 		this.$reportFailures.append(
 			$( '<div>' ).addClass( 'content-transfer-report-panel-failed' )
-			.text( mw.message( 'contenttransfer-report-failure-label' ).text() )
+				.text( mw.message( 'contenttransfer-report-failure-label' ).text() )
 		);
 
 		this.$reportPanel.append(
@@ -300,8 +305,8 @@
 		return this.$reportPanel;
 	};
 
-	contentTransfer.dialog.Push.prototype.expandPageGroup = function( button, $pageGroup ) {
-		if( $pageGroup.hasClass( 'page-group-visible' ) ) {
+	contentTransfer.dialog.Push.prototype.expandPageGroup = function ( button, $pageGroup ) {
+		if ( $pageGroup.hasClass( 'page-group-visible' ) ) {
 			$pageGroup.removeClass( 'page-group-visible' );
 			button.setIndicator( 'down' );
 			return;
@@ -310,20 +315,20 @@
 		button.setIndicator( 'up' );
 	};
 
-	contentTransfer.dialog.Push.prototype.getActionProcess = function( action ) {
-		var me = this;
+	contentTransfer.dialog.Push.prototype.getActionProcess = function ( action ) {
+		const me = this;
 
 		if ( action === 'doPush' ) {
 			this.actions.setAbilities( { cancel: true, done: true, doPush: false } );
 			this.actions.setMode( 'progress' );
-			return new OO.ui.Process( function() {
+			return new OO.ui.Process( () => {
 				me.layout.nextStage();
 				return me.pushPages();
 			} );
 		}
-		if( action === 'cancel' || action === 'done' ) {
-			var dialog = this;
-			return new OO.ui.Process( function () {
+		if ( action === 'cancel' || action === 'done' ) {
+			const dialog = this;
+			return new OO.ui.Process( () => {
 				dialog.close();
 			} );
 		}
@@ -331,8 +336,8 @@
 		return contentTransfer.dialog.Push.super.prototype.getActionProcess.call( this, action );
 	};
 
-	contentTransfer.dialog.Push.prototype.pushPages = function() {
-		var dfd = $.Deferred();
+	contentTransfer.dialog.Push.prototype.pushPages = function () {
+		const dfd = $.Deferred();
 
 		this.actions.setAbilities( {
 			cancel: false,
@@ -345,64 +350,63 @@
 		return dfd.promise();
 	};
 
-	contentTransfer.dialog.Push.prototype.doPush = function( dfd, noProgress, page ) {
-		var me = this;
-		var force = false;
+	contentTransfer.dialog.Push.prototype.doPush = function ( dfd, noProgress, page ) {
+		const me = this;
+		let force = false;
 
-		if( !page ) {
-			for( var dbKey in this.joinedInfo ) {
+		if ( !page ) {
+			for ( const dbKey in this.joinedInfo ) {
 				if ( !this.joinedInfo.hasOwnProperty( dbKey ) ) {
 					continue;
 				}
 				page = this.joinedInfo[ dbKey ];
-				delete( this.joinedInfo[ dbKey ] );
+				delete ( this.joinedInfo[ dbKey ] );
 				break;
 			}
 		} else {
 			force = true;
 		}
 
-		if( !noProgress ) {
+		if ( !noProgress ) {
 			this.progressBar.setProgress( this.progressBar.getProgress() + this.progressStep );
 		}
 
-		if( !page ) {
+		if ( !page ) {
 			me.pushDone();
 			return dfd.resolve();
 		}
 
 		this.$currentOperation.html( mw.message( 'contenttransfer-progress-current-operation', page.title ).text() );
 
-		var data = {
+		const data = {
 			articleId: page.id,
 			pushTarget: JSON.stringify( this.pushTarget )
 		};
-		if( force ) {
+		if ( force ) {
 			data.force = 1;
 		}
 
-
-		this.api.postWithEditToken( $.extend( {
+		this.api.postWithEditToken( Object.assign( {
 			action: 'content-transfer-do-push-single'
 		}, data ) )
-			.done( function( response ) {
-				if( response.success === 1 ) {
+			.done( ( response ) => {
+				if ( response.success === 1 ) {
 					// Page pushed successfully, go on
 					me.addProgressItem( page, true );
 					me.doPush( dfd );
 				} else {
-					var $item = me.addProgressItem( page, false, response.message );
-					if( response.userAction ) {
+					const $item = me.addProgressItem( page, false, response.message );
+					if ( response.userAction ) {
 						// Pushing failed, user is required to take action
-						me.askUser( response, $item ).done( function( userResponse ) {
-							if( userResponse == 'force' ) {
+						me.askUser( response, $item ).done( ( userResponse ) => {
+							if ( userResponse === 'force' ) {
 								// User wants to force retry
 								me.removeProgressItem( page, $item );
 								me.doPush( dfd, true, page );
-							} else if( userResponse == 'skip' ) {
+							} else if ( userResponse === 'skip' ) {
 								// Skip this page
 								me.doPush( dfd );
-							} else if( userResponse == 'stop' ) {
+							} else if ( userResponse === 'stop' ) {
 								// Stop further pushing
 								me.pushDone( true );
 								dfd.resolve();
@@ -414,24 +418,24 @@
 					}
 				}
 			} )
-			.fail( function( response ) {
+			.fail( () => {
 				me.addProgressItem( page, false, 'Api error' );
 				me.doPush( dfd );
 			} );
 	};
 
-	contentTransfer.dialog.Push.prototype.askUser = function( response, $pageItem ) {
-		var dfd = $.Deferred();
-		var $actionCnt = $( '<div> ').addClass( 'content-transfer-progress-user-action-container' );
-		var label = new OO.ui.LabelWidget( { label: response.message } );
-		var btnSkip = new OO.ui.ButtonWidget( {
+	contentTransfer.dialog.Push.prototype.askUser = function ( response, $pageItem ) {
+		const dfd = $.Deferred();
+		const $actionCnt = $( '<div> ' ).addClass( 'content-transfer-progress-user-action-container' );
+		const label = new OO.ui.LabelWidget( { label: response.message } );
+		const btnSkip = new OO.ui.ButtonWidget( {
 			label: mw.message( 'contenttransfer-progress-user-action-skip' ).text(),
 			framed: false,
 			flags: [
 				'primary'
 			]
 		} );
-		var btnStop = new OO.ui.ButtonWidget( {
+		const btnStop = new OO.ui.ButtonWidget( {
 			label: mw.message( 'contenttransfer-progress-user-action-stop' ).text(),
 			framed: false,
 			icon: 'cancel',
@@ -439,32 +443,32 @@
 				'destructive'
 			]
 		} );
-		var btnForce = new OO.ui.ButtonWidget( {
+		const btnForce = new OO.ui.ButtonWidget( {
 			label: mw.message( 'contenttransfer-progress-user-action-force' ).text(),
 			framed: false,
 			flags: [
-				'primary',
+				'primary'
 			]
 		} );
 
 		$actionCnt.append( label.$element );
 
-		if( response.userAction === 'force' ) {
+		if ( response.userAction === 'force' ) {
 			$actionCnt.append( btnForce.$element );
 		}
 
 		$actionCnt.append( btnSkip.$element );
 		$actionCnt.append( btnStop.$element );
 
-		btnSkip.on( 'click', function( e ) {
+		btnSkip.on( 'click', () => {
 			$actionCnt.remove();
 			dfd.resolve( 'skip' );
 		} );
-		btnStop.on( 'click', function( e ) {
+		btnStop.on( 'click', () => {
 			$actionCnt.remove();
 			dfd.resolve( 'stop' );
 		} );
-		btnForce.on( 'click', function( e ) {
+		btnForce.on( 'click', () => {
 			$actionCnt.remove();
 			dfd.resolve( 'force' );
 		} );
@@ -473,18 +477,18 @@
 		return dfd.promise();
 	};
 
-	contentTransfer.dialog.Push.prototype.addProgressItem = function( page, success, message ) {
+	contentTransfer.dialog.Push.prototype.addProgressItem = function ( page, success, message ) {
 		this.pushedPages.push( {
 			id: page.id,
 			title: page.title,
 			success: success,
 			message: message || ''
 		} );
-		var $item = $( '<div>' )
-				.addClass( 'content-transfer-progress-item' )
-				.append( $( '<span>' ).addClass( 'content-transfer-progress-item-label' ).html( page.title ) );
+		const $item = $( '<div>' )
+			.addClass( 'content-transfer-progress-item' )
+			.append( $( '<span>' ).addClass( 'content-transfer-progress-item-label' ).html( page.title ) );
 
-		if( success ) {
+		if ( success ) {
 			$item.prepend( new OO.ui.IconWidget( { icon: 'check' } ).$element );
 		} else {
 			$item.prepend( new OO.ui.IconWidget( { icon: 'close' } ).$element );
@@ -496,29 +500,29 @@
 		return $item;
 	};
 
-	contentTransfer.dialog.Push.prototype.removeProgressItem = function( page, $pageItem ) {
+	contentTransfer.dialog.Push.prototype.removeProgressItem = function ( page, $pageItem ) {
 		$pageItem.remove();
-		for( var idx in this.pushedPages ) {
-			if( this.pushedPages[ idx ].id === page.id ) {
+		for ( const idx in this.pushedPages ) {
+			if ( this.pushedPages[ idx ].id === page.id ) {
 				this.pushedPages.splice( idx, 1 );
 				return;
 			}
 		}
 	};
 
-	contentTransfer.dialog.Push.prototype.pushDone = function( interrupted ) {
-		var successCount = 0;
-		var total = 0;
-		var pagesToPurge = [];
-		for( var idx in this.pushedPages ) {
+	contentTransfer.dialog.Push.prototype.pushDone = function ( interrupted ) {
+		let successCount = 0;
+		let total = 0;
+		const pagesToPurge = [];
+		for ( const idx in this.pushedPages ) {
 			total++;
 
-			var pushedPage = this.pushedPages[ idx ];
-			if( pushedPage.success === false ) {
+			const pushedPage = this.pushedPages[ idx ];
+			if ( pushedPage.success === false ) {
 				if ( this.$reportFailures.hasClass( 'hidden' ) ) {
 					this.$reportFailures.removeClass( 'hidden' );
 				}
-				var $failure = $( '<p>' ).append(
+				const $failure = $( '<p>' ).append(
 					$( '<span>' ).html( pushedPage.title ),
 					$( '<span>' ).addClass( 'content-transfer-report-failure-reason' ).html( pushedPage.message )
 				);
@@ -528,27 +532,27 @@
 				pagesToPurge.push( pushedPage.title );
 			}
 		}
-		if( interrupted ) {
+		if ( interrupted ) {
 			this.reportIcon.setIcon( 'close' );
 			this.$reportCount.html( mw.message( 'contenttransfer-report-interrupted', successCount ).text() );
 		} else {
 			this.$reportCount.html( mw.message( 'contenttransfer-report-success-count', successCount, total ).text() );
 		}
-		if( successCount < total ) {
+		if ( successCount < total ) {
 			this.reportIcon.setIcon( 'close' );
 		}
 
-		if( successCount > 0 ) {
-			this.purgePages( pagesToPurge ).done( function() {
+		if ( successCount > 0 ) {
+			this.purgePages( pagesToPurge ).done( () => {
 				this.showReport();
-			}.bind( this ) );
+			} );
 		} else {
 			this.showReport();
 		}
 	};
 
-	contentTransfer.dialog.Push.prototype.purgePages = function( pageTitles ) {
-		var dfd = $.Deferred();
+	contentTransfer.dialog.Push.prototype.purgePages = function ( pageTitles ) {
+		const dfd = $.Deferred();
 		this.$currentOperation.html( mw.message( 'contenttransfer-progress-purge-pages' ).plain() );
 
 		this.api.postWithEditToken(
@@ -557,39 +561,39 @@
 				pushTarget: this.pushTarget.url
 			},
 			'content-transfer-purge-pages'
-		).done( function() {
+		).done( () => {
 			dfd.resolve();
 		} )
-		.fail( function() {
-			dfd.resolve();
-		} );
+			.fail( () => {
+				dfd.resolve();
+			} );
 		return dfd.promise();
 	};
 
-	contentTransfer.dialog.Push.prototype.showReport = function() {
+	contentTransfer.dialog.Push.prototype.showReport = function () {
 		this.layout.nextStage();
 		this.actions.setAbilities( { done: true } );
 	};
 
-	contentTransfer.dialog.Push.prototype.onGroupCheck = function( group, value ) {
-		for( var i = 0; i < this.checkboxes[group].length; i++ ) {
-			this.checkboxes[group][i].setSelected( value );
+	contentTransfer.dialog.Push.prototype.onGroupCheck = function ( group, value ) {
+		for ( let i = 0; i < this.checkboxes[ group ].length; i++ ) {
+			this.checkboxes[ group ][ i ].setSelected( value );
 		}
 	};
 
-	contentTransfer.dialog.Push.prototype.filterOutExcluded = function() {
-		for( var dbKey in this.joinedInfo ) {
+	contentTransfer.dialog.Push.prototype.filterOutExcluded = function () {
+		for ( const dbKey in this.joinedInfo ) {
 			if ( !this.joinedInfo.hasOwnProperty( dbKey ) ) {
 				continue;
 			}
-			var page = this.joinedInfo[ dbKey ];
+			const page = this.joinedInfo[ dbKey ];
 			if ( this.skipPages.indexOf( page.id ) !== -1 ) {
-				delete( this.joinedInfo[dbKey] );
+				delete ( this.joinedInfo[ dbKey ] );
 			}
 		}
 	};
 
-	contentTransfer.dialog.Push.prototype.onSinglePageCheck = function( page, value ) {
+	contentTransfer.dialog.Push.prototype.onSinglePageCheck = function ( page, value ) {
 		if ( !page ) {
 			return;
 		}
@@ -600,10 +604,10 @@
 		}
 	};
 
-	contentTransfer.dialog.Push.prototype.onSubgroupCheckbox = function( group, subgroup, value ) {
-		var key = group + '#' + subgroup;
-		for( var i = 0; i < this.checkboxes[key].length; i++ ) {
-			this.checkboxes[key][i].setSelected( value );
+	contentTransfer.dialog.Push.prototype.onSubgroupCheckbox = function ( group, subgroup, value ) {
+		const key = group + '#' + subgroup;
+		for ( let i = 0; i < this.checkboxes[ key ].length; i++ ) {
+			this.checkboxes[ key ][ i ].setSelected( value );
 		}
 	};
 
@@ -613,4 +617,4 @@
 		template: 'code',
 		file: 'image'
 	};
-} )( mediaWiki, jQuery, document );
+}( mediaWiki, jQuery ) );
