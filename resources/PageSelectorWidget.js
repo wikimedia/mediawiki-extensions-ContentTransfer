@@ -1,8 +1,8 @@
-( function( mw, $, d ) {
+( function ( mw, $ ) {
 	window.contentTransfer = window.contentTransfer || {};
 	window.contentTransfer.widget = window.contentTransfer.widget || {};
 
-	contentTransfer.widget.PageSelectorWidget = function( cfg ) {
+	contentTransfer.widget.PageSelectorWidget = function ( cfg ) {
 		this.$element = cfg.$element;
 		this.filters = cfg.filters;
 
@@ -26,7 +26,7 @@
 
 	OO.initClass( contentTransfer.widget.PageSelectorWidget );
 
-	contentTransfer.widget.PageSelectorWidget.prototype.makeSaveContainer = function() {
+	contentTransfer.widget.PageSelectorWidget.prototype.makeSaveContainer = function () {
 		this.includeRelated = new OO.ui.CheckboxInputWidget( { selected: true } );
 		this.pushPagesButton = new OO.ui.ButtonWidget( {
 			label: mw.message( 'contenttransfer-push-pages-button-label' ).plain(),
@@ -39,7 +39,7 @@
 		this.pushPagesButton.connect( this, { click: 'pushPages' } );
 		this.pushTargetLayout = new OO.ui.HorizontalLayout( {
 			items: [
-				new OO.ui.FieldLayout( this.includeRelated,{
+				new OO.ui.FieldLayout( this.includeRelated, {
 					align: 'inline',
 					label: mw.message( 'contenttransfer-include-related' ).plain(),
 					classes: [ 'related' ]
@@ -51,21 +51,21 @@
 		this.$element.append( this.pushTargetLayout.$element );
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.makeTargetContainer = function() {
+	contentTransfer.widget.PageSelectorWidget.prototype.makeTargetContainer = function () {
 		this.$element.append( $( '<h2>' ).html( 'Transfer to wiki' ) );
 		this.makeTargetPicker();
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.makeTargetPicker = function() {
+	contentTransfer.widget.PageSelectorWidget.prototype.makeTargetPicker = function () {
 		this.pushTargets = mw.config.get( 'ctPushTargets' );
-		var pickerOptions = [];
-		for( var key in this.pushTargets ) {
+		const pickerOptions = [];
+		for ( const key in this.pushTargets ) {
 			if ( !this.pushTargets.hasOwnProperty( key ) ) {
 				continue;
 			}
-			var pushTarget = this.pushTargets[ key ];
+			const pushTarget = this.pushTargets[ key ];
 			pickerOptions.push( new OO.ui.MenuOptionWidget( {
-				data: $.extend( {}, { key: key }, pushTarget ),
+				data: Object.assign( {}, { key: key }, pushTarget ),
 				label: pushTarget.displayText || pushTarget.url
 			} ) );
 		}
@@ -105,7 +105,7 @@
 		this.$element.append( this.pickerLayout.$element );
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.makeFilters = function() {
+	contentTransfer.widget.PageSelectorWidget.prototype.makeFilters = function () {
 		this.toggleFilterButton = new OO.ui.ButtonWidget( {
 			icon: this.expanded ? 'collapse' : 'expand',
 			framed: false,
@@ -131,7 +131,7 @@
 		this.$element.append( this.filterHeaderLine.$element );
 		this.filterPanel = new OO.ui.PanelLayout( {
 			expanded: false
-		});
+		} );
 		if ( !this.expanded ) {
 			this.filterPanel.$element.hide();
 		}
@@ -148,36 +148,36 @@
 
 		this.onlyModified.connect( this, { change: 'loadPages' } );
 		this.modifiedSince.connect( this, {
-			change: function() {
-				this.modifiedSince.getValidity().done( function() {
+			change: function () {
+				this.modifiedSince.getValidity().done( () => {
 					this.loadPages();
-				}.bind( this ) );
+				} );
 			}
 		} );
 
-		var onlyModifiedLayout = new OO.ui.FieldLayout( this.onlyModified, {
+		const onlyModifiedLayout = new OO.ui.FieldLayout( this.onlyModified, {
 			align: 'inline',
 			label: mw.message( 'contenttransfer-only-modified-label' ).text(),
 			help: mw.message( 'contenttransfer-only-modified-help' ).text(),
 			classes: [ 'only-modified-layout' ]
 		} );
-		var modifiedSinceLayout = new OO.ui.FieldLayout( this.modifiedSince, {
+		const modifiedSinceLayout = new OO.ui.FieldLayout( this.modifiedSince, {
 			align: 'top',
 			label: mw.message( 'contenttransfer-modified-since-label' ).text()
 		} );
 
 		// Plugin filters
 		this.filterInstances = {};
-		var layouts = [];
-		for ( var name in this.filters ) {
+		const layouts = [];
+		for ( const name in this.filters ) {
 			if ( !this.filters.hasOwnProperty( name ) ) {
 				continue;
 			}
 
-			var filter = this.filters[name],
+			const filter = this.filters[ name ],
 				widgetClass = this.stringToCallback( filter.widgetClass ),
-				widget = new widgetClass( $.extend( {}, true, {
-					id: filter.id,
+				widget = new widgetClass( Object.assign( {}, true, { // eslint-disable-line new-cap
+					id: filter.id
 				}, filter.widgetData || {} ) ),
 				layout = new OO.ui.FieldLayout( widget, {
 					align: 'top',
@@ -185,15 +185,15 @@
 				} );
 			widget.connect( this, { change: 'loadPages' } );
 			layouts.push( layout );
-			this.filterInstances[name] = widget;
+			this.filterInstances[ name ] = widget;
 		}
 
-		var $filterLayout = $( '<div>' ).addClass( 'contenttransfer-filter-layout' );
+		const $filterLayout = $( '<div>' ).addClass( 'contenttransfer-filter-layout' );
 		$filterLayout.append(
 			new OO.ui.HorizontalLayout( { classes: [ 'bottom-margin table-50' ], items: [
-					modifiedSinceLayout,
-					onlyModifiedLayout
-				] } ).$element,
+				modifiedSinceLayout,
+				onlyModifiedLayout
+			] } ).$element,
 			new OO.ui.HorizontalLayout( { items: layouts } ).$element
 		);
 
@@ -204,38 +204,38 @@
 	contentTransfer.widget.PageSelectorWidget.prototype.onToggleFilter = function () {
 		if ( !this.expanded ) {
 			// eslint-disable-next-line no-jquery/no-slide
-			this.filterPanel.$element.slideDown( 300, function () {
+			this.filterPanel.$element.slideDown( 300, () => {
 				this.toggleFilterButton.setIcon( 'collapse' );
 				this.toggleFilterButton.setTitle( mw.message( 'contenttransfer-filter-toggle-btn-hide' ).text() );
 				this.expanded = true;
-			}.bind( this ) );
+			} );
 		} else {
 			// eslint-disable-next-line no-jquery/no-slide
-			this.filterPanel.$element.slideUp( 300, function () {
+			this.filterPanel.$element.slideUp( 300, () => {
 				this.toggleFilterButton.setIcon( 'expand' );
 				this.toggleFilterButton.setTitle( mw.message( 'contenttransfer-filter-toggle-btn-show' ).text() );
 				this.expanded = false;
-			}.bind( this ) );
+			} );
 		}
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.makePageContainer = function() {
+	contentTransfer.widget.PageSelectorWidget.prototype.makePageContainer = function () {
 		this.$pagesHeader = $( '<div>' ).addClass( 'content-transfer-pages-header' );
 		this.$element.append( this.$pagesHeader );
-		var headerLayout = new OO.ui.HorizontalLayout( {
+		const headerLayout = new OO.ui.HorizontalLayout( {
 			classes: [ 'header-layout' ]
 		} );
 
-		let $selectionCnt = $( '<div>' ).addClass( 'selection-cnt' );
+		const $selectionCnt = $( '<div>' ).addClass( 'selection-cnt' );
 		this.selectAllButton = new OO.ui.ToggleButtonWidget( {
 			label: 'Select all',
-			classes: ['content-transfer-toggle-btn']
+			classes: [ 'content-transfer-toggle-btn' ]
 		} );
 		this.selectAllButton.connect( this, { click: 'selectToggle' } );
 		$selectionCnt.append( this.selectAllButton.$element );
 		this.$pagesCount = $( '<div>' ).addClass( 'selected-count' );
 		$selectionCnt.append( this.$pagesCount );
-		
+
 		headerLayout.$element.append(
 			$( '<h2>' ).html( mw.message( 'contenttransfer-pages-header' ).plain() ),
 			$selectionCnt
@@ -249,13 +249,13 @@
 		this.updateSelectedCount();
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.pushPages = function() {
-		if( !this.currentPushTarget ) {
+	contentTransfer.widget.PageSelectorWidget.prototype.pushPages = function () {
+		if ( !this.currentPushTarget ) {
 			return;
 		}
 
-		var selectedPageIds = [];
-		for( var pageId in this.displayedPages ) {
+		const selectedPageIds = [];
+		for ( const pageId in this.displayedPages ) {
 			if ( this.displayedPages[ pageId ].selected ) {
 				selectedPageIds.push( pageId );
 			}
@@ -263,39 +263,39 @@
 
 		this.setPushWaitingNotice( true );
 		this.api.get( {
-			action: "content-transfer-push-info",
+			action: 'content-transfer-push-info',
 			titles: JSON.stringify( selectedPageIds ),
 			onlyModified: this.onlyModified.isSelected() ? 1 : 0,
 			modifiedSince: this.modifiedSince.getValue(),
 			includeRelated: this.includeRelated.isSelected() ? 1 : 0,
 			target: this.currentPushTarget
 		} )
-			.done( function( response ) {
-				var windowManager = OO.ui.getWindowManager();
-				var cfg = {
+			.done( ( response ) => {
+				const windowManager = OO.ui.getWindowManager();
+				const cfg = {
 					grouped: response.grouped,
 					joined: response.joined,
-					pushTarget: $.extend( {
+					pushTarget: Object.assign( {
 						id: this.currentPushTarget,
 						selectedUser: this.currentPushUser
-					}, this.pushTargets[this.currentPushTarget] ),
+					}, this.pushTargets[ this.currentPushTarget ] ),
 					originalIds: selectedPageIds
 				};
 
-				var dialog = new contentTransfer.dialog.Push( cfg );
+				const dialog = new contentTransfer.dialog.Push( cfg );
 				windowManager.addWindows( [ dialog ] );
 				windowManager.openWindow( dialog );
 				this.setPushWaitingNotice( false );
-			}.bind( this ) );
+			} );
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.onPushTargetChanged = function( selected ) {
+	contentTransfer.widget.PageSelectorWidget.prototype.onPushTargetChanged = function ( selected ) {
 		if ( !selected ) {
 			this.currentPushTarget = null;
 			this.currentPushUser = null;
 			return;
 		}
-		var data = selected.getData(),
+		const data = selected.getData(),
 			users = data.users || [];
 
 		this.currentPushTarget = data.key;
@@ -303,15 +303,15 @@
 		if ( users.length === 0 ) {
 			return;
 		}
-		this.currentPushUser = users[0];
+		this.currentPushUser = users[ 0 ];
 		if ( users.length === 1 ) {
 			this.userSelectorLayout.$element.hide();
 			return;
 		}
-		var options = [];
-		for( var i = 0; i < users.length; i++ ) {
+		const options = [];
+		for ( let i = 0; i < users.length; i++ ) {
 			options.push( {
-				data: users[i]
+				data: users[ i ]
 			} );
 		}
 		this.userSelector.setOptions( options );
@@ -319,18 +319,18 @@
 		this.userSelector.setValue( this.currentPushUser );
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.onPushUserChanged = function( value ) {
+	contentTransfer.widget.PageSelectorWidget.prototype.onPushUserChanged = function ( value ) {
 		this.currentPushUser = value;
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.getComboValue = function( value, type, key ) {
+	contentTransfer.widget.PageSelectorWidget.prototype.getComboValue = function ( value, type, key ) {
 		if ( !value ) {
 			return false;
 		}
 		key = key || 'id';
-		for( var i = 0; i < this.filterData[type].length; i++ ) {
-			if ( this.filterData[type][i].text === value ) {
-				value = this.filterData[type][i][key];
+		for ( let i = 0; i < this.filterData[ type ].length; i++ ) {
+			if ( this.filterData[ type ][ i ].text === value ) {
+				value = this.filterData[ type ][ i ][ key ];
 				if ( key === 'id' ) {
 					return parseInt( value );
 				}
@@ -341,31 +341,31 @@
 		return null;
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.getFilterData = function() {
-		var values = {};
+	contentTransfer.widget.PageSelectorWidget.prototype.getFilterData = function () {
+		const values = {};
 		// Plugin filters
 
-		for( var name in this.filterInstances ) {
+		for ( const name in this.filterInstances ) {
 			if ( !this.filterInstances.hasOwnProperty( name ) ) {
 				continue;
 			}
-			var filterInstance = this.filterInstances[name];
-			values[filterInstance.$element.attr( 'id' )] = filterInstance.getValue();
+			const filterInstance = this.filterInstances[ name ];
+			values[ filterInstance.$element.attr( 'id' ) ] = filterInstance.getValue();
 		}
 		// Build-in
 		values.modifiedSince = this.modifiedSince.getValue();
 		values.onlyModified = this.onlyModified.isSelected();
 
-		return $.extend( values, {
+		return Object.assign( values, {
 			target: this.currentPushTarget
 		} );
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.loadPages = function() {
+	contentTransfer.widget.PageSelectorWidget.prototype.loadPages = function () {
 		if ( !this.currentPushTarget ) {
 			return;
 		}
-		var filterData = this.getFilterData();
+		const filterData = this.getFilterData();
 		if ( !filterData ) {
 			return;
 		}
@@ -378,19 +378,19 @@
 			action: 'content-transfer-get-pages',
 			filterData: JSON.stringify( filterData )
 		} )
-			.done( function( response ) {
+			.done( ( response ) => {
 				this.setPagesLoading( false );
 				this.displayPages( response );
-			}.bind( this ) );
+			} );
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.clearPages = function() {
+	contentTransfer.widget.PageSelectorWidget.prototype.clearPages = function () {
 		this.$pageContainer.children().remove();
 		this.displayedPages = {};
 		this.updateSelectedCount();
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.setPagesLoading = function( loading ) {
+	contentTransfer.widget.PageSelectorWidget.prototype.setPagesLoading = function ( loading ) {
 		loading = loading || false;
 		if ( !loading && this.$pageContainer.find( '.page-loader' ).length > 0 ) {
 			this.$pageContainer.find( '.page-loader' ).remove();
@@ -404,18 +404,18 @@
 		}
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.setTooManyPagesWarning = function( total, retrieved ) {
-		this.$pageContainer.prepend( new OO.ui.MessageWidget ( {
+	contentTransfer.widget.PageSelectorWidget.prototype.setTooManyPagesWarning = function ( total, retrieved ) {
+		this.$pageContainer.prepend( new OO.ui.MessageWidget( {
 			type: 'warning',
 			label: mw.message( 'contenttransfer-too-many-pages-warning', total, retrieved ).text()
 		} ).$element );
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.updateSelectedCount = function() {
-		var total = 0,
+	contentTransfer.widget.PageSelectorWidget.prototype.updateSelectedCount = function () {
+		let total = 0,
 			selected = 0;
 
-		for( var pageId in this.displayedPages ) {
+		for ( const pageId in this.displayedPages ) {
 			if ( !this.displayedPages.hasOwnProperty( pageId ) ) {
 				continue;
 			}
@@ -442,13 +442,13 @@
 		);
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.setNoPages = function() {
+	contentTransfer.widget.PageSelectorWidget.prototype.setNoPages = function () {
 		this.$pageContainer.html(
 			new OO.ui.LabelWidget( { label: mw.message( 'contenttransfer-no-pages-label' ).text() } ).$element
 		);
 	};
 
-	contentTransfer.widget.PageSelectorWidget.prototype.displayError = function( error ) {
+	contentTransfer.widget.PageSelectorWidget.prototype.displayError = function ( error ) {
 		error = error || mw.message( 'contenttransfer-generic-error' ).text();
 		this.$pageContainer.html(
 			new OO.ui.MessageWidget( {
@@ -459,9 +459,9 @@
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.displayPages = function ( response ) {
-		if( response.page_count === 0 ) {
+		if ( response.page_count === 0 ) {
 			this.$pageContainer.append(
-				new OO.ui.MessageWidget ( {
+				new OO.ui.MessageWidget( {
 					type: 'warning',
 					label: mw.message( 'contenttransfer-no-pages-label' ).text()
 				} ).$element
@@ -470,29 +470,28 @@
 		}
 		this.$element.find( '.content-transfer-too-many-pages-warning' ).remove();
 
-
-		for( var idx = 0; idx < response.pages.length; idx++ ) {
-			var page = response.pages[idx];
-			var pageCheckbox = new OO.ui.CheckboxInputWidget( {
+		for ( let idx = 0; idx < response.pages.length; idx++ ) {
+			const page = response.pages[ idx ];
+			const pageCheckbox = new OO.ui.CheckboxInputWidget( {
 				name: page.id,
 				selected: true,
 				title: page.prefixed_text,
-				data:  page,
+				data: page,
 				classes: [ 'content-transfer-page-item-control' ]
 			} );
-			var pageLayout = new OO.ui.FieldLayout(
+			const pageLayout = new OO.ui.FieldLayout(
 				pageCheckbox, {
 					align: 'inline',
 					label: page.prefixed_text
 				} );
 			pageLayout.$element.addClass( 'content-transfer-page-item' );
 			pageCheckbox.on( 'change', this.onPageSelected.bind( this ), [ page.id ] );
-			this.displayedPages[page.id] = { checkbox: pageCheckbox, selected: true };
+			this.displayedPages[ page.id ] = { checkbox: pageCheckbox, selected: true };
 			this.$pageContainer.append( pageLayout.$element );
 		}
 
-		if( response.total > response.page_count ) {
-			this.setTooManyPagesWarning( response.total, response.page_count);
+		if ( response.total > response.page_count ) {
+			this.setTooManyPagesWarning( response.total, response.page_count );
 		}
 
 		this.updateSelectedCount();
@@ -500,8 +499,8 @@
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.onPageSelected = function ( pageId, value ) {
-		if( pageId in this.displayedPages ) {
-			this.displayedPages[pageId].selected = value;
+		if ( pageId in this.displayedPages ) {
+			this.displayedPages[ pageId ].selected = value;
 		}
 		this.updateSelectedCount();
 	};
@@ -517,14 +516,14 @@
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.selectGroup = function ( selected ) {
-		for( var id in this.displayedPages ) {
+		for ( const id in this.displayedPages ) {
 			if ( !this.displayedPages.hasOwnProperty( id ) ) {
 				continue;
 			}
-			if ( !this.displayedPages[id].hasOwnProperty( 'checkbox' ) ) {
+			if ( !this.displayedPages[ id ].hasOwnProperty( 'checkbox' ) ) {
 				continue;
 			}
-			this.displayedPages[id].checkbox.setSelected( selected );
+			this.displayedPages[ id ].checkbox.setSelected( selected );
 		}
 	};
 
@@ -533,21 +532,21 @@
 		this.pushTargetPicker.setDisabled( wait );
 		this.onlyModified.setDisabled( wait );
 		this.selectAllButton.setDisabled( wait );
-		for ( var name in this.filterInstances ) {
+		for ( const name in this.filterInstances ) {
 			if ( !this.filterInstances.hasOwnProperty( name ) ) {
 				continue;
 			}
-			this.filterInstances[name].setDisabled( wait );
+			this.filterInstances[ name ].setDisabled( wait );
 		}
 
-		for( var id in this.displayedPages ) {
+		for ( const id in this.displayedPages ) {
 			if ( !this.displayedPages.hasOwnProperty( id ) ) {
 				continue;
 			}
-			if ( !this.displayedPages[id].hasOwnProperty( 'checkbox' ) ) {
+			if ( !this.displayedPages[ id ].hasOwnProperty( 'checkbox' ) ) {
 				continue;
 			}
-			this.displayedPages[id].checkbox.setDisabled( wait );
+			this.displayedPages[ id ].checkbox.setDisabled( wait );
 		}
 
 		if ( this.$element.find( '.loader' ).length > 0 ) {
@@ -555,19 +554,19 @@
 		}
 
 		if ( wait ) {
-			var loader = new OO.ui.ProgressBarWidget( { classes: [ 'loader'] } );
+			const loader = new OO.ui.ProgressBarWidget( { classes: [ 'loader' ] } );
 			this.$element.prepend( loader.$element );
 		}
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.stringToCallback = function ( cls ) {
-		var parts = cls.split( '.' );
-		var func = window[parts[0]];
-		for( var i = 1; i < parts.length; i++ ) {
-			func = func[parts[i]];
+		const parts = cls.split( '.' );
+		let func = window[ parts[ 0 ] ];
+		for ( let i = 1; i < parts.length; i++ ) {
+			func = func[ parts[ i ] ];
 		}
 
 		return func;
 	};
 
-} )( mediaWiki, jQuery, document );
+}( mediaWiki, jQuery ) );

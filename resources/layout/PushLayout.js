@@ -1,7 +1,7 @@
-( function( mw, $, d ) {
+( function ( $ ) {
 	contentTransfer.layout = {};
 
-	contentTransfer.layout.Push = function( cfg ) {
+	contentTransfer.layout.Push = function () {
 		this.stages = {};
 		this.currentStage = '';
 
@@ -12,47 +12,47 @@
 
 	OO.initClass( contentTransfer.layout.Push );
 
-	contentTransfer.layout.Push.prototype.addStage = function( cfg ) {
-		var page = $( '<div>' )
+	contentTransfer.layout.Push.prototype.addStage = function ( cfg ) {
+		const page = $( '<div>' ) // eslint-disable-line no-jquery/variable-pattern
 			.addClass( 'content-transfer-layout-push-page' )
 			.append( cfg.content );
 
-		this.stages[cfg.name] = {
+		this.stages[ cfg.name ] = {
 			page: page
 		};
 		this.$pagesContainer.append( page );
-	}
+	};
 
-	contentTransfer.layout.Push.prototype.setCurrentStage = function( stage ) {
-		if( stage in this.stages == false ) {
+	contentTransfer.layout.Push.prototype.setCurrentStage = function ( stage ) {
+		if ( stage in this.stages == false ) { // eslint-disable-line eqeqeq
 			return;
 		}
 
 		this.currentStage = stage;
-		var stage = this.stages[ stage ];
+		stage = this.stages[ stage ];
 
 		stage.page.css( 'display', 'block' );
-	}
+	};
 
-	contentTransfer.layout.Push.prototype.firstStage = function() {
-		for( var stageName in this.stages ) {
+	contentTransfer.layout.Push.prototype.firstStage = function () {
+		for ( const stageName in this.stages ) { // eslint-disable-line no-unreachable-loop
 			return this.setCurrentStage( stageName );
 		}
-	}
+	};
 
-	contentTransfer.layout.Push.prototype.nextStage = function() {
-		var currentStage = this.stages[ this.currentStage ];
+	contentTransfer.layout.Push.prototype.nextStage = function () {
+		const currentStage = this.stages[ this.currentStage ];
 		currentStage.page.hide();
 
-		var isNext = false;
-		for( var stageName in this.stages ) {
-			if( isNext ) {
+		let isNext = false;
+		for ( const stageName in this.stages ) {
+			if ( isNext ) {
 				return this.setCurrentStage( stageName );
 			}
-			if( stageName === this.currentStage ) {
+			if ( stageName === this.currentStage ) {
 				isNext = true;
 			}
 		}
-	}
+	};
 
-} )( mediaWiki, jQuery, document );
+}( jQuery ) );
