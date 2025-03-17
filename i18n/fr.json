@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
-			"Verdy p"
+			"Verdy p",
+			"JLTRY"
 		]
 	},
 	"contenttransfer-extension-description": "Permet de pousser des contenus d’un wiki à un autre",
@@ -73,5 +74,7 @@
 	"content-transfer-push-related-pages": "Pages associées",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Référencé",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Inclus",
-	"contenttransfer-user-picker-label": "Transférer comme l’utilisateur"
+	"contenttransfer-user-picker-label": "Transférer comme l’utilisateur",
+	"contenttransfer-authentication-no-user": "Aucun utilisateur sélectionné pour le transfert",
+	"contenttransfer-no-targets": "Aucune cible de transfert n'est configurée !"
 }

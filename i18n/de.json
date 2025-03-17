@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Mschlindwein"
+		]
 	},
 	"contenttransfer-extension-description": "Ermöglicht das Verschieben von Inhalten von einem Wiki in ein anderes",
 	"contenttransfer": "Inhalt übertragen",
