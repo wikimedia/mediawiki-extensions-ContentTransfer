@@ -62,7 +62,9 @@ class Category implements IPageFilter {
 		$db = $this->lb->getConnection( DB_REPLICA );
 		$res = $db->select(
 			'category',
-			[ 'cat_id', 'cat_title' ]
+			[ 'cat_id', 'cat_title' ],
+			'',
+			__METHOD__
 		);
 
 		$categories = [];
