@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Mschlindwein"
+		]
 	},
 	"contenttransfer-extension-description": "Ermöglicht das Verschieben von Inhalten von einem Wiki in ein anderes",
 	"contenttransfer": "Inhalt übertragen",
@@ -50,7 +52,7 @@
 	"contenttransfer-too-many-pages-warning": "Die Seitenliste wird aufgrund des konfigurierten Limits von {{PLURAL:$2|einer Seite|$2 Seiten}} pro Push gekürzt. Insgesamt {{PLURAL:$1|passt 1 Seite|passen $1 Seiten}} zu den Kriterien",
 	"contenttransfer-ns-main": "(Seiten)",
 	"contenttransfer-generic-error": "Es ist ein Fehler aufgetreten!",
-	"contenttransfer-include-related": "Einschließen der zugehörigen",
+	"contenttransfer-include-related": "Zugehörige Seiten einschließen",
 	"contenttransfer-modified-since-label": "Modifiziert seit",
 	"apihelp-content-transfer-get-pages-summary": "Listet alle Seiten auf, die basierend auf gegebenen Filtern pushbar sind",
 	"apihelp-content-transfer-push-info-summary": "Ruft alle Ressourcen wie eingebundene Dateien, verlinkte Seiten usw. der Seite ab, die in ein Ziel-Wiki übertragen werden sollen",
