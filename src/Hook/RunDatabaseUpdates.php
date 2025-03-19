@@ -13,7 +13,7 @@ class RunDatabaseUpdates implements LoadExtensionSchemaUpdatesHook {
 		$dbType = $updater->getDB()->getType();
 		$dir = dirname( __DIR__, 2 );
 
-		if ( $updater->getDB()->tableExists( 'push_history' )
+		if ( $updater->getDB()->tableExists( 'push_history', __METHOD__ )
 			&& !$updater->getDB()->fieldExists( 'push_history', 'ph_target', __METHOD__ ) ) {
 			$updater->dropExtensionTable( 'push_history' );
 		}
