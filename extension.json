@@ -5,7 +5,7 @@
 		"Dejan Savuljesku <savuljesku@hallowelt.com>"
 	],
 	"license-name": "GPL-3.0-only",
-	"version": "3.0.0-alpha",
+	"version": "4.0.0-alpha",
 	"descriptionmsg": "contenttransfer-extension-description",
 	"requires": {
 		"MediaWiki": ">= 1.39.0"
