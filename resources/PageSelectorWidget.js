@@ -141,17 +141,16 @@
 			selected: true
 		} );
 
-		this.modifiedSince = new OO.ui.TextInputWidget( {
-			placeholder: mw.message( 'contenttransfer-modified-since-ph' ).text(),
-			validate: /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/gm
+		this.modifiedSince = new mw.widgets.DateInputWidget( {
+			inputFormat: 'DD.MM.YYYY',
+			displayFormat: 'DD.MM.YYYY',
+			$overlay: true
 		} );
 
 		this.onlyModified.connect( this, { change: 'loadPages' } );
 		this.modifiedSince.connect( this, {
 			change: function () {
-				this.modifiedSince.getValidity().done( () => {
-					this.loadPages();
-				} );
+				this.loadPages();
 			}
 		} );
 
@@ -266,7 +265,7 @@
 			action: 'content-transfer-push-info',
 			titles: JSON.stringify( selectedPageIds ),
 			onlyModified: this.onlyModified.isSelected() ? 1 : 0,
-			modifiedSince: this.modifiedSince.getValue(),
+			modifiedSince: this.getDateValue(),
 			includeRelated: this.includeRelated.isSelected() ? 1 : 0,
 			target: this.currentPushTarget
 		} )
@@ -353,13 +352,22 @@
 			values[ filterInstance.$element.attr( 'id' ) ] = filterInstance.getValue();
 		}
 		// Build-in
-		values.modifiedSince = this.modifiedSince.getValue();
+		values.modifiedSince = this.getDateValue();
 		values.onlyModified = this.onlyModified.isSelected();
 
 		return Object.assign( values, {
 			target: this.currentPushTarget
 		} );
 	};
+
+	contentTransfer.widget.PageSelectorWidget.prototype.getDateValue = function () {
+		let modifiedDateValue = this.modifiedSince.getValue();
+		if ( modifiedDateValue !== '' ) {
+			const date = new Date( modifiedDateValue );
+			modifiedDateValue = date.toLocaleDateString( 'de-DE' );
+		}
+		return modifiedDateValue;
+	}
 
 	contentTransfer.widget.PageSelectorWidget.prototype.loadPages = function () {
 		if ( !this.currentPushTarget ) {
