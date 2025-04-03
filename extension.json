@@ -121,6 +121,7 @@
 			],
 			"dependencies": [
 				"mediawiki.api",
+				"mediawiki.widgets.DateInputWidget",
 				"oojs-ui.styles.icons-media",
 				"oojs",
 				"oojs-ui"
