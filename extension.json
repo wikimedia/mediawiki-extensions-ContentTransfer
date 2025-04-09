@@ -170,7 +170,9 @@
 				"contenttransfer-progress-user-action-force",
 				"contenttransfer-filter-panel-label",
 				"contenttransfer-filter-toggle-btn-hide",
-				"contenttransfer-filter-toggle-btn-show"
+				"contenttransfer-filter-toggle-btn-show",
+				"contenttransfer-selection-toggle-btn-label",
+				"contenttransfer-transfer-wiki-heading-label"
 			]
 		},
 		"ext.contenttransfer.filters": {

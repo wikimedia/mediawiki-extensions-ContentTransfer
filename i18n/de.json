@@ -80,5 +80,7 @@
 	"contenttransfer-progress-user-action-force": "Wiederholung erzwingen",
 	"contenttransfer-filter-panel-label": "Filter",
 	"contenttransfer-filter-toggle-btn-hide": "Verstecken",
-	"contenttransfer-filter-toggle-btn-show": "Anzeigen"
+	"contenttransfer-filter-toggle-btn-show": "Anzeigen",
+	"contenttransfer-selection-toggle-btn-label": "Alle auswählen",
+	"contenttransfer-transfer-wiki-heading-label": "Übertragung auf Wiki"
 }

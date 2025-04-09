@@ -82,5 +82,7 @@
 	"contenttransfer-progress-user-action-force": "Force retry",
 	"contenttransfer-filter-panel-label": "Filter",
 	"contenttransfer-filter-toggle-btn-hide": "Hide",
-	"contenttransfer-filter-toggle-btn-show": "Show"
+	"contenttransfer-filter-toggle-btn-show": "Show",
+	"contenttransfer-selection-toggle-btn-label": "Select all",
+	"contenttransfer-transfer-wiki-heading-label": "Transfer to wiki"
 }

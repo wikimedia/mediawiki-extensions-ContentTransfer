@@ -52,7 +52,7 @@
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.makeTargetContainer = function () {
-		this.$element.append( $( '<h2>' ).html( 'Transfer to wiki' ) );
+		this.$element.append( $( '<h2>' ).html( mw.message( 'contenttransfer-transfer-wiki-heading-label' ).text() ) );
 		this.makeTargetPicker();
 	};
 
@@ -228,7 +228,7 @@
 
 		const $selectionCnt = $( '<div>' ).addClass( 'selection-cnt' );
 		this.selectAllButton = new OO.ui.ToggleButtonWidget( {
-			label: 'Select all',
+			label: mw.message( 'contenttransfer-selection-toggle-btn-label' ).text(),
 			classes: [ 'content-transfer-toggle-btn' ]
 		} );
 		this.selectAllButton.connect( this, { click: 'selectToggle' } );

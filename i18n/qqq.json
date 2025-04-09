@@ -85,5 +85,7 @@
 	"contenttransfer-progress-user-action-force": "Button label for user action to force retry transfer",
 	"contenttransfer-filter-panel-label": "Label for panel which contains filter for page selection",
 	"contenttransfer-filter-toggle-btn-hide": "Title for toggle button to hide filter panel",
-	"contenttransfer-filter-toggle-btn-show": "Title for toggle button to show filter panel"
+	"contenttransfer-filter-toggle-btn-show": "Title for toggle button to show filter panel",
+	"contenttransfer-selection-toggle-btn-label": "Label for toggle button to select all pages",
+	"contenttransfer-transfer-wiki-heading-label": "Heading for section to select wiki to transfer to"
 }
