@@ -52,7 +52,7 @@
 	"contenttransfer-too-many-pages-warning": "Lista de paginas es truncate a causa de limite configurate de $2 pagina{{PLURAL:$2||s}} per pulsata. Total de $1 pagina{{PLURAL:$1||s}} satisface le criterios.",
 	"contenttransfer-ns-main": "(principal)",
 	"contenttransfer-generic-error": "Un error ha occurrite!",
-	"contenttransfer-include-related": "Include associates",
+	"contenttransfer-include-related": "Includer paginas associate",
 	"contenttransfer-modified-since-label": "Modificate depost",
 	"apihelp-content-transfer-get-pages-summary": "Lista tote le paginas que es pulsabile a base de filtros date",
 	"apihelp-content-transfer-push-info-summary": "Recupera tote le ressources como files includite, paginas listate, etc. del pagina que es sur le puncto de esser transferite a un wiki de destination",
@@ -74,5 +74,12 @@
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Transcludite",
 	"contenttransfer-user-picker-label": "Transferer como usator",
 	"contenttransfer-authentication-no-user": "Necun usator seligite pro le transferimento",
-	"contenttransfer-no-targets": "Il non ha destinationes de transferimento configurate!"
+	"contenttransfer-no-targets": "Il non ha destinationes de transferimento configurate!",
+	"contenttransfer-report-failure-label": "Fallite",
+	"contenttransfer-progress-user-action-skip": "Saltar",
+	"contenttransfer-progress-user-action-stop": "Arrestar transferimento",
+	"contenttransfer-progress-user-action-force": "Fortiar nove tentativa",
+	"contenttransfer-filter-panel-label": "Filtrar",
+	"contenttransfer-filter-toggle-btn-hide": "Celar",
+	"contenttransfer-filter-toggle-btn-show": "Monstrar"
 }

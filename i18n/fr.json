@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
+			"JLTRY",
 			"Verdy p"
 		]
 	},
@@ -73,5 +74,14 @@
 	"content-transfer-push-related-pages": "Pages associées",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Référencé",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Inclus",
-	"contenttransfer-user-picker-label": "Transférer comme l’utilisateur"
+	"contenttransfer-user-picker-label": "Transférer comme l’utilisateur",
+	"contenttransfer-report-failure-label": "Échec",
+	"contenttransfer-authentication-no-user": "Aucun utilisateur sélectionné pour le transfert",
+	"contenttransfer-no-targets": "Aucune cible de transfert n'est configurée !",
+	"contenttransfer-progress-user-action-skip": "Sauter",
+	"contenttransfer-progress-user-action-stop": "Arrêter le transfert",
+	"contenttransfer-progress-user-action-force": "Forcer la nouvelle tentative",
+	"contenttransfer-filter-panel-label": "Filtre",
+	"contenttransfer-filter-toggle-btn-hide": "Masquer",
+	"contenttransfer-filter-toggle-btn-show": "Afficher"
 }

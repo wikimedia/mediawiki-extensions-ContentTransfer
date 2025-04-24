@@ -53,7 +53,7 @@
 	"contenttransfer-too-many-pages-warning": "רשימת הדפים קוצרה בשל מגבלה מוגדרת של {{PLURAL:$2|דף אחד|$2 דפים}} לכל דחיפה. בסך הכול, {{PLURAL:$1|דף אחד מתאים|$1 דפים מתאימים}} לתנאים",
 	"contenttransfer-ns-main": "(ראשי)",
 	"contenttransfer-generic-error": "אירעה שגיאה!",
-	"contenttransfer-include-related": "לכלול קשורים",
+	"contenttransfer-include-related": "לכלול דפים קשורים",
 	"contenttransfer-modified-since-label": "שונה מאז",
 	"apihelp-content-transfer-get-pages-summary": "רשימת כל הדפים שניתן לדחוף בהתחשב במסננים הנתונים",
 	"apihelp-content-transfer-push-info-summary": "אחזור כל המשאבים כגון קבצים מוכללים, דפים מקושרים, וכו', של הדף שעומד להיות מועבר לוויקי היעד",
@@ -74,5 +74,13 @@
 	"contenttransfer-dialog-push-subgroup-label-linked": "דפים שמפנים אליהם",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "מוכללים",
 	"contenttransfer-user-picker-label": "להעביר כמשתמש",
-	"contenttransfer-authentication-no-user": "לא נבחר משתמש להעברה"
+	"contenttransfer-authentication-no-user": "לא נבחר משתמש להעברה",
+	"contenttransfer-report-failure-label": "נכשל",
+	"contenttransfer-no-targets": "אין יעדי העברה מוגדרים!",
+	"contenttransfer-progress-user-action-skip": "לדלג",
+	"contenttransfer-progress-user-action-stop": "לעצור את ההעברה",
+	"contenttransfer-progress-user-action-force": "לכפות ניסיון חוזר",
+	"contenttransfer-filter-panel-label": "סינון",
+	"contenttransfer-filter-toggle-btn-hide": "הסתרה",
+	"contenttransfer-filter-toggle-btn-show": "הצגה"
 }

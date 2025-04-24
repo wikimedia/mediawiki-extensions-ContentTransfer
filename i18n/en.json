@@ -53,7 +53,7 @@
 	"contenttransfer-too-many-pages-warning": "Page list is truncated due to configured limit of {{PLURAL:$2|one page|$2 pages}} per push. Total of {{PLURAL:$1|1 page|$1 pages}} fit the criteria",
 	"contenttransfer-ns-main": "(main)",
 	"contenttransfer-generic-error": "An error has occurred!",
-	"contenttransfer-include-related": "Include related",
+	"contenttransfer-include-related": "Include related pages",
 	"contenttransfer-modified-since-label": "Modified since",
 	"contenttransfer-modified-since-ph": "DD.MM.YYYY",
 	"apihelp-content-transfer-get-pages-summary": "Lists all pages that are pushable based on given filters",
@@ -76,5 +76,14 @@
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Transcluded",
 	"contenttransfer-user-picker-label": "Transfer as user",
 	"contenttransfer-authentication-no-user": "No user for transfer selected",
-	"contenttransfer-no-targets": "There are no transfer targets configured!"
+	"contenttransfer-no-targets": "There are no transfer targets configured!",
+	"contenttransfer-report-failure-label": "Failed",
+	"contenttransfer-progress-user-action-skip": "Skip",
+	"contenttransfer-progress-user-action-stop": "Stop transfer",
+	"contenttransfer-progress-user-action-force": "Force retry",
+	"contenttransfer-filter-panel-label": "Filter",
+	"contenttransfer-filter-toggle-btn-hide": "Hide",
+	"contenttransfer-filter-toggle-btn-show": "Show",
+	"contenttransfer-selection-toggle-btn-label": "Select all",
+	"contenttransfer-transfer-wiki-heading-label": "Transfer to wiki"
 }
