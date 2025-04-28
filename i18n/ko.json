@@ -67,5 +67,6 @@
 	"contenttransfer-progress-user-action-force": "다시 강제 시도",
 	"contenttransfer-filter-panel-label": "필터",
 	"contenttransfer-filter-toggle-btn-hide": "숨기기",
-	"contenttransfer-filter-toggle-btn-show": "표시"
+	"contenttransfer-filter-toggle-btn-show": "표시",
+	"contenttransfer-selection-toggle-btn-label": "모두 선택"
 }
