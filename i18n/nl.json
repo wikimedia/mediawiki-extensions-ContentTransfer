@@ -8,7 +8,7 @@
 		]
 	},
 	"contenttransfer-extension-description": "Maakt het mogelijk inhoud van de ene wiki naar de andere te over te plaatsen",
-	"contenttransfer": "Overdracht van inhoud",
+	"contenttransfer": "Overplaatsen van inhoud",
 	"contenttransfer-text-filter-input-label": "Paginanaam",
 	"contenttransfer-namespace-filter-input-label": "Naamruimte",
 	"contenttransfer-category-filter-input-label": "Categorie",
@@ -64,7 +64,7 @@
 	"contenttransfer-apihelp-param-filterdata": "JSON-reeks met gegevens waarop moet worden gefilterd",
 	"contenttransfer-apihelp-param-titles": "Lijst met door sluistekens (|) gescheiden paginanamen",
 	"contenttransfer-apihelp-param-pushtarget": "Naam ontvangende wiki",
-	"contenttransfer-apihelp-param-onlymodified": "Booleaanse waarde. Stelt in of alleen pagina's moeten worden overgedragen die zijn gewijzigd sinds de laatste inhoudsoverdracht",
+	"contenttransfer-apihelp-param-onlymodified": "Booleaanse waarde. Stel dit in als alleen pagina’s moeten worden overgeplaatst die zijn gewijzigd sinds de laatste inhoudsoverplaatsing",
 	"contenttransfer-apihelp-param-modifiedsince": "Datumtekst. Alleen pagina's overplaatsen die sindsdien zijn gewijzigd",
 	"contenttransfer-apihelp-param-target": "Naam ontvangende wiki",
 	"contenttransfer-apihelp-param-includerelated": "Booleaanse waarde. Stelt in of ook hulpbronnen zoals gekoppelde pagina's, bestanden en categorieën van de pagina moeten worden overgedragen",
