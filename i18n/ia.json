@@ -80,5 +80,7 @@
 	"contenttransfer-progress-user-action-force": "Fortiar nove tentativa",
 	"contenttransfer-filter-panel-label": "Filtrar",
 	"contenttransfer-filter-toggle-btn-hide": "Celar",
-	"contenttransfer-filter-toggle-btn-show": "Monstrar"
+	"contenttransfer-filter-toggle-btn-show": "Monstrar",
+	"contenttransfer-selection-toggle-btn-label": "Seliger toto",
+	"contenttransfer-transfer-wiki-heading-label": "Transferer al wiki"
 }
