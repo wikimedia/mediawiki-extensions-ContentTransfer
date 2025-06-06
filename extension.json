@@ -4,6 +4,7 @@
 		"[https://www.hallowelt.com Hallo Welt! GmbH]",
 		"Dejan Savuljesku <savuljesku@hallowelt.com>"
 	],
+	"url": "https://en.wiki.bluespice.com/wiki/Reference:ContentTransfer",
 	"license-name": "GPL-3.0-only",
 	"version": "3.1.0-alpha",
 	"descriptionmsg": "contenttransfer-extension-description",
