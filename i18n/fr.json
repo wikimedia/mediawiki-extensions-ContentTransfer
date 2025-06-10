@@ -3,7 +3,8 @@
 		"authors": [
 			"Gomoko",
 			"JLTRY",
-			"Verdy p"
+			"Verdy p",
+			"Derugon"
 		]
 	},
 	"contenttransfer-extension-description": "Permet de pousser des contenus d’un wiki à un autre",
@@ -82,5 +83,7 @@
 	"contenttransfer-progress-user-action-force": "Forcer la nouvelle tentative",
 	"contenttransfer-filter-panel-label": "Filtre",
 	"contenttransfer-filter-toggle-btn-hide": "Masquer",
-	"contenttransfer-filter-toggle-btn-show": "Afficher"
+	"contenttransfer-filter-toggle-btn-show": "Afficher",
+	"contenttransfer-selection-toggle-btn-label": "Tout sélectionner",
+	"contenttransfer-transfer-wiki-heading-label": "Transférer vers le wiki"
 }
