@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Beginneruser",
+			"Darafsh",
 			"Ebrahim",
 			"Ebraminio",
 			"Jeeputer"
@@ -31,7 +32,7 @@
 	"contenttransfer-report-failure-label": "ناموفق",
 	"contenttransfer-target-picker-label": "دریافت ویکی",
 	"contenttransfer-progress-push-target-label": "دریافت ویکی: $1",
-	"contenttransfer-invalid-target": "ویکی دیافت‌کننده نامعتبر است",
+	"contenttransfer-invalid-target": "ویکی دریافت‌کننده نامعتبر است",
 	"contenttransfer-no-pageprops": "ناتوان در بازیابی ویژگی‌های صفحه",
 	"contenttransfer-no-login-token": "ناتوان در بازیابی بلیط ورود به حساب",
 	"contenttransfer-authentication-failed": "اصالت‌سنجی شکست خورد",
