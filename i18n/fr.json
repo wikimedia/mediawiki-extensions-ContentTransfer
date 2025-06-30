@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Derugon",
 			"Gomoko",
 			"JLTRY",
-			"Verdy p",
-			"Derugon"
+			"Verdy p"
 		]
 	},
 	"contenttransfer-extension-description": "Permet de pousser des contenus d’un wiki à un autre",
