@@ -20,8 +20,7 @@ class PageName implements IPageFilter {
 	public function __construct(
 		private readonly ILoadBalancer $lb
 	) {
-		$this->searchIndexTableName =
-			$lb->getConnection( DB_REPLICA )->tableName( 'searchindex' );
+		$this->searchIndexTableName = 'searchindex';
 	}
 
 	/**
