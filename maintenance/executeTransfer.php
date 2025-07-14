@@ -12,7 +12,9 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once dirname( dirname( dirname( __DIR__ ) ) ) . '/maintenance/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class ExecuteTransfer extends Maintenance {
 
@@ -559,5 +561,7 @@ class ExecuteTransfer extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ExecuteTransfer::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd
