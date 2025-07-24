@@ -22,6 +22,7 @@
 	"contenttransfer-dialog-push-preview-page-group-label-category": "Kategoriesäit ($1)",
 	"contenttransfer-dialog-push-preview-page-group-label-template": "Schabloun ($1)",
 	"contenttransfer-cannot-create": "Säit kann net ugeluecht ginn",
+	"contenttransfer-no-csrf-token": "Keen CSRF-Token",
 	"contenttransfer-edit-fail-message": "Ännerungsfeeler: $1",
 	"contenttransfer-upload-fail-message": "Feeler beim Eroplueden: $1",
 	"contenttransfer-ns-main": "(Haapt)",
