@@ -86,5 +86,7 @@
 	"contenttransfer-progress-user-action-force": "إعادة المحاولة بالقوة",
 	"contenttransfer-filter-panel-label": "مرشح",
 	"contenttransfer-filter-toggle-btn-hide": "إخفاء",
-	"contenttransfer-filter-toggle-btn-show": "عرض"
+	"contenttransfer-filter-toggle-btn-show": "عرض",
+	"contenttransfer-selection-toggle-btn-label": "حدد الكل",
+	"contenttransfer-transfer-wiki-heading-label": "نقل إلى ويكي"
 }

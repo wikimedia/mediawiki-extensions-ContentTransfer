@@ -29,7 +29,7 @@
 	"content-transfer-push-related-pages": "Gerelateerde pagina's",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Getranscludeerd",
 	"contenttransfer-extension-description": "Maakt het mogelijk inhoud van de ene wiki naar de andere te over te plaatsen",
-	"contenttransfer": "Overdracht van inhoud",
+	"contenttransfer": "Overplaatsen van inhoud",
 	"contenttransfer-pages-header": "Over te plaatsen pagina's",
 	"contenttransfer-pages-header-count": "Geselecteerd: $2 Totaal: $1",
 	"contenttransfer-push-pages-button-label": "Overplaatsen",
@@ -67,7 +67,7 @@
 	"contenttransfer-apihelp-param-filterdata": "JSON-reeks met gegevens waarop moet worden gefilterd",
 	"contenttransfer-apihelp-param-titles": "Lijst met door sluistekens (|) gescheiden paginanamen",
 	"contenttransfer-apihelp-param-pushtarget": "Naam ontvangende wiki",
-	"contenttransfer-apihelp-param-onlymodified": "Booleaanse waarde. Stelt in of alleen pagina's moeten worden overgedragen die zijn gewijzigd sinds de laatste inhoudsoverdracht",
+	"contenttransfer-apihelp-param-onlymodified": "Booleaanse waarde. Stel dit in als alleen pagina’s moeten worden overgeplaatst die zijn gewijzigd sinds de laatste inhoudsoverplaatsing",
 	"contenttransfer-apihelp-param-modifiedsince": "Datumtekst. Alleen pagina's overplaatsen die sindsdien zijn gewijzigd",
 	"contenttransfer-apihelp-param-target": "Naam ontvangende wiki",
 	"contenttransfer-apihelp-param-includerelated": "Booleaanse waarde. Stelt in of ook hulpbronnen zoals gekoppelde pagina's, bestanden en categorieën van de pagina moeten worden overgedragen",
@@ -84,5 +84,7 @@
 	"contenttransfer-progress-user-action-force": "Toch opnieuw proberen",
 	"contenttransfer-filter-panel-label": "Filter",
 	"contenttransfer-filter-toggle-btn-hide": "Verbergen",
-	"contenttransfer-filter-toggle-btn-show": "Weergeven"
+	"contenttransfer-filter-toggle-btn-show": "Weergeven",
+	"contenttransfer-selection-toggle-btn-label": "Alles selecteren",
+	"contenttransfer-transfer-wiki-heading-label": "Overplaatsen naar wiki"
 }

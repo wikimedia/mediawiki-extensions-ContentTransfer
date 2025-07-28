@@ -81,5 +81,7 @@
 	"contenttransfer-progress-user-action-force": "Принуди повторен обид",
 	"contenttransfer-filter-panel-label": "Филтер",
 	"contenttransfer-filter-toggle-btn-hide": "Скриј",
-	"contenttransfer-filter-toggle-btn-show": "Прикажи"
+	"contenttransfer-filter-toggle-btn-show": "Прикажи",
+	"contenttransfer-selection-toggle-btn-label": "Избери сè",
+	"contenttransfer-transfer-wiki-heading-label": "Пренеси на вики"
 }

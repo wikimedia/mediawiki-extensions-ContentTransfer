@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Derugon",
 			"Gomoko",
 			"JLTRY",
 			"Verdy p"
@@ -83,5 +84,7 @@
 	"contenttransfer-progress-user-action-force": "Forcer la nouvelle tentative",
 	"contenttransfer-filter-panel-label": "Filtre",
 	"contenttransfer-filter-toggle-btn-hide": "Masquer",
-	"contenttransfer-filter-toggle-btn-show": "Afficher"
+	"contenttransfer-filter-toggle-btn-show": "Afficher",
+	"contenttransfer-selection-toggle-btn-label": "Tout sélectionner",
+	"contenttransfer-transfer-wiki-heading-label": "Transférer vers le wiki"
 }

@@ -82,5 +82,7 @@
 	"contenttransfer-progress-user-action-force": "לכפות ניסיון חוזר",
 	"contenttransfer-filter-panel-label": "סינון",
 	"contenttransfer-filter-toggle-btn-hide": "הסתרה",
-	"contenttransfer-filter-toggle-btn-show": "הצגה"
+	"contenttransfer-filter-toggle-btn-show": "הצגה",
+	"contenttransfer-selection-toggle-btn-label": "לבחור הכול",
+	"contenttransfer-transfer-wiki-heading-label": "להעביר לוויקי"
 }

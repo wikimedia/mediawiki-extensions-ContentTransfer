@@ -54,7 +54,7 @@
 	"contenttransfer-too-many-pages-warning": "Список сторінок усічений через налаштований ліміт {{PLURAL:$2|однієї сторінки|$2 сторінок}} за поштовх. Загалом {{PLURAL:$1|1 сторінка відповідає|$1 сторінок відповідають}} критеріям",
 	"contenttransfer-ns-main": "(основний)",
 	"contenttransfer-generic-error": "Сталася помилка!",
-	"contenttransfer-include-related": "Включити пов’язані",
+	"contenttransfer-include-related": "Включити пов'язані сторінки",
 	"contenttransfer-modified-since-label": "Змінено з",
 	"apihelp-content-transfer-get-pages-summary": "Перелічує всі сторінки, які можна натискати на основі заданих фільтрів",
 	"apihelp-content-transfer-push-info-summary": "Отримує всі ресурси, такі як включені файли, пов’язані сторінки тощо сторінки, які збираються перенести у цільову вікі",
