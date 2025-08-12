@@ -201,15 +201,14 @@ class PageContentProvider {
 	 * @param bool|null $transcluded
 	 */
 	protected function relatedTitlesFromNestedArray( $nested, $transcluded = false ) {
-		foreach ( $nested as $pages ) {
-			foreach ( $pages as $pageId ) {
-				$title = $this->titleFactory->newFromID( $pageId );
-				if ( $title instanceof Title && $title->exists() ) {
-					$this->relatedTitles[ $title->getPrefixedDBkey() ] = $title;
-					if ( $transcluded ) {
-						$this->transcluded[] = $title->getPrefixedDBkey();
-					}
-				}
+		foreach ( $nested as $page ) {
+			$title = $this->titleFactory->castFromLinkTarget( $page['link'] ?? null );
+			if ( !$title || !$title->exists() ) {
+				continue;
+			}
+			$this->relatedTitles[ $title->getPrefixedDBkey() ] = $title;
+			if ( $transcluded ) {
+				$this->transcluded[] = $title->getPrefixedDBkey();
 			}
 		}
 	}
