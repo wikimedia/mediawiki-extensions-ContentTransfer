@@ -13,7 +13,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
-use StatusValue;
 use Throwable;
 
 class AuthenticatedRequestHandler {
@@ -143,11 +142,11 @@ class AuthenticatedRequestHandler {
 	 * Presumes all pre-flight requests are run
 	 *
 	 * @param array $requestData
-	 * @return StatusValue
+	 * @return Status
 	 */
 	public function runPushRequest( $requestData ) {
 		if ( !$this->getTarget()->getAuthentication()->isAuthenticated() || !isset( $this->tokens['csrf'] ) ) {
-			return StatusValue::newFatal( 'Preflight conditions not met' );
+			return Status::newFatal( 'Preflight conditions not met' );
 		}
 		$request = $this->getRequest( $requestData );
 
@@ -267,13 +266,13 @@ class AuthenticatedRequestHandler {
 	 *
 	 * @param GuzzleHttpRequest $request
 	 * @param Status $status
-	 * @return StatusValue
+	 * @return Status
 	 */
 	protected function statusFromRequest( $request, $status ) {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		return StatusValue::newGood( FormatJson::decode( $request->getContent(), 1 ) );
+		return Status::newGood( FormatJson::decode( $request->getContent(), 1 ) );
 	}
 
 	/**
