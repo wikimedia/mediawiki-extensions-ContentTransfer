@@ -2,7 +2,7 @@
 
 namespace ContentTransfer;
 
-use Config;
+use MediaWiki\Config\Config;
 
 class TargetManager {
 	/** @var Target[] */
