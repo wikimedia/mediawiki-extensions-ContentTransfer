@@ -177,7 +177,7 @@ class PagePusher {
 			return false;
 		}
 
-		$response = $status->getValue();
+		$response = (object)$status->getValue();
 		if ( property_exists( $response, 'error' ) ) {
 			$this->status = Status::newFatal(
 				'contenttransfer-edit-fail-message',
