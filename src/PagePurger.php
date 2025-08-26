@@ -2,7 +2,7 @@
 
 namespace ContentTransfer;
 
-use StatusValue;
+use MediaWiki\Status\Status;
 
 class PagePurger {
 
@@ -27,7 +27,7 @@ class PagePurger {
 	/**
 	 * Purge the target pages
 	 *
-	 * @return StatusValue
+	 * @return Status
 	 */
 	public function purge() {
 		return $this->requestHandler->runAuthenticatedRequest( [
