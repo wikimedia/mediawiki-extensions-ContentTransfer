@@ -51,7 +51,7 @@
 	"contenttransfer-too-many-pages-warning": "頁面清單出於每次發布 {{PLURAL:$2|1|$2}} 頁面的配置限制而被截斷。總計共 {{PLURAL:$1|1|$1}} 頁符合標準",
 	"contenttransfer-ns-main": "（主要）",
 	"contenttransfer-generic-error": "發生錯誤！",
-	"contenttransfer-include-related": "包含相關",
+	"contenttransfer-include-related": "包含相關頁面",
 	"contenttransfer-modified-since-label": "變動自",
 	"apihelp-content-transfer-get-pages-summary": "根據指定的篩選列出所有可發布的頁面",
 	"apihelp-content-transfer-push-info-summary": "檢索將要轉移到目標 wiki 的頁面的所有資源，像是包含的檔案、連結頁面等",
@@ -71,5 +71,16 @@
 	"content-transfer-push-related-pages": "相關頁面",
 	"contenttransfer-dialog-push-subgroup-label-linked": "已參考",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "已嵌入",
-	"contenttransfer-user-picker-label": "作為使用者轉移"
+	"contenttransfer-user-picker-label": "作為使用者轉移",
+	"contenttransfer-report-failure-label": "失敗",
+	"contenttransfer-authentication-no-user": "未選擇要轉移的使用者",
+	"contenttransfer-no-targets": "沒有配置轉移目標！",
+	"contenttransfer-progress-user-action-skip": "略過",
+	"contenttransfer-progress-user-action-stop": "停止轉移",
+	"contenttransfer-progress-user-action-force": "強制重試",
+	"contenttransfer-filter-panel-label": "篩選",
+	"contenttransfer-filter-toggle-btn-hide": "隱藏",
+	"contenttransfer-filter-toggle-btn-show": "顯示",
+	"contenttransfer-selection-toggle-btn-label": "全選",
+	"contenttransfer-transfer-wiki-heading-label": "轉移到 wiki"
 }
