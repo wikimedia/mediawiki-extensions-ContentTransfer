@@ -72,5 +72,7 @@
 	"content-transfer-push-related-pages": "相關頁面",
 	"contenttransfer-dialog-push-subgroup-label-linked": "已參考",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "已嵌入",
-	"contenttransfer-user-picker-label": "作為使用者轉移"
+	"contenttransfer-user-picker-label": "作為使用者轉移",
+	"contenttransfer-authentication-no-user": "未選擇要轉移的使用者",
+	"contenttransfer-no-targets": "沒有配置轉移目標！"
 }
