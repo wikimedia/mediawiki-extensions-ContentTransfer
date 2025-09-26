@@ -22,7 +22,6 @@ class Push extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param string $subPage
 	 */
 	public function execute( $subPage ) {
@@ -58,7 +57,6 @@ class Push extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	private function loadFilters() {

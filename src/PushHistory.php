@@ -10,7 +10,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class PushHistory {
 
 	/**
-	 *
 	 * @param Title $title
 	 * @param User $user
 	 * @param string $target
@@ -62,7 +61,6 @@ class PushHistory {
 	}
 
 	/**
-	 *
 	 * @return \stdClass|false
 	 */
 	protected function getLastPush() {

@@ -77,7 +77,6 @@ class PushSingle extends ApiBase {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	protected function getAllowedParams() {
@@ -136,7 +135,6 @@ class PushSingle extends ApiBase {
 	}
 
 	/**
-	 *
 	 * @param array $pushTarget
 	 * @return void
 	 * @throws ApiUsageException

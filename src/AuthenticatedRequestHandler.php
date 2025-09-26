@@ -33,7 +33,6 @@ class AuthenticatedRequestHandler {
 	protected $status;
 
 	/**
-	 *
 	 * @param Target $target
 	 * @param bool $ignoreInsecureSSL
 	 * @param HttpRequestFactory $httpRequestFactory
@@ -154,7 +153,6 @@ class AuthenticatedRequestHandler {
 	}
 
 	/**
-	 *
 	 * @param array $requestData
 	 * @return Status
 	 */
@@ -174,7 +172,6 @@ class AuthenticatedRequestHandler {
 	}
 
 	/**
-	 *
 	 * @param File $file
 	 * @param string $content
 	 * @param string $filename
@@ -263,7 +260,6 @@ class AuthenticatedRequestHandler {
 	}
 
 	/**
-	 *
 	 * @param GuzzleHttpRequest $request
 	 * @param Status $status
 	 * @return Status
@@ -276,7 +272,6 @@ class AuthenticatedRequestHandler {
 	}
 
 	/**
-	 *
 	 * @param array $requestData
 	 * @param string $method
 	 * @param string|int $timeout
@@ -301,7 +296,6 @@ class AuthenticatedRequestHandler {
 	}
 
 	/**
-	 *
 	 * @param array &$params
 	 */
 	private function deSecuritize( array &$params ) {

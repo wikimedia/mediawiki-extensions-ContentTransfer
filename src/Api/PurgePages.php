@@ -17,7 +17,6 @@ class PurgePages extends PushSingle {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	protected function getAllowedParams() {

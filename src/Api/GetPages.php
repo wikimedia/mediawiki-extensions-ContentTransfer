@@ -38,7 +38,6 @@ class GetPages extends ApiBase {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	protected function getAllowedParams() {

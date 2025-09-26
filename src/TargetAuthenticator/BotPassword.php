@@ -119,7 +119,6 @@ class BotPassword implements ITargetAuthentication, LoggerAwareInterface {
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	private function getLoginToken( AuthenticatedRequestHandler $requestHandler ) {
@@ -165,7 +164,6 @@ class BotPassword implements ITargetAuthentication, LoggerAwareInterface {
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	protected function doLogin( AuthenticatedRequestHandler $requestHandler ) {
