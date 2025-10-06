@@ -5,6 +5,7 @@
 			"Asma",
 			"FiberAhmed",
 			"Meno25",
+			"Mohammed Qays",
 			"أَحمد",
 			"محمد أحمد عبد الفتاح"
 		]
@@ -13,7 +14,7 @@
 	"contenttransfer-namespace-filter-input-label": "النطاق",
 	"contenttransfer-category-filter-input-label": "تصنيف",
 	"contenttransfer-dialog-push-action-cancel-label": "إلغاء",
-	"contenttransfer-dialog-push-action-done-label": "تم",
+	"contenttransfer-dialog-push-action-done-label": "نُفذ",
 	"contenttransfer-dialog-push-preview-layout-label": "نظرة عامة على الصفحة",
 	"contenttransfer-dialog-push-progress-layout-label": "التقدم",
 	"contenttransfer-dialog-push-report-layout-label": "تقرير",
