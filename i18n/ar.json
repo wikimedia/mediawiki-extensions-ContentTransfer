@@ -6,7 +6,8 @@
 			"FiberAhmed",
 			"Meno25",
 			"أَحمد",
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"Mohammed Qays"
 		]
 	},
 	"contenttransfer-extension-description": "يتيح دفع المحتوى من موقع wiki إلى آخر",
@@ -20,7 +21,7 @@
 	"contenttransfer-dialog-push-title": "نقل المحتوى",
 	"contenttransfer-dialog-push-action-do-push-label": "تحويل",
 	"contenttransfer-dialog-push-action-cancel-label": "إلغاء",
-	"contenttransfer-dialog-push-action-done-label": "تم",
+	"contenttransfer-dialog-push-action-done-label": "نُفذ",
 	"contenttransfer-dialog-push-preview-layout-label": "نظرة عامة على الصفحة",
 	"contenttransfer-dialog-push-progress-layout-label": "التقدم",
 	"contenttransfer-dialog-push-report-layout-label": "تقرير",
