@@ -13,6 +13,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
 use Throwable;
 
 class AuthenticatedRequestHandler {
@@ -80,9 +81,11 @@ class AuthenticatedRequestHandler {
 
 			$response = FormatJson::decode( $request->getContent(), true );
 
-			if ( count( $response[ 'query' ][ 'pages' ] ) === 0 ) {
+			$pages = $response[ 'query' ][ 'pages' ] ?? null;
+			if ( !$pages || ( count( $pages ) === 0 ) ) {
 				$this->status = Status::newFatal( 'contenttransfer-cannot-create' );
-				return null;
+				$error = $response[ 'error' ][ 'info' ] ?? '';
+				throw new RuntimeException( $error );
 			}
 
 			$key = array_keys( $response[ 'query' ][ 'pages' ] )[0];

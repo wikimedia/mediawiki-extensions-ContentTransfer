@@ -179,11 +179,12 @@ class PagePusher {
 
 		$response = (object)$status->getValue();
 		if ( property_exists( $response, 'error' ) ) {
+			$error = $response->error['info'] ?? '';
 			$this->status = Status::newFatal(
 				'contenttransfer-edit-fail-message',
-				$response->error->info
+				$error
 			);
-			return false;
+			throw new RuntimeException( $error );
 		}
 
 		// Maybe will be useful in the future
