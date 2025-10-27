@@ -5,7 +5,8 @@
 			"Ebrahim",
 			"Ebraminio",
 			"Jeeputer",
-			"Darafsh"
+			"Darafsh",
+			"LordProfo"
 		]
 	},
 	"contenttransfer-extension-description": "امکان واکشی محتوا از یک ویکی به ویکی دیگر را فراهم می‌کند",
@@ -47,7 +48,7 @@
 	"contenttransfer-progress-purge-pages": "پاکسازی میان‌گیر صفحه‌ها در ویکی دریافت‌کننده...",
 	"right-content-transfer": "اجازه به کاربران برای انتقال محتوا به ویکی‌های دیگر",
 	"action-content-transfer": "انتقال محتوا به ویکی‌های دیگر",
-	"contenttransfer-page-protected": "صفحه محافظت شده است، می‌تواند تلاش مجدد اجباری برای انتقال را امتحان کنید",
+	"contenttransfer-page-protected": "صفحه محافظت شده است، می‌توانید تلاش دوبارهٔ اجباری برای انتقال را امتحان کنید",
 	"contenttransfer-only-modified-label": "تغییر یافته از آخرین انتقال",
 	"contenttransfer-only-modified-help": "تنها نمایش صفحه‌هایی که از آخرین انتقال تغییر یافته‌اند. این بر صفحه‌های مرتبط نیز اثر خواهد گذاشت.",
 	"contenttransfer-no-pages-label": "صفحه‌ای در دسترس نیست!",
