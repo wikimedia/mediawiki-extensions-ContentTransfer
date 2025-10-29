@@ -33,6 +33,14 @@ class TargetManager {
 	 */
 	public function getTargets() {
 		$this->assertLoaded();
+
+		uasort( $this->targets, static function ( Target $a, Target $b ) {
+			return strcmp(
+				strtolower( $a->getDisplayText() ),
+				strtolower( $b->getDisplayText() )
+			);
+		} );
+
 		return $this->targets;
 	}
 
