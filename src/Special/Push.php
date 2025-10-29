@@ -22,29 +22,29 @@ class Push extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @param string $subPage
 	 */
 	public function execute( $subPage ) {
 		parent::execute( $subPage );
+		$out = $this->getOutput();
+		$out->enableOOUI();
+		$targets = $this->targetManager->getTargets();
 
-		if ( empty( $this->targetManager->getTargets() ) ) {
-			$this->getOutput()->enableOOUI();
+		if ( empty( $targets ) ) {
 			$this->getOutput()->addHTML(
 				new MessageWidget( [
 					'type' => 'warning',
-					'label' => $this->getContext()->msg( 'contenttransfer-no-targets' )->text()
+					'label' => $this->msg( 'contenttransfer-no-targets' )->text()
 				] )
 			);
 			return;
 		}
 
-		$out = $this->getOutput();
-		$out->addModules( [ 'ext.contenttransfer' ] );
-
 		$serializedTargets = array_map( static function ( Target $target ) {
 			return $target->jsonSerialize();
-		}, $this->targetManager->getTargets() );
+		}, $targets );
+
+		$out->addModules( [ 'ext.contenttransfer' ] );
 		$out->addJsConfigVars( 'ctPushTargets', $serializedTargets );
 		$out->addJsConfigVars( 'ctFilters', $this->loadFilters() );
 
@@ -53,7 +53,6 @@ class Push extends SpecialPage {
 			$this->getConfig()->get( 'ContentTransferEnableBetaFeatures' )
 		);
 
-		$out->enableOOUI();
 		$out->addHTML( Html::element( 'div', [ 'id' => 'content-transfer-main' ] ) );
 	}
 
