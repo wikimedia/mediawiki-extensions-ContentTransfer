@@ -123,9 +123,7 @@ class NamespaceFilter implements IPageFilter {
 	 */
 	public function modifyConds( $filterData, &$conds ) {
 		if ( isset( $filterData['namespace'] ) && $filterData['namespace'] !== false ) {
-			$dbr = $this->lb->getConnection( DB_REPLICA );
-			$pageTableName = $dbr->tableName( 'page' );
-			$conds[] = "$pageTableName.page_namespace = " . (int)$filterData['namespace'];
+			$conds[] = "page_namespace = " . (int)$filterData['namespace'];
 		}
 	}
 
