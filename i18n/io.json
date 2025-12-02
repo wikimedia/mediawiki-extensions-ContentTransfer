@@ -4,8 +4,8 @@
 			"Joao Xavier"
 		]
 	},
+	"contenttransfer-namespace-filter-input-label": "Nomaro (''namespace'')",
 	"contenttransfer-dialog-push-action-cancel-label": "Nuligar",
 	"contenttransfer-dialog-push-report-layout-label": "Raporto",
-	"content-transfer-push-related-pages": "Relata pagini",
-	"contenttransfer-namespace-filter-input-label": "Nomaro (''namespace'')"
+	"content-transfer-push-related-pages": "Relata pagini"
 }
