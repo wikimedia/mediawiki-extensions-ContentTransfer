@@ -5,5 +5,8 @@
 		]
 	},
 	"contenttransfer-category-filter-input-label": "Luokka",
-	"contenttransfer-dialog-push-action-cancel-label": "Jooskâ"
+	"contenttransfer-dialog-push-action-cancel-label": "Jooskâ",
+	"contenttransfer-filter-toggle-btn-hide": "Čievâ",
+	"contenttransfer-filter-toggle-btn-show": "Čääiti",
+	"contenttransfer-selection-toggle-btn-label": "Valjii puoh"
 }
