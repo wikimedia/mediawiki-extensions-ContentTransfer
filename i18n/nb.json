@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"EdoAug",
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Yupik"
 		]
 	},
 	"contenttransfer-text-filter-input-label": "Sidenavn",
@@ -39,5 +40,7 @@
 	"contenttransfer-edit-fail-message": "Redigeringsfeil: $1",
 	"contenttransfer-upload-fail": "Fila kan ikke lastes opp på mottakerwikien",
 	"contenttransfer-upload-fail-message": "Opplastingsfeil: $1",
-	"content-transfer-push-related-pages": "Relaterte sider"
+	"content-transfer-push-related-pages": "Relaterte sider",
+	"contenttransfer-filter-toggle-btn-hide": "Skjul",
+	"contenttransfer-selection-toggle-btn-label": "Velg alle"
 }

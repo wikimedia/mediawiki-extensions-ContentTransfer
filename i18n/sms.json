@@ -10,5 +10,11 @@
 	"contenttransfer-dialog-push-report-layout-label": "Raportt",
 	"contenttransfer-dialog-push-preview-page-group-label-file": "Teâttõs ($1)",
 	"contenttransfer-dialog-push-preview-page-group-label-category": "Kategoriaseidd ($1)",
-	"contenttransfer-report-failure": "Ij oʹnnstam: $1"
+	"contenttransfer-report-failure": "Ij oʹnnstam: $1",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "Seidd ($1)",
+	"contenttransfer-dialog-push-preview-page-group-label-template": "Mall ($1)",
+	"contenttransfer-report-failure-label": "Ij oʹnnstam",
+	"contenttransfer-filter-toggle-btn-hide": "Čiõǥǥ",
+	"contenttransfer-filter-toggle-btn-show": "Čuäʹjet",
+	"contenttransfer-selection-toggle-btn-label": "Vaʹlljed pukid"
 }

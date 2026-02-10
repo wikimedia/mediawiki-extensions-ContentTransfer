@@ -6,5 +6,8 @@
 	},
 	"contenttransfer-dialog-push-action-cancel-label": "Jooskâ",
 	"contenttransfer-report-failure": "Ij luhostum: $1",
-	"contenttransfer-category-filter-input-label": "Luokka"
+	"contenttransfer-category-filter-input-label": "Luokka",
+	"contenttransfer-filter-toggle-btn-hide": "Čievâ",
+	"contenttransfer-filter-toggle-btn-show": "Čääiti",
+	"contenttransfer-selection-toggle-btn-label": "Valjii puoh"
 }
