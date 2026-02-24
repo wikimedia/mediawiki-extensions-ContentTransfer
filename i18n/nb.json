@@ -40,6 +40,7 @@
 	"contenttransfer-upload-fail": "Fila kan ikke lastes opp på mottakerwikien",
 	"contenttransfer-upload-fail-message": "Opplastingsfeil: $1",
 	"content-transfer-push-related-pages": "Relaterte sider",
+	"contenttransfer-progress-user-action-skip": "Hopp over",
 	"contenttransfer-filter-toggle-btn-hide": "Skjul",
 	"contenttransfer-selection-toggle-btn-label": "Velg alle"
 }
