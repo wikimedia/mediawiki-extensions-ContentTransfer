@@ -11,5 +11,6 @@
 	"contenttransfer-dialog-push-action-do-push-label": "স্থানান্তর করুন",
 	"contenttransfer-dialog-push-action-cancel-label": "বাতিল",
 	"contenttransfer-dialog-push-action-done-label": "সম্পন্ন",
-	"contenttransfer-dialog-push-progress-layout-label": "অগ্রগতি"
+	"contenttransfer-dialog-push-progress-layout-label": "অগ্রগতি",
+	"contenttransfer-progress-user-action-skip": "এড়িয়ে যান"
 }

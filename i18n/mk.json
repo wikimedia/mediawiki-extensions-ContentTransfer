@@ -51,7 +51,7 @@
 	"contenttransfer-dialog-preview-target-draft": "Пренесувам во нацрт-именски простор!",
 	"contenttransfer-ns-main": "(Главен)",
 	"contenttransfer-generic-error": "Се појави грешка!",
-	"contenttransfer-include-related": "Вклучи и поврзани",
+	"contenttransfer-include-related": "Вклучи и поврзани страници",
 	"contenttransfer-modified-since-label": "Изменето од",
 	"apihelp-content-transfer-get-pages-summary": "Список на страници кои се преносливи според дадени филтри",
 	"apihelp-content-transfer-do-push-single-summary": "Пренесува единечна страница на вики-примач",
@@ -72,5 +72,16 @@
 	"apihelp-content-transfer-push-info-summary": "Ги презема сите ресурси на страницата како вклучени податотеки, поврзани страници итн. кои ќе се пренесат на целното вики",
 	"contenttransfer-apihelp-param-articleid": "Целобројна назнака на страницата која се пренесува",
 	"contenttransfer-apihelp-param-force": "Булово. Занемарувај предупредувања и бездруго пренесувај",
-	"contenttransfer-apihelp-param-token": "Корисничка шифра за уредување"
+	"contenttransfer-apihelp-param-token": "Корисничка шифра за уредување",
+	"contenttransfer-report-failure-label": "Неуспешно",
+	"contenttransfer-authentication-no-user": "Нема избрано корисник за пренесување",
+	"contenttransfer-no-targets": "Нема поставено цели за пренос.",
+	"contenttransfer-progress-user-action-skip": "Прескокни",
+	"contenttransfer-progress-user-action-stop": "Прескокни пренос",
+	"contenttransfer-progress-user-action-force": "Принуди повторен обид",
+	"contenttransfer-filter-panel-label": "Филтер",
+	"contenttransfer-filter-toggle-btn-hide": "Скриј",
+	"contenttransfer-filter-toggle-btn-show": "Прикажи",
+	"contenttransfer-selection-toggle-btn-label": "Избери сè",
+	"contenttransfer-transfer-wiki-heading-label": "Пренеси на вики"
 }

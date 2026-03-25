@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Derugon",
 			"Gomoko",
+			"JLTRY",
 			"Verdy p"
 		]
 	},
@@ -73,5 +75,16 @@
 	"apihelp-content-transfer-push-info-summary": "Récupère toutes les ressources (comme les fichiers inclus, les pages liées, etc.) de la page qui vont être transférées vers un wiki cible.",
 	"contenttransfer-apihelp-param-articleid": "Entier : identifiant de la page à transférer",
 	"contenttransfer-apihelp-param-force": "Drapeau booléen : ignorer les avertissements et transférer malgré tout",
-	"contenttransfer-apihelp-param-token": "Le jeton de modification de l’utilisateur"
+	"contenttransfer-apihelp-param-token": "Le jeton de modification de l’utilisateur",
+	"contenttransfer-report-failure-label": "Échec",
+	"contenttransfer-authentication-no-user": "Aucun utilisateur sélectionné pour le transfert",
+	"contenttransfer-no-targets": "Aucune cible de transfert n'est configurée !",
+	"contenttransfer-progress-user-action-skip": "Sauter",
+	"contenttransfer-progress-user-action-stop": "Arrêter le transfert",
+	"contenttransfer-progress-user-action-force": "Forcer la nouvelle tentative",
+	"contenttransfer-filter-panel-label": "Filtre",
+	"contenttransfer-filter-toggle-btn-hide": "Masquer",
+	"contenttransfer-filter-toggle-btn-show": "Afficher",
+	"contenttransfer-selection-toggle-btn-label": "Tout sélectionner",
+	"contenttransfer-transfer-wiki-heading-label": "Transférer vers le wiki"
 }

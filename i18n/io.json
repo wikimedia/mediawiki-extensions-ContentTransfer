@@ -5,5 +5,7 @@
 		]
 	},
 	"contenttransfer-dialog-push-action-cancel-label": "Nuligar",
-	"contenttransfer-dialog-push-report-layout-label": "Raporto"
+	"contenttransfer-dialog-push-report-layout-label": "Raporto",
+	"contenttransfer-namespace-filter-input-label": "Nomaro (''namespace'')",
+	"content-transfer-push-related-pages": "Relata pagini"
 }

@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Mschlindwein"
+		]
 	},
 	"contenttransfer-extension-description": "Ermöglicht das Verschieben von Inhalten von einem Wiki in ein anderes",
 	"contenttransfer": "Inhalt übertragen",
@@ -49,7 +51,7 @@
 	"contenttransfer-dialog-preview-target-draft": "In den Entwurfs-Namensraum übertragen!",
 	"contenttransfer-ns-main": "(Seiten)",
 	"contenttransfer-generic-error": "Es ist ein Fehler aufgetreten!",
-	"contenttransfer-include-related": "Einschließen der zugehörigen",
+	"contenttransfer-include-related": "Zugehörige Seiten einschließen",
 	"contenttransfer-modified-since-label": "Modifiziert seit",
 	"apihelp-content-transfer-get-pages-summary": "Listet alle Seiten auf, die basierend auf gegebenen Filtern pushbar sind",
 	"apihelp-content-transfer-do-push-single-summary": "Überträgt eine einzelne Seite an ein Empfänger-Wiki",
@@ -70,5 +72,16 @@
 	"apihelp-content-transfer-push-info-summary": "Ruft alle Ressourcen wie eingebundene Dateien, verlinkte Seiten usw. der Seite ab, die in ein Ziel-Wiki übertragen werden sollen",
 	"contenttransfer-apihelp-param-articleid": "Integer. ID der Seite, die übertragen werden soll",
 	"contenttransfer-apihelp-param-force": "Bool. Warnungen ignorieren und trotzdem übertragen",
-	"contenttransfer-apihelp-param-token": "Das Bearbeitungs-Token des Benutzers"
+	"contenttransfer-apihelp-param-token": "Das Bearbeitungs-Token des Benutzers",
+	"contenttransfer-report-failure-label": "Fehlgeschlagen",
+	"contenttransfer-authentication-no-user": "Kein Benutzer für die Übertragung ausgewählt",
+	"contenttransfer-no-targets": "Es sind keine Übertragungsziele konfiguriert!",
+	"contenttransfer-progress-user-action-skip": "Überspringen",
+	"contenttransfer-progress-user-action-stop": "Übertragung stoppen",
+	"contenttransfer-progress-user-action-force": "Wiederholung erzwingen",
+	"contenttransfer-filter-panel-label": "Filter",
+	"contenttransfer-filter-toggle-btn-hide": "Verstecken",
+	"contenttransfer-filter-toggle-btn-show": "Anzeigen",
+	"contenttransfer-selection-toggle-btn-label": "Alle auswählen",
+	"contenttransfer-transfer-wiki-heading-label": "Übertragung auf Wiki"
 }

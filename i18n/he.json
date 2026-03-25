@@ -51,7 +51,7 @@
 	"contenttransfer-dialog-preview-target-draft": "העברה למרחב טיוטה!",
 	"contenttransfer-ns-main": "(ראשי)",
 	"contenttransfer-generic-error": "אירעה שגיאה!",
-	"contenttransfer-include-related": "לכלול קשורים",
+	"contenttransfer-include-related": "לכלול דפים קשורים",
 	"contenttransfer-modified-since-label": "שונה מאז",
 	"apihelp-content-transfer-get-pages-summary": "רשימת כל הדפים שניתן לדחוף בהתחשב במסננים הנתונים",
 	"apihelp-content-transfer-do-push-single-summary": "מעביר דף בודד לוויקי המקבל",
@@ -73,5 +73,16 @@
 	"apihelp-content-transfer-push-info-summary": "אחזור כל המשאבים כגון קבצים מוכללים, דפים מקושרים, וכו', של הדף שעומד להיות מועבר לוויקי היעד",
 	"contenttransfer-apihelp-param-articleid": "מספר שלם. מזהה הדף שצריך להעביר",
 	"contenttransfer-apihelp-param-force": "בוליאני. להתעלם מאזהרות ולהעביר בכל־זאת",
-	"contenttransfer-apihelp-param-token": "אסימון העריכה של העורך"
+	"contenttransfer-apihelp-param-token": "אסימון העריכה של העורך",
+	"contenttransfer-report-failure-label": "נכשל",
+	"contenttransfer-authentication-no-user": "לא נבחר משתמש להעברה",
+	"contenttransfer-no-targets": "אין יעדי העברה מוגדרים!",
+	"contenttransfer-progress-user-action-skip": "לדלג",
+	"contenttransfer-progress-user-action-stop": "לעצור את ההעברה",
+	"contenttransfer-progress-user-action-force": "לכפות ניסיון חוזר",
+	"contenttransfer-filter-panel-label": "סינון",
+	"contenttransfer-filter-toggle-btn-hide": "הסתרה",
+	"contenttransfer-filter-toggle-btn-show": "הצגה",
+	"contenttransfer-selection-toggle-btn-label": "לבחור הכול",
+	"contenttransfer-transfer-wiki-heading-label": "להעביר לוויקי"
 }

@@ -3,5 +3,8 @@
 		"authors": []
 	},
 	"contenttransfer-dialog-push-action-cancel-label": "Otkaži",
-	"contenttransfer-dialog-push-action-done-label": "Gotovo"
+	"contenttransfer-dialog-push-action-done-label": "Gotovo",
+	"contenttransfer-progress-user-action-skip": "Preskoči",
+	"contenttransfer-filter-toggle-btn-hide": "Sakrij",
+	"contenttransfer-filter-toggle-btn-show": "Prikaži"
 }

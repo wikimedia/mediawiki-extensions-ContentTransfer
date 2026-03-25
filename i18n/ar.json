@@ -4,6 +4,8 @@
 			"Alshamiri1",
 			"Asma",
 			"FiberAhmed",
+			"Meno25",
+			"Mohammed Qays",
 			"أَحمد",
 			"محمد أحمد عبد الفتاح"
 		]
@@ -12,7 +14,7 @@
 	"contenttransfer-namespace-filter-input-label": "النطاق",
 	"contenttransfer-category-filter-input-label": "تصنيف",
 	"contenttransfer-dialog-push-action-cancel-label": "إلغاء",
-	"contenttransfer-dialog-push-action-done-label": "تم",
+	"contenttransfer-dialog-push-action-done-label": "نُفذ",
 	"contenttransfer-dialog-push-preview-layout-label": "نظرة عامة على الصفحة",
 	"contenttransfer-dialog-push-progress-layout-label": "التقدم",
 	"contenttransfer-dialog-push-report-layout-label": "تقرير",
@@ -56,7 +58,7 @@
 	"contenttransfer-dialog-preview-target-draft": "الانتقال إلى مسودة النطاق!",
 	"contenttransfer-too-many-pages-warning": "تم قطع قائمة الصفحات بسبب الحد المكون من {{PLURAL:$2| صفحة واحدة | $2 صفحات}} لكل دفعة. إجمالي {{PLURAL:$1| 1 صفحة | $1 pages}} تناسب المعايير",
 	"contenttransfer-generic-error": "حدث خطأ!",
-	"contenttransfer-include-related": "تشمل ذات الصلة",
+	"contenttransfer-include-related": "تضمين الصفحات ذات الصلة",
 	"contenttransfer-modified-since-label": "تم التعديل منذ ذلك الحين",
 	"apihelp-content-transfer-get-pages-summary": "يسرد جميع الصفحات القابلة للنقر بناءً على عوامل التصفية المحددة",
 	"apihelp-content-transfer-push-info-summary": "استرداد جميع الموارد مثل الملفات المضمنة والصفحات المرتبطة وما إلى ذلك من الصفحة ، والتي على وشك نقلها إلى موقع wiki المستهدف",
@@ -75,5 +77,17 @@
 	"contenttransfer-dialog-push-preview-page-group-label-original": "الصفحات المحددة ( $1 )",
 	"content-transfer-push-related-pages": "الصفحات ذات الصلة",
 	"contenttransfer-dialog-push-subgroup-label-linked": "مرجع",
-	"contenttransfer-user-picker-label": "نقل كمستخدم"
+	"contenttransfer-user-picker-label": "نقل كمستخدم",
+	"contenttransfer-report-failure-label": "فشل",
+	"contenttransfer-dialog-push-subgroup-label-transcluded": "مُدرج",
+	"contenttransfer-authentication-no-user": "لم يتم تحديد أي مستخدم للنقل",
+	"contenttransfer-no-targets": "لم يتم تكوين أهداف النقل!",
+	"contenttransfer-progress-user-action-skip": "تجاوز",
+	"contenttransfer-progress-user-action-stop": "ايقاف النقل",
+	"contenttransfer-progress-user-action-force": "إعادة المحاولة بالقوة",
+	"contenttransfer-filter-panel-label": "مرشح",
+	"contenttransfer-filter-toggle-btn-hide": "إخفاء",
+	"contenttransfer-filter-toggle-btn-show": "عرض",
+	"contenttransfer-selection-toggle-btn-label": "حدد الكل",
+	"contenttransfer-transfer-wiki-heading-label": "نقل إلى ويكي"
 }

@@ -53,7 +53,7 @@
 	"contenttransfer-dialog-preview-target-draft": "Перенесення в чернетку простору назв!",
 	"contenttransfer-ns-main": "(основний)",
 	"contenttransfer-generic-error": "Сталася помилка!",
-	"contenttransfer-include-related": "Включити пов’язані",
+	"contenttransfer-include-related": "Включити пов'язані сторінки",
 	"contenttransfer-modified-since-label": "Змінено з",
 	"apihelp-content-transfer-get-pages-summary": "Перелічує всі сторінки, які можна натискати на основі заданих фільтрів",
 	"apihelp-content-transfer-do-push-single-summary": "Переносить окрему сторінку на вікі-одержувач",

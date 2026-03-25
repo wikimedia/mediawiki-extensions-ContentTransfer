@@ -51,7 +51,7 @@
 	"contenttransfer-dialog-preview-target-draft": "Transferentia a spatio de nomines pro versiones provisori!",
 	"contenttransfer-ns-main": "(principal)",
 	"contenttransfer-generic-error": "Un error ha occurrite!",
-	"contenttransfer-include-related": "Include associates",
+	"contenttransfer-include-related": "Includer paginas associate",
 	"contenttransfer-modified-since-label": "Modificate depost",
 	"apihelp-content-transfer-get-pages-summary": "Lista tote le paginas que es pulsabile a base de filtros date",
 	"apihelp-content-transfer-do-push-single-summary": "Transfere un singule pagina a un wiki receptor",
@@ -72,5 +72,16 @@
 	"apihelp-content-transfer-push-info-summary": "Recupera tote le ressources como files includite, paginas listate, etc. del pagina que es sur le puncto de esser transferite a un wiki de destination",
 	"contenttransfer-apihelp-param-articleid": "Numero integre. ID del pagina que debe esser transferite.",
 	"contenttransfer-apihelp-param-force": "Valor boolean. Indica si ignorar advertimentos e transferer in omne caso.",
-	"contenttransfer-apihelp-param-token": "Le token de modification del usator."
+	"contenttransfer-apihelp-param-token": "Le token de modification del usator.",
+	"contenttransfer-report-failure-label": "Fallite",
+	"contenttransfer-authentication-no-user": "Necun usator seligite pro le transferimento",
+	"contenttransfer-no-targets": "Il non ha destinationes de transferimento configurate!",
+	"contenttransfer-progress-user-action-skip": "Saltar",
+	"contenttransfer-progress-user-action-stop": "Arrestar transferimento",
+	"contenttransfer-progress-user-action-force": "Fortiar nove tentativa",
+	"contenttransfer-filter-panel-label": "Filtrar",
+	"contenttransfer-filter-toggle-btn-hide": "Celar",
+	"contenttransfer-filter-toggle-btn-show": "Monstrar",
+	"contenttransfer-selection-toggle-btn-label": "Seliger toto",
+	"contenttransfer-transfer-wiki-heading-label": "Transferer al wiki"
 }

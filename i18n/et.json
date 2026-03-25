@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rivoz"
+		]
+	},
+	"contenttransfer-report-failure-label": "Ebaõnnestus",
+	"contenttransfer-filter-panel-label": "Filter",
+	"contenttransfer-filter-toggle-btn-hide": "Peida",
+	"contenttransfer-filter-toggle-btn-show": "Näita"
+}

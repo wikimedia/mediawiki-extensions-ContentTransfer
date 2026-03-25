@@ -49,7 +49,7 @@
 	"contenttransfer-no-pages-label": "Tiada halaman tersedia!",
 	"contenttransfer-dialog-preview-target-info": "Pindahkan ke: $1",
 	"contenttransfer-dialog-preview-target-draft": "Memindahkan ke ruang nama draf!",
-	"contenttransfer-too-many-pages-warning": "Senarai halaman dipenggal kerana had yang dikonfigurasikan sebanyak {{PLURAL:$2|satu halaman| $2 halaman}} setiap penolakan. Sejumlah {{PLURAL:$1| 1 halaman| $1 halaman}} menepati kriteria",
+	"contenttransfer-too-many-pages-warning": "Senarai laman dipenggal kerana had yang dikonfigurasikan sebanyak {{PLURAL:$2|satu laman|$2 laman}} setiap pacuan. Sejumlah {{PLURAL:$1|1 laman| $1 laman}} menepati kriteria",
 	"contenttransfer-ns-main": "(utama)",
 	"contenttransfer-generic-error": "Ralat telah berlaku!",
 	"contenttransfer-include-related": "Sertakan yang berkaitan",
