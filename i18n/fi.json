@@ -24,5 +24,6 @@
 	"contenttransfer-progress-current-operation": "Siirretään sivua $1",
 	"contenttransfer-filter-toggle-btn-hide": "Piilota",
 	"contenttransfer-filter-toggle-btn-show": "Näytä",
-	"contenttransfer-selection-toggle-btn-label": "Valitse kaikki"
+	"contenttransfer-selection-toggle-btn-label": "Valitse kaikki",
+	"contenttransfer-progress-user-action-skip": "Ohita"
 }

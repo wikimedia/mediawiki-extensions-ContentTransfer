@@ -42,5 +42,6 @@
 	"contenttransfer-upload-fail-message": "Opplastingsfeil: $1",
 	"content-transfer-push-related-pages": "Relaterte sider",
 	"contenttransfer-filter-toggle-btn-hide": "Skjul",
-	"contenttransfer-selection-toggle-btn-label": "Velg alle"
+	"contenttransfer-selection-toggle-btn-label": "Velg alle",
+	"contenttransfer-progress-user-action-skip": "Hopp over"
 }
