@@ -202,6 +202,10 @@
 		"ContentTransferTargets": {
 			"value": []
 		},
+		"ContentTransferCurrentWiki": {
+			"description": "Identifier of the current wiki used to match against ContentTransfer target keys. Falls back to WikiMap::getCurrentWikiId() if not set explicitly.",
+			"value": ""
+		},
 		"ContentTransferIgnoreInsecureSSL": {
 			"value": false
 		},
@@ -220,5 +224,8 @@
 		}
 	},
 	"load_composer_autoloader": true,
+	"ExtensionFunctions": [
+		"ContentTransfer\\Setup::init"
+	],
 	"manifest_version": 2
 }
