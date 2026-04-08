@@ -34,7 +34,8 @@
 	"contenttransfer-no-login-token": "Login token cannot be retrieved",
 	"contenttransfer-authentication-failed": "Authentication failed",
 	"contenttransfer-cannot-create": "Page cannot be created",
-	"contenttransfer-namespace-not-found": "Namespace \"$1\" not found on receiving wiki. Create the namespace and try transfering this page again",
+	"contenttransfer-cannot-create-message": "Page cannot be created: $1",
+	"contenttransfer-namespace-not-found": "Namespace \"$1\" not found on receiving wiki. Create the namespace and try transferring this page again",
 	"contenttransfer-report-interrupted": "Transfer interrupted! Successfully transferred {{PLURAL:$1|$1 page|$1 pages}}",
 	"contenttransfer-no-csrf-token": "No CSRF token",
 	"contenttransfer-edit-fail": "Page cannot be edited on receiving wiki",
@@ -84,5 +85,8 @@
 	"contenttransfer-filter-toggle-btn-hide": "Hide",
 	"contenttransfer-filter-toggle-btn-show": "Show",
 	"contenttransfer-selection-toggle-btn-label": "Select all",
-	"contenttransfer-transfer-wiki-heading-label": "Transfer to wiki"
+	"contenttransfer-transfer-wiki-heading-label": "Transfer to wiki",
+	"contenttransfer-push-failed": "Transfer failed: $1",
+	"contenttransfer-preflight-failed": "Transfer cannot proceed: authentication or CSRF token missing",
+	"contenttransfer-authentication-bad-login": "Login to receiving wiki failed. Please check the bot credentials."
 }

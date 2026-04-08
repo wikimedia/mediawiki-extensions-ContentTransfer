@@ -418,8 +418,10 @@
 					}
 				}
 			} )
-			.fail( () => {
-				me.addProgressItem( page, false, 'Api error' );
+			.fail( ( code, result ) => {
+				const message = ( result && result.error && result.error.info ) ||
+					( result && result.exception ) || code || 'Api error';
+				me.addProgressItem( page, false, message );
 				me.doPush( dfd );
 			} );
 	};

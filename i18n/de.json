@@ -33,6 +33,7 @@
 	"contenttransfer-no-login-token": "Anmeldetoken kann nicht abgerufen werden",
 	"contenttransfer-authentication-failed": "Authentifizierung fehlgeschlagen",
 	"contenttransfer-cannot-create": "Seite kann nicht erstellt werden",
+	"contenttransfer-cannot-create-message": "Seite kann nicht erstellt werden: $1",
 	"contenttransfer-namespace-not-found": "Namensraum „$1“ nicht im empfangenden Wiki gefunden. Erstelle den Namensraum und versuche erneut, diese Seite zu übertragen",
 	"contenttransfer-report-interrupted": "Übertragung unterbrochen! Erfolgreich übertragen {{PLURAL:$1|$1 Seite|$1 Seiten}}",
 	"contenttransfer-no-csrf-token": "Kein CSRF-Token",
@@ -82,5 +83,8 @@
 	"contenttransfer-filter-toggle-btn-hide": "Verstecken",
 	"contenttransfer-filter-toggle-btn-show": "Anzeigen",
 	"contenttransfer-selection-toggle-btn-label": "Alle auswählen",
-	"contenttransfer-transfer-wiki-heading-label": "Übertragung auf Wiki"
+	"contenttransfer-transfer-wiki-heading-label": "Übertragung auf Wiki",
+	"contenttransfer-push-failed": "Übertragung fehlgeschlagen: $1",
+	"contenttransfer-preflight-failed": "Die Übertragung kann nicht fortgesetzt werden: Authentifizierung oder CSRF-Token fehlt.",
+	"contenttransfer-authentication-bad-login": "Die Anmeldung beim Empfangs-Wiki ist fehlgeschlagen. Bitte überprüfe die Anmeldedaten des Bots."
 }
