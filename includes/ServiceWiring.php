@@ -44,7 +44,8 @@ return [
 			$services->getRevisionRenderer(),
 			$services->getTitleFactory(),
 			$services->getRepoGroup(),
-			$services->getDBLoadBalancer()
+			$services->getDBLoadBalancer(),
+			LoggerFactory::getInstance( 'ContentTransfer' )
 		);
 	},
 	'ContentTransfer.PagePusherFactory' => static function ( MediaWikiServices $services ) {

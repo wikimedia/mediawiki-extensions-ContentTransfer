@@ -16,6 +16,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use Psr\Log\LoggerInterface;
 use RepoGroup;
 use RuntimeException;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -37,6 +38,7 @@ class PageContentProvider {
 	 * @param TitleFactory $titleFactory
 	 * @param RepoGroup $repoGroup
 	 * @param ILoadBalancer $lb
+	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
 		private readonly Title $title,
@@ -44,7 +46,8 @@ class PageContentProvider {
 		private readonly RevisionRenderer $revisionRenderer,
 		private readonly TitleFactory $titleFactory,
 		private readonly RepoGroup $repoGroup,
-		private readonly ILoadBalancer $lb
+		private readonly ILoadBalancer $lb,
+		private readonly LoggerInterface $logger
 	) {
 	}
 
@@ -59,16 +62,29 @@ class PageContentProvider {
 	public function getRelatedTitles( array $modificationData, $target = '' ) {
 		$revision = $this->revisionLookup->getRevisionByTitle( $this->title );
 		if ( !$revision ) {
-			throw new RuntimeException( 'Revision not found' );
+			$this->logger->error(
+				'Revision not found for page "{title}"', [ 'title' => $this->title->getPrefixedText() ]
+			);
+			throw new RuntimeException( 'Revision not found for page "' . $this->title->getPrefixedText() . '"' );
 		}
 		$options = ParserOptions::newFromAnon();
 		$renderedRevision = $this->revisionRenderer->getRenderedRevision( $revision, $options );
 		if ( !$renderedRevision ) {
-			throw new RuntimeException( 'Failed to render revision' );
+			$this->logger->error(
+				'Failed to render revision for page "{title}"', [ 'title' => $this->title->getPrefixedText() ]
+			);
+			throw new RuntimeException(
+				'Failed to render revision for page "' . $this->title->getPrefixedText() . '"'
+			);
 		}
 		$this->parserOutput = $renderedRevision->getRevisionParserOutput();
 		if ( !$this->parserOutput ) {
-			throw new RuntimeException( 'Failed to get parser output' );
+			$this->logger->error(
+				'Failed to get parser output for page "{title}"', [ 'title' => $this->title->getPrefixedText() ]
+			);
+			throw new RuntimeException(
+				'Failed to get parser output for page "' . $this->title->getPrefixedText() . '"'
+			);
 		}
 		$this->extractTemplates();
 		$this->extractFiles();
@@ -112,7 +128,10 @@ class PageContentProvider {
 	public function getContent() {
 		$revision = $this->revisionLookup->getRevisionByTitle( $this->title );
 		if ( !$revision ) {
-			throw new RuntimeException( 'Revision not found' );
+			$this->logger->error(
+				'Revision not found for page "{title}"', [ 'title' => $this->title->getPrefixedText() ]
+			);
+			throw new RuntimeException( 'Revision not found for page "' . $this->title->getPrefixedText() . '"' );
 		}
 		$content = $revision->getContent( SlotRecord::MAIN );
 		return ( $content instanceof TextContent ) ? $content->getText() : '';

@@ -75,7 +75,7 @@ class BotPassword implements ITargetAuthentication, LoggerAwareInterface {
 			return [];
 		}
 		return [
-			'Coookie' => $this->cookieJar->serializeToHttpRequest(
+			'Cookie' => $this->cookieJar->serializeToHttpRequest(
 				$parsedUrl['path'] ?: '/', $parsedUrl['host']
 			)
 		];
@@ -146,6 +146,9 @@ class BotPassword implements ITargetAuthentication, LoggerAwareInterface {
 
 		if ( !property_exists( $response->query, 'tokens' ) ||
 			!property_exists( $response->query->tokens, 'logintoken' ) ) {
+			$this->logger->error( 'Login token missing from API response. Response: "{response}"',
+				[ 'response' => $request->getContent() ]
+			);
 			$this->status = Status::newFatal( 'contenttransfer-no-login-token' );
 			return false;
 		}
@@ -198,6 +201,11 @@ class BotPassword implements ITargetAuthentication, LoggerAwareInterface {
 		if ( $response->login->result === 'Success' ) {
 			$this->cookieJar = $request->getCookieJar();
 		} else {
+			$loginResult = $response->login->result ?? 'unknown';
+			$this->logger->error(
+				'Login failed for user "{user}". API result: "{result}"',
+				[ 'user' => $selectedUser['user'], 'result' => $loginResult ]
+			);
 			$this->status = Status::newFatal( 'contenttransfer-authentication-bad-login' );
 			return false;
 		}

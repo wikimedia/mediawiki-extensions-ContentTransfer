@@ -10,12 +10,15 @@ use ContentTransfer\TargetAuthenticator\BotPassword;
 use ContentTransfer\TargetManager;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Content\Content;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\Message\Message;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use RuntimeException;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class PushSingle extends ApiBase {
@@ -143,7 +146,7 @@ class PushSingle extends ApiBase {
 		$target = $this->targetManager->getTarget( $pushTarget['id'] );
 		if ( !$target ) {
 			$this->dieWithError(
-				Message::newFromKey( 'contenttransfer-invalid-target' )->plain(),
+				ApiMessage::newFromKey( 'contenttransfer-invalid-target' ),
 				'push-invalid-target'
 			);
 		}
@@ -165,7 +168,21 @@ class PushSingle extends ApiBase {
 			$pushHistory,
 			$this->force
 		);
-		$this->pusher->push();
+
+		try {
+			$this->pusher->push();
+		} catch ( RuntimeException $ex ) {
+			LoggerFactory::getInstance( 'ContentTransfer' )->error(
+				'Push failed for page "{title}": {message}',
+				[ 'title' => $this->title->getPrefixedText(), 'message' => $ex->getMessage() ]
+			);
+
+			if ( $this->pusher->getStatus()->isOK() ) {
+				$this->pusher->setStatus(
+					Status::newFatal( 'contenttransfer-push-failed', $ex->getMessage() )
+				);
+			}
+		}
 	}
 
 	/**
