@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Seipinne",
 			"Yupik"
 		]
 	},
@@ -10,5 +11,6 @@
 	"contenttransfer-filter-toggle-btn-hide": "Čievâ",
 	"contenttransfer-filter-toggle-btn-show": "Čääiti",
 	"contenttransfer-selection-toggle-btn-label": "Valjii puoh",
-	"contenttransfer-progress-user-action-skip": "Njuškii paijeel"
+	"contenttransfer-progress-user-action-skip": "Njuškii paijeel",
+	"contenttransfer-dialog-push-action-done-label": "Vaalmâš"
 }
