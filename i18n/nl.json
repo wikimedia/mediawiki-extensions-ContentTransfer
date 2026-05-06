@@ -36,6 +36,7 @@
 	"contenttransfer-no-login-token": "Het aanmeldtoken kan niet worden opgehaald",
 	"contenttransfer-authentication-failed": "Verificatie mislukt",
 	"contenttransfer-cannot-create": "Pagina kan niet worden aangemaakt",
+	"contenttransfer-cannot-create-message": "Pagina kan niet worden aangemaakt: $1",
 	"contenttransfer-namespace-not-found": "De naamruimte “$1” is niet gevonden op de ontvangende wiki. Maak die naamruimte aan en probeer deze pagina opnieuw over te plaatsen.",
 	"contenttransfer-report-interrupted": "Overdracht onderbroken! Er zijn $1 pagina{{PLURAL:$1||’s}} met succes overgeplaatst.",
 	"contenttransfer-no-csrf-token": "Geen CSRF-token",
@@ -85,5 +86,8 @@
 	"contenttransfer-filter-toggle-btn-hide": "Verbergen",
 	"contenttransfer-filter-toggle-btn-show": "Weergeven",
 	"contenttransfer-selection-toggle-btn-label": "Alles selecteren",
-	"contenttransfer-transfer-wiki-heading-label": "Overplaatsen naar wiki"
+	"contenttransfer-transfer-wiki-heading-label": "Overplaatsen naar wiki",
+	"contenttransfer-push-failed": "Overdracht mislukt: $1",
+	"contenttransfer-preflight-failed": "Overdracht kan niet doorgaan: authenticatie of CSRF-token ontbreekt",
+	"contenttransfer-authentication-bad-login": "Aanmelden bij de ontvangende wiki is mislukt. Controleer de aanmeldgegevens van de bot."
 }
