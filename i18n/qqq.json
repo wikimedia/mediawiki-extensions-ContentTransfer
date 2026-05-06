@@ -88,5 +88,9 @@
 	"contenttransfer-filter-toggle-btn-hide": "Title for toggle button to hide filter panel",
 	"contenttransfer-filter-toggle-btn-show": "Title for toggle button to show filter panel",
 	"contenttransfer-selection-toggle-btn-label": "Label for toggle button to select all pages",
-	"contenttransfer-transfer-wiki-heading-label": "Heading for section to select wiki to transfer to"
+	"contenttransfer-transfer-wiki-heading-label": "Heading for section to select wiki to transfer to",
+	"contenttransfer-cannot-create-message": "Error message, when the page cannot be created, with specific error detail from the target wiki.\n* $1 - Error that occurred",
+	"contenttransfer-push-failed": "Error message when the page transfer failed.\n* $1 - Error details",
+	"contenttransfer-preflight-failed": "Error message when transfer cannot proceed due to missing authentication or CSRF token",
+	"contenttransfer-authentication-bad-login": "Error message when login to the receiving wiki failed due to bad credentials"
 }

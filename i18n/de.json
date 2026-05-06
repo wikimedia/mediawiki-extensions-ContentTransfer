@@ -83,5 +83,9 @@
 	"contenttransfer-filter-toggle-btn-hide": "Verstecken",
 	"contenttransfer-filter-toggle-btn-show": "Anzeigen",
 	"contenttransfer-selection-toggle-btn-label": "Alle auswählen",
-	"contenttransfer-transfer-wiki-heading-label": "Übertragung auf Wiki"
+	"contenttransfer-transfer-wiki-heading-label": "Übertragung auf Wiki",
+	"contenttransfer-cannot-create-message": "Seite kann nicht erstellt werden: $1",
+	"contenttransfer-push-failed": "Übertragung fehlgeschlagen: $1",
+	"contenttransfer-preflight-failed": "Die Übertragung kann nicht fortgesetzt werden: Authentifizierung oder CSRF-Token fehlt.",
+	"contenttransfer-authentication-bad-login": "Die Anmeldung beim Empfangs-Wiki ist fehlgeschlagen. Bitte überprüfe die Anmeldedaten des Bots."
 }
