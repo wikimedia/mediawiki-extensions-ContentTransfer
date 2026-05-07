@@ -82,5 +82,9 @@
 	"contenttransfer-filter-toggle-btn-hide": "Agochar",
 	"contenttransfer-filter-toggle-btn-show": "Amosar",
 	"contenttransfer-selection-toggle-btn-label": "Seleccionar todas",
-	"contenttransfer-transfer-wiki-heading-label": "Transferir ao wiki"
+	"contenttransfer-transfer-wiki-heading-label": "Transferir ao wiki",
+	"contenttransfer-cannot-create-message": "Non se pode crear a páxina: $1",
+	"contenttransfer-push-failed": "Fallou a transferencia: $1",
+	"contenttransfer-preflight-failed": "A transferencia non pode continuar: falta a autenticación ou o token CSRF",
+	"contenttransfer-authentication-bad-login": "Fallou o inicio de sesión no wiki receptor. Comproba as credenciais do bot."
 }
