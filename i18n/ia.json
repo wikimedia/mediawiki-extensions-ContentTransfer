@@ -33,6 +33,7 @@
 	"contenttransfer-no-login-token": "Le token de session non pote esser recuperate",
 	"contenttransfer-authentication-failed": "Authentication fallite",
 	"contenttransfer-cannot-create": "Pagina non pote esser create",
+	"contenttransfer-cannot-create-message": "Le pagina non pote esser create: $1",
 	"contenttransfer-namespace-not-found": "Spatio de nomines \"$1\" non trovate sur wiki receptor. Crea le spatio de nomines e tenta transferer iste pagina de novo.",
 	"contenttransfer-report-interrupted": "Transferentia interrumpite! Transferite con successo $1 pagina{{PLURAL:$1||s}}",
 	"contenttransfer-no-csrf-token": "Nulle token CSRF",
@@ -82,5 +83,8 @@
 	"contenttransfer-filter-toggle-btn-hide": "Celar",
 	"contenttransfer-filter-toggle-btn-show": "Monstrar",
 	"contenttransfer-selection-toggle-btn-label": "Seliger toto",
-	"contenttransfer-transfer-wiki-heading-label": "Transferer al wiki"
+	"contenttransfer-transfer-wiki-heading-label": "Transferer al wiki",
+	"contenttransfer-push-failed": "Transferimento fallite: $1",
+	"contenttransfer-preflight-failed": "Le transferimento non pote continuar: manca le authentication o le token CSRF",
+	"contenttransfer-authentication-bad-login": "Le apertura de session sur le wiki recipiente ha fallite. Verifica le credentiales del robot."
 }

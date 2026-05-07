@@ -33,6 +33,7 @@
 	"contenttransfer-no-login-token": "Не можев да ја добијам најавната шифра",
 	"contenttransfer-authentication-failed": "Заверката не успеа",
 	"contenttransfer-cannot-create": "Страницата не може да се создаде",
+	"contenttransfer-cannot-create-message": "Страницата не може да се созаде: $1",
 	"contenttransfer-namespace-not-found": "Не го пронајдов именскиот простор „$1“ на викито-примач. Создајте го именскиот простор и повторно пробајте да пренесете",
 	"contenttransfer-report-interrupted": "Преносот е прекинат! Успешно пренесов {{PLURAL:$1|$1 страница|$1 страници}}",
 	"contenttransfer-no-csrf-token": "Нема CSFR-шифра",
@@ -82,5 +83,8 @@
 	"contenttransfer-filter-toggle-btn-hide": "Скриј",
 	"contenttransfer-filter-toggle-btn-show": "Прикажи",
 	"contenttransfer-selection-toggle-btn-label": "Избери сè",
-	"contenttransfer-transfer-wiki-heading-label": "Пренеси на вики"
+	"contenttransfer-transfer-wiki-heading-label": "Пренеси на вики",
+	"contenttransfer-push-failed": "Преносот не успеа: $1",
+	"contenttransfer-preflight-failed": "Преносот не може да продолжи: недостасува заверка или CSRF-шифра",
+	"contenttransfer-authentication-bad-login": "Најавата на примачкото вики не успеа. Проверете ги ботовските најавни податоци."
 }
