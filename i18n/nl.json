@@ -85,5 +85,9 @@
 	"contenttransfer-filter-toggle-btn-hide": "Verbergen",
 	"contenttransfer-filter-toggle-btn-show": "Weergeven",
 	"contenttransfer-selection-toggle-btn-label": "Alles selecteren",
-	"contenttransfer-transfer-wiki-heading-label": "Overplaatsen naar wiki"
+	"contenttransfer-transfer-wiki-heading-label": "Overplaatsen naar wiki",
+	"contenttransfer-cannot-create-message": "Pagina kan niet worden aangemaakt: $1",
+	"contenttransfer-push-failed": "Overdracht mislukt: $1",
+	"contenttransfer-preflight-failed": "Overdracht kan niet doorgaan: authenticatie of CSRF-token ontbreekt",
+	"contenttransfer-authentication-bad-login": "Aanmelden bij de ontvangende wiki is mislukt. Controleer de aanmeldgegevens van de bot."
 }
