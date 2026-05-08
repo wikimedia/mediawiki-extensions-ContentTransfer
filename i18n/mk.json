@@ -82,5 +82,9 @@
 	"contenttransfer-filter-toggle-btn-hide": "Скриј",
 	"contenttransfer-filter-toggle-btn-show": "Прикажи",
 	"contenttransfer-selection-toggle-btn-label": "Избери сè",
-	"contenttransfer-transfer-wiki-heading-label": "Пренеси на вики"
+	"contenttransfer-transfer-wiki-heading-label": "Пренеси на вики",
+	"contenttransfer-cannot-create-message": "Страницата не може да се созаде: $1",
+	"contenttransfer-push-failed": "Преносот не успеа: $1",
+	"contenttransfer-preflight-failed": "Преносот не може да продолжи: недостасува заверка или CSRF-шифра",
+	"contenttransfer-authentication-bad-login": "Најавата на примачкото вики не успеа. Проверете ги ботовските најавни податоци."
 }

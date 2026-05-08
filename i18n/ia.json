@@ -82,5 +82,9 @@
 	"contenttransfer-filter-toggle-btn-hide": "Celar",
 	"contenttransfer-filter-toggle-btn-show": "Monstrar",
 	"contenttransfer-selection-toggle-btn-label": "Seliger toto",
-	"contenttransfer-transfer-wiki-heading-label": "Transferer al wiki"
+	"contenttransfer-transfer-wiki-heading-label": "Transferer al wiki",
+	"contenttransfer-cannot-create-message": "Le pagina non pote esser create: $1",
+	"contenttransfer-push-failed": "Transferimento fallite: $1",
+	"contenttransfer-preflight-failed": "Le transferimento non pote continuar: manca le authentication o le token CSRF",
+	"contenttransfer-authentication-bad-login": "Le apertura de session sur le wiki recipiente ha fallite. Verifica le credentiales del robot."
 }
