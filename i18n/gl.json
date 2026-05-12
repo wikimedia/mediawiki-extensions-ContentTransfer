@@ -33,6 +33,7 @@
 	"contenttransfer-no-login-token": "Non se pode recuperar o token de inicio de sesión",
 	"contenttransfer-authentication-failed": "Fallou a autenticación",
 	"contenttransfer-cannot-create": "Non se pode crear a páxina",
+	"contenttransfer-cannot-create-message": "Non se pode crear a páxina: $1",
 	"contenttransfer-namespace-not-found": "Non se atopou o espazo de nomes «$1» no wiki receptor. Crea o espazo de nomes e intenta transferir esta páxina de novo.",
 	"contenttransfer-report-interrupted": "A transferencia interrompeuse! {{PLURAL:$1|Transferiuse|Transferíronse}} correctamente {{PLURAL:$1|unha páxina|$1 páxinas}}.",
 	"contenttransfer-no-csrf-token": "Non hai token CSRF",
@@ -83,7 +84,6 @@
 	"contenttransfer-filter-toggle-btn-show": "Amosar",
 	"contenttransfer-selection-toggle-btn-label": "Seleccionar todas",
 	"contenttransfer-transfer-wiki-heading-label": "Transferir ao wiki",
-	"contenttransfer-cannot-create-message": "Non se pode crear a páxina: $1",
 	"contenttransfer-push-failed": "Fallou a transferencia: $1",
 	"contenttransfer-preflight-failed": "A transferencia non pode continuar: falta a autenticación ou o token CSRF",
 	"contenttransfer-authentication-bad-login": "Fallou o inicio de sesión no wiki receptor. Comproba as credenciais do bot."
