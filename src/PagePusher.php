@@ -2,6 +2,7 @@
 
 namespace ContentTransfer;
 
+use ContentTransfer\Utility\ApiErrorHelper;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Status\Status;
@@ -200,7 +201,8 @@ class PagePusher {
 			'summary' => 'Pushed content',
 			'text' => $content,
 			'title' => $this->getTargetTitleText(),
-			'format' => 'json'
+			'format' => 'json',
+			'errorformat' => 'raw'
 		];
 		$status = $this->requestHandler->runPushRequest( $requestData );
 
@@ -219,8 +221,8 @@ class PagePusher {
 		}
 
 		$response = (object)$status->getValue();
-		if ( property_exists( $response, 'error' ) ) {
-			$error = $response->error['info'] ?? '';
+		if ( property_exists( $response, 'errors' ) && $response->errors ) {
+			$error = ApiErrorHelper::extractLocalizedError( $response->errors );
 			$this->logger->error(
 				'Edit request for "{title}" returned API error: {error}',
 				[ 'title' => $this->getTargetTitleText(), 'error' => $error,

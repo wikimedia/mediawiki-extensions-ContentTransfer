@@ -2,6 +2,7 @@
 
 namespace ContentTransfer;
 
+use ContentTransfer\Utility\ApiErrorHelper;
 use Exception;
 use File;
 use GuzzleHttp\Client;
@@ -71,6 +72,7 @@ class AuthenticatedRequestHandler {
 				'action' => 'query',
 				'prop' => 'pageprops',
 				'format' => 'json',
+				'errorformat' => 'raw',
 				'titles' => $title
 			];
 
@@ -90,7 +92,7 @@ class AuthenticatedRequestHandler {
 
 			$pages = $response[ 'query' ][ 'pages' ] ?? null;
 			if ( !$pages || ( count( $pages ) === 0 ) ) {
-				$error = $response[ 'error' ][ 'info' ] ?? '';
+				$error = ApiErrorHelper::extractLocalizedErrorFromArray( $response );
 				$this->logger->error( 'Page props response contained no pages for "{title}". Error: "{error}".' .
 					'Response: {response}.',
 					[ 'title' => $title, 'error' => $error, 'response' => $request->getContent() ]
@@ -243,6 +245,10 @@ class AuthenticatedRequestHandler {
 					'contents' => 'json'
 				],
 				[
+					'name' => 'errorformat',
+					'contents' => 'raw'
+				],
+				[
 					'name' => 'action',
 					'contents' => 'upload'
 				],
@@ -280,12 +286,15 @@ class AuthenticatedRequestHandler {
 			return false;
 		}
 
-		if ( $response && property_exists( $response, 'error' ) ) {
-			if ( $response->error->code === 'fileexists-no-change' ) {
-				// Do not consider pushing duplicate files as an error
-				return true;
+		if ( $response && property_exists( $response, 'errors' ) && $response->errors ) {
+			foreach ( $response->errors as $err ) {
+				if ( ( $err->code ?? '' ) === 'fileexists-no-change' ) {
+					// Do not consider pushing duplicate files as an error
+					return true;
+				}
 			}
-			$this->status = Status::newFatal( 'contenttransfer-upload-fail-message', $response->error->info );
+			$error = ApiErrorHelper::extractLocalizedError( $response->errors );
+			$this->status = Status::newFatal( 'contenttransfer-upload-fail-message', $error );
 			return false;
 		}
 
