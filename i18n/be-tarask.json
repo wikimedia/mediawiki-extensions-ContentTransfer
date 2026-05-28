@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Red Winged Duck",
 			"Ucukor"
 		]
 	},
-	"contenttransfer-category-filter-input-label": "Катэґорыя",
+	"contenttransfer-category-filter-input-label": "Катэгорыя",
 	"contenttransfer-dialog-push-action-cancel-label": "Скасаваць",
 	"contenttransfer-filter-panel-label": "Фільтар"
 }
