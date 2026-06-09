@@ -89,5 +89,5 @@
 	"contenttransfer-transfer-wiki-heading-label": "Overplaatsen naar wiki",
 	"contenttransfer-push-failed": "Overdracht mislukt: $1",
 	"contenttransfer-preflight-failed": "Overdracht kan niet doorgaan: authenticatie of CSRF-token ontbreekt",
-	"contenttransfer-authentication-bad-login": "Aanmelden bij de ontvangende wiki is mislukt. Controleer de aanmeldgegevens van de bot."
+	"contenttransfer-authentication-bad-login": "Aanmelden bij de ontvangende wiki is mislukt. Controleer de aanmeldgegevens van de robot."
 }
