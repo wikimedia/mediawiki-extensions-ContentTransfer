@@ -141,10 +141,9 @@
 			selected: true
 		} );
 
-		this.modifiedSince = new mw.widgets.DateInputWidget( {
+		this.modifiedSince = new OOJSPlus.ui.widget.DateInputWidget( {
 			inputFormat: 'DD.MM.YYYY',
-			displayFormat: 'DD.MM.YYYY',
-			$overlay: true
+			displayFormat: 'DD.MM.YYYY'
 		} );
 
 		this.onlyModified.connect( this, { change: 'loadPages' } );
