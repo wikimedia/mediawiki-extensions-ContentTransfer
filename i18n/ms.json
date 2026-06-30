@@ -66,7 +66,7 @@
 	"contenttransfer-apihelp-param-includerelated": "Bool. Tetapkan sama ada sumber-sumber seperti halaman terpaut, fail dan kategori halaman harus dipindahkan",
 	"contenttransfer-apihelp-param-articleid": "Integer. ID halaman, yang sepatutnya dipindahkan",
 	"contenttransfer-apihelp-param-force": "Bool. Abaikan amaran dan pindahkan juga",
-	"contenttransfer-apihelp-param-token": "Token edit pengguna",
+	"contenttransfer-apihelp-param-token": "Token sunting pengguna",
 	"contenttransfer-dialog-push-preview-page-group-label-original": "Halaman terpilih ($1)",
 	"content-transfer-push-related-pages": "Halaman berkaitan",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Bahagian terujuk",
