@@ -88,5 +88,9 @@
 	"contenttransfer-filter-toggle-btn-hide": "إخفاء",
 	"contenttransfer-filter-toggle-btn-show": "عرض",
 	"contenttransfer-selection-toggle-btn-label": "حدد الكل",
-	"contenttransfer-transfer-wiki-heading-label": "نقل إلى ويكي"
+	"contenttransfer-transfer-wiki-heading-label": "نقل إلى ويكي",
+	"contenttransfer-cannot-create-message": "لا يمكن إنشاء الصفحة: $1",
+	"contenttransfer-push-failed": "فشلت عملية التحويل: $1",
+	"contenttransfer-preflight-failed": "لا يمكن إتمام عملية النقل: رمز المصادقة أو رمز CSRF مفقودان",
+	"contenttransfer-authentication-bad-login": "فشل تسجيل الدخول إلى ويكي الاستقبال. يرجى التحقق من بيانات اعتماد البوت."
 }
