@@ -87,5 +87,9 @@
 	"contenttransfer-filter-toggle-btn-hide": "隐藏",
 	"contenttransfer-filter-toggle-btn-show": "显示",
 	"contenttransfer-selection-toggle-btn-label": "全选",
-	"contenttransfer-transfer-wiki-heading-label": "转移到wiki"
+	"contenttransfer-transfer-wiki-heading-label": "转移到wiki",
+	"contenttransfer-cannot-create-message": "页面创建失败：$1",
+	"contenttransfer-push-failed": "转移失败：$1",
+	"contenttransfer-preflight-failed": "转移无法进行：缺少身份验证或CSRF令牌",
+	"contenttransfer-authentication-bad-login": "登录接收wiki失败。请检查机器人凭据。"
 }
