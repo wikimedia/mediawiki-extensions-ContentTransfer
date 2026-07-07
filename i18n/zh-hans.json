@@ -38,6 +38,7 @@
 	"contenttransfer-no-login-token": "无法检索登录令牌",
 	"contenttransfer-authentication-failed": "验证失败",
 	"contenttransfer-cannot-create": "无法创建页面",
+	"contenttransfer-cannot-create-message": "页面创建失败：$1",
 	"contenttransfer-namespace-not-found": "在接收wiki上找不到命名空间“$1”。请创建命名空间并重试转移此页面",
 	"contenttransfer-report-interrupted": "转移中断！成功转移{{PLURAL:$1|$1}}个页面",
 	"contenttransfer-no-csrf-token": "没有CSRF令牌",
@@ -88,7 +89,6 @@
 	"contenttransfer-filter-toggle-btn-show": "显示",
 	"contenttransfer-selection-toggle-btn-label": "全选",
 	"contenttransfer-transfer-wiki-heading-label": "转移到wiki",
-	"contenttransfer-cannot-create-message": "页面创建失败：$1",
 	"contenttransfer-push-failed": "转移失败：$1",
 	"contenttransfer-preflight-failed": "转移无法进行：缺少身份验证或CSRF令牌",
 	"contenttransfer-authentication-bad-login": "登录接收wiki失败。请检查机器人凭据。"

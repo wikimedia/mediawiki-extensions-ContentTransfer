@@ -39,6 +39,7 @@
 	"contenttransfer-no-login-token": "لا يمكن استرداد رمز تسجيل الدخول",
 	"contenttransfer-authentication-failed": "المصادقة فشلت",
 	"contenttransfer-cannot-create": "لا يمكن إنشاء الصفحة",
+	"contenttransfer-cannot-create-message": "لا يمكن إنشاء الصفحة: $1",
 	"contenttransfer-namespace-not-found": "لم يتم العثور على النطاق \" $1 \" عند تلقي wiki. قم بإنشاء النطاق وحاول نقل هذه الصفحة مرة أخرى",
 	"contenttransfer-report-interrupted": "توقف النقل! تم بنجاح نقل {{PLURAL:$1| صفحة $1 | صفحات $1 }}",
 	"contenttransfer-no-csrf-token": "لا يوجد رمز CSRF مميز",
@@ -89,7 +90,6 @@
 	"contenttransfer-filter-toggle-btn-show": "عرض",
 	"contenttransfer-selection-toggle-btn-label": "حدد الكل",
 	"contenttransfer-transfer-wiki-heading-label": "نقل إلى ويكي",
-	"contenttransfer-cannot-create-message": "لا يمكن إنشاء الصفحة: $1",
 	"contenttransfer-push-failed": "فشلت عملية التحويل: $1",
 	"contenttransfer-preflight-failed": "لا يمكن إتمام عملية النقل: رمز المصادقة أو رمز CSRF مفقودان",
 	"contenttransfer-authentication-bad-login": "فشل تسجيل الدخول إلى ويكي الاستقبال. يرجى التحقق من بيانات اعتماد البوت."
