@@ -145,6 +145,9 @@ class PagePusher {
 		return $this->userAction;
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function ensurePushPossible() {
 		if ( $this->title->getNamespace() != NS_MAIN &&
 				$this->requestHandler->getPageProps( $this->getTargetTitleText() )[ 'ns' ] == NS_MAIN ) {
@@ -175,6 +178,9 @@ class PagePusher {
 		return true;
 	}
 
+	/**
+	 * @return int|false
+	 */
 	protected function doPush() {
 		$content = $this->contentProvider->getContent();
 
