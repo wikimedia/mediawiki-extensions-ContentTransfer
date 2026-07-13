@@ -5,6 +5,9 @@
 		"wikimedia/jquery",
 		"wikimedia/mediawiki"
 	],
+	"parserOptions": {
+		"sourceType": "commonjs"
+	},
 	"globals": {
 		"contentTransfer": "readonly",
 		"jQuery": "readonly",
@@ -15,6 +18,7 @@
 		"no-jquery/no-class-state": "off",
 		"no-jquery/no-global-selector": "off",
 		"no-jquery/no-parse-html-literal": "off",
-		"no-prototype-builtins": "off"
+		"no-prototype-builtins": "off",
+		"no-jquery/no-done-fail": "warn"
 	}
 }

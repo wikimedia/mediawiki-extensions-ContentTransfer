@@ -589,7 +589,7 @@
 				continue;
 			}
 			const page = this.joinedInfo[ dbKey ];
-			if ( this.skipPages.indexOf( page.id ) !== -1 ) {
+			if ( this.skipPages.indexOf( page.id ) !== -1 ) { // eslint-disable-line unicorn/prefer-includes
 				delete ( this.joinedInfo[ dbKey ] );
 			}
 		}
@@ -599,7 +599,7 @@
 		if ( !page ) {
 			return;
 		}
-		if ( value && this.skipPages.indexOf( page.id ) !== -1 ) {
+		if ( value && this.skipPages.indexOf( page.id ) !== -1 ) { // eslint-disable-line unicorn/prefer-includes
 			this.skipPages.splice( this.skipPages.indexOf( page.id ), 1 );
 		} else if ( !value ) {
 			this.skipPages.push( page.id );

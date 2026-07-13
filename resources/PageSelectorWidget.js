@@ -106,7 +106,7 @@
 	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.makeFilters = function () {
-		this.toggleFilterButton = new OO.ui.ButtonWidget( {
+		this.toggleFilterButton = new OO.ui.ButtonWidget( { // eslint-disable-line mediawiki/no-unlabeled-buttonwidget
 			icon: this.expanded ? 'collapse' : 'expand',
 			framed: false,
 			classes: [ 'toggle-icon', 'collapsed-panel' ],
@@ -367,7 +367,7 @@
 			modifiedDateValue = date.toLocaleDateString( 'de-DE' );
 		}
 		return modifiedDateValue;
-	}
+	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.loadPages = function () {
 		if ( !this.currentPushTarget ) {
