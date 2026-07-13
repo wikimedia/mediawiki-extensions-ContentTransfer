@@ -3,28 +3,35 @@
 	.page-loader {
 		margin: 10px auto;
 	}
+
 	h2 {
 		margin: 0.8rem 0;
 	}
+
 	.content-transfer-push-cnt {
 		justify-content: end;
+
 		.related {
 			align-self: center;
 			margin-right: 10px;
 		}
 	}
+
 	.content-transfer-targets-picker-layout {
 		padding-bottom: 20px;
 		display: table;
+
 		.oo-ui-fieldLayout {
 			padding-right: 20px;
 			display: table-cell;
+
 			&.picker {
 				min-width: 250px;
 			}
 			vertical-align: middle;
 			margin-bottom: 0;
 		}
+
 		.oo-ui-buttonWidget {
 			display: table-cell;
 			width: 10%;
@@ -33,6 +40,7 @@
 			text-align: right;
 		}
 	}
+
 	.content-transfer-pages-filter-header {
 		margin: 1rem 0 1.5rem;
 		border-bottom: 1px solid #a5a5a5;
@@ -42,21 +50,26 @@
 			float: right;
 		}
 	}
+
 	.contenttransfer-filter-layout {
 		display: table;
 		padding: 10px 0 20px 0;
+
 		>.oo-ui-horizontalLayout {
 			&.bottom-margin {
 				margin-bottom: 20px;
 			}
+
 			>.oo-ui-fieldLayout {
 				display: table-cell;
 				width: 27%;
 				padding-right: 10px;
+
 				&:last-of-type {
 					padding-right: 0;
 				}
 				vertical-align: middle;
+
 				&.only-modified-layout {
 					margin: auto 0 0;
 					width: auto;
@@ -64,6 +77,7 @@
 			}
 		}
 	}
+
 	.content-transfer-pages-header {
 		.header-layout {
 			justify-content: space-between;
@@ -73,19 +87,24 @@
 				margin-right: 0;
 			}
 		}
+
 		.selection-cnt {
 			align-self: end;
 		}
+
 		.selected-count {
 			min-height: 20px;
 			color: #747474;
+
 			span {
 				float: right;
 			}
 		}
 	}
+
 	.content-transfer-page-container {
 		margin-top: 10px;
+
 		.oo-ui-horizontalLayout {
 			text-align: center;
 			margin-top: 20px;
@@ -93,17 +112,21 @@
 			background-color: #e4e4e4;
 			padding: 20px;
 		}
+
 		.content-transfer-page-item {
 			width: 33%;
 			display: inline-block;
-			margin: 0 !important;
+			margin: 0 !important; /* stylelint-disable-line declaration-no-important */
 		}
+
 		.content-transfer-too-many-pages-warning {
 			margin-top: 10px;
+
 			.oo-ui-labelWidget {
-				width: 90%
+				width: 90%;
 			}
 		}
+
 		.oo-ui-messageWidget {
 			margin-bottom: 1rem;
 		}
@@ -122,6 +145,7 @@
 		width: 100%;
 		overflow: auto;
 		vertical-align: top;
+
 		.content-transfer-layout-push-page {
 			height: 100%;
 			display: none;
@@ -134,16 +158,19 @@
 		padding: 20px;
 		width: 100%;
 	}
+
 	.content-transfer-dialog-push-preview-panel-group-button {
 		width: 100%;
 		background-color: #e0e0e0;
 		height: 35px;
 		border-bottom: 1px solid #c2c2c2;
 		padding-left: 20px;
-		margin-right: 0 !important;
+		margin-right: 0 !important; /* stylelint-disable-line declaration-no-important */
 		margin-top: 0;
+
 		a {
 			width: inherit;
+
 			span.oo-ui-labelElement-label {
 				width: 85%;
 				height: 30px;
@@ -151,37 +178,44 @@
 			}
 		}
 	}
+
 	.content-transfer-dialog-push-preview-panel-page-group {
 		display: none;
 		margin: auto;
 		background-color: #f2f2f2;
 		padding: 5px 5px 5px 20px;
+
 		&.page-group-visible {
 			display: block;
 		}
+
 		.content-transfer-dialog-push-preview-panel-page-item {
 			display: block;
 			width: 95%;
 			margin-bottom: 3px;
 			padding-left: 20px;
+
 			a {
 				color: #36c;
 			}
+
 			&:visited {
 				color: #36c;
 			}
 		}
+
 		&.subpage-group {
 			.content-transfer-dialog-push-preview-panel-page-item {
 				padding-left: 40px;
 			}
 			padding: 0;
 		}
-
 	}
+
 	.content-transfer-push-related-pages-label {
 		padding: 10px 0 5px 5px;
 	}
+
 	.content-transfer-dialog-push-check-subgroup {
 		margin-left: 20px;
 	}
@@ -190,25 +224,31 @@
 .content-transfer-progress-panel {
 	padding: 10px;
 	height: 100%;
+
 	.content-transfer-progress-panel-push-target {
 		margin-bottom: 5px;
 	}
+
 	.content-transfer-progress-panel-current-op {
 		font-weight: bold;
 	}
+
 	.oo-ui-progressBarWidget {
 		.oo-ui-progressBarWidget-bar {
 			background-color: #6086d1;
 		}
 		margin: 10px;
 	}
+
 	.content-transfer-progress-panel-log-container {
 		height: 390px;
 		overflow: auto;
+
 		.content-transfer-progress-item {
 			.content-transfer-progress-user-action-container {
 				padding: 10px;
 				background-color: #ffb3b3;
+
 				.oo-ui-labelWidget {
 					padding-bottom: 10px;
 					display: block;
@@ -221,23 +261,26 @@
 .content-transfer-report-panel {
 	padding: 10px;
 	text-align: center;
+
 	.oo-ui-iconWidget {
-		height: 50px !important;
+		height: 50px !important; /* stylelint-disable-line declaration-no-important */
 		width: 100%;
 	}
+
 	.content-transfer-report-panel-failures {
 		&.hidden {
 			display: none;
 		}
 		margin: 10px;
 		text-align: left;
-		color: #F54739;
+		color: #f54739;
+
 		span {
 			color: initial;
 		}
 
 		.content-transfer-report-failure-reason {
-			font-size: .9em;
+			font-size: 0.9em;
 			color: grey;
 			margin-left: 10px;
 		}
