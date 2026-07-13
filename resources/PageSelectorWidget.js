@@ -367,7 +367,7 @@
 			modifiedDateValue = date.toLocaleDateString( 'de-DE' );
 		}
 		return modifiedDateValue;
-	}
+	};
 
 	contentTransfer.widget.PageSelectorWidget.prototype.loadPages = function () {
 		if ( !this.currentPushTarget ) {
