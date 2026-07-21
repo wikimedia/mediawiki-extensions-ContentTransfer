@@ -32,5 +32,6 @@
 	"contenttransfer-filter-panel-label": "Filter",
 	"contenttransfer-filter-toggle-btn-hide": "Verstoppen",
 	"contenttransfer-filter-toggle-btn-show": "Weisen",
-	"contenttransfer-no-csrf-token": "Keen CSRF-Token"
+	"contenttransfer-no-csrf-token": "Keen CSRF-Token",
+	"contenttransfer-no-pages-label": "Et si keng Säiten disponibel!"
 }
