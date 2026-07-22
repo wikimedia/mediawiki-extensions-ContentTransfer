@@ -44,7 +44,6 @@ class PagePusher {
 	protected string $targetPushNamespaceName = '';
 
 	/**
-	 *
 	 * @param Title $title
 	 * @param Target $target
 	 * @param PushHistory $pushHistory
@@ -328,7 +327,6 @@ class PagePusher {
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	protected function getTargetTitleText() {

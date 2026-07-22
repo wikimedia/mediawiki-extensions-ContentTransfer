@@ -15,7 +15,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class PagePusherFactory {
 
 	/**
-	 *
 	 * @param AuthenticatedRequestHandlerFactory $requestHandlerFactory
 	 * @param PageContentProviderFactory $contentProviderFactory
 	 * @param Config $config
