@@ -57,7 +57,6 @@ class Push extends SpecialPage {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	private function loadFilters() {

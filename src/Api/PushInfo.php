@@ -54,7 +54,6 @@ class PushInfo extends ApiBase {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	protected function getAllowedParams() {
@@ -123,9 +122,6 @@ class PushInfo extends ApiBase {
 		$this->includeRelated = (bool)$this->getParameter( 'includeRelated' );
 	}
 
-	/**
-	 *
-	 */
 	protected function getInfo() {
 		foreach ( $this->titles as $dbKey => $title ) {
 			$contentProvider = $this->contentProviderFactory->newFromTitle( $title );
@@ -244,7 +240,6 @@ class PushInfo extends ApiBase {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	private function getModificationData() {

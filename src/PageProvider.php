@@ -180,7 +180,6 @@ class PageProvider {
 	}
 
 	/**
-	 *
 	 * @return int
 	 */
 	protected function getLimit() {
@@ -192,7 +191,6 @@ class PageProvider {
 	}
 
 	/**
-	 *
 	 * @param string $modifiedSince
 	 * @return string|null
 	 */

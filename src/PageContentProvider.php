@@ -32,7 +32,6 @@ class PageContentProvider {
 	private bool $relatedLoaded = false;
 
 	/**
-	 *
 	 * @param Title $title
 	 * @param RevisionLookup $revisionLookup
 	 * @param RevisionRenderer $revisionRenderer
@@ -215,7 +214,6 @@ class PageContentProvider {
 	}
 
 	/**
-	 *
 	 * @param array $nested
 	 * @param bool|null $transcluded
 	 */
