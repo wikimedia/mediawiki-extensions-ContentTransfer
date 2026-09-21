@@ -11,7 +11,8 @@
 	"globals": {
 		"contentTransfer": "readonly",
 		"jQuery": "readonly",
-		"mediaWiki": "readonly"
+		"mediaWiki": "readonly",
+		"OOJSPlus": "readonly"
 	},
 	"rules": {
 		"max-len": "off",
