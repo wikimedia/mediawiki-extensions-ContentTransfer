@@ -142,8 +142,7 @@
 		} );
 
 		this.modifiedSince = new OOJSPlus.ui.widget.DateInputWidget( {
-			inputFormat: 'DD.MM.YYYY',
-			displayFormat: 'DD.MM.YYYY'
+			placeholder: true
 		} );
 
 		this.onlyModified.connect( this, { change: 'loadPages' } );
