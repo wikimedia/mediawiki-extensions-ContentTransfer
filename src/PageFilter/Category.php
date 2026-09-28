@@ -85,6 +85,7 @@ class Category implements IPageFilter {
 	 */
 	public function modifyTables( &$tables ) {
 		$tables[] = 'categorylinks';
+		$tables[] = 'linktarget';
 	}
 
 	/**
@@ -92,6 +93,7 @@ class Category implements IPageFilter {
 	 */
 	public function modifyJoins( &$joins ) {
 		$joins['categorylinks'] = [ 'LEFT OUTER JOIN', [ 'page_id = cl_from' ] ];
+		$joins['linktarget'] = [ 'LEFT OUTER JOIN', [ 'cl_target_id = lt_id' ] ];
 	}
 
 	/**
@@ -100,8 +102,8 @@ class Category implements IPageFilter {
 	public function modifyConds( $filterData, &$conds ) {
 		$db = $this->lb->getConnection( DB_REPLICA );
 		if ( isset( $filterData['category'] ) && $filterData['category'] !== false ) {
-			$categoryLinksTableName = $db->tableName( 'categorylinks' );
-			$conds[] = "$categoryLinksTableName.cl_to = " . $db->addQuotes( $filterData['category'] );
+			$linkTargetTableName = $db->tableName( 'linktarget' );
+			$conds[] = "$linkTargetTableName.lt_title = " . $db->addQuotes( $filterData['category'] );
 		}
 	}
 
