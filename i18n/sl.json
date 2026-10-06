@@ -71,5 +71,6 @@
 	"content-transfer-push-related-pages": "Sorodne strani",
 	"contenttransfer-dialog-push-subgroup-label-linked": "Sklicevano",
 	"contenttransfer-dialog-push-subgroup-label-transcluded": "Vključeno",
-	"contenttransfer-user-picker-label": "Prenos kot uporabnik"
+	"contenttransfer-user-picker-label": "Prenos kot uporabnik",
+	"contenttransfer-filter-toggle-btn-hide": "Skrij"
 }
