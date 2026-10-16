@@ -1,0 +1,39 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"contenttransfer-text-filter-input-label": "مخ نوم",
+	"contenttransfer-namespace-filter-input-label": "نوم‌تشيال",
+	"contenttransfer-category-filter-input-label": "وېشنيزه",
+	"contenttransfer-pages-header-count": "غوره‌شوې: $2 ټولټال: $1",
+	"contenttransfer-dialog-push-action-cancel-label": "ناگارل",
+	"contenttransfer-dialog-push-action-done-label": "وشو",
+	"contenttransfer-dialog-push-preview-layout-label": "مخ ټول‌کتنه",
+	"contenttransfer-dialog-push-progress-layout-label": "پرمختگ",
+	"contenttransfer-dialog-push-report-layout-label": "خبرورکول",
+	"contenttransfer-dialog-push-preview-page-group-label-wikipage": "($1) مخ",
+	"contenttransfer-dialog-push-preview-page-group-label-file": "($1) دوتنه",
+	"contenttransfer-dialog-push-preview-page-group-label-category": "($1) وېشنيزې مخ",
+	"contenttransfer-dialog-push-preview-page-group-label-template": "($1) کينډۍ",
+	"contenttransfer-report-failure-label": "نابريال شو",
+	"contenttransfer-target-picker-label": "ويکي ترلاسه‌کول",
+	"contenttransfer-progress-push-target-label": "ويکي ترلاسه‌کول: $1",
+	"contenttransfer-invalid-target": "ناسمه ويکي ترلاسه‌کوونکی",
+	"contenttransfer-no-pageprops": "د مخ ځانتياوې نشي ترلاسه کېدی",
+	"contenttransfer-no-login-token": "د ننوتلو ټوکن نشي ترلاسه کېدی",
+	"contenttransfer-authentication-failed": "تاييد نابرياله شو",
+	"contenttransfer-cannot-create": "مخ نشي جوړېدای",
+	"contenttransfer-cannot-create-message": "مخ نشي جوړېدای: $1",
+	"contenttransfer-edit-fail-message": "سمون تېروتنه: $1",
+	"contenttransfer-upload-fail": "ترلاسه‌کوونکي ويکي کې دوتنه نشي راپورته‌کېدای",
+	"contenttransfer-upload-fail-message": "راپورته‌کولو تېروتنه: $1",
+	"contenttransfer-apihelp-param-pushtarget": "د ويکي نوم ترلاسه‌کول",
+	"contenttransfer-progress-user-action-skip": "تېرېدل",
+	"contenttransfer-progress-user-action-force": "زور هڅه",
+	"contenttransfer-filter-panel-label": "چاڼگر",
+	"contenttransfer-filter-toggle-btn-hide": "پټول",
+	"contenttransfer-filter-toggle-btn-show": "ښودل",
+	"contenttransfer-selection-toggle-btn-label": "ټول ټاکل"
+}
