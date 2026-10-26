@@ -2,12 +2,12 @@
 
 namespace ContentTransfer;
 
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
-use RepoGroup;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class PageContentProviderFactory {
