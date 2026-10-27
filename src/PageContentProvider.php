@@ -3,10 +3,10 @@
 namespace ContentTransfer;
 
 use BadMethodCallException;
-use File;
 use MediaWiki\Category\Category;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
