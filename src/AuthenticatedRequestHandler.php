@@ -4,10 +4,10 @@ namespace ContentTransfer;
 
 use ContentTransfer\Utility\ApiErrorHelper;
 use Exception;
-use File;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttpRequest;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Status\Status;
