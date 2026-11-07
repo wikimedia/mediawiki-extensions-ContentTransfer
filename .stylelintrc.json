@@ -7,6 +7,7 @@
 		"color-named": null,
 		"no-descending-specificity": null,
 		"selector-class-pattern": null,
-		"selector-max-id": null
+		"selector-max-id": null,
+		"wikimedia/selector-class-prefix": null
 	}
 }
