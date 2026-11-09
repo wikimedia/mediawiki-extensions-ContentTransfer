@@ -15,10 +15,15 @@ class Push extends SpecialPage {
 	private $targetManager;
 
 	public function __construct() {
-		parent::__construct( "ContentTransfer", "content-transfer" );
+		parent::__construct( 'ContentTransfer' );
 		$this->targetManager = MediaWikiServices::getInstance()->getService(
 			'ContentTransferTargetManager'
 		);
+	}
+
+	/** @inheritDoc */
+	public function getRestriction(): string {
+		return 'content-transfer';
 	}
 
 	/**
